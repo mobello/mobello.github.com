@@ -307,7 +307,7 @@ $class('tau.sample.store.AppsSearchController')
 
           loadRawModel: function() {
 
-            if (document.URL.indexOf('http://') == -1
+            if (true || document.URL.indexOf('http://') == -1
                 || !window.navigator.onLine) { // read
 
               // from
@@ -491,7 +491,7 @@ $class('tau.sample.store.AppsRecommendController')
            * ready load flickr data from flickr server
            */
           loadModel: function(start, size) {
-            if (document.URL.indexOf('http://') == -1
+            if (true || document.URL.indexOf('http://') == -1
                 || !window.navigator.onLine) { // read
               // from
               // local
@@ -611,7 +611,7 @@ $class('tau.sample.store.AppsListController')
            * ready load flickr data from flickr server
            */
           loadModel: function(start, size) {
-            if (document.URL.indexOf('http://') == -1
+            if (true || document.URL.indexOf('http://') == -1
                 || !window.navigator.onLine) { // read
               // from
               // local
