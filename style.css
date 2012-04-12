@@ -1,0 +1,17 @@
+a:link {
+    text-decoration:none;
+}
+a:hover {
+    text-decoration:underline;
+}
+a:visited {
+    text-decoration:none;
+}
+a:active {
+    text-decoration:none;
+}
+
+body {
+	font-family: Verdana;
+	color: #777
+}
