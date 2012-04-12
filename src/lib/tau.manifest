@@ -1,0 +1,51 @@
+CACHE MANIFEST
+# v1.0
+ 
+CACHE:
+# core library
+tau.core.js
+tau.data.js
+tau.fx.js
+tau.js
+tau.rt.js
+tau.proxy.js
+tau.ui.comp.js
+tau.ui.ctrl.js
+tau.ui.layout.js
+tau.ui.renderer.js
+tau.util.js
+
+# Global configuration
+../config.json
+
+# System resources
+resources/base.css
+resources/themes/default/tau.css
+resources/font/arimo/stylesheet.css
+resources/font/arimo/font.css
+resources/font/arimo/arimo-regular-webfont.woff
+resources/font/museosans/stylesheet.css
+resources/font/museosans/font.css
+resources/font/museosans/MuseoSans_500-webfont.woff
+resources/font/olleh/stylesheet.css
+resources/font/simple/stylesheet.css
+resources/images/systemdock/tauicon.png
+resources/images/dashboard/lefttmp_ci.png
+resources/images/dashboard/xtmp_ci.png
+resources/images/systemdock/drawer-bg.jpg
+resources/images/table/section.png
+resources/images/picker/header.png
+resources/images/picker/slot-border.png
+resources/images/picker/frame.png
+resources/images/navigationbar/back_ar.png
+resources/images/scrollpanel/pull-icon.png
+resources/images/checkbox/selected.png
+resources/images/radio/selected.png
+resources/images/textfield/clear.png
+resources/images/textfield/clearSel.png
+resources/images/select/select.png
+
+FALLBACK:
+
+NETWORK:
+*

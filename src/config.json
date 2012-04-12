@@ -1,0 +1,13 @@
+config({
+  title       : 'TAU App Platform',
+  apps        : ['setting', 'appstore', 'demo'],
+  version     : '1.0.0',
+  vendor      : 'kt corp.',
+  theme       : 'default',
+  language    : 'ko',
+  region      : 'KR',
+  splash	  : '',
+  icon        : '',
+  dashboard	  : {cols: 4, maxcols: 6, controller: ''},
+  systemdock  : {maxShortcuts: 6, attached: 2}
+});

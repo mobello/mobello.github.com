@@ -1,0 +1,15 @@
+config({
+  classname: 'tau.tmpl.AppMain',
+  require: ['$shared/templates/clothes/review.js','$shared/templates/main.js', '$shared/templates/clothes/info.js','$shared/templates/clothes/magazine.js', '$shared/templates/clothes/category.js'], 
+  version: '1.0.0',
+  title: 'cherrycoco',
+  desc:'기존의 체리코코도 많이 사랑해주셨지만 새롭게 개편했습니다. 봄맞이 기념으로 산뜻하게! 그리고 그동안의 불편과 개선사항을 모두 담아 새롭게 앱을 출시했습니다. 봄맞이 샤랄라한 패션제안! 체리코코',
+  vendor      : 'KT Corporation',
+  templates: ['tau.tmpl.chicken.Info','tau.tmpl.clothes.Category','tau.tmpl.clothes.Review', 'tau.tmpl.clothes.Magazine'],
+  tabbarImage: {
+  	tab0 : '/img/house.png', 
+	tab1 : '/img/shoppingcart.png',
+  	tab2 : '/img/pencilangled.png',
+  	tab3 : '/img/newspaper.png'
+ }
+});

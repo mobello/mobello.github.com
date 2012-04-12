@@ -1,0 +1,314 @@
+[
+  {
+    "type":"치킨",
+    "data":[
+      {
+        "title":"황금 올리브 치킨",
+        "img":"fri_goc_s.png",
+        "detail_img":"fr_goc.jpg",
+        "explain":"한입 베어 무는 순간, 입안 가득히 퍼지는 고소한 육즙과 감미로운 올리브유 향을 만끽하세요. 건강하게 맛있는 BBQ 대표치킨",
+        "price":"15,000"
+      },
+      {
+        "title":"황금 올리브 닭다리",
+        "img":"fri_gol_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"한번 맛보면 잊을 수 없는 육즙 가득 쫄깃함. 최고의 닭다리만을 모아 씹는 맛부터 다르다! 닭다리 마니아를 위한 특별 메뉴",
+        "price":"16,500"
+      },
+      {
+        "title":"바사칸 치킨",
+        "img":"fri_bc_s.png",
+        "detail_img":"FR_BC.jpg",
+        "explain":"고소한 감자 전분을 입혀 바삭바삭한 치킨 맛이 먹어도 먹어도 또 생각나는 홈메이드 풍 후라이드치킨",
+        "price":"15,000"
+      },
+      {
+        "title":"치킨강정",
+        "img":"sau_bsck_s.png",
+        "detail_img":"604000040_v.png",
+        "explain":"알록달록 고추, 고소한 땅콩, 조청이 들어간 매콤달콤 강정소스로 바삭 함에 화려함을 더했다! 한국인의 감칠맛이 살아있는 치킨강정",
+        "price":"16,500"
+      },
+      {
+        "title":"마늘 간장 닭날개",
+        "img":"sau_rtw_s.png",
+        "detail_img":"FR_RTW.jpg",
+        "explain":"고소한 쌀가루로 바삭 하게 감싼 닭 날개 위에 깊은 향이 느껴지는 마늘간장소스를 발라  맛도 모양도 일품인 마늘간장 닭날개",
+        "price":"16,500"
+      },
+      {
+        "title":"매달구(매콤달콤 구운 닭날개)",
+        "img":"gr_mgw_s.png",
+        "detail_img":"FR_605000010.jpg",
+        "explain":"BBQ만의 독자적인 시즈닝으로 양념하여 술안주로 안성맞춤! 입술이 붉어져도 자꾸만 먹고싶은 매콤달콤 구운 닭날개",
+        "price":"15,000"
+      },
+      {
+        "title":"순살 크래커",
+        "img":"bl_ccn_s.png",
+        "detail_img":"FR_CCN.jpg",
+        "explain":"고소한 냄새가 코끝을 맴도는 빵 가루 속에, 쫄깃쫄깃한 닭고기 순살이 가득~ 아이들 반찬으로도 손색이 없는 맛짱! 순살치킨",
+        "price":"17,000"
+      }
+    ]
+  },
+  {
+    "type":"토핑치킨",
+    "data":[
+      {
+        "title":"순살 바사칸",
+        "img":"960000010_s.png",
+        "detail_img":"FCK_960000010.jpg",
+        "explain":"닭고기의 순살 부위만을 발라내어 남녀노소가 부담 없이 즐길 수 있는 담백하고 바삭 한 순살 치킨",
+        "price":"16000"
+      },
+      {
+        "title":"황금올리브 속안심",
+        "img":"960000030_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"닭고기 한 마리에 단 두 조각 밖에 없는 고단백 부위로, 부드럽게 씹히는 맛이 일품인 속안심 후라이드",
+        "price":"16,000"
+      },
+      {
+        "title":"스파이시윙",
+        "img":"960000040_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"콜라겐이 풍부하다는 닭날개에 속속들이 배어든 매콤한 양념 맛이 미인들의 마음을 사로잡은 닭날개 후라이드",
+        "price":"16,500"
+      },
+      {
+        "title":"통다리 바베큐",
+        "img":"960000090_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"육즙 가득, 쫄깃한 통 다리에 자메이카풍 저크소스를 듬뿍 바른 이국적인 바베큐 요리",
+        "price":"16,500"
+      },
+      {
+        "title":"스모크 치킨",
+        "img":"890000110_s.png",
+        "detail_img":"890000110_v.png",
+        "explain":"물참나무 훈연으로 기름기가 쫙~빠져 맛이 더욱 쫄깃하고 담백해진 닭고기 엉치살 구이",
+        "price":"16,000"
+      },
+      {
+        "title":"촉촉한 닭가슴살",
+        "img":"960000100_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"85℃ 저온에서 스팀으로 익혀 먹을수록 부드럽고 끝 맛까지 촉촉한 닭 가슴살",
+        "price":"14,000"
+      },
+      {
+        "title":"바사칸 치킨",
+        "img":"960000020_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"고소한 감자 전분을 입혀 바삭바삭한 치킨 맛이 먹어도 먹어도 또 생각나는 홈메이드 풍 후라이드 치킨",
+        "price":"15,000"
+      },
+      {
+        "title":"순살 크래커",
+        "img":"bl_ccn_s.png",
+        "detail_img":"bl_ccn_vv.png",
+        "explain":"고소한 냄새가 코끝을 맴도는 빵 가루 속에, 쫄깃쫄깃한 닭고기 순살이 가득~ 아이들 반찬으로도 손색이 없는 맛짱! 순살 치킨",
+        "price":"17,000"
+      }
+    ]
+  },
+  {
+    "type":"토핑",
+    "data":[
+      {
+        "title":"파채",
+        "img":"970000030_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"얇게 썰은 싱싱한 대파의 향긋한 파향이 입안 가득 퍼지는 토핑",
+        "price":"1,000"
+      },
+      {
+        "title":"양파채",
+        "img":"970000040_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"얇게 썰은 싱싱한 양파를 찬물에 담가 매운맛을 쏙뺀 아삭한 토핑",
+        "price":"1,000"
+      },
+      {
+        "title":"후르츠 견과류",
+        "img":"870000110_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"새콤달콤한 후르츠와 두뇌개발에 좋은 견과류를 함께 즐기는 영양만점 토핑",
+        "price":"1,000"
+      },
+      {
+        "title":"고추 볶음",
+        "img":"970000070_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"고추, 마늘, 대파를 올리브유에 함께 볶아 알싸한 맛이 일품인 토핑",
+        "price":"1,000"
+      },
+      {
+        "title":"떡튀김",
+        "img":"870000130_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"쫄깃쫄깃한 떡을 올리브유에 튀겨내 아이들에게 인기만점인 토핑",
+        "price":"1,000"
+      },
+      {
+        "title":"양념파채",
+        "img":"870000140_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"싱그러운 파채를 양념에 무쳐 더욱 감칠맛 나는 BBQ만의 특별한 토핑",
+        "price":"1,000"
+      },
+      {
+        "title":"볶음 김치",
+        "img":"870000120_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"살짝 볶아낸 대한민국 대표식품 김치가 입맛을 돋구는 스페셜 토핑",
+        "price":"1,500"
+      }
+    ]
+  },
+  {
+    "type":"소스",
+    "data":[
+      {
+        "title":"허니 강정 소스",
+        "img":"980000080_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"달달 한 허니 강정소스",
+        "price":"1,000"
+      },
+      {
+        "title":"스위트 탕수 소스",
+        "img":"980000010_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"새콤달콤 스위트 탕수소스",
+        "price":"1,000"
+      },
+      {
+        "title":"드봉 발사믹 소스",
+        "img":"980000050_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"향이 좋아 달콤한 드봉 발사믹소스",
+        "price":"1,000"
+      },
+      {
+        "title":"시크릿 겨자 소스",
+        "img":"980000090_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"톡!쏘는 시크릿 겨자소스",
+        "price":"1,000"
+      },
+      {
+        "title":"오리엔탈 간장 소스",
+        "img":"980000030_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"쫄깃쫄깃한 떡을 올리브유에 튀겨내 아이들에게 인기만점인 토핑",
+        "price":"1,,000"
+      },
+      {
+        "title":"후레쉬 싱싱 소스",
+        "img":"980000060_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"양념맛이 살아있는 후레쉬 싱싱소스",
+        "price":"1,000"
+      },
+      {
+        "title":"볼케이노 핫 소스",
+        "img":"980000070_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"눈물 없인 먹을 수 없다!",
+        "price":"1,000"
+      },
+      {
+        "title":"레드 살사 소스",
+        "img":"980000100_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"나초와의 이별",
+        "price":"1,000"
+      },
+      {
+        "title":"드림 칠리 소스",
+        "img":"980000040_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"붉게 익은 칠리의 유혹",
+        "price":"1,000"
+      },
+      {
+        "title":"소프트 크림 소스",
+        "img":"980000020_s.png",
+        "detail_img":"FR_GOL.jpg",
+        "explain":"까르보나라 치킨맛을 보았니?",
+        "price":"1,000"
+      }
+    ]
+  },
+  {
+    "type":"피자",
+    "data":[
+      {
+        "title":"퐁듀치즈피자",
+        "img":"img_pizza_01.png",
+        "detail_img":"img_pizza_01_v.jpg",
+        "explain":"스위스의 대표 요리인 퐁듀요리 컨셉을 적용한 제품으로 까망베르 스프레드 크림치즈를 사용하여 치즈의 풍미를 높인 피자",
+        "price":"18,000"
+      },
+      {
+        "title":"치킨살사피자",
+        "img":"img_pizza_02.png",
+        "detail_img":"img_pizza_02_v.jpg",
+        "explain":"닭가슴살 위에 정열의 살사소를 얹어 즐기는 라틴풍미의 매콤한 피자",
+        "price":"16,000"
+      },
+      {
+        "title":"감자피자",
+        "img":"img_pizza_03.png",
+        "detail_img":"img_pizza_03_v.jpg",
+        "explain":"고소한 감자무스와 화이트 크림소스의 환상적인 조화로 탄생한 담백한 피자",
+        "price":"18,000"
+      },
+      {
+        "title":"고구마피자",
+        "img":"img_pizza_04.png",
+        "detail_img":"img_pizza_04_v.jpg",
+        "explain":"영양만점 고구마에 화이트 크림소스가 어우러진 인기만점! 달콤한 피자",
+        "price":"18,000"
+      },
+      {
+        "title":"콤비네이션피자",
+        "img":"img_pizza_05.png",
+        "detail_img":"img_pizza_05_v.jpg",
+        "explain":"다양한 고기와 신선한 야채를 한입에 쏘옥~ 일석이조 콤비네이션!",
+        "price":"17,000"
+      },
+      {
+        "title":"불고기피자",
+        "img":"img_pizza_06.png",
+        "detail_img":"img_pizza_06_v.jpg",
+        "explain":"동서양의 만남! 대한민국 대표음식 불고기의 깊은 맛이 살아있는 피자",
+        "price":"15,000"
+      },
+      {
+        "title":"페퍼로니피자",
+        "img":"img_pizza_07.png",
+        "detail_img":"img_pizza_07_v.jpg",
+        "explain":"짭쪼름한 페퍼로니와 풍성한 맛의 치즈가 어우러진 어메리칸 스타일의 정통 피자",
+        "price":"15,000"
+      },
+      {
+        "title":"야채피자",
+        "img":"img_pizza_08.png",
+        "detail_img":"img_pizza_08_v.jpg",
+        "explain":"S라인을 꿈꾸는 여우들도 부담없이 즐기는 상큼한 야채피자",
+        "price":"14,000"
+      },
+      {
+        "title":"치즈피자",
+        "img":"img_pizza_09.png",
+        "detail_img":"img_pizza_09_v.jpg",
+        "explain":"고소한 모짜렐라 치즈맛을 듬뿍 느낄 수 있는 치즈 매니아를 위한 피자",
+        "price":"16,000"
+      }
+    ]
+  }
+]

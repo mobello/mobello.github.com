@@ -1,0 +1,10 @@
+{
+  "logoImage" : "logo.jpg",
+  "icon" : "icon_search.gif",
+  "name" : "KYOCHON KT점",
+  "latitude" : 37.358705170691884,
+  "longitude" : 127.1147882938385,
+  "homepage" : "http://m.bbq.co.kr/",
+  "tel" : "(010)8703-0000",
+  "details" : "<div style='color:#cccccc'><div>Good! KYOCHON Chicken!<br>KYOCHON치킨은 세상에 하나밖에 없는 맛! </div><div style='font-size:14px;'> <img src='apps/bbq/data/img/company_1.jpg' alt='' width='90%' height='200px' style='margin:5%'/> </div><div><strong> 싱싱하게! </strong></div><div style='font-size:14px;'> KYOCHON는 가장 신선한 최고급 재료로 주문 후 조리하여 고객님께 맛과 건강을 선사합니다.</div><div> <img src='apps/bbq/data/img/company_2.jpg' alt='' width='90%' height='200px' style='margin:5%' />  </div><div ><strong> 고소하게! </strong></div><div style='font-size:14px;'> KYOCHON는 몸에 좋은 스페인산 엑스트라버진 올리브유를 원료로한 KYOCHON올리브오일로 만들어서 바삭하고 고소한 맛을 지켰습니다.<br /><br /><strong>■ 엑스트라버진 올리브유란?</strong><br />올리브유는 품질면에서 여러등급으로 나누어지면, 엑스트라버진은 올리브유 중에서도 최고급유로 분류됩니다. </div><div> <img src='apps/bbq/data/img/company_4.jpg' alt='' width='90%' height='200px' style='margin:5%'/> </div><div class='company_stit'><strong> 매콤달콤하게!</strong></div><div style='font-size:14px;'> 매콤 달콤 구운 닭날개와 닭다리의 새로운 그릴 치킨으로 프리미엄 구이치킨을 즐기세요. <br />다양한 맛을 위하여 딥핑소스(양념, 싱싱, 야채 소스)를 골라 색다르게 치킨을 드실 수 있습니다.</div></div>"
+}

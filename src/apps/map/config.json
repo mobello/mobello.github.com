@@ -1,0 +1,7 @@
+config({
+  classname: 'tau.sample.Map',
+  main: '/main.js',
+  version: '1.0.0',
+  title: 'map',
+  vendor      : 'KT Corporation'
+});

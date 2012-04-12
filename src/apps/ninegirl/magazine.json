@@ -1,0 +1,62 @@
+[
+  {
+    "month":"1월",
+    "img":"magazine (1).jpg",
+    "detail_img":"magazine_d (1).jpg"
+  },
+  {
+    "month":"2월",
+    "img":"magazine (2).jpg",
+    "detail_img":"magazine_d (2).jpg"
+  },
+  {
+    "month":"3월",
+    "img":"magazine (3).jpg",
+    "detail_img":"magazine_d (3).jpg"
+  },
+  {
+    "month":"4월",
+    "img":"magazine (4).jpg",
+    "detail_img":"magazine_d (4).jpg"
+  },
+  {
+    "month":"5월",
+    "img":"magazine (5).jpg",
+    "detail_img":"magazine_d (5).jpg"
+  },
+  {
+    "month":"6월",
+    "img":"magazine (6).jpg",
+    "detail_img":"magazine_d (6).jpg"
+  },
+  {
+    "month":"7월",
+    "img":"magazine (7).jpg",
+    "detail_img":"magazine_d (7).jpg"
+  },
+  {
+    "month":"8월",
+    "img":"magazine (8).jpg",
+    "detail_img":"magazine_d (8).jpg"
+  },
+  {
+    "month":"9월",
+    "img":"magazine (9).jpg",
+    "detail_img":"magazine_d (9).jpg"
+  },
+  {
+    "month":"10월",
+    "img":"magazine (10).jpg",
+    "detail_img":"magazine_d (10).jpg"
+  },
+  {
+    "month":"11월",
+    "img":"magazine (11).jpg",
+    "detail_img":"magazine_d (11).jpg"
+  },
+  {
+    "month":"12월",
+    "img":"magazine (12).jpg",
+    "detail_img":"magazine_d (12).jpg"
+  }
+]

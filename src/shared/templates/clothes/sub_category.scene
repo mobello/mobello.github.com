@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene xmlns="http://www.ktinnotz.com/tau/scene" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	viewPortWidth="320px" viewPortHeight="450px">
+	<Table>
+		<Table.styles backgroundRepeat="repeat" backgroundColor="#F6E4E4"
+			backgroundImage="url('img/05.jpg')" color="#ff6a89"></Table.styles>
+	</Table>
+</Scene>

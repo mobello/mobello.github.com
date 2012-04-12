@@ -1,0 +1,90 @@
+[
+  {
+    "title":"BBQ 치킨 캠프",
+    "start_date":"2010.09.15",
+    "end_date":"2011.11.25",
+    "banner_img":"chickencamp.png",
+    "detail_img":"chickencamp_detail.png",
+    "detail":"치킨대학에서 가을을 만나세요."
+  },
+  {
+    "title":"BBO 모바일 앱!",
+    "start_date":"2011.02.1",
+    "end_date":"2011.02.28",
+    "banner_img":"event_list_02.png",
+    "detail_img":"event_list_02_detail.png",
+    "detail":"회원가입만 하면 세상에서 가장 맛있는 BBQ 치킨을 쏩니다!"
+  },
+  {
+    "title":"BBO AR(증강현실)OPEN!",
+    "start_date":"2011.03.17",
+    "end_date":"2011.05.16",
+    "banner_img":"event_list_110321.png",
+    "detail_img":"event_list_110321_detail.png",
+    "detail":"..."
+  },
+  {
+    "title":"세상에서 가장 맛있는 1000가지 치킨",
+    "start_date":"2011.01.01",
+    "end_date":"2011.12.31",
+    "banner_img":"event_list_110704.png",
+    "detail_img":"event_list_110704_detail.png",
+    "detail":"..."
+  },
+  {
+    "title":"BBQ 눈꽃 딸기빙수, 눈꽃 팥빙수 출시",
+    "start_date":"2011.06.15",
+    "end_date":"2011.09.25",
+    "banner_img":"event_list_110705.png",
+    "detail_img":"event_list_110705_detail.png",
+    "detail":"..."
+  },
+  {
+    "title":"기습공격 300",
+    "start_date":"2011.09.05",
+    "end_date":"2011.09.25",
+    "banner_img":"event_list_20110905.png",
+    "detail_img":"event_list_20110905_detail.png",
+    "detail":"..."
+  },
+  {
+    "title":"빠리치킨 출시 기념 이벤트",
+    "start_date":"2011.11.15",
+    "end_date":"2011.12.25",
+    "banner_img":"event_list_111115.png",
+    "detail_img":"event_list_111115_detail.png",
+    "detail":"..."
+  },
+  {
+    "title":"BBQ과 함께 봄철 황사 조심하세요!",
+    "start_date":"2011.04.18",
+    "end_date":"2011.04.30",
+    "banner_img":"event_list_20110425.png",
+    "detail_img":"event_list_20110425_detail.png",
+    "detail":"..."
+  },
+  {
+    "title":"내마음이 들리니 BBQ 제작지원",
+    "start_date":"2011.01.01",
+    "end_date":"2011.06.25",
+    "banner_img":"event_list_20110426.png",
+    "detail_img":"event_list_20110426_detail.png",
+    "detail":"..."
+  },
+  {
+    "title":"연극 '가시고기'와 함께하는 BBQ이벤트",
+    "start_date":"2011.05.24",
+    "end_date":"2011.06.09",
+    "banner_img":"event_list_20110511.png",
+    "detail_img":"event_list_20110511_detail.png",
+    "detail":"..."
+  },
+  {
+    "title":"BBQ 앱 다운받고~ BBQ 상품권 받고~",
+    "start_date":"2011.05.30",
+    "end_date":"2011.06.05",
+    "banner_img":"event_list_20110524.png",
+    "detail_img":"event_list_20110524_detail.png",
+    "detail":"..."
+  }
+]

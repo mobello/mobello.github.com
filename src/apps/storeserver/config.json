@@ -1,0 +1,9 @@
+config({
+  classname   : 'com.tau.storeserver.Main',
+  require     : '/main.js',
+  icon        : '/icon.png',
+  title       : 'App Deploy', 
+  version     : '1.0.0',
+  vendor      : 'KT',
+  theme		  : 'storeserver'
+});

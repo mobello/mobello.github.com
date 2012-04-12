@@ -1,0 +1,10 @@
+{
+  "logoImage" : "logo.jpg",
+  "icon" : "icon_search.gif",
+  "name" : "체리코코",
+  "latitude" : 37.52043998110844,
+  "longitude" : 127.0230782032013,
+  "homepage" : "http://www.cherrykoko.com/",
+  "tel" : "(010)8703-0000",
+  "details" : "<img src='apps/ninegirl/img/intro.jpg' width='100%'/>"
+}

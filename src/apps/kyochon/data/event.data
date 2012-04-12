@@ -1,0 +1,34 @@
+[
+  {
+    "title":"나만의 치킨 맛있게 먹는 법을 알려주마!!",
+    "start_date":"2010.01.02",
+    "end_date":"2012.01.31",
+    "banner_img":"small_1.png",
+    "detail_img":"detail_1.jpg",
+    "detail":"..."
+  },
+  {
+    "title":"교촌치킨 먹고, 넥워머 받고 마음까지 따뜻한 LOVE CHRISTMAS!",
+    "start_date":"2011.12.21",
+    "end_date":"2012.01.31",
+    "banner_img":"small_2.png",
+    "detail_img":"detail_2.jpg",
+    "detail":"..."
+  },
+  {
+    "title":"교촌치킨과 2012년을 함께 하세요~!",
+    "start_date":"2011.11.21",
+    "end_date":"2012.01.31",
+    "banner_img":"small_3.png",
+    "detail_img":"detail_3.jpg",
+    "detail":"..."
+  },
+  {
+    "title":"소비자가 뽑은 브랜드 대산 9년 연속 수상",
+    "start_date":"2011.10.21",
+    "end_date":"2011.11.30",
+    "banner_img":"small_4.png",
+    "detail_img":"detail_4.jpg",
+    "detail":"..."
+  }
+]

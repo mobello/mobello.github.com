@@ -1,0 +1,45 @@
+body {
+	margin: 0;
+	font-family: Helvetica;
+	background: -webkit-gradient(linear, left top, left bottom, from(#35425d),
+		to(#fff) );
+	overflow-x: hidden;
+}
+
+#JudeEmul  .title {
+	font-family: ¸¼Àº °íµñ, Arial, Helvetica, sans-serif;;
+	font-weight: bold;
+	margin-top: 10px;
+	font-size: 40px;
+	letter-spacing: 1px;
+	text-align: center;
+	border: none;
+	color: #ffffff;
+	text-shadow: 2px 2px 7px #111;
+}
+
+#JudeEmul .homeButton {
+	z-index: 100;
+	position: absolute;
+	left : 50%;
+	width: 80px;
+	height: 80px;
+	background :rgba(16,16,16, .0);
+}
+#JudeEmul .homeButton:hover {
+	background :rgba(16,16,16, 0.7);
+	cursor:hand;
+}
+
+
+#JudeEmul #browser {
+/*	position: relative;*/
+/*	top: -580px;*/
+	position: absolute;
+	left: 50%;
+}
+
+/*#nav li>a{*/ /*	font-size:0.8em;	*/ /*}*/
+a {
+	color: #333;
+}
