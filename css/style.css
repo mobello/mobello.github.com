@@ -25,7 +25,7 @@ body {
 	padding: 5px 20px;
 	list-style: none;
 	text-align: center;
-	overflow: hidden;
+	overflow: visible;
 }
 
 .quick-links:first-child {
