@@ -45,23 +45,27 @@ $class('tau.sample.RSSTableController').extend(tau.ui.TableSceneController).defi
    */
   loadModel: function (start, size) {
     var table = this.getTable(),
-        url = 'http://feeds.feedburner.com/Bloter?format=xml';
+          yql = 'http://query.yahooapis.com/v1/public/yql?q=',
+          rssUrl = 'http://feeds.feedburner.com/Bloter?format=xml';
+    var url = yql + encodeURIComponent('select * from xml where url="' + rssUrl + '"') + '&format=json';         
+ 
     if (!this.feeds) {
       function loaded(resp) {
-        if (resp.status === 200) {
-          var doc = resp.responseXML;
+        if (resp.status === 200 && resp.responseJSON && resp.responseJSON.query) {
+          var doc = resp.responseJSON.query.results;
           if (!doc) {
             throw new Error('Unable to fetch RSS feed from ' + url);
           }
-          this.feeds = doc.getElementsByTagName('item');
+          this.feeds = doc.rss.channel.item;
           table.addNumOfCells(size);
         } else {
           alert('Error: ' + resp.statusText);
         }
       };
       tau.req({
-        'url': url,
-        'callbackFn': tau.ctxAware(loaded, this)
+        type: 'JSONP',  	   
+        url: url,
+        callbackFn: tau.ctxAware(loaded, this)
       }).send();
     } else {
       size = (start < this.feeds.length) ? size : 0;
@@ -79,11 +83,9 @@ $class('tau.sample.RSSTableController').extend(tau.ui.TableSceneController).defi
   makeTableCell: function (index, offset) {
     var imgView,
         cell = new tau.ui.TableCell({styleClass: {size: 'auto'}}),
-        data = this.feeds[offset + index],
-        title = data.getElementsByTagName('title'),
-        desc = data.getElementsByTagName('description');
-    cell.setTitle(title[0].firstChild.nodeValue);
-    cell.setSubTitle(desc[0].firstChild.nodeValue);
+        data = this.feeds[offset + index];
+    cell.setTitle(data.title);
+    cell.setSubTitle(data.description);
     imgView = new tau.ui.ImageView({
       src: 'http://www.feedburner.com/fb/feed-styles/images/itemqube2.gif',
       styles: {width: '16px', height: '16px'}
@@ -128,20 +130,13 @@ $class('tau.sample.RSSDeatilController').extend(tau.ui.SceneController).define({
   loadScene: function () { 
     var link = new tau.ui.LinkUrl();
     link.setStyle('height', '60px');
-    var title = this.model.getElementsByTagName('title');
-    link.setTitle(title[0].firstChild.nodeValue);
-
-    var url = this.model.getElementsByTagName('link');
-    link.setUrl(url[0].firstChild.nodeValue);
-    
-    var creator = this.model.getElementsByTagName('creator');
-    var pubDate = this.model.getElementsByTagName('pubDate');
-    link.setSubTitle(creator[0].firstChild.nodeValue + '<br/>'+pubDate[0].firstChild.nodeValue);
+    link.setTitle(this.model.title);
+    link.setUrl(this.model.link);
+    link.setSubTitle(this.model.creator + '<br/>'+ this.model.pubDate);
 
     var textView = new tau.ui.TextView();  
     textView.setStyle('top', '60px');
-    var desc = this.model.getElementsByTagName('encoded');
-    textView.setText(desc[0].firstChild.nodeValue);
+    textView.setText(this.model.encoded);
 
     // scene에 TextView컴포넌트를 추가한다.
     this.getScene().add(link);
