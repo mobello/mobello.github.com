@@ -1,7 +1,10 @@
 body {
 	padding-top: 80px;
 	padding-bottom: 40px;
-	background-color: #F2F2F2;
+	background-color: #000;
+	background-image: url('../img/hd-wallpapers-2.jpg');
+	background-repeat: no-repeat;
+	background-position: top center;
 }
 
 .navbar .brand {
