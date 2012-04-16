@@ -1,6 +1,7 @@
 body {
 	padding-top: 80px;
 	padding-bottom: 40px;
+	background-color: #F2F2F2;
 }
 
 .navbar .brand {
@@ -29,16 +30,25 @@ body {
 }
 
 .quick-links:first-child {
-  min-height: 0;
+	min-height: 0;
 }
+
 .quick-links li {
-  display: inline;
-  margin: 0 5px;
-  color: #999;
+	display: inline;
+	margin: 0 5px;
+	color: #999;
 }
-.quick-links .github-btn,
-.quick-links .tweet-btn,
-.quick-links .follow-btn {
-  position: relative;
-  top: 5px;
+
+.quick-links .github-btn,.quick-links .tweet-btn,.quick-links .follow-btn
+	{
+	position: relative;
+	top: 5px;
+}
+
+.feature-box {
+	background-color: #FFFFFF;
+	padding: 10px;
+	border-color: #DDDDDD;
+	border-style: solid;
+	border-width: 1px
 }
