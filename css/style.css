@@ -54,3 +54,8 @@ body {
 	-webkit-border-radius: 7px;
 	border-radius: 7px;
 }
+
+footer {
+	text-align: center;
+	margin-top: 20px
+}
