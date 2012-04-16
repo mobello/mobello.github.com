@@ -1,111 +1,147 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-    <head>
-        <title>Appresto Web App Platform : Demo</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<head>
+<title>Appresto Web App Platform : Demo</title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.css"
+	type="text/css" />
+<link rel="stylesheet" href="styles/style.css" type="text/css" />
+<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css"
+	type="text/css" />
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
 
-    <body>
-        <div id="page">
-            <div id="main">
-                <div id="content" class="view">
-                    <div id="main-content" class="wiki-content group">
-	<table class="sectionMacro" border="0" cellpadding="5" cellspacing="0"
-		width="100%">
-		<tbody>
-			<tr>
-				<td valign="top" width="220px">
-
-					<img class="confluence-embedded-image" src="attachments/4981276/5046452.png"   data-image-src="/download/attachments/4981276/tau201203271426.png?version=4&amp;modificationDate=1333007753386">
-					<div id="iframeDIV" class="iframeDIV">
-						<iframe id="browser" scrolling="no" frameborder="0" width="320px" height="464px" style="left: 54px; top: 186px; position: absolute;" 			
-							src="src/launcher.html"></iframe>
-					</div>
-					<div style="background-color: rgba(255, 255, 255, 0.8); width: 320; height: 20px; padding:10px; left: 50px; top: 820px; position: absolute;">
-						<img class="emoticon emoticon-information" src="emulator/img/information.png" data-emoticon-name="information" alt="(info)">
-						Deploy된 App을 Registry에서 설치후 실행해보세요.
-					</div>
-				</td>
-				<td valign="top"><h1 id="Demo-TAUKitchenSink">Appresto
-						Kitchen Sink</h1>
- 
-					<table><tr>
-						<td><p>
-							Appresto Kitchen Sink는 Appresto에서 제공되는 모든 UI component와 Theme, 그리고
-							Dashboard기능을 보여줍니다.<br />이 데모는 WebKit 기반의 브라우저(Chrome, Safari)와 스마트폰 및 타블릿에서 확인해 보실 수 있습니다.
-							<br/><br/><span style="font-weight: bold">팁1: 왼쪽 아이폰의 바탕화면 하단을 0.5초간 눌러보세요!</span>
-                                               		[<a href="emulator/emulator.html" target="_blank" >새창으로 보기</a>]
-							<br/><span style="font-weight: bold">팁2: 스마트폰 및 타블릿에서는 우측의 QR코드를 찍어보세요!</span>
-                                                        <br/><span style="font-weight: bold">팁3: http://appresto.github.com/src/launcher.html</span> (아이폰 직접접속)
-
-						</p></td>
-						<td>
-							<img src="attachments/4981276/5668869.png" width="150px" height="150px">
-						</td>
-					</tr></table>
-					<ul>
-						<li><h3 id="Demo-Setting">Setting</h3>
-							<ul>
-								<li>전체 App의 Theme를 변경할 수 있습니다. 현재 Appresto UI Framework에서는
-									<ul>
-									<li>Black & white 톤의 Default theme</li>
-									<li>그라데이션 없는 black & white 톤의 Simple theme</li>
-									<li>아이폰과 흡사한 ios theme</li>
-									</ul>
-									를 제공합니다.
-								</li>
-								<li>전체 App의 font를 변경할 수 있습니다. 현재 Appresto UI Framework에서는
-									<ul>
-									<li>Default font인 MuseoSans font</li>
-									<li>KT의 olleh font</li>
-									<li>Helvetica font</li>
-									</ul>
-									를 제공합니다.
-								</li>
-								<!-- li>Single App으로 실행하기 : <a href="emulator/emulator.html?app=setting" target="_blank" >View Demo</a></li -->
-							</ul>
-						</li>
-						<br/><br/>
-						<li><h3 id="Demo-AppStore">Registry</h3>
-							<ul>
-								<li>App Registry에 등록된 앱을 검색하고 Dashboard(바탕화면)에 설치할 수 있습니다.</li>
-								<!-- li>Single App으로 실행하기 : <a href="emulator.html?app=appstore" target="_blank" >View Demo</a></li -->
-							</ul>
-						</li>
-						<br/><br/>
-						
-						<li><h3 id="Demo-UI Demo">UI 데모</h3>
-							<ul>
-								<li>Appresto에서 제공되는 모든 UI Component의 기능을 체험해 볼 수 있습니다. Appresto에서 제공되는 UI Component에는 
-									<ul>
-									<li>Label</li>
-									<li>Button, Checkbox, Radio</li>
-									<li>Picker, DatePicker</li>
-									<li>TextField, TextArea</li>
-									<li>Table, TableCell</li>
-									<li>Panel, ScrollPanel</li>
-									<li>Slider, Switch, Select, SegmentedButton, Spinner</li>
-									<li>ActivityIndicator</li>
-									<li>ToolBar</li>
-									<li>SystemDialog, Dialog, ActionSheet</li>
-									<li>ImageView,TextView</li>
-									<li>Carousel</li>
-
-									</ul>등이 있습니다.</li>
-								<li>Single App으로 실행하기 : <a href="emulator/emulator.html?app=demo" target="_blank" >View Demo</a></li>
-							</ul>
-						</li>
+<body>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+				</a> <a href="index.html" class="brand">Appresto</a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li class="active"><a href="index.html">Home</a></li>
+						<li><a href="demo.html">Demo</a></li>
+						<li><a href="http://appresto.tumblr.com/">Blog</a></li>
+						<li><a href="docs.html">Docs</a></li>
+						<li><a href="contact.html">Contacts</a></li>
 					</ul>
-				</td>
-				<p></p>
-				<p></p>
-			</tr>
-		</tbody>
-	</table>
-                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="page">
+		<div id="main">
+			<div id="content" class="view">
+				<div id="main-content" class="wiki-content group">
+					<table class="sectionMacro" border="0" cellpadding="5"
+						cellspacing="0" width="100%">
+						<tbody>
+							<tr>
+								<td valign="top" width="220px"><img
+									class="confluence-embedded-image"
+									src="attachments/4981276/5046452.png"
+									  data-image-src="/download/attachments/4981276/tau201203271426.png?version=4&amp;modificationDate=1333007753386">
+									<div id="iframeDIV" class="iframeDIV">
+										<iframe id="browser" scrolling="no" frameborder="0"
+											width="320px" height="464px"
+											style="left: 54px; top: 186px; position: absolute;"
+											src="src/launcher.html"></iframe>
+									</div>
+									<div
+										style="background-color: rgba(255, 255, 255, 0.8); width: 320; height: 20px; padding: 10px; left: 50px; top: 820px; position: absolute;">
+										<img class="emoticon emoticon-information"
+											src="emulator/img/information.png"
+											data-emoticon-name="information" alt="(info)"> Deploy된
+										App을 Registry에서 설치후 실행해보세요.
+									</div></td>
+								<td valign="top"><h1 id="Demo-TAUKitchenSink">Appresto
+										Kitchen Sink</h1>  
+									<table>
+										<tr>
+											<td><p>
+													Appresto Kitchen Sink는 Appresto에서 제공되는 모든 UI component와
+													Theme, 그리고 Dashboard기능을 보여줍니다.<br />이 데모는 WebKit 기반의
+													브라우저(Chrome, Safari)와 스마트폰 및 타블릿에서 확인해 보실 수 있습니다. <br /> <br />
+													<span style="font-weight: bold">팁1: 왼쪽 아이폰의 바탕화면 하단을
+														0.5초간 눌러보세요!</span> [<a href="emulator/emulator.html"
+														target="_blank">새창으로 보기</a>] <br /> <span
+														style="font-weight: bold">팁2: 스마트폰 및 타블릿에서는 우측의
+														QR코드를 찍어보세요!</span> <br /> <span style="font-weight: bold">팁3:
+														http://appresto.github.com/src/launcher.html</span> (아이폰 직접접속)
 
-                                                      
-                </div>             </div> 
-        </div>     </body>
+												</p></td>
+											<td><img src="attachments/4981276/5668869.png"
+												width="150px" height="150px"></td>
+										</tr>
+									</table>
+									<ul>
+										<li><h3 id="Demo-Setting">Setting</h3>
+											<ul>
+												<li>전체 App의 Theme를 변경할 수 있습니다. 현재 Appresto UI
+													Framework에서는
+													<ul>
+														<li>Black & white 톤의 Default theme</li>
+														<li>그라데이션 없는 black & white 톤의 Simple theme</li>
+														<li>아이폰과 흡사한 ios theme</li>
+													</ul> 를 제공합니다.
+												</li>
+												<li>전체 App의 font를 변경할 수 있습니다. 현재 Appresto UI
+													Framework에서는
+													<ul>
+														<li>Default font인 MuseoSans font</li>
+														<li>KT의 olleh font</li>
+														<li>Helvetica font</li>
+													</ul> 를 제공합니다.
+												</li>
+												<!-- li>Single App으로 실행하기 : <a href="emulator/emulator.html?app=setting" target="_blank" >View Demo</a></li -->
+											</ul></li>
+										<br />
+										<br />
+										<li><h3 id="Demo-AppStore">Registry</h3>
+											<ul>
+												<li>App Registry에 등록된 앱을 검색하고 Dashboard(바탕화면)에 설치할 수
+													있습니다.</li>
+												<!-- li>Single App으로 실행하기 : <a href="emulator.html?app=appstore" target="_blank" >View Demo</a></li -->
+											</ul></li>
+										<br />
+										<br />
+
+										<li><h3 id="Demo-UI Demo">UI 데모</h3>
+											<ul>
+												<li>Appresto에서 제공되는 모든 UI Component의 기능을 체험해 볼 수 있습니다.
+													Appresto에서 제공되는 UI Component에는 
+													<ul>
+														<li>Label</li>
+														<li>Button, Checkbox, Radio</li>
+														<li>Picker, DatePicker</li>
+														<li>TextField, TextArea</li>
+														<li>Table, TableCell</li>
+														<li>Panel, ScrollPanel</li>
+														<li>Slider, Switch, Select, SegmentedButton, Spinner</li>
+														<li>ActivityIndicator</li>
+														<li>ToolBar</li>
+														<li>SystemDialog, Dialog, ActionSheet</li>
+														<li>ImageView,TextView</li>
+														<li>Carousel</li>
+
+													</ul>등이 있습니다.
+												</li>
+												<li>Single App으로 실행하기 : <a
+													href="emulator/emulator.html?app=demo" target="_blank">View
+														Demo</a></li>
+											</ul></li>
+									</ul></td>
+								<p></p>
+								<p></p>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</body>
 </html>
