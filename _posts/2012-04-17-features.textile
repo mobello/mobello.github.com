@@ -8,11 +8,11 @@ title: Features
 <img src="/img/feature-01.png" />
 ### Runtime
 
-- UI Framework상에서 동작하는 App들의 Lifecycle을 관리하며, 사용자의 동작에 따라 App이 반응할 수 있도록 지원하는 기반 시스템입니다.
-- 디바이스 독립적 이벤트 시스템 (터치이벤트)
-- 사용자 친화적인 애니메이션 기능 제공
-- Native에 준하는 앱 실행환경 지원 (Multi-App)
-- 사용 빈도 높은 UX 패턴을 쉽게 구현 하도록 다양한 Controller 제공
+* UI Framework상에서 동작하는 App들의 Lifecycle을 관리하며, 사용자의 동작에 따라 App이 반응할 수 있도록 지원하는 기반 시스템입니다.
+** 디바이스 독립적 이벤트 시스템 (터치이벤트)
+** 사용자 친화적인 애니메이션 기능 제공
+** Native에 준하는 앱 실행환경 지원 (Multi-App)
+** 사용 빈도 높은 UX 패턴을 쉽게 구현 하도록 다양한 Controller 제공
   
 
 ### UI Components
@@ -20,11 +20,11 @@ title: Features
 <img src="/img/feature-02.png" />
 
 * 화면을 구성하는 다양한 컴포넌트를 제공함으로써 동일한 Look & Feel을 유지하고 높은 개발 생산성과 유지보수를 용이하게 합니다.
-* 일관된 Look & Feel 지원
-* 디바이스 별 다양한 해상도를 지원 
-* 터치 인터페이스에 최적화 
-* 확장 및 커스텀 컴포넌트 제작 용이
-* App개발에 필요한 미려한 컴포넌트 제공
+** 일관된 Look & Feel 지원
+** 디바이스 별 다양한 해상도를 지원 
+** 터치 인터페이스에 최적화 
+** 확장 및 커스텀 컴포넌트 제작 용이
+** App개발에 필요한 미려한 컴포넌트 제공
   
   
 ## Mobello Studio
@@ -32,8 +32,8 @@ title: Features
 ### HTML5, CSS3 지원 (Design standard web with HTML5, CSS3)
 ![feature-04](/img/feature-04.jpg)  
 
-- 직관적 UI 와 다양한 기능들은 사용자가 HTML5 와 CSS3 를 빠르고 쉽게 활용할 수 있도록 도와줍니다.
-- -webkit, -moz 같은 vendor prefix 를 신경쓰지 않고도 CSS3 를 쉽게 사용할 수 있습니다.
+* 직관적 UI 와 다양한 기능들은 사용자가 HTML5 와 CSS3 를 빠르고 쉽게 활용할 수 있도록 도와줍니다.
+* -webkit, -moz 같은 vendor prefix 를 신경쓰지 않고도 CSS3 를 쉽게 사용할 수 있습니다.
 
 ### 비주얼 디자인 (Visual Design Editor)
 
