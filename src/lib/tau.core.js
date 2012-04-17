@@ -1310,19 +1310,12 @@
      * @param {Object} predefined static object in tau.OpenAPI
      */
     OpenAPI: function(module){
-      var self = this;
       if(module){
         this.module = module;
-        this.module.queue = new Array();
+        this.module.queue = [];
         if(!this.module.scriptHelper){
           this.module.scriptHelper = new tau.ScriptHelper();
-          this.module.scriptHelper.load(this.module.javascript, function(){
-            self.module.loaded = true;
-            for(var i=0; i<self.module.queue.length; i++){
-              self.module.queue[i]();
-            }
-            self.module.queue = new Array();
-          });    
+          this.module.scriptHelper.load(this.module.javascript, tau.ctxAware(this._handleLoaded, this));    
         }
       }else{
         throw new Error('api module undefined.');
@@ -1351,14 +1344,22 @@
     },
     
     _callbackFn: function(module, fn, userCallBack, param){      
-      var self = this;
+      var that = this;
       return function(){
-        if(self.reference == undefined){
-          self.reference = new module.clazz();
+        if(that.reference == undefined){
+          that.reference = new module.clazz();
         }        
-        self.reference[fn](param, userCallBack);
+        that.reference[fn](param, userCallBack);
       };
-    }
+    },
+    
+    _handleLoaded: function () { 
+        this.module.loaded = true;
+        for(var i=0; i < this.module.queue.length; i++){
+          this.module.queue[i]();
+        }
+        this.module.queue = [];
+      }
   });
 
   /** @lends tau.ScriptHelper */
