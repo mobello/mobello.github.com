@@ -26,8 +26,10 @@ h2. UI Components
 ** 터치 인터페이스에 최적화 
 ** 확장 및 커스텀 컴포넌트 제작 용이
 ** App개발에 필요한 미려한 컴포넌트 제공
-  
-  
+
+\\
+\\
+
 h1. Mobello Studio
 
 h2. HTML5, CSS3 지원 (Design standard web with HTML5, CSS3)
