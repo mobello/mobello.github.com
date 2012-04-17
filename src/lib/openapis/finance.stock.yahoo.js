@@ -43,16 +43,16 @@ $class('tau.openapi.finance.stock.Yahoo').define({
   
   lookupStockSymbols: function(param, userCallBack){
     var query = param.query ? param.query : "KT";//,GOOG,AAPL";
-    
-    var url;
-    
-    url = "http://10.214.49.53:8099/TauProxy/resouceproxy/stock?query="+query;
+    var  url = "http://autoc.finance.yahoo.com/autoc?callback=YAHOO.Finance.SymbolSuggest.ssCallback&query="+query;
+    YAHOO = {Finance: {SymbolSuggest: {}}};
+    YAHOO.Finance.SymbolSuggest.ssCallback = function (_response) {
+    	userCallBack(_response.ResultSet);
+    	delete YAHOO;
+    };
     
     tau.req({
       type: 'JSONP',
-      jsonpCallback:'callback',
-      'url': url,
-      callbackFn: function(_response){userCallBack(_response.responseJSON.ResultSet);}
+      'url': url
     }).send();
   },
   
