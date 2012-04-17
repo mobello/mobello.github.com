@@ -17,32 +17,24 @@
 				</a> <a href="#" class="brand">Mobello</a>
 				<div class="nav-collapse">
 					<ul class="nav">
-						<li
-						{% if page.title == 'Home' %} 
-						class="active"
-						{% endif %}
-						><a href="/">Home</a></li>
-						<li
-						{% if page.title == 'Features' %} 
-						class="active"
-						{% endif %}
-						><a href="/features">Features</a></li>
-						<li
-						{% if page.title == 'Demo' %} 
-						class="active"
-						{% endif %}
-						><a href="/demo">Demo</a></li>
-						<li><a href="http://mobello.tumblr.com/" target="_blank">Blog</a></li>
-						<li
-						{% if page.title == 'Docs' %} 
-						class="active"
-						{% endif %}
-						><a href="/docs">Docs</a></li>
-						<li
-						{% if page.title == 'Contacts' %} 
-						class="active"
-						{% endif %}
-						><a href="/contacts">Contacts</a></li>
+						<li {% if page.title == 'Home' %} class="active" {% endif %} >
+							<a href="/">Home</a>
+						</li>
+						<li {% if page.title == 'Features' %} class="active" {% endif %} >
+							<a href="/features">Features</a>
+						</li>
+						<li {% if page.title == 'Demo' %} class="active" {% endif %} >
+							<a href="/demo">Demo</a>
+						</li>
+						<li>
+							<a href="http://mobello.tumblr.com/" target="_blank">Blog</a>
+						</li>
+						<li {% if page.title == 'Docs' %} class="active" {% endif %} >
+							<a href="/docs">Docs</a>
+						</li>
+						<li {% if page.title == 'Contacts' %} class="active" {% endif %} >
+							<a href="/contacts">Contacts</a>
+						</li>
 					</ul>
 				</div>
 			</div>
