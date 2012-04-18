@@ -8,7 +8,9 @@ h1. Mobello.js
 <br>
 
 <div class="row"><div class="span9">
+
 h2. Runtime
+
 * UI Framework상에서 동작하는 App들의 Lifecycle을 관리하며, 사용자의 동작에 따라 App이 반응할 수 있도록 지원하는 기반 시스템입니다.
 ** 디바이스 독립적 이벤트 시스템 (터치이벤트)
 ** 사용자 친화적인 애니메이션 기능 제공
