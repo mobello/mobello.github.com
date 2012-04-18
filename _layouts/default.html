@@ -27,14 +27,17 @@
 						<li {% if page.title == 'Demo' %} class="active" {% endif %} >
 							<a href="/demo">Demo</a>
 						</li>
-						<li>
-							<a href="http://mobello.tumblr.com/" target="_blank">Blog</a>
+						<li {% if page.title == 'Tutorial1' %} class="active" {% endif %} >
+							<a href="/tutorial1">Tutorial</a>
 						</li>
 						<li {% if page.title == 'Docs' %} class="active" {% endif %} >
 							<a href="/docs">Docs</a>
 						</li>
 						<li {% if page.title == 'Contacts' %} class="active" {% endif %} >
 							<a href="/contacts">Contacts</a>
+						</li>
+						<li>
+							<a href="http://mobello.tumblr.com/" target="_blank">Blog</a>
 						</li>
 					</ul>
 				</div>
