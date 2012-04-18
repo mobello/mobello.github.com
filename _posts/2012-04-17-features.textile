@@ -17,7 +17,8 @@ h2. Runtime
 ** 사용자 친화적인 애니메이션 기능 제공
 ** Native에 준하는 앱 실행환경 지원 (Multi-App)
 ** 사용 빈도 높은 UX 패턴을 쉽게 구현 하도록 다양한 Controller 제공
-</div><div class="span3"> !/img/feature-01.png!
+</div><div class="span3"> 
+!{height:100%}/img/feature-01.png!
 </div>
 </div>
 
