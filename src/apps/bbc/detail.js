@@ -54,7 +54,6 @@ $class('tau.bbc.DetailController').extend(tau.ui.SceneController).define(
     var back = navigationbar.getLeftItem();
     var label = this.getScene().getComponent('date');
     var text = this.getItem().pubDate ? this.getItem().pubDate: this.getItem().author;
-    var index = this.getIndex();
     
     label.setText(text);
     

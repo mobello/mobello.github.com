@@ -79,7 +79,8 @@ function initScene() {
       backgroundColor: 'transparent',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
-      width: '64px',
+      backgroundSize: '20px',
+      width: '44px',
       height: '36px',
       border: 'none'
     }
@@ -93,7 +94,8 @@ function initScene() {
       backgroundColor: 'transparent',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
-      width: '64px',
+      backgroundSize: '20px',
+      width: '44px',
       height: '36px',
       border: 'none'
       }

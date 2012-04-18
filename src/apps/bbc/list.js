@@ -12,7 +12,7 @@ $class('tau.bbc.ListController').extend(tau.ui.TableSceneController).define({
   init: function () {
     tau.bbc.ListController.$super.init.apply(this, arguments);
     var scene = this.getScene();
-    
+    var bar = this.getNavigationBar();
     this.appCtx = tau.getCurrentContext();   // 현재 앱의 컨텍스트 정보를 가져온다.
     var table = new tau.ui.Table({
       sectionSort: tau.ui.INDEX_SORT,
@@ -37,13 +37,13 @@ $class('tau.bbc.ListController').extend(tau.ui.TableSceneController).define({
     scene.add(indicator);
 
     this.setTitle(' ');  // 네비게이션 바의 제목을 설정한다.
-    this.getNavigationBar().setStyles({
+    bar.setStyles({
       backgroundImage: 'url(/img/title.png)', 
       backgroundRepeat: 'no-repeat',
       backgroundPosition: '56% center'
     });
     
-    this.getNavigationBar().setLeftItem(new tau.ui.Button({
+    bar.setLeftItem(new tau.ui.Button({
       backgroundImage: {
         normal: '/img/radioplay.png',
         selected: '/img/radiopause.png',
@@ -57,7 +57,7 @@ $class('tau.bbc.ListController').extend(tau.ui.TableSceneController).define({
         border: 'none'
       }
     }));
-    this.getNavigationBar().setRightItem(new tau.ui.Button({
+    bar.setRightItem(new tau.ui.Button({
       styles: {
         backgroundImage: 'url(/img/edit.png)',
         backgroundColor: 'transparent',
@@ -69,8 +69,8 @@ $class('tau.bbc.ListController').extend(tau.ui.TableSceneController).define({
       }
     }));
     
-    this.getNavigationBar().getRightItem().onEvent(tau.rt.Event.TAP, this.editButtonSelected, this);
-    this.getNavigationBar().getLeftItem().onEvent(tau.rt.Event.TAP, this.radioButtonSelected, this);
+    bar.getRightItem().onEvent(tau.rt.Event.TAP, this.editButtonSelected, this);
+    bar.getLeftItem().onEvent(tau.rt.Event.TAP, this.radioButtonSelected, this);
     
     this.getParent().onEvent(tau.rt.Event.RT_CTRL_CHANGE,  function (e, payload){
       if (payload.fg && payload.fg.ctrl  === this && payload.bg && payload.bg.ctrl._changed){
@@ -239,7 +239,8 @@ $class('tau.bbc.ListController').extend(tau.ui.TableSceneController).define({
    */
   radioButtonSelected: function (e, payload) {
     var audio = document.getElementById('audio'),
-          button = this.getNavigationBar().getLeftItem();
+          button = this.getNavigationBar().getLeftItem(),
+          selected = button.isSelected();
     
     if (!audio) {
       audio = document.createElement('audio');
@@ -248,13 +249,12 @@ $class('tau.bbc.ListController').extend(tau.ui.TableSceneController).define({
       audio.innerHTML = ' <source src=' + this.appCtx.getRealPath('/radio.mp3') + '>';
       this.getDOM().appendChild(audio);
     }
-    if (!button.isSelected()) {
+    if (!selected) {
       audio.play();
-      this.getNavigationBar().getLeftItem().setSelected(true);
     } else {
       audio.pause();
-      this.getNavigationBar().getLeftItem().setSelected(false);
     }
+    button.setSelected(!selected);
   },
   
   /**
