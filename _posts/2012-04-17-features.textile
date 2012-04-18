@@ -70,7 +70,7 @@ h2. HTML5, CSS3 지원 (Design standard web with HTML5, CSS3)
 
 <div class="row">
 <div class="span3">
-!/img/feature-05.jpg!
+!{height:157px}/img/feature-05.jpg!
 </div>
 <div class="span9">
 
@@ -92,7 +92,7 @@ h2. Real-time synchronized editing
 
 </div>
 <div class="span3">
-!/img/feature-06.jpg!
+!{height:157px}/img/feature-06.jpg!
 </div>
 </div>
 
@@ -100,7 +100,7 @@ h2. Real-time synchronized editing
 
 <div class="row">
 <div class="span3">
-!/img/feature-07.jpg!
+!{height:157px}/img/feature-07.jpg!
 </div>
 <div class="span9">
 
@@ -128,13 +128,13 @@ h2. 레이아웃 편집 (Layout Editing)
 
 </div>
 <div class="span3">
-!/img/feature-07.jpg!
+!{height:157px}/img/feature-07.jpg!
 </div>
 </div>
 
 <div class="row">
 <div class="span3">
-!/img/feature-08.jpg!
+!{height:157px}/img/feature-08.jpg!
 </div>
 <div class="span9">
 
