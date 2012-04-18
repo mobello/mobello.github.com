@@ -44,13 +44,15 @@ h2. UI Components
 
 </div>
 </div>
-  
+
+<hr>
+
 <br>
 <br>
-<br>
-  
 
 h1. Mobello Studio
+
+<br>
 
 <div class="row">
 <div class="span8">
