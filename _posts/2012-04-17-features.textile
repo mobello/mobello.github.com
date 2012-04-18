@@ -99,10 +99,10 @@ h2. Real-time synchronized editing
 <hr>
 
 <div class="row">
-<div class="span3">
+<div class="span4">
 !{height:157px}/img/feature-07.jpg!
 </div>
-<div class="span9">
+<div class="span8">
 
 h2. 미리보기 (Preview)
 
@@ -132,11 +132,13 @@ h2. 레이아웃 편집 (Layout Editing)
 </div>
 </div>
 
+<hr>
+
 <div class="row">
-<div class="span3">
+<div class="span4">
 !{height:157px}/img/feature-08.jpg!
 </div>
-<div class="span9">
+<div class="span8">
 
 h2. 직관적 UI   
 
@@ -145,6 +147,8 @@ h2. 직관적 UI
 
 </div>
 </div>
+
+<hr>
 
 <div class="row">
 <div class="span12">
