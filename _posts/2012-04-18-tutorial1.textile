@@ -45,7 +45,8 @@ h1. 연락처 리스트 생성
 
 주어진 데이터를 바탕으로 전체 연락처 리스트 생성하는 Controller 클래스로써 'tau.ui.TableSceneController'클래스를 상속받아 정의합니다.  'tau.ui.TableSceneController'는 리스트형태의 화면을 쉽게 작성할 수 있도록 TAU Framework에서 제공하는 Controller 클래스입니다. 
 
-pre(prettyprint).. $class('tau.sample.ContactListController').extend(tau.ui.TableSceneController).define({
+<pre class="prettyprint">
+$class('tau.sample.ContactListController').extend(tau.ui.TableSceneController).define({
   /**
    * Constructor, initialize model object as null
    */
@@ -130,8 +131,8 @@ pre(prettyprint).. $class('tau.sample.ContactListController').extend(tau.ui.Tabl
       this._model = null;
     }
 });
+</pre>
 
-p. 
 
 * init(): 사용할 Table컴포넌트의 속성을 설정하고 테마를 'ios'로 설정
 * loadModel() callback메소드로서 Table컴포넌트에 생성할 모델을 로딩하고 생성할 TableCell의 개수를 반환
@@ -144,7 +145,8 @@ h1. 상세정보 화면 생성
 
 tau.sample.ContactInfo 클래스는 주어진 주소록 정보를 바탕으로 연락처 상세 화면을 생성하는 Controller 클래스로써 기본적으로 'tau.ui.SceneController'클래스를 상속받아 정의합니다
 
-pre(prettyprint).. $class('tau.sample.ContactInfo').extend(tau.ui.SceneController).define({
+<pre class="prettyprint">
+$class('tau.sample.ContactInfo').extend(tau.ui.SceneController).define({
   /**
    * 
    * @param name
@@ -261,8 +263,8 @@ pre(prettyprint).. $class('tau.sample.ContactInfo').extend(tau.ui.SceneControlle
     return cell;
   }
 });
+</pre>
 
-p. 
 
 * 생성자에서는 넘겨받은 파라미터를 인스턴스 변수로 설정
 * loadScene()에서는 보여줄 화면을 생성해줌.
@@ -277,7 +279,8 @@ h1. Complete Source Code
 
 h5. main.js
 
-pre(prettyprint).. $require('/info.js');
+<pre class="prettyprint">
+$require('/info.js');
 /**
  * Contact sample application class
  */
@@ -374,8 +377,7 @@ $class('tau.sample.ContactListController').extend(tau.ui.TableSceneController).d
       this._model = null;
     }
 });
-
-p. 
+</pre>
 
 h5. info.js
 
