@@ -8,7 +8,7 @@ h1. Mobello.js
 <br>
 
 <div class="row">
-<div class="span8">
+<div class="span9">
 
 h3. Runtime
 
@@ -19,7 +19,7 @@ h3. Runtime
 ** 사용 빈도 높은 UX 패턴을 쉽게 구현 하도록 다양한 Controller 제공
 </div>
 
-<div class="span4"> 
+<div class="span3"> 
 !{height:157px}/img/feature-01.png!
 </div>
 </div>
@@ -152,14 +152,14 @@ h3. 직관적 UI
 <hr>
 
 <div class="row">
-<div class="span8">
+<div class="span9">
 
 h3. Eclipse 기반
 
 * Eclipse platform 기반 제품으로서 다양한 plugin 들과 함께 사용할 수 있습니다. 예를 들어 Appspresso 나 PhoneGap 에서 제공하는 eclipse plugin 을 함께 사용하면 하이브리드 앱을 쉽게 제작할 수 있습니다.
 
 </div>
-<div class="span4">
+<div class="span3">
 !{height:157px}/img/feature-09.png!
 </div>
 </div>
