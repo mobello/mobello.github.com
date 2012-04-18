@@ -45,8 +45,7 @@ h3. UI Components
 </div>
 </div>
 
-<hr>
-
+<br>
 <br>
 <br>
 
@@ -153,11 +152,14 @@ h3. 직관적 UI
 <hr>
 
 <div class="row">
-<div class="span12">
+<div class="span8">
 
 h3. Eclipse 기반
 
 * Eclipse platform 기반 제품으로서 다양한 plugin 들과 함께 사용할 수 있습니다. 예를 들어 Appspresso 나 PhoneGap 에서 제공하는 eclipse plugin 을 함께 사용하면 하이브리드 앱을 쉽게 제작할 수 있습니다.
 
+</div>
+<div class="span4">
+!{height:157px}/img/feature-09.png!
 </div>
 </div>
