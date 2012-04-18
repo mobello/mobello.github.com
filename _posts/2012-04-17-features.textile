@@ -17,14 +17,23 @@ h2. Runtime
 ** 사용자 친화적인 애니메이션 기능 제공
 ** Native에 준하는 앱 실행환경 지원 (Multi-App)
 ** 사용 빈도 높은 UX 패턴을 쉽게 구현 하도록 다양한 Controller 제공
-</div><div class="span3"> 
-!{height:100%}/img/feature-01.png!
+</div>
+
+<div class="span3"> 
+!{height:157px}/img/feature-01.png!
 </div>
 </div>
+
+<hr>
+
+<div class="row">
+<div class="span3">
+!{height:157px}/img/feature-02.png!
+</div>
+
+<div class="span9">
 
 h2. UI Components
-
-!/img/feature-02.png!
 
 * 화면을 구성하는 다양한 컴포넌트를 제공함으로써 동일한 Look & Feel을 유지하고 높은 개발 생산성과 유지보수를 용이하게 합니다.
 ** 일관된 Look & Feel 지원
@@ -32,6 +41,9 @@ h2. UI Components
 ** 터치 인터페이스에 최적화 
 ** 확장 및 커스텀 컴포넌트 제작 용이
 ** App개발에 필요한 미려한 컴포넌트 제공
+
+</div>
+</div>
   
 <br>
 <br>
