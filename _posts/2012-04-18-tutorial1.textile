@@ -12,7 +12,7 @@ h1. 개요
 
 이 예제는 두개의 파일로 구성되어 있으며 앱 실행시 최초 로딩되는 main.js 에서 다음과 같이 info.js 파일을 로딩합니다.
 
-bq. $require('/info.js');
+pre(prettyprint). $require('/info.js');
 
 연락처 App의 사용자 시나리오는 다음의 화면과 같습니다.
 
@@ -20,7 +20,7 @@ bq. $require('/info.js');
 
 예제에서 사용할 데이터는 JSON형태로 기술하고 다음과 같은 형태를 가집니다.
 
-bq. [{group: '친구', name: 'Steve Jobs', mobile: '011-1024-1111', company: 'Apple Inc.', position: 'CEO', img: '/img/stevejobs.jpg'},
+pre(prettyprint). [{group: '친구', name: 'Steve Jobs', mobile: '011-1024-1111', company: 'Apple Inc.', position: 'CEO', img: '/img/stevejobs.jpg'},
  {group: '친구', name: 'Bill Gates', mobile: '011-1024-2222', company: 'Corbis', position: 'Chairman', img: '/img/billgates.jpg'},
  {group: '친구', name: 'Mark Zuckerberg', mobile: '011-1024-3333', company: 'Facebook', position: 'CEO', img: '/img/markzuckerberg.jpg'},
  {group: '가족', name: '아버지', mobile: '011-1024-9999', img: ''},
@@ -32,7 +32,7 @@ h1. Main Controller 클래스 생성
 Main Controller 클래스는 App이 구동될 때 Runtime에 의해 처음 실행되는 Class로써 이름을 'tau.sample.ContactListController'로 클래스를 생성하겠습니다.
 계층적인 정보를 보여주기 위해 TAU Framework에서 기본적으로 제공되는 'tau.ui.SequenceNavigator'를 상속받아 'tau.sample.ContactsController'클래스를 정의합니다. SequenceNavigator 는 계층적으로 구성된 정보를 편리하게 Navigation 할 수 있도록 제작된 Controller 클래스 입니다. 
 
-bq. $class('tau.sample.ContactsController').extend(tau.ui.SequenceNavigator).define({
+pre(prettyprint). $class('tau.sample.ContactsController').extend(tau.ui.SequenceNavigator).define({
   init : function() {
     this.setRootController(new tau.sample.ContactTableController());
   }
@@ -45,7 +45,7 @@ h1. 연락처 리스트 생성
 
 주어진 데이터를 바탕으로 전체 연락처 리스트 생성하는 Controller 클래스로써 'tau.ui.TableSceneController'클래스를 상속받아 정의합니다.  'tau.ui.TableSceneController'는 리스트형태의 화면을 쉽게 작성할 수 있도록 TAU Framework에서 제공하는 Controller 클래스입니다. 
 
-bq.. $class('tau.sample.ContactListController').extend(tau.ui.TableSceneController).define({
+pre(prettyprint).. $class('tau.sample.ContactListController').extend(tau.ui.TableSceneController).define({
   /**
    * Constructor, initialize model object as null
    */
@@ -144,7 +144,7 @@ h1. 상세정보 화면 생성
 
 tau.sample.ContactInfo 클래스는 주어진 주소록 정보를 바탕으로 연락처 상세 화면을 생성하는 Controller 클래스로써 기본적으로 'tau.ui.SceneController'클래스를 상속받아 정의합니다
 
-bq.. $class('tau.sample.ContactInfo').extend(tau.ui.SceneController).define({
+pre(prettyprint).. $class('tau.sample.ContactInfo').extend(tau.ui.SceneController).define({
   /**
    * 
    * @param name
@@ -277,7 +277,7 @@ h1. Complete Source Code
 
 h5. main.js
 
-bq.. $require('/info.js');
+pre(prettyprint).. $require('/info.js');
 /**
  * Contact sample application class
  */
@@ -379,7 +379,7 @@ p.
 
 h5. info.js
 
-bq.. /**
+pre(prettyprint).. /**
  * Contact detail scene
  */
 $class('tau.sample.ContactInfo').extend(tau.ui.SceneController).define({
@@ -504,4 +504,4 @@ p.
 
 h1. Reference
 
-* "소스코드 다운로드":tutorial1-source.zip
+* "소스코드 다운로드":/tutorial1-source.zip
