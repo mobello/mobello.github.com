@@ -379,7 +379,8 @@ p.
 
 h5. info.js
 
-pre(prettyprint).. /**
+<pre class="prettyprint">
+ /**
  * Contact detail scene
  */
 $class('tau.sample.ContactInfo').extend(tau.ui.SceneController).define({
@@ -500,7 +501,7 @@ $class('tau.sample.ContactInfo').extend(tau.ui.SceneController).define({
   }
 });   
 
-p. 
+</pre>
 
 h1. Reference
 
