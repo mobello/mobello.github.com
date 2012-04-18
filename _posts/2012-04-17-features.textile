@@ -8,7 +8,7 @@ h1. Mobello.js
 <br>
 
 <div class="row">
-<div class="span9">
+<div class="span8">
 
 h2. Runtime
 
@@ -19,7 +19,7 @@ h2. Runtime
 ** 사용 빈도 높은 UX 패턴을 쉽게 구현 하도록 다양한 Controller 제공
 </div>
 
-<div class="span3"> 
+<div class="span4"> 
 !{height:157px}/img/feature-01.png!
 </div>
 </div>
@@ -27,11 +27,11 @@ h2. Runtime
 <hr>
 
 <div class="row">
-<div class="span3">
+<div class="span4">
 !{height:157px}/img/feature-02.png!
 </div>
 
-<div class="span9">
+<div class="span8">
 
 h2. UI Components
 
@@ -53,7 +53,7 @@ h2. UI Components
 h1. Mobello Studio
 
 <div class="row">
-<div class="span9">
+<div class="span8">
 
 h2. HTML5, CSS3 지원 (Design standard web with HTML5, CSS3)
 
@@ -61,7 +61,7 @@ h2. HTML5, CSS3 지원 (Design standard web with HTML5, CSS3)
 * -webkit, -moz 같은 vendor prefix 를 신경쓰지 않고도 CSS3 를 쉽게 사용할 수 있습니다.
 
 </div>
-<div class="span3">
+<div class="span4">
 !{height:157px}/img/feature-04.jpg!
 </div>
 </div>
@@ -69,10 +69,10 @@ h2. HTML5, CSS3 지원 (Design standard web with HTML5, CSS3)
 <hr>
 
 <div class="row">
-<div class="span3">
+<div class="span4">
 !{height:157px}/img/feature-05.jpg!
 </div>
-<div class="span9">
+<div class="span8">
 
 h2. 비주얼 디자인 (Visual Design Editor)
 
@@ -84,14 +84,14 @@ h2. 비주얼 디자인 (Visual Design Editor)
 <hr>
 
 <div class="row">
-<div class="span9">
+<div class="span8">
 
 h2. Real-time synchronized editing
 
 * 디자인뷰에서 편집한 내용과 소스뷰에서 편집한 내용은 실시간으로 양방향 동기화 되어 개발 생산성을 높여줍니다.
 
 </div>
-<div class="span3">
+<div class="span4">
 !{height:157px}/img/feature-06.jpg!
 </div>
 </div>
@@ -115,7 +115,7 @@ h2. 미리보기 (Preview)
 <hr>
 
 <div class="row">
-<div class="span9">
+<div class="span8">
 
 h2. 레이아웃 편집 (Layout Editing)   
 
@@ -127,7 +127,7 @@ h2. 레이아웃 편집 (Layout Editing)
 * Flexbox Layout: Flexbox 의 align,pack,orientation 속성을 쉽게 변경할 수 있습니다.
 
 </div>
-<div class="span3">
+<div class="span4">
 !{height:157px}/img/feature-07.jpg!
 </div>
 </div>
