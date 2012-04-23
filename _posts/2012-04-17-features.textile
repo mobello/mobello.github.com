@@ -145,7 +145,7 @@ h3. Device Emulator
 
 </div>
 <div class="span4">
-!{height:157px}/img/feature-10.jpg!
+!{height:157px}/img/feature-10.png!
 </div>
 </div>
 
