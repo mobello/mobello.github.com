@@ -16,7 +16,7 @@ Runtime manages the lifecycle of installed apps and provides abstractions for in
 * Device indepandant event system (touch events)
 * Provides advanced amimation
 * Run-time system for multi-app running
-* Provides controllers for general ux patterns.
+* Provides controllers for general ux patterns
 
 </div>
 
@@ -38,29 +38,11 @@ h3. UI Components
 
 Mobello includes a complete set of user interface components for building rich mobile web apps.
 
-* Label
-* Button
-* Checkbox
-* Radio
-* Picker
-* DatePicker
-* TextField
-* TextArea
-* Table
-* TableCell
-* Panel
-* ScrollPanel
-* Slider
-* Switch
-* Select
-* SegmentedButton
-* Spinner
-* ActivityIndicator
-* ToolBar
-* SystemDialog, Dialog, ActionSheet
-* ImageView
-* TextView
-* Carousel
+* Consistent look & feel
+* Supports various resoultions
+* Optimized for touch interface
+* You can easily make custom components
+* Provide components with elegant designs
 
 </div>
 </div>
