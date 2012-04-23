@@ -12,11 +12,12 @@ h1. Mobello.js
 
 h3. Runtime
 
-* UI Framework상에서 동작하는 App들의 Lifecycle을 관리하며, 사용자의 동작에 따라 App이 반응할 수 있도록 지원하는 기반 시스템입니다.
-** 디바이스 독립적 이벤트 시스템 (터치이벤트)
-** 사용자 친화적인 애니메이션 기능 제공
-** Native에 준하는 앱 실행환경 지원 (Multi-App)
-** 사용 빈도 높은 UX 패턴을 쉽게 구현 하도록 다양한 Controller 제공
+Runtime manages the lifecycle of installed apps and provides abstractions for interaction and animation, advanced effects.
+* Device indepandant event system (touch events)
+* Provides advanced amimation
+* Run-time system for multi-app running
+* Provides controllers for general ux patterns.
+
 </div>
 
 <div class="span3"> 
@@ -35,12 +36,31 @@ h3. Runtime
 
 h3. UI Components
 
-* 화면을 구성하는 다양한 컴포넌트를 제공함으로써 동일한 Look & Feel을 유지하고 높은 개발 생산성과 유지보수를 용이하게 합니다.
-** 일관된 Look & Feel 지원
-** 디바이스 별 다양한 해상도를 지원 
-** 터치 인터페이스에 최적화 
-** 확장 및 커스텀 컴포넌트 제작 용이
-** App개발에 필요한 미려한 컴포넌트 제공
+Mobello includes a complete set of user interface components for building rich mobile web apps.
+
+* Label
+* Button
+* Checkbox
+* Radio
+* Picker
+* DatePicker
+* TextField
+* TextArea
+* Table
+* TableCell
+* Panel
+* ScrollPanel
+* Slider
+* Switch
+* Select
+* SegmentedButton
+* Spinner
+* ActivityIndicator
+* ToolBar
+* SystemDialog, Dialog, ActionSheet
+* ImageView
+* TextView
+* Carousel
 
 </div>
 </div>
@@ -105,10 +125,10 @@ h3. Real-time synchronized editing
 </div>
 <div class="span8">
 
-h3. Preview
+h3. Javascript Debugging
 
-* 디자인한 웹페이지를 내장 브라우저를 통하여 바로 확인해볼 수 있습니다.
-* 사용자 PC 에 설치된 브라우저를 통해서 쉽게 디자인한 결과를 확인해보고 테스트해볼 수 있습니다.
+* Set up breakpoints
+* Step in/over/out
 
 </div>
 </div>
@@ -116,6 +136,25 @@ h3. Preview
 <hr>
 
 <div class="row">
+<div class="span8">
+
+h3. Device Emulator
+
+* Emulate device form factor (screen size and resolution)
+* Rotate / Zoom / Multi-touch gesture
+
+</div>
+<div class="span4">
+!{height:157px}/img/feature-10.jpg!
+</div>
+</div>
+
+<hr>
+
+<div class="row">
+<div class="span4">
+!{height:157px}/img/feature-07.jpg!
+</div>
 <div class="span8">
 
 h3. Layout Editing
@@ -126,26 +165,6 @@ h3. Layout Editing
 * Flow Layout: 요소의 flow type 을 inline,box,inline-box 로 전환할 수 있습니다.
 * 마우스 드래그로 요소의 크기뿐만 아니라 margin 과 padding 을 조정할 수 있습니다.
 * Flexbox Layout: Flexbox 의 align,pack,orientation 속성을 쉽게 변경할 수 있습니다.
-
-</div>
-<div class="span4">
-!{height:157px}/img/feature-07.jpg!
-</div>
-</div>
-
-<hr>
-
-<div class="row">
-<div class="span4">
-!{height:157px}/img/feature-08.jpg!
-</div>
-<div class="span8">
-
-h3. 직관적 UI   
-
-* QuickStyler 를 통해 폰트, 배경, 레이아웃등을 쉽게 편집할 수 있습니다.
-* 원하는 속성을 쉽게 찾아 변경할 수 있는 Attribute Editor 를 제공합니다.
-
 </div>
 </div>
 
@@ -154,7 +173,7 @@ h3. 직관적 UI
 <div class="row">
 <div class="span9">
 
-h3. Eclipse 기반
+h3. Eclipse-based
 
 * Eclipse platform 기반 제품으로서 다양한 plugin 들과 함께 사용할 수 있습니다. 예를 들어 Appspresso 나 PhoneGap 에서 제공하는 eclipse plugin 을 함께 사용하면 하이브리드 앱을 쉽게 제작할 수 있습니다.
 
