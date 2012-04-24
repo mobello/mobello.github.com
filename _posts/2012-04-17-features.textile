@@ -118,7 +118,7 @@ h3. Javascript Debugging
 <hr>
 
 <div class="row">
-<div class="span8">
+<div class="span9">
 
 h3. Device Emulator
 
@@ -126,7 +126,7 @@ h3. Device Emulator
 * Rotate / Zoom / Multi-touch gesture
 
 </div>
-<div class="span4">
+<div class="span3">
 !{height:157px}/img/feature-10.png!
 </div>
 </div>
