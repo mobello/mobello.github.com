@@ -70,5 +70,5 @@ footer {
 }
 
 li .fb_iframe_widget span {
-	height: 23px;
+	height: 23px !important;
 }
