@@ -68,3 +68,7 @@ footer {
 	background-position: top center;
 	color: white;
 }
+
+li .fb_iframe_widget span {
+	height: 23px;
+}
