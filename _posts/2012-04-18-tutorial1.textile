@@ -16,7 +16,7 @@ pre(prettyprint). $require('/info.js');
 
 연락처 App의 사용자 시나리오는 다음의 화면과 같습니다.
 
-!{max-width:100%}/img/주소록.png!
+!{max-width:100%}/img/contacts.png!
 
 예제에서 사용할 데이터는 JSON형태로 기술하고 다음과 같은 형태를 가집니다.
 
