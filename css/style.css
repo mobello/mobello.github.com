@@ -33,7 +33,8 @@ body {
 }
 
 .quick-links li {
-	float:left;
+	/* float:left; */
+	display: inline-block;
 	margin: 0 5px;
 	color: #999;
 }
