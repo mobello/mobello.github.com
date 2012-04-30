@@ -69,8 +69,10 @@ li .fb_iframe_widget span {
 	background-color:#E6E3E3;
 }
 
-.home-hero-button {
+.btn.btn-large.home-hero-button {
 	display:block;
 	width: 334px;
-	margin: 10px 0;
+	margin: 19px 0;
+	font-size: 25px;
+	font-weight: bold;
 }
