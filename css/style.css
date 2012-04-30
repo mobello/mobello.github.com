@@ -76,3 +76,9 @@ li .fb_iframe_widget span {
 	font-size: 25px;
 	font-weight: bold;
 }
+
+.feature-icon {
+	float: left;
+	width: 80px;
+	height: 64px;
+}
