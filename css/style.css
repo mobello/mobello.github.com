@@ -93,6 +93,9 @@ li .fb_iframe_widget span {
 }
 
 .feature-item p {
-	margin-left: 98px;
 	padding-right: 30px;
+	font-size: 16px; 
+	color: #606060;
+	line-height: 1.5;
+	margin: 0 0 1.2em 98px;
 }
