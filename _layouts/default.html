@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css" type="text/css" />
 <link href="/bootstrap/google-code-prettify/prettify.css" rel="stylesheet">
 </head>
-<body {% if page.title == 'Home' %} class="home-body" {% endif %} onload="prettyPrint()">
+<body onload="prettyPrint()">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
@@ -44,6 +44,27 @@
 			</div>
 		</div>
 	</div>
+	{% if page.title == 'Home' %}
+	<div class="home-hero">
+		<div class="container">
+			<div
+				style="color: white; font-size: 100px; height: 60px; padding-top: 50px; text-shadow: 0px 0px 9px #D1D1D1">Mobello</div>
+			<div style="color: white; margin-bottom: 180px;">HTML5 framwrok for building
+				mobile webapp</div>
+			<div style="margin-top: 30px">
+				<a href="https://github.com/mobello/mobello" class="btn btn-large home-hero-button "
+					style="padding-top: 20px; padding-bottom: 20px">View Project on
+					Github</a>
+				 <a class="btn btn-primary btn-large home-hero-button" style="">Download
+					Mobello Studio
+					<div style="font-size: 50%">(Coming Soon)</div>
+				</a> <a class="btn btn-info btn-large home-hero-button " href="/demo"
+					style="padding-top: 20px; padding-bottom: 20px">View Demo</a>
+			</div>
+
+		</div>
+	</div>
+	{% endif %}
 	<div class="container">
 		{{ content }}
 	</div>

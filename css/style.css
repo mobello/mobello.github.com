@@ -61,13 +61,16 @@ footer {
 	margin-top: 20px
 }
 
-.home-body {
-	background-color: #000;
-	background-repeat: no-repeat;
-	background-position: top center;
-	color: white;
-}
-
 li .fb_iframe_widget span {
 	height: 23px !important;
+}
+
+.home-hero {
+	background-color:#E6E3E3;
+}
+
+.home-hero-button {
+	display:block;
+	width: 334px;
+	height: 58px;
 }
