@@ -89,7 +89,9 @@ li .fb_iframe_widget span {
 }
 
 .feature-item h3 {
-	margin-left: 98px;
+	font-size: 22px;
+	font-weight:bold;
+	margin: 1em 0 0.7em 98px;
 }
 
 .feature-item p {
