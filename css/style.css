@@ -1,5 +1,5 @@
 body {
-	padding-top: 80px;
+	padding-top: 60px;
 	padding-bottom: 40px;
 }
 
@@ -71,7 +71,8 @@ body {
 
 footer {
 	text-align: center;
-	margin-top: 20px
+	margin-top: 20px;
+	color: #c5c5c5;
 }
 
 li .fb_iframe_widget span {
@@ -102,7 +103,7 @@ li .fb_iframe_widget span {
 }
 
 .feature-item h3 {
-	font-size: 22px;
+	font-size: 24px;
 	font-weight:bold;
 	margin: 0 0 0.7em 98px;
 }
