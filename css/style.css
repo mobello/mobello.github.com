@@ -22,7 +22,8 @@ body {
 }
 
 .navbar .nav > li > a:hover {
-	text-shadow: 0px 0px 8px #fff;	
+	font-size: 20px;
+	text-shadow: 0px 0px 12px #fff;	
 }
 
 .btn.btn-large {
