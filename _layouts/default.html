@@ -17,8 +17,9 @@
 		}
 	}
 </script>
+
 </head>
-<body onload="prettyPrint()">
+<body onload="prettyPrint()" {% if page.title == 'Home' %} style="padding-bottom:80px" {% endif %}>
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
