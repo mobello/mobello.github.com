@@ -38,11 +38,10 @@ h3. UI Components
 
 Mobello offers a complete set of user interface components for building rich mobile web apps.
 
-* Consistent look & feel
-* Supports an wide range of screens
+* 20+ beautifully designed components
+* Supports an wide range of device form-factors
 * Optimized for touch interface
 * You can easily extend default components to meet your needs
-* Provide components with elegant designs
 
 </div>
 </div>
