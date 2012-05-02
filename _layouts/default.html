@@ -8,6 +8,15 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css" />
 <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css" type="text/css" />
 <link href="/bootstrap/google-code-prettify/prettify.css" rel="stylesheet">
+<script type="text/javascript">
+	function openBlog() {
+		if(navigator.language == 'ko') {
+			window.open('http://mobello.tumblr.com/');
+		} else {
+			window.open('http://mobellojs.tumblr.com/');
+		}
+	}
+</script>
 </head>
 <body onload="prettyPrint()">
 	<div class="navbar navbar-fixed-top">
@@ -37,7 +46,7 @@
 							<a href="/contacts">Contacts</a>
 						</li>
 						<li>
-							<a href="http://mobello.tumblr.com/" target="_blank">Blog</a>
+							<a href="#" onclick="openBlog();">Blog</a>
 						</li>
 					</ul>
 				</div>
