@@ -15,8 +15,8 @@ h3. Runtime
 Runtime manages the lifecycle of installed apps and provides abstractions for interaction and animation, advanced effects.
 * Device indepandant event system (touch events)
 * Provides advanced amimation
-* Run-time system for multi-app running
-* Provides controllers for general ux patterns
+* Runtime system for multi-app running
+* Provides controllers for general UX patterns
 
 </div>
 
@@ -36,12 +36,12 @@ Runtime manages the lifecycle of installed apps and provides abstractions for in
 
 h3. UI Components
 
-Mobello includes a complete set of user interface components for building rich mobile web apps.
+Mobello offers a complete set of user interface components for building rich mobile web apps.
 
 * Consistent look & feel
-* Supports various resoultions
+* Supports an wide range of screens
 * Optimized for touch interface
-* You can easily make custom components
+* You can easily extend default components to meet your needs
 * Provide components with elegant designs
 
 </div>
@@ -60,6 +60,7 @@ h1. Mobello Studio
 
 h3. Design standard web with HTML5, CSS3
 
+* Leverage the latest in web technologies and specifications.
 * 직관적 UI 와 다양한 기능들은 사용자가 HTML5 와 CSS3 를 빠르고 쉽게 활용할 수 있도록 도와줍니다.
 * -webkit, -moz 같은 vendor prefix 를 신경쓰지 않고도 CSS3 를 쉽게 사용할 수 있습니다.
 
