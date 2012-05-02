@@ -3,6 +3,9 @@ layout: default
 title: Features
 ---
 
+Mobello consists of javascript framework(Mobello.js) and IDE(Mobello Studio)
+
+
 h1. Mobello.js
 
 <br>
@@ -10,7 +13,7 @@ h1. Mobello.js
 <div class="row">
 <div class="span9">
 
-h3. Runtime
+h3. Core Runtime
 
 Runtime manages the lifecycle of installed apps and provides abstractions for interaction and animation, advanced effects.
 * Device indepandant event system (touch events)
