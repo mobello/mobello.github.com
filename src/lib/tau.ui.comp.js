@@ -2827,8 +2827,11 @@ $class('tau.ui.ScrollPanel').extend(tau.ui.Component).mixin(
     that.element.style.webkitTransform = tau.ui.ScrollPanel.TRANSLATEOPEN + 
       that.x + 'px,' + that.y + 'px' + tau.ui.ScrollPanel.TRANSLATECLOSE;
     
-    if (that._pullToRefresh && that._hScroll && that._pullToRefresh !== 'down') {
-      that.renderer.initPullUpToRefresh(that.$renderData);
+    if (that._pullToRefresh && that._pullToRefresh !== 'down') {
+      if (that._vScroll)
+        that.renderer.initPullUpToRefresh(that.$renderData, true);
+      if (that._hScroll)
+        that.renderer.initPullUpToRefresh(that.$renderData, false);
     }
 
     // Move the scrollbars
@@ -3373,12 +3376,11 @@ $class('tau.ui.ScrollPanel').extend(tau.ui.Component).mixin(
    * @private
    */
   _updatePullToRefresh: function (newPosition) {
-    
     if (this._pullToRefresh !== 'up' && this.getPullToRefreshState('down') !== 
       tau.ui.ScrollPanel.LOADING_PULLTOREFREH){ // down이나 both인 경우
-      
+
       var offsetdown = this.renderer.getPullToRefreshSize(this.$renderData, 'down', this._pullToRefreshDir);
-      if (newPosition > offsetdown) {  
+      if (newPosition >= offsetdown) {
         this.setPullToRefrehState(tau.ui.ScrollPanel.RELEASE_PULLTOREFREH, 'down');
       } else if (this.getPullToRefreshState('down') === tau.ui.ScrollPanel.RELEASE_PULLTOREFREH) {
         this.setPullToRefrehState(tau.ui.ScrollPanel.PULL_PULLTOREFREH, 'down');
@@ -3386,16 +3388,17 @@ $class('tau.ui.ScrollPanel').extend(tau.ui.Component).mixin(
     }
     if (this._pullToRefresh !== 'down' && this.getPullToRefreshState('up') !== 
       tau.ui.ScrollPanel.LOADING_PULLTOREFREH){ // up이나 both인 경우
-      
-      var bounce,
+      var bounce, direction,
           offsetup = this.renderer.getPullToRefreshSize(this.$renderData, 'up', this._pullToRefreshDir);
       if (this._pullToRefreshDir){
         bounce = this.maxScrollY - offsetup;
+        direction = this.directionY;
       } else {
         bounce = this.maxScrollX - offsetup;
+        direction = this.directionX;
       }
-      
-      if (newPosition < bounce) {
+
+      if (newPosition < bounce && direction === 1) {
         this.setPullToRefrehState(tau.ui.ScrollPanel.RELEASE_PULLTOREFREH, 'up');
       } else if (this.getPullToRefreshState('up') === tau.ui.ScrollPanel.RELEASE_PULLTOREFREH){
         this.setPullToRefrehState(tau.ui.ScrollPanel.PULL_PULLTOREFREH, 'up');

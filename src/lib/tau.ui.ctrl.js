@@ -1860,6 +1860,13 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
       }
     }
   },
+  
+  /**
+   * 
+   * @param e
+   * @param payload
+   * @returns {Boolean}
+   */
   handleTouchEnd: function(e, payload){
     var target = e.touches[0].target;
     if(target.getAttribute("class").indexOf(tau.ui.Shortcut.ICON_CLASS) > -1 && this._movingShortcutsCount == 0){      
@@ -1873,9 +1880,13 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
       }else{
       }
     }
-    
   },
-  swingback: function(fs){
+  
+  /**
+   * 
+   * @param fs
+   */
+  swingback: function(fs) {
     if(!this._continuousMutation || fs === this._FORCE_SWINGBACK){
       if(this._drifter){
         tau.util.dom.removeClass(this._drifter, 'moving');
@@ -1888,17 +1899,14 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
       this._editable = false;
       this.toggleDeletable(this._editable);
     }
-    this._swapTarget = null;    
-    //this._inspectUL();// for debug;
-    
-//    var sortingData = new Array();
-//    var lis = this._ul.children;
-//    for(var i=0; i<lis.length; i++){
-//      sortingData.push(lis[i].getAttribute("shortcut_name"));
-//    }
-    //tau.util.setCookie('$userapps', tau.stringify(sortingData), 365);
+    this._swapTarget = null;
   },
   
+  /**
+   * 
+   * @param newItem
+   * @param targetItem
+   */
   swapItems: function(newItem, targetItem){
     var newTop = newItem.style.top;
     var newLeft = newItem.style.left;
@@ -1908,11 +1916,15 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
     this.moveItemToAnotherItemPosition(newItem, targetItem);
   },
   
+  /**
+   * 
+   * @param newItem
+   * @param targetItem
+   */
   shiftItems: function(newItem, targetItem){    
     var divs = this._ul.children;
     var newIndex = this.indexOf(newItem);
     var targetIndex = this.indexOf(targetItem);
-//    tau.log.debug(newIndex+","+targetIndex);
     var direction = newIndex < targetIndex ? "DESC" : "ASC";
     var startIndex = newIndex < targetIndex ? newIndex : targetIndex;
     var endIndex = newIndex > targetIndex ? newIndex : targetIndex;
@@ -1922,13 +1934,11 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
     
     if(direction == "ASC"){
       for(var i=startIndex; i<endIndex; i++){
-//        tau.log.debug(direction+":"+i);
         divs[i].firstChild.style.webkitTransitionDelay = (i*30) + "ms";
         this.moveItemToAnotherItemPosition(divs[i].firstChild, divs[i+1].firstChild);          
       }
     }else{
       for(var i=endIndex; i>startIndex; i--){
-//        tau.log.debug(direction+":"+i);
         divs[i].firstChild.style.webkitTransitionDelay = (i*30) + "ms";
         this.moveItemToAnotherItemPosition(divs[i].firstChild, divs[i-1].firstChild);              
       }
@@ -1938,6 +1948,13 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
 
   },
   
+  /**
+   * @private
+   * @param e
+   * @param t
+   * @param x
+   * @param y
+   */
   _ontransitionEnd: function(e, t, x, y){
     if(e.propertyName == "-webkit-transform"){
       e.target.style.webkitTransitionTimingFunction = "";
@@ -1960,7 +1977,6 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
           if(this.indexOf(this._drifter) < this.indexOf(t)){
             target = target.nextSibling;
           }
-//          tau.log.debug("insertBefore("+(this._drifter.innerText)+","+(target==null?"null":target.innerText)+")");
           this._ul.insertBefore(this._drifter.parentElement, target);    
         }
         this.swingback();
@@ -1968,15 +1984,11 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
     }      
   },
   
-  //for TDD
-  _inspectUL: function(){
-//    console.log("---_ul inspection--");
-//    for(var i=0; i<this._ul.children.length; i++){
-//      console.log((i+1)+":"+this._ul.children[i].innerText);      
-//    }
-  },
-  
-  
+  /**
+   * 
+   * @param item
+   * @returns {Number}
+   */
   indexOf: function(item){
     var divs = this._ul.children;
     for(var i=0; i<divs.length; i++){
@@ -1987,6 +1999,9 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
     return -1;
   },
   
+  /**
+   * 
+   */
   setInitialPosition: function(){
     var divs = document.querySelectorAll(".shortcuts");    
     for(var i=0; i<divs.length; i++){
@@ -1995,6 +2010,11 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
     }
   },
   
+  /**
+   * 
+   * @param o1
+   * @param o2
+   */
   moveItemToAnotherItemPosition: function(o1, o2){
     if(!o1.style.top || !o1.style.left){
       this.setInitialPosition();
@@ -2005,8 +2025,14 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
     this.moveItemToPosition(o1, o2, o2.style.top, o2.style.left);
   },
   
+  /**
+   * 
+   * @param o1
+   * @param o2
+   * @param top
+   * @param left
+   */
   moveItemToPosition: function(o1, o2, top, left){
-//    tau.log.debug(o1.innerText + " - > " + o2.innerText);
     if(!o1.style.top || !o1.style.left){
       this.setInitialPosition();
     }
@@ -2027,8 +2053,6 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
       }
     });
   },
-  
-  
   
   /**
    * 사용자가 Shortcut의 삭제 Badge를 터치했을 때 발생되는 이벤트를 처리한다.
@@ -2261,11 +2285,22 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
           
           this.balloonConfig.firstVisit = localStorage.getItem('addToHomeVisit') == null;
   
-          if(!self.balloon && window.navigator.standalone === false && (tau.rt.isIPad || tau.rt.isIPhone)){//window.navigator.standalone === false){// when navigator.standalone is NOT undefined and is false.
-            this.showBalloon('이 웹앱을 설치 하려면 %icon 을 터치 후 "홈 화면에 추가" 를 선택 하세요.');
+          if (!self.balloon 
+              && window.navigator.standalone === false 
+              && (tau.rt.isIPad || tau.rt.isIPhone)){
+            //window.navigator.standalone === false){
+            //when navigator.standalone is NOT undefined and is false.
+             this.showBalloon(
+                "Install this web app on your device: tap '%icon' and" +
+                "then 'Add to Home Screen'.");
           }
-          if(this.balloonConfig.firstVisit && !self.balloon && window.navigator.standalone === true && (tau.rt.isIPad || tau.rt.isIPhone)){
-            this.showBalloon('이 부분을 길게 Touch 하시면 System Dock 을 사용 할 수 있습니다.', true, 20, null, true);
+          if (this.balloonConfig.firstVisit 
+              && !self.balloon 
+              && window.navigator.standalone === true 
+              && (tau.rt.isIPad || tau.rt.isIPhone)){
+            this.showBalloon(
+                "Long touch this portion to open 'system dock'"
+                , true, 20, null, true);
           }
         }
       },
@@ -2293,7 +2328,7 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
         }
         
         self.balloon.addEventListener("click", function(e){
-          sceneDOM.removeChild(e.target);
+          sceneDOM.removeChild(e.currentTarget);
           if(addSession){
             localStorage.setItem('addToHomeVisit', 1);
           }              

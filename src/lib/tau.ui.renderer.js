@@ -2334,9 +2334,13 @@ tau.ui.ScrollPanel.prototype.renderer = tau.mixin({
       tau.util.dom.removeClass(pull, this.$styleClass.loading, prefix);
       pullLabel.innerHTML = text;
       $dom[tau.ui.ScrollPanel.SCROLLER_KEY].style[margin] = 0 ;
-      if (!vertical && pullToRefresh === 'up') {
-        $dom._pullup.style.left = this.getScrollerSize($renderData, false) + 'px';
-      }
+      if (pullToRefresh === 'up') {
+        if (!vertical) {
+          $dom._pullup.style.left = this.getScrollerSize($renderData, false) + 'px';  
+        } else {
+          $dom._pullup.style.top = this.getScrollerSize($renderData, true) + 'px';
+        }
+      } 
       break;
     }
   },
@@ -2345,11 +2349,13 @@ tau.ui.ScrollPanel.prototype.renderer = tau.mixin({
    * horizontal인 경우 pullUpToRefresh 위치를 설정해 준다.
    * @param {Object} $renderData base style class와 $dom 구조를 가지는 객체
    */
-  initPullUpToRefresh: function ($renderData) {
+  initPullUpToRefresh: function ($renderData, vertical) {
     var $dom = $renderData.$dom,
-      left = $dom._pullup.style.left;
-    if (!left) {
-      $dom._pullup.style.left = this.getScrollerSize($renderData, false) + 'px';
+      style = vertical ? 'top' : 'left',
+      offset = $dom._pullup.style[style];
+
+    if (!offset) {
+      $dom._pullup.style[style] = this.getScrollerSize($renderData, vertical) + 'px';
     }
   },
   
@@ -2363,15 +2369,9 @@ tau.ui.ScrollPanel.prototype.renderer = tau.mixin({
   getPullToRefreshSize: function ($renderData, pullToRefresh, vertical) {
     var $dom = $renderData.$dom, 
         size;
-    
+
     if (pullToRefresh === 'up') {
-      var computedStyle = document.defaultView.getComputedStyle($dom._pullup, 
-          null), offset;
-      if (computedStyle) {
-        offset = parseInt(computedStyle.getPropertyValue(vertical ? 
-            'margin-top' : 'margin-left') || 0);
-      }
-      size = $dom._pullup[vertical ? 'scrollHeight' : 'scrollWidth'] + offset;
+      size = $dom._pullup[vertical ? 'offsetHeight' : 'offsetWidth'];
     } else {
       size = $dom._pulldown[vertical ? 'offsetHeight' : 'offsetWidth'];
     }
@@ -2519,6 +2519,12 @@ tau.ui.Table.prototype.renderer = tau.mixin({
     }
     return size;
   },
+  
+  /**
+   * horizontal인 경우 pullUpToRefresh 위치를 설정해 준다.
+   * @param {Object} $renderData base style class와 $dom 구조를 가지는 객체
+   */
+  initPullUpToRefresh: tau.emptyFn,  
   
   /**
    * 페이지에 해당하는 리스트의 DOM element를 반환한다.
