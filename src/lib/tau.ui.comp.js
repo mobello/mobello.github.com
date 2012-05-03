@@ -10899,7 +10899,7 @@ $class('tau.ui.Picker').extend(tau.ui.Component).mixin(tau.ui.Control).define({
       label:'Done',
       parent:this, 
       bubble:this,
-      tap: function(e){    
+      tap: function(e){
         self._defaultDoneAction();
       }
     });
@@ -10909,7 +10909,7 @@ $class('tau.ui.Picker').extend(tau.ui.Component).mixin(tau.ui.Control).define({
       label: 'Cancel',
       parent:this, 
       bubble:this,
-      tap: function(e){          
+      tap: function(e){
         self._defaultCancelAction();
       }
     });
@@ -11181,7 +11181,7 @@ $class('tau.ui.Picker').extend(tau.ui.Component).mixin(tau.ui.Control).define({
    */
   destroy: function () { 
     delete this.renderer.pickers[this.getId()];
-    tau.getRuntime().unsubscribeEvent(tau.rt.Event.ORIENTATION, this._handleOrientationChange, this);
+    tau.getRuntime().unsubscribeEvent(tau.rt.Event.ORIENTATION, this.handleOrientationChange, this);
     return tau.ui.Picker.$super.destroy.apply(this, arguments);
   }
 });
