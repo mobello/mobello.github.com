@@ -83,6 +83,34 @@ li .fb_iframe_widget span {
 	font-weight: bold;
 }
 
+.icon-github {
+	background-image: url('/img/home-2.png');
+}
+
+.icon-download {
+	background-image: url('/img/home-3.png');
+}
+
+.icon-demo {
+	background-image: url('/img/home-4.png');
+}
+
+.icon-architecture {
+	background-image: url('/img/home-5.png');
+}
+
+.icon-native {
+	background-image: url('/img/home-6.png');
+}
+
+.icon-ide {
+	background-image: url('/img/home-7.png');
+}
+
+.icon-easy {
+	background-image: url('/img/home-8.png');
+}
+
 /* Quick Links */
 .quick-links {
 	min-height: 30px;
