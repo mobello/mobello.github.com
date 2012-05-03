@@ -64,7 +64,9 @@ li .fb_iframe_widget span {
 /* HOME */
 .home-hero {
 	background-color:#E6E3E3;
-	background-image: url('/img/home-1.jpg');
+	background-image: url('/img/home-1.jpg'), url('/img/home-background.jpg');
+	background-repeat: no-repeat, repeat;
+	background-position-x: 83%, 0;
 	margin-bottom: 30px;
 	height: 430px;
 }
