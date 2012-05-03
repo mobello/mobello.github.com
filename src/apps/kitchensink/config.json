@@ -1,7 +1,0 @@
-config({
-  classname: 'tau.demo.kitchensink.Main',
-  title: 'KitchenSink',
-  version: '1.0.0',
-  vendor: 'KT Corporation',
-  theme: 'ios'
-});
