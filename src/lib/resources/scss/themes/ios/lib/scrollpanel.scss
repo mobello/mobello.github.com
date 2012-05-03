@@ -172,8 +172,9 @@ $tau-pulltorefresh-color: #888 !default;
       @include box-align(center);
       @include box-pack(center);
       @if ($direction == up) {
-        margin-left: 10px;
-        width: 0;
+        position: absolute;
+        width: 40px;
+        margin-left: 36px;
       } @else {
         width: 40px;
         margin-left: -60px;

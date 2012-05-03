@@ -30,13 +30,14 @@ $class('tau.demo.SettingController').extend(tau.ui.TableSceneController).define(
    * callback function when scene is loaded
    */
   sceneLoaded: function () {
+    var clazz = tau.demo.SettingController;
     var table = this.getTable();
-    for(var i=0; i < tau.demo.SettingController.CELLS.length; i++){  
+    for(var i=0; i < clazz.CELLS.length; i++){  
       var cell = new tau.ui.TableCell();
-      cell.setTitle(tau.demo.SettingController.CELLS[i]);
+      cell.setTitle(clazz.CELLS[i]);
       table.add(cell);
     }
-    tau.demo.SettingController.$super.sceneLoaded.apply(this, arguments);
+    clazz.$super.sceneLoaded.apply(this, arguments);
   },
 
   /**

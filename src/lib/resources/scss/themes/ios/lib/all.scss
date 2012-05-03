@@ -29,6 +29,7 @@
 @import 'spinner';
 @import 'modal';
 @import 'popoverController';
+@import 'mask';
 
 @include tau-core;
 @include tau-sequencenavigator;
@@ -62,3 +63,4 @@
 @include tau-spinner;
 @include tau-modal;
 @include tau-popoverController;
+@include tau-mask-comp;

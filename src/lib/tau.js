@@ -16,7 +16,7 @@
 */
 (function (libs) {
   /**
-   * loads specified library file related to TAU Framework.
+   * loads specified library file related to Mobello Framework.
    * specified library must be loaded prior to user application.
    * the notation of 'lib' will be as follows <p/>
    * the prefix 'tau' can be omitted. if the lib name is not starting with
@@ -68,6 +68,6 @@
       noCache = (parts && parts[1]) ? ('true' === parts[1]) : false,
       head = document.getElementsByTagName('head')[0];
   if (!(head && load(head, libs.split(',')))) {
-    alert('Failed to load TAU Framework!');
+    alert('Failed to load Mobello Framework!');
   }
 })('core,util,rt,data,fx,ui.comp,ui.ctrl,ui.renderer');

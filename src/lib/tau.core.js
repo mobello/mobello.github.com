@@ -73,23 +73,29 @@
     /** @namesapce Tau Framework Root Namespace */
     tau = {
 
-      // TAU Framework version
+      // Mobello Framework version
       VER: '1.0',
       
-      // TAU Framework이 허용하는 전체 화면 크기
+      /**
+       * Mobello Framework이 허용하는 전체 화면 너비
+       * @returns {Number} 
+       */
       getWidth: function () {
-    	 if (!_ROOT_DOM) {
-    		 _ROOT_DOM = document.getElementById('tau-root'); 
-    	 }
-    	 return _ROOT_DOM ? (_ROOT_DOM.clientWidth || _ROOT_DOM.offsetWidth) : window.innerWidth;
+       if (!_ROOT_DOM) {
+         _ROOT_DOM = document.getElementById('tau-root'); 
+       }
+       return _ROOT_DOM ? (_ROOT_DOM.clientWidth || _ROOT_DOM.offsetWidth) : window.innerWidth;
       },
       
-      // TAU Framework이 허용하는 전체 화면 크기
+      /**
+       * Mobello Framework이 허용하는 전체 화면 높이
+       * @returns {Number} 
+       */
       getHeight: function () {
-     	 if (!_ROOT_DOM) {
-    		 _ROOT_DOM = document.getElementById('tau-root'); 
-    	 }
-    	 return _ROOT_DOM ? (_ROOT_DOM.clientHeight || _ROOT_DOM.offsetHeight) : window.innerHeight;
+        if (!_ROOT_DOM) {
+         _ROOT_DOM = document.getElementById('tau-root'); 
+       }
+       return _ROOT_DOM ? (_ROOT_DOM.clientHeight || _ROOT_DOM.offsetHeight) : window.innerHeight;
       },
       
       /**
@@ -333,11 +339,11 @@
       
       /**
        * Returns the value of specified parameter of query string which you 
-       * typed when you lauch TAU framework in the browser url field such as
+       * typed when you lauch Mobello framework in the browser url field such as
        * http://localhost/tau/laucher.html?aaa=bbb
        * in which case if you set the key as 'aaa' then this method returs
        * 'bbb'
-       * @param {String} key the key you specified when TAU is lauching
+       * @param {String} key the key you specified when Mobello is lauching
        * @returns {String} the value corresponding to the key
        */
       getLauncherParam: function (key) {
@@ -351,7 +357,7 @@
       },
 
       /**
-       * Implicit TAU Object, when a class is defined using $class() signature,
+       * Implicit Mobello Object, when a class is defined using $class() signature,
        * the instance of that class is always extends tau.TObject 
        * @private
        */
@@ -949,6 +955,7 @@
        * @see <a href="http://www.JSON.org/json.js">www.JSON.org/json.js</a>
        */
       parse: function (text, reviver) {
+        if (!text) return null;
         return _MODULE.json.parse(text, reviver);
       },
 
@@ -1069,7 +1076,7 @@
        * whose callback is callback and whose cancelled flag is false.
        * @param {Function} callback A parameter specifying a function to call when it's time to update 
        *                             your animation for the next repaint
-			 */
+       */
       requestAnimationFrame: function (callback) {
         return _requestAnimationFrame.call(window, callback);
       },
@@ -1288,80 +1295,6 @@
     return ref;
   };
 
-  /** @lends tau.OpenAPI */
-  $class('tau.OpenAPI').define({
-    $static: {
-      FINANCE: {
-        STOCK: {
-          YAHOO: {
-            javascript : "lib/openapis/finance.stock.yahoo.js",
-            getStockInfo: "getStockInfo",
-            lookupStockSymbols: "lookupStockSymbols",
-            getChartURL:"getChartURL"
-          }
-        }
-      }
-    },
-    /**
-     * @class
-     * Dynamically loads a JavaScript Module and invokes functions for OpenAPI
-     * <p/>
-     * @constructs
-     * @param {Object} predefined static object in tau.OpenAPI
-     */
-    OpenAPI: function(module){
-      if(module){
-        this.module = module;
-        this.module.queue = [];
-        if(!this.module.scriptHelper){
-          this.module.scriptHelper = new tau.ScriptHelper();
-          this.module.scriptHelper.load(this.module.javascript, tau.ctxAware(this._handleLoaded, this));    
-        }
-      }else{
-        throw new Error('api module undefined.');
-      }
-    },
-    
-    /**
-     * invokes function.
-     * Options:
-     * <pre>
-     *   fn       : {String} function name, to be invoked.
-     *   param        : {Object} parameters for fn
-     *   callback : {Function} Success callback function
-     * </pre>
-     * @param {Object} opt
-     */
-    call: function(opt){
-      if(!opt.fn){
-        throw new Error('fn("'+opt.fn+'") undefined.');        
-      }
-      if(this.module.loaded === true){
-        this._callbackFn(this.module, opt.fn, opt.callback, opt.param)();
-      }else{
-        this.module.queue.push(this._callbackFn(this.module, opt.fn, opt.callback, opt.param));
-      }         
-    },
-    
-    _callbackFn: function(module, fn, userCallBack, param){      
-      var that = this;
-      return function(){
-        if(that.reference == undefined){
-          that.reference = new module.clazz();
-        }        
-        that.reference[fn](param, userCallBack);
-      };
-    },
-    
-    _handleLoaded: function () { 
-        this.module.loaded = true;
-        for(var i=0; i < this.module.queue.length; i++){
-          this.module.queue[i]();
-        }
-        this.module.queue = [];
-      }
-  });
-
   /** @lends tau.ScriptHelper */
   $class('tau.ScriptHelper').define({
 
@@ -1457,7 +1390,7 @@
           if (timeoutId) window.clearTimeout(timeoutId);   // prevent timeout callback
           if (that._opts.autoUnload) that.unload(); // unload script element
           if (that.ctx.onerror) that.ctx.onerror = null;
-          callbackFn.call(that._opts.context || this);          
+          callbackFn.call(that._opts.context || this);
         };
         // noCache flag will prevent the browser from caching the script
         this.ctx.setAttribute('src', 
@@ -1465,17 +1398,16 @@
       } else {
         this.ctx.setAttribute('href', url);
         opts.head.appendChild(this.ctx);
-        
         /*
          * 개발자 모드인 경우 이미지 태그를 통해 css파일을 로딩하지 않도록 처리함. 
          * 브라우저에서 css파일을 이미지로 인식해서 css 디버그 하기 어려움
          */
         var rt = tau.getRuntime();
-        if (rt && rt.getConfig().dev) {
-    		if (tau.isFunction(callbackFn)) callbackFn.call(that._opts.context || this);
-    		return true;
+        if (tau.rt.isAndroidVer2 || rt && rt.getConfig().dev) {
+          if (tau.isFunction(callbackFn)) callbackFn.call(that._opts.context || this);
+          return true;
         }
-        
+
         var img = document.createElement('img');
         img.style.display = 'none';
         img.src = url;
@@ -1493,7 +1425,7 @@
             loaded();
           }
         };
-        that.timeoutId = setTimeout(loaded, opts.timeout || 500);
+        that.timeoutId = window.setTimeout(loaded, opts.timeout || 700);
         return document.body.appendChild(img);
       }
       return opts.head.appendChild(this.ctx);

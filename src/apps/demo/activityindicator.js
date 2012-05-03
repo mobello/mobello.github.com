@@ -1,27 +1,42 @@
 /**
  * Activityindicator 
  */
-$class('tau.demo.ActivityIndicator').extend(tau.ui.SceneController).define( {
-  loadScene: function() {
+$class('tau.demo.ActivityIndicator').extend(tau.ui.SceneController).define({
+  /**
+   * create scene with ActivityIndicator and Button component
+   */
+  loadScene: function () {
     this.setTitle('ActivityIndicator');
-    var button, activityindicator, bStart = true;  
-    activityindicator = new tau.ui.ActivityIndicator({message : 'Loading...', styles : {height : '50%'}});  // ActivityIndicator 생성
-    activityindicator.start(); // 컴포넌트를 화면에 보여줌.
-    
-    button = new tau.ui.Button({label : 'end', styles : {top : '50%'}}); // 버튼 컴포넌트를 생성한다.
-    button.onEvent(tau.rt.Event.TAP, function(){ // 클릭 이벤트가 발생했을 때 ActivityIndicator을 start, stop시킨다.
-      if (bStart){
-        button.setLabel('start');
-        activityindicator.end();
-        bStart = false; 
-      } else {
-        button.setLabel('end');
-        activityindicator.start(1000);
-        bStart = true;
-      }
-    });
-    // 컴포넌트를 scene에 추가한다.
-    this.getScene().add(button);
-    this.getScene().add(activityindicator);  
+
+    var scene = this.getScene(),
+      button = new tau.ui.Button({
+        label: 'stop', 
+        styles: {top: '50%', left: '40%'}
+      }),
+      activityindicator = new tau.ui.ActivityIndicator({
+        id: 'activityindicator',
+        autoStart: true,
+        message: 'Loading...', 
+        styles: {height: '50%'}
+      });
+    button.onEvent(tau.rt.Event.TAP, this.toggleIndicator, this);
+    scene.setStyleClass({type: 'ios'});
+    scene.setComponents([button, activityindicator]);
+  },
+  
+  /**
+   * If an user touches the button this callback method will be invoked.
+   */
+  toggleIndicator: function (e, payload) {
+    var button = e.getSource(),
+      activityindicator = this.getScene().getComponent('activityindicator');
+
+    if (activityindicator.isLoading()){
+      button.setLabel('start');
+      activityindicator.end();
+    } else {
+      button.setLabel('stop');
+      activityindicator.start(1000);
+    }
   }
 });

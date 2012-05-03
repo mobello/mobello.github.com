@@ -113,7 +113,7 @@ function initScene() {
     },
     label: '-A'
   });
-  button1.onEvent(tau.rt.Event.TAP, this.decreaseFontSize, this);
+  button1.onEvent(tau.rt.Event.TAP, this.handleFontSize, this);
   
   var button2 = new tau.ui.Button({
     id: 'button2',
@@ -126,7 +126,7 @@ function initScene() {
       fontWeight: 'bold'
     }
   });
-  button2.onEvent(tau.rt.Event.TAP, this.increaseFontSize, this);
+  button2.onEvent(tau.rt.Event.TAP, this.handleFontSize, this);
   
   toolbar1.add(refreshBtn);
   toolbar1.add(shareBtn);

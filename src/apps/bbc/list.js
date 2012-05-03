@@ -19,7 +19,7 @@ $class('tau.bbc.ListController').extend(tau.ui.TableSceneController).define({
       group: true,
       components: [
         new tau.ui.TableSection(),
-        new tau.ui.TableSection({groupName: 'MORE', foldable: true})
+        new tau.ui.TableSection({groupName: 'MORE', foldable: true, folded: false})
       ],
       styleClass: {cellSize: 'auto'},
       styles: {
@@ -53,7 +53,7 @@ $class('tau.bbc.ListController').extend(tau.ui.TableSceneController).define({
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
         width: '110px',
-        height: '100%',
+        height: '36px',
         border: 'none'
       }
     }));
@@ -64,7 +64,7 @@ $class('tau.bbc.ListController').extend(tau.ui.TableSceneController).define({
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
         width: '64px',
-        height: '100%',
+        height: '36px',
         border: 'none'
       }
     }));
@@ -180,7 +180,7 @@ $class('tau.bbc.ListController').extend(tau.ui.TableSceneController).define({
           components: [
            new tau.ui.Label({
              numberOfLines: 3, 
-             styles: {fontWeight: 'bold', color: '#fefefe', top: 40 + '%'}
+             styles: {fontWeight: 'bold', color: '#fefefe', top: 68 + '%'}
            }),
           ]
         });

@@ -1,7 +1,0 @@
-config({
-  classname   : 'tau.new_demo.Main',
-  title       : 'demo',
-  version     : '1.0.0',
-  vendor      : 'KT Corporation',
-  theme	      : 'ios'
-});

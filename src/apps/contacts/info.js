@@ -103,7 +103,7 @@ $class('tau.sample.ContactInfo').extend(tau.ui.SceneController).define({
   buttonSelected: function (e, payload) {
     var src = e.getSource();
     if (src instanceof tau.ui.Button) {
-      tau.alert('['+ src.getLabel().normal + '] is tapped!');
+      tau.alert('['+ src.getLabel() + '] is tapped!');
     }
   },
   

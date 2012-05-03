@@ -1,8 +1,8 @@
 $switch-beforebar-icon: "switch/beforebar-icon.png" !default;
 $switch-afterbar-icon: "switch/afterbar-icon.png" !default;
 
-$switch-thumb-size: 30px !default;
-$switch-bar-height: 30px !default;
+$switch-thumb-size: 36px !default;
+$switch-bar-height: 36px !default;
 
 $switch-beforebar-boder-bottom-color: #36A2C6 !default;
 $switch-beforebar-border-left-color: #2BA3C8 !default;
@@ -125,7 +125,7 @@ $switch-default-color: #fff;
     }
     
     .tau-switch-#{$direction} {
-      #{$size2}: 80px;
+      #{$size2}: 100px;
       
       & > .tau-switch-container {
         #{$size1}: $switch-bar-height;
@@ -143,16 +143,15 @@ $switch-default-color: #fff;
       }
       
       & .tau-switch-beforebar:before {
-      	content: '\0000a0';
-      	background-image: url(#{$images-path}/#{$switch-beforebar-icon});
-		background-repeat: no-repeat;
-		position: absolute;
-		width: 19px;
-		height: 52%;
-		left: 19px;
-		top: 7px;
-		background-size: 100%;
-		/* TODO siwth 의 크기가 늘어나는 경우 처리 */ 
+        content: '\0000a0';
+        background-image: url(#{$images-path}/#{$switch-beforebar-icon});
+        background-repeat: no-repeat;
+        position: absolute;
+        width: 20px;
+        height: 52%;
+        left: 10px;
+        top: 8px;
+        background-size: 100%;
       }
       
       & .tau-switch-afterbar {
@@ -163,16 +162,21 @@ $switch-default-color: #fff;
       }
       
       & .tau-switch-afterbar:before {
-      	content: '\0000a0';
-      	background-image: url(#{$images-path}/#{$switch-afterbar-icon});
-		background-repeat: no-repeat;
-		width: 15px;
-		position: absolute;
-		right: 20px;
-		height: 100%;
-		top: 8px;
-		background-size: 100%;
-		/* TODO siwth 의 크기가 늘어나는 경우 처리 */ 
+        content: '\0000a0';
+        background-image: url(#{$images-path}/#{$switch-afterbar-icon});
+        background-repeat: no-repeat;
+        
+        position: absolute;
+        background-size: 100%;
+        width: 16px;  
+        height: 16px;
+        @if ($direction == horizontal) {
+          right: 10px;
+          top: 10px;
+        } @else {
+          bottom: 10px;
+          left: 10px;
+        }
       }
       
       & .tau-switch-thumb {

@@ -22,7 +22,7 @@
       // Runtime singleton instance
       _RT = null, 
 
-      // Default TAU Icon path
+      // Default Mobello Icon path
       _ICONPATH = 'lib/resources/tauicon.png',
 
       // Default Splash image path
@@ -36,7 +36,7 @@
 
       // Default Runtime configuration
       _RTCONFIG = {
-        id              : 'TAU_PLATFORM', // Platform ID
+        id              : 'Mobello_PLATFORM', // Platform ID
         version         : tau.VER,        // Runtime version
         timeout         : 3000,           // App timeout in ms (3 secs.)
         multiInstance   : false,          // Allows multiple same App instances
@@ -105,7 +105,7 @@
 
 
   /**
-   * Runtime API appended to TAU root namespace
+   * Runtime API appended to Mobello root namespace
    */
   tau.namespace('tau', 
   /** @lends tau */ 
@@ -161,6 +161,11 @@
      * @type Boolean 
      */
     isAndroid: /android/i.test(_USERAGENT),
+    /** 
+     * android 버전 2 여부
+     * @type Boolean 
+     */
+    isAndroidVer2: /android 2./i.test(_USERAGENT),
     /** 
      * ipad 여부
      * @type Boolean 
@@ -1089,7 +1094,7 @@
        * need to process mouse move event without mouse button clicking */
       this.mousedown = false;
 
-      // Registration for DOM listeners used by the TAU Framework
+      // Registration for DOM listeners used by the Mobello Framework
       // By default, document is used because it allows events to be handled
       // when the mouse is moved outside the browser.
       this._root = root || document; //document.getElementById('tau');
@@ -1097,13 +1102,15 @@
           ? 'click,touchstart,touchmove,touchend,touchcancel,orientationchange'
           : 'click,mousedown,mousemove,mouseup';
       this._listenEvents(this._root, events.split(','), true);
-      
-      if (!tau.rt.hasTouch) { // 'resize' event is special case on PC
+
+      if (!tau.rt.hasOrientationChange || tau.rt.isAndroid) { // 'resize' event is special case on PC, Android
         this._listenEvents(window, 'resize', true);
       }
       
       events = 'keyup,keydown,keypress,blur,'.concat(tau.rt.Event.TRANSITIONEND);
       this._listenEvents(this._root, events.split(','), true);
+
+      if (tau.rt.isAndroid) this._previousOrientation = 0;
     },
     
     /**
@@ -1186,7 +1193,7 @@
      * @param {Object} dom Child DOM element to begin the search
      * @returns {String} If {@link tau.rt.EventDelegator} 
      */
-    findTAUObjId: function (dom) {
+    findMobelloObjId: function (dom) {
       var id;
       while (dom) {
         id = dom.id;
@@ -1242,7 +1249,7 @@
      */
     hitTarget: function (dom) {
       var found,
-          id = this.findTAUObjId(dom),
+          id = this.findMobelloObjId(dom),
           module = this._activeModule,
           ctrl = module ? module.getRootController() : null;
       if (id && id !== 'tau-root') {
@@ -1261,7 +1268,7 @@
 
     /**
      * Receives a generic DOM event from an element and attempts to delegate it 
-     * with a TAU event to the corresponding {@link tau.rt.EventDelegator}.
+     * with a Mobello event to the corresponding {@link tau.rt.EventDelegator}.
      * @param {Object} e DOM event
      * @returns {Boolean} True if the event was fired to a Tau EventDispatcher
      */
@@ -1274,20 +1281,30 @@
     
     /**
      * Receives a generic DOM event from an element and attempts to delegate it 
-     * with a TAU event to the corresponding {@link tau.rt.EventDelegator}.
+     * with a Mobello event to the corresponding {@link tau.rt.EventDelegator}.
      * @param {Object} e DOM event
      * @returns {Boolean} True if the event was fired to a Tau EventDispatcher
      */
     domOrientationChange: function (e) {
       var target = e.target;
       if (target === window || target === document) {
-        return tau.getRuntime().fireEvent(tau.rt.Event.ORIENTATION, window.orientation);
+        var orientation = window.orientation;
+        if (tau.rt.isAndroid) {
+          if (orientation !== this._previousOrientation) {
+            this._previousOrientation = orientation;
+          } else {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+          }
+        }
+        return tau.getRuntime().fireEvent(tau.rt.Event.ORIENTATION, orientation);
       }
       return false;
     },
     
     /**
-     * Callback method, Handles all the event occurred on TAU framework area
+     * Callback method, Handles all the event occurred on Mobello framework area
      * @param {Event} e native DOM event
      * @param {String} name event name translated into touch event name
      */
@@ -1519,8 +1536,19 @@
     propagateEvent: function (e, payload) {
       switch (e.getName()) {
         case tau.rt.Event.SCENEDRAWN:
+        case tau.rt.Event.ORIENTATION:
           if (tau.rt.isIPhone) {  // hide URL bar
             window.setTimeout(function () {window.scrollTo(0, 1);}, 100);
+          } else if (tau.rt.isAndroid) {
+              var elem = document.documentElement,
+                  height = window.outerHeight / window.devicePixelRatio;
+
+              if(elem.scrollHeight <  height && height) {
+                elem.style.height= height + 'px';
+              } else {
+                elem.style.height = null;
+              }
+              window.setTimeout(function () {window.scrollTo(1, 1);}, 100);
           }
           break;
       }
@@ -1593,12 +1621,14 @@
      * @returns {Array} application names which is cached in local storage
      */
     getCached: function () {
+      var cookie;
       if (!this.$userapps) {
-        this.$userapps = tau.parse(tau.util.getCookie('$userapps')) || [];
+        cookie = tau.util.getCookie('$userapps');
+        this.$userapps = cookie ? tau.parse(cookie) : [];
       }
       return this.$userapps;
     },
-    
+
     /**
      * Removes specified application name from cache
      * @param {String} app application name to remove from cache
@@ -1611,7 +1641,8 @@
         try {
           window.applicationCache.update(); // async processing
         } catch (e) {
-          tau.log.debug('Can not update application cache(uninstall): ' + e);
+          tau.log.debug(
+          'You need to go online to update application cache(uninstall): ' + e);
         }
       }
     },
@@ -1622,13 +1653,14 @@
      */
     _cache: function (app) {
       var apps = this.getCached();
-      if (apps.indexOf(app) === -1) {
+      if (apps && apps.indexOf(app) === -1) {
         apps.push(app);
         tau.util.setCookie('$userapps', tau.stringify(apps), 365);
         try {
           window.applicationCache.update(); // async processing
         } catch (e) {
-          tau.log.debug('Can not update application cache(uninstall): ' + e);
+          tau.log.debug(
+            'You need to go online to update application cache(install): ' + e);
         }
       }
     },
@@ -1647,15 +1679,37 @@
      * @param {Object | Array} apps module information to install 
      */
     install: function (apps) {
-      var i, len, src, chain,
-          rt = this;
+      var rt = this;
       apps = tau.isArray(apps) ? apps : [apps];
-      
+      this.resolve(apps, function (confs) {
+        var conf;
+        for (var i = 0, len = confs.length; i < len; i++) {
+          conf = confs[i];
+          rt._registry[conf.name] = conf; // register conf
+          if (conf.$mutable) {
+            rt._cache(conf.name);
+          }
+        }
+        (rt.getModule() || rt).fireEvent(tau.rt.Event.RT_INSTALLED, confs);
+        if (rt._registry[apps[0].name] && apps[0].autostart) {
+          rt.start(apps[0].name);
+        }
+      });
+    },
+    
+    /**
+     * Resolves specified apps to appropriate configuration information
+     * @param {Array} apps app names to resolve
+     * @param {Function} callbackFn callback function notified when resolving
+     *    is finished. It's parameter is array of configurations resolved
+     */
+    resolve: function (apps, callbackFn) {
+      var src, chain;
       GLOBAL.config = function (conf) { // global wide function
         GLOBAL.config.current = conf; // refer to InstallDependency#handleResult
       };
       chain = new tau.rt.DependencyChain();
-      for (i = 0, len = apps.length; i < len; i++) {
+      for (var i = 0, len = apps.length; i < len; i++) {
         src = _resolvePath('/config.json', apps[i].name);
         chain.addDependency(
             new tau.rt.InstallDependency(apps[i].name, src, apps[i].sys));
@@ -1665,21 +1719,18 @@
         resolve: function (context) {
           delete GLOBAL.config;
           var conf, confs = [], dependencies = context.getDependencies();
-          for (i = 0, len = dependencies.length; i < len; i++) {
+          for (var i = 0, len = dependencies.length; i < len; i++) {
             if (!(conf = dependencies[i].$conf)) continue;
-            confs.push(rt._registry[conf.name] = conf); // register conf
-            if (conf.$mutable) {
-              rt._cache(conf.name);
-            }
+            confs.push(conf); // register conf
           }
-          (rt.getModule() || rt).fireEvent(tau.rt.Event.RT_INSTALLED, confs);
-          if (rt._registry[apps[0].name] && apps[0].autostart) {
-            rt.start(apps[0].name);
+          if (callbackFn && tau.isFunction(callbackFn)) {
+            callbackFn(confs);
           }
         }
       });
       chain.resolve();
     },
+    
 
     /**
      * Unregisters a module from the Runtime.
@@ -1748,7 +1799,7 @@
       // Set active module & run module
       this.$eventMgr.setActiveModule(module);
       this.$themeMgr.loadTheme( // load theme before starting module
-    		  {'config': module.getConfig(), 'module': module});
+          {'config': module.getConfig(), 'module': module});
       if (module.isBusy()) { // instance exists already
         this.$clipboard.paste(module.getId(), this.$dom.root);
         module.setVisible(true);
@@ -1838,6 +1889,7 @@
           this.setTitle(payload[0].title);
           this.setIcon(payload[0].icon);
           if (payload[0].splash) this.setSplash(payload[0].splash);
+          tau.log.LEVEL = payload[0].loglevel;
         } else {
           window.alert('앱('+ app + ')을 실행할 수 없습니다.\n앱 이름이 정확한지 확인하십시오.');
         }

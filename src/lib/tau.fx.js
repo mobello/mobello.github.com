@@ -48,9 +48,7 @@
         if (obj[name] != null && (!obj.style || obj.style[name] == null)) {
           return obj[name];
         }
-        var r = parseFloat(tau.util.css(obj, name, force));
-        return r && r > -10000 ? r
-            : parseFloat(tau.util.curCSS(obj, name)) || 0;
+        return parseFloat(tau.util.getComputedStyle(obj, name, force)) || 0;
       },
       /**
        * obj의 속성값 세팅한다.
@@ -446,7 +444,7 @@
      * <pre>
      * TODO:
      *  1. 차후에 JsAnimUnit 과 event 명 통합
-     *  2. event 처리방식을 TAU Event System 에 통합시킬지 결정할 것
+     *  2. event 처리방식을 Event System 에 통합시킬지 결정할 것
      *  3. JsAnimUnit과의 관계 정리
      *   방안1) 구조적으로 통합하던지 (하나의 클래스에서 분기처리) 
      *   방안2) 아예 분리하던지 (동일 클래스명에 파일자체를 분리하여 로딩)

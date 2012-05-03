@@ -68,198 +68,96 @@
       },
 
       /**
-       * temporary borrowed from jQuery
+       * Get and set the style property on a HTMLElement
+       * @param {HTMLElement} elem
+       * @param {String} name
+       * @param {String} value
+       * @returns {String}
        */
       style: function(elem, name, value) {
-        // don't set styles on text and comment nodes
-        if (!elem || elem.nodeType === 3 || elem.nodeType === 8) {
-          return undefined;
-        }
+        if (!tau.isElement(elem) || !name) return undefined;
 
-        // ignore negative width and height values #1599
         if ((name === "width" || name === "height") && parseFloat(value) < 0) {
           value = undefined;
         }
 
-        var style = elem.style || elem, set = value !== undefined;
+        var style = elem.style, 
+            set = value !== undefined;
 
-        // IE uses filters for opacity
-        if (!tau.util.support.opacity && name === "opacity") {
-          if (set) {
-            // IE has trouble with opacity if it does not have layout
-            // Force it by setting the zoom level
-            style.zoom = 1;
-
-            // Set the alpha filter to set the opacity
-            var opacity = parseInt(value, 10) + "" === "NaN" ? ""
-                : "alpha(opacity=" + value * 100 + ")";
-            var filter = style.filter || tau.util.curCSS(elem, "filter") || "";
-            style.filter = ralpha.test(filter) ? filter
-                .replace(ralpha, opacity) : opacity;
-          }
-
-          return style.filter && style.filter.indexOf("opacity=") >= 0 ? (parseFloat(ropacity
-              .exec(style.filter)[1]) / 100)
-              + ""
-              : "";
-        }
-
-        // Make sure we're using the right name for getting the float value
-        if (rfloat.test(name)) {
-          name = styleFloat;
-        }
-
-        name = name.replace(rdashAlpha, fcamelCase);
-
-        if (set) {
-          style[name] = value;
-        }
+        name = tau.camelize(name);
+        
+        if (set) style[name] = value;
 
         return style[name];
       },
+
       /**
-       * temporary borrowed from jQuery
+       * Get computed style on a HTMLElement
+       * @param {HTMLElement} elem
+       * @param {String} name
+       * @param {Boolean} force
+       * @returns {String}
        */
-      css: function(elem, name, force, extra) {
-        if (name === "width" || name === "height") {
-          var val, props = cssShow, which = name === "width" ? cssWidth
-              : cssHeight;
-
-          function getWH() {
-            val = name === "width" ? elem.offsetWidth : elem.offsetHeight;
-
-            if (extra === "border") {
-              return;
-            }
-
-            for ( var key in which) {
-              if (!extra) {
-                val -= parseFloat(tau.util.curCSS(elem, "padding" + which[key],
-                    true)) || 0;
-              }
-
-              if (extra === "margin") {
-                val += parseFloat(tau.util.curCSS(elem, "margin" + which[key],
-                    true)) || 0;
-              } else {
-                val -= parseFloat(tau.util.curCSS(elem, "border" + which[key]
-                    + "Width", true)) || 0;
-              }
-            }
-          }
-
-          if (elem.offsetWidth !== 0) {
-            getWH();
-          } else {
-            tau.util.swap(elem, props, getWH);
-          }
-
-          return Math.max(0, Math.round(val));
-        }
-
-        return tau.util.curCSS(elem, name, force);
-      },
-      /**
-       * temporary borrowed from jQuery
-       */
-      curCSS: function(elem, name, force) {
-        var ret, style = elem.style, filter;
-
-        if (!tau.util.support.opacity && name === "opacity"
-            && elem.currentStyle) {
-          // IE uses filters for opacity
-          ret = ropacity.test(elem.currentStyle.filter || "") ? (parseFloat(RegExp.$1) / 100)
-              + ""
-              : "";
-
-          return ret === "" ? "1" : ret;
-        }
-
-        // Make sure we're using the right name for getting the float value
-        if (rfloat.test(name)) {
-          name = styleFloat;
-        }
+      getComputedStyle: function(elem, name, force) {
+        var style = elem.style, val, currentStyle;
 
         if (!force && style && style[name]) {
-          ret = style[name];
+          val = style[name];
+        } else if (name === "width" || name === "height") {
+          val = (name === "width") ? elem.clientWidth : elem.clientHeight;
+          if (val == 0) {
+            var prevStyle = {},
+              props = {
+                position: "absolute",
+                visibility: "hidden",
+                display: "block"
+              };
 
-        } else if (getComputedStyle) {
+            for ( var key in props) {
+              prevStyle[key] = style[key];
+              style[key] = props[key];
+            }
+            val = (name === "width") ? elem.clientWidth : elem.clientHeight;
 
-          // Only "float" is needed here
-          if (rfloat.test(name)) {
-            name = "float";
+            for ( var key in props) {
+              style[key] = prevStyle[key];
+            }
           }
+          val = Math.max(0, Math.round(val));
 
-          name = name.replace(rupper, "-$1").toLowerCase();
-
+        } else if (document.defaultView && document.defaultView.getComputedStyle) {
           var defaultView = elem.ownerDocument.defaultView;
-
-          if (!defaultView) {
-            return null;
-          }
-
+  
+          if (!defaultView) return null; 
+  
           var computedStyle = defaultView.getComputedStyle(elem, null);
 
-          if (computedStyle) {
-            ret = computedStyle.getPropertyValue(name);
-          }
+          name = tau.underscore(name).replace(/_/g, '-');
 
-          // We should always get a number back from opacity
-          if (name === "opacity" && ret === "") {
-            ret = "1";
-          }
+          if (computedStyle) val = computedStyle.getPropertyValue(name); 
 
-        } else if (elem.currentStyle) {
-          var camelCase = name.replace(rdashAlpha, fcamelCase);
+          if (name === "opacity" && val === "") val = "1"; 
 
-          ret = elem.currentStyle[name] || elem.currentStyle[camelCase];
+        } else if (currentStyle = elem.currentStyle) {
+          val = currentStyle[name] || currentStyle[tau.camelize(name)];
+  
+          if (/^-?(?:\d*\.)?\d+(?!px)[^\d\s]+$/i.test(val)) {
+            style = elem.style;
+            var left = style.left,
+              runtimeStyle = elem.runtimeStyle,
+              rsLeft = runtimeStyle.left;
+            
+            runtimeStyle.left = currentStyle.left;
+            style.left = (name === "font-size") ? "1em" : (val || 0);
+            val = style.pixelLeft + "px";
 
-          // From the awesome hack by Dean Edwards
-          // http://erik.eae.net/archives/2007/07/27/18.54.15/#comment-102291
-
-          // If we're not dealing with a regular pixel number
-          // but a number that has a weird ending, we need to convert it to
-          // pixels
-          if (!rnumpx.test(ret) && rnum.test(ret)) {
-            // Remember the original values
-            var left = style.left, rsLeft = elem.runtimeStyle.left;
-
-            // Put in the new values to get a computed value out
-            elem.runtimeStyle.left = elem.currentStyle.left;
-            style.left = camelCase === "fontSize" ? "1em" : (ret || 0);
-            ret = style.pixelLeft + "px";
-
-            // Revert the changed values
             style.left = left;
-            elem.runtimeStyle.left = rsLeft;
+            runtimeStyle.left = rsLeft;
           }
         }
-
-        return ret;
+        return val;
       },
 
-      // A method for quickly swapping in/out CSS properties to get correct
-      // calculations
-      /**
-       * temporary borrowed from jQuery
-       */
-      swap: function(elem, options, callback) {
-        var old = {};
-
-        // Remember the old values, and insert the new ones
-        for ( var name in options) {
-          old[name] = elem.style[name];
-          elem.style[name] = options[name];
-        }
-
-        callback.call(elem);
-
-        // Revert the old values
-        for ( var name in options) {
-          elem.style[name] = old[name];
-        }
-      },
-      
       /**
        * 
        */
@@ -296,119 +194,6 @@
         setCookie(name, -1);
       }
     };
-
-    var div = document.createElement("div");
-    div.style.display = "none";
-    div.innerHTML = "   <link/><table></table><a href='/a' style='color:red;float:left;opacity:.55;'>a</a><input type='checkbox'/>";
-
-    var all = div.getElementsByTagName("*"), a = div.getElementsByTagName("a")[0];
-
-    // Can't get basic test support
-    if (!all || !all.length || !a) {
-      return;
-    }
-    /**
-     * temporary borrowed from jQuery
-     */
-    tau.util.support = {
-      // IE strips leading whitespace when .innerHTML is used
-      leadingWhitespace: div.firstChild.nodeType === 3,
-
-      // Make sure that tbody elements aren't automatically inserted
-      // IE will insert them into empty tables
-      tbody: !div.getElementsByTagName("tbody").length,
-
-      // Make sure that link elements get serialized correctly by innerHTML
-      // This requires a wrapper element in IE
-      htmlSerialize: !!div.getElementsByTagName("link").length,
-
-      // Get the style information from getAttribute
-      // (IE uses .cssText insted)
-      style: /red/.test(a.getAttribute("style")),
-
-      // Make sure that URLs aren't manipulated
-      // (IE normalizes it by default)
-      hrefNormalized: a.getAttribute("href") === "/a",
-
-      // Make sure that element opacity exists
-      // (IE uses filter instead)
-      // Use a regex to work around a WebKit issue. See #5145
-      opacity: /^0.55$/.test(a.style.opacity),
-
-      // Verify style float existence
-      // (IE uses styleFloat instead of cssFloat)
-      cssFloat: !!a.style.cssFloat,
-
-      // Make sure that if no value is specified for a checkbox
-      // that it defaults to "on".
-      // (WebKit defaults to "" instead)
-      checkOn: div.getElementsByTagName("input")[0].value === "on",
-
-      // Make sure that a selected-by-default option has a working selected
-      // property.
-      // (WebKit defaults to false instead of true, IE too, if it's in an
-      // optgroup)
-      optSelected: document.createElement("select").appendChild(
-          document.createElement("option")).selected,
-
-      parentNode: div.removeChild(div
-          .appendChild(document.createElement("div"))).parentNode === null,
-
-      // Will be defined later
-      deleteExpando: true,
-      checkClone: false,
-      scriptEval: false,
-      noCloneEvent: true,
-      boxModel: null
-    };
-    // release memory in IE (Currently do not support IE)
-    //root = script = div = all = a = null; 
-
-    var rexclude = /z-?index|font-?weight|opacity|zoom|line-?height/i, ralpha = /alpha\([^)]*\)/, ropacity = /opacity=([^)]*)/, rfloat = /float/i, rdashAlpha = /-([a-z])/ig, rupper = /([A-Z])/g, rnumpx = /^-?\d+(?:px)?$/i, rnum = /^-?\d/,
-
-    cssShow = {
-      position: "absolute",
-      visibility: "hidden",
-      display: "block"
-    }, cssWidth = [ "Left", "Right" ], cssHeight = [ "Top", "Bottom" ],
-
-    // cache check for defaultView.getComputedStyle
-    getComputedStyle = document.defaultView
-        && document.defaultView.getComputedStyle,
-    // normalize float css property
-    styleFloat = tau.util.support.cssFloat ? "cssFloat" : "styleFloat", fcamelCase = function(
-        all, letter) {
-      return letter.toUpperCase();
-    };
-    // Mutifunctional method to get and set values to a collection
-    // The value/s can be optionally by executed if its a function
-    function access(elems, key, value, exec, fn, pass) {
-      var length = elems.length;
-
-      // Setting many attributes
-      if (typeof key == "object") {
-        for ( var k in key) {
-          access(elems, k, key[k], exec, fn, value);
-        }
-        return elems;
-      }
-
-      // Setting one attribute
-      if (value !== undefined) {
-        // Optionally, function values get executed if exec is true
-        exec = !pass && exec && (typeof value == "function");
-
-        for ( var i = 0; i < length; i++) {
-          fn(elems[i], key, exec ? value.call(elems[i], i, fn(elems[i], key))
-              : value, pass);
-        }
-
-        return elems;
-      }
-
-      // Getting an attribute
-      return length ? fn(elems[0], key) : undefined;
-    }
   }
 
   /**
@@ -752,18 +537,6 @@
          return [x, y];
      },
      
-     /**
-      * Find leaf node of specified element. it searches firstChild of specified
-      * element recursively and returns deep-most first child node.(skewed)
-      * if sepcified element does'nt have first child then returns itself.
-      * @param {Object} DOM element
-      * @return {Object} deep-most first DOM element 
-      */
-     leafNodeOf: function (elem) {
-       var nodes = elem.getElementsByClassName('nest');
-       return nodes && nodes.length > 0 ? nodes[0] : elem;
-     }, 
-
      /**
       * Element Node를 반환한다.
       * @param {Node} DOM Node

@@ -2,39 +2,40 @@
  * Theme
  */
 $class('tau.demo.Theme').extend(tau.ui.SceneController).define( {
+  $static: { 
+    THEMES : [
+      'default',
+      'simple',
+      'ios'
+    ]
+  },
   
   loadScene: function() {
-    // scene에 컴포넌트를 추가한다.
+    var themeName = tau.getRuntime().$themeMgr._getDefaultThemeName(),
+      themes = tau.demo.Theme.THEMES,
+       index = themes.indexOf(themeName) || 0,
+       comps = [];
+
+    for(var i=0; i < themes.length; i++) {
+      comps[i] = {label : themes[i]}; 
+    }
+
     this.getScene().add(new tau.ui.SegmentedButton({
-      components: [
-        {label: 'default'},
-        {label: 'simple'},
-        {label: 'ios'}
-      ],
+      components: comps,
       vertical: true,
       valueChange: this.changeTheme,
-      styles: {width: '100%'}
-    })
-   );
+      styles: {width: '100%'},
+      selectedIndexes: [index]
+    }));
   },
   
   /**
-	 * event listener, it will be notified when a user touches segmented button
-	 */
+   * event listener, it will be notified when a user touches segmented button
+   */
   changeTheme: function (e, payload) {
-	 switch (payload.selectedIndexes[0]) {
-	case 0:
-		tau.getRuntime().setTheme('default');
-		break;
-	case 1:
-		tau.getRuntime().setTheme('simple');
-		break;
-	case 2:
-		tau.getRuntime().setTheme('ios');
-		break;
-	case 3:
-		tau.getRuntime().setTheme('bootstrap');
-		break;
-	}
+    var themes = tau.demo.Theme.THEMES;
+    var index = payload.selectedIndexes[0] || 0;
+
+    tau.getRuntime().setTheme(themes[index]);
   }
 });

@@ -221,9 +221,9 @@ $class('tau.ui.SceneController').extend(tau.ui.Controller).define({
    */
   doStart: function () {
     tau.ui.SceneController.$super.doStart.apply(this, arguments);
-    var comps = this.getScene().getComponents();
     this.loadScene(); // load scene asynchronously if so, it returns no delay
-    if (comps.length > 0) { // user loaded scene programmatically
+    var comps = this.getScene().getComponents();
+    if (comps && comps.length > 0) { // user loaded scene programmatically
       this.sceneLoaded();
       this.doDraw();
     }
@@ -523,15 +523,15 @@ $class('tau.ui.ModalSceneController').extend(tau.ui.Controller).define({
    * @returns {tau.ui.Controller} topmost modal controler
    */
   getSubDelegators: function () {
-	  var modal = this.peekModal();
-	  return modal ? [modal.ctrl] : [];
+    var modal = this.peekModal();
+    return modal ? [modal.ctrl] : [];
   },
   
   /**
    * Handles dispatched events. If there are events not handled. it will
    * bubbles up to the parent controllers.
    * 
-   * @param {tau.rt.Event} e TAU Event object
+   * @param {tau.rt.Event} e Mobello Event object
    * @param {Object} payload event object associated with this event
    */
   propagateEvent: function (e, payload) {
@@ -716,7 +716,7 @@ $class('tau.ui.ModalSceneController').extend(tau.ui.Controller).define({
   /**
    * Enable or disable the processing of system events according to the state
    * of specified argument <code>enable</code>
-   * @param {Boolean} enable if <code>true</code> TAU platform ignores
+   * @param {Boolean} enable if <code>true</code> Mobello platform ignores
    *  system events
    * @private
    */
@@ -2116,7 +2116,20 @@ $class('tau.ui.DashboardController').extend(tau.ui.SceneController).define({
    * @return {tau.ui.Component} Dashboard의 상단에 추가할 UI
    */
   loadHeader: function () {
-    return new tau.ui.Panel({baseStyleClass: 'tau-dashboard-banner'});
+    
+    var banner = new tau.ui.Panel({baseStyleClass: 'tau-dashboard-banner'});
+    var logo = new tau.ui.Label({
+      text:"Mobello",
+      styles:{
+        padding:"5px",
+        font:"20px/1.5em TrebuchetMS",
+        color:"white",
+        "font-weight": "bold",
+        "text-shadow": "0 -1px 0 rgba(0,0,0,0.3)"
+          }});
+    banner.add(logo);
+    
+    return banner;
   },
 
   /**
@@ -3174,6 +3187,32 @@ $class('tau.ui.PopoverController').extend(tau.ui.Controller).define({
    * 
    */
   PopoverController: function (size) {
+    this._directionSize = 10; //direction 삼각형 만드는 border사이즈.
+    var borderWidth = tau.util.dom.getStyleFromCssRule('.tau-popoverController', 'border-width');
+    var paddingWidth = tau.util.dom.getStyleFromCssRule('.tau-popoverController', 'padding');
+    this._contentMargin = 0; //content를 감싸는 껍데기의 두께(border와 padding으로 구성됨).  
+    //px support 체크
+    if (borderWidth) {
+      if ('px' === borderWidth.substring(borderWidth.length - 2)) {
+        borderWidth = parseInt(borderWidth, 10);
+        this._contentMargin += borderWidth*2;
+      } else {
+        throw new TypeError('Only Support pixel unit , Modify border-width of tau-popoverController ')
+      }
+    }
+    
+    if (paddingWidth) {
+      if ('px' === paddingWidth.substring(paddingWidth.length - 2)) {
+        paddingWidth = parseInt(paddingWidth, 10);
+        this._contentMargin += paddingWidth*2;
+      } else {
+        throw new TypeError('Only Support pixel unit , Modify padding of tau-popoverController ')
+      }
+    } 
+    
+    //width 총합 체크 
+    
+    
     if (size) {
       if (typeof size != 'object') {
         throw new TypeError('Specified size is not object type '
@@ -3181,8 +3220,8 @@ $class('tau.ui.PopoverController').extend(tau.ui.Controller).define({
     }
     
     this.size = {
-        width : parseInt(size.width) + 6 +'px',
-        height : parseInt(size.height) + 6 + 'px'
+        width : parseInt(size.width) + this._contentMargin +'px',
+        height : parseInt(size.height) + this._contentMargin + 'px'
         }; 
     } else {
       this.size = {width : '306px', height : '506px'};
@@ -3190,7 +3229,7 @@ $class('tau.ui.PopoverController').extend(tau.ui.Controller).define({
     
     this._controller = null;
     this._targetComponent = null;
-    this._directionSize = 10; //direction 삼각형 사이즈.
+    
     this.visible = false;
   },
   /**
@@ -3201,6 +3240,26 @@ $class('tau.ui.PopoverController').extend(tau.ui.Controller).define({
     this.$renderData = this.renderer.initialize();
     var rt = tau.getRuntime();
     rt.onEvent(tau.rt.Event.ORIENTATION, this._handleOrientationChange, this);
+    
+    //Chrome Browser Bug about CSS
+    var cssRules = document.styleSheets[0].cssRules || document.styleSheets[0].rules;
+    if (cssRules === null) {
+           
+      var rootDom = this.getDOM();
+      
+      var themeName = tau.getRuntime().$themeMgr._getDefaultThemeName();
+      
+      if('ios' === themeName) {
+        this._contentMargin = 14;
+      } else {
+        this._contentMargin = 6;
+      }
+      
+      this.size.width = parseInt(this.size.width) + this._contentMargin + 'px';
+      this.size.height = parseInt(this.size.height) + this._contentMargin + 'px';
+      
+    }
+    
   },
   /**
    * doStart 함수는 lifecycle 관련 메소드로 시스템이 호출하므로 직접적으로 호출하지 않는다.
@@ -3356,8 +3415,10 @@ $class('tau.ui.PopoverController').extend(tau.ui.Controller).define({
       popoverDom.style.height = this.size.height;
       //popover content size
       var popoverContentDom = this.getDOM(tau.ui.PopoverController.CONTENT_KEY);
-      popoverContentDom.style.width = parseInt(this.size.width)-6 + 'px';
-      popoverContentDom.style.height = parseInt(this.size.height)-6 + 'px';
+      popoverContentDom.style.width = parseInt(this.size.width)
+                                      -this._contentMargin + 'px';
+      popoverContentDom.style.height = parseInt(this.size.height)
+                                      -this._contentMargin + 'px';
       //direction position
       var popoverDirectionDom = this.getDOM(tau.ui.PopoverController.DIRECTION_KEY);
       popoverDirectionDom.style.top = directionPosition.y + 'px';

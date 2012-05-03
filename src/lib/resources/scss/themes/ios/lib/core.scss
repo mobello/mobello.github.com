@@ -92,9 +92,9 @@ $font-family: '' !default;
 
   .tau-dashboard-banner {
     height: 38px;
-    background-image:url(#{$images-path}/#{$tau-dashboard-banner-left-icon}), url(#{$images-path}/#{$tau-dashboard-banner-x-icon}); 
-    background-position: left top, center top; 
-    background-repeat: no-repeat, repeat-x ;
+    background-image:url(#{$images-path}/#{$tau-dashboard-banner-x-icon}); 
+    background-position: center top; 
+    background-repeat: repeat-x ;
   }
   #addToHomeScreen {
 	z-index:9999;
@@ -315,7 +315,7 @@ $font-family: '' !default;
     position: absolute;
     width: 100%;
     left: 0;
-    z-index:99999;
+    z-index: 999991;
     background:#7C808B url(#{$images-path}/#{$tau-dock-icon});
     font-size: 12px;
     @include tau-box-shadow(0 5px 5px #000 inset);

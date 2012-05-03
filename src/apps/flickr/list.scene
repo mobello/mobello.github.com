@@ -1,7 +1,0 @@
-<scene title="Flickr">
-  <component class="tau.ui.Table" numberOfData="10" indicator="true">
-    <handler name="flickrCellTouched" event="tap" context="this"/>
-    <handler name="drawFlickrCell" event="rowload" context="this"/>
-    <handler name="loadFlickrData" event="dataload" context="this"/>
-  </component>
-</scene>

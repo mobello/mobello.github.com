@@ -13,6 +13,12 @@ $require('/setting.js');
 $class('tau.stocks.MainController').extend(tau.ui.SceneController).define({
   
   $static: {
+    QUERY: 
+      "select * from csv where url='http://download.finance.yahoo.com/d/quotes.csv?s=${stockSymbols}&f=snohgvrj1kja2s7l1c1c&e=.csv' and " +
+      "columns='symbol,name,open,high,low,volume,per,market_cap,w52_high,w52_low,avg_daily_volume,short_ratio,last_trade,change,percent_change'",
+    URL: "http://query.yahooapis.com/v1/public/yql?format=json&diagnostics=false&q=",
+    CHART_URL : "http://ichart.yahoo.com/z?z=s&t=3m&s=",
+    
     addStockStorage: function (stock) {
       var stockList = tau.stocks.MainController.getStockListFromStorage() || [];
       stockList.push(stock);
@@ -74,28 +80,33 @@ $class('tau.stocks.MainController').extend(tau.ui.SceneController).define({
   },
   
   loadModel : function(e, payload) {
-    this._stockList = tau.stocks.MainController.getStockListFromStorage();
-    this._stockValueType = tau.stocks.MainController.getStockValueTypeFromStorage();
+    var clazz = tau.stocks.MainController;
+    this._stockList = clazz.getStockListFromStorage();
+    this._stockValueType = clazz.getStockValueTypeFromStorage();
     
     var len = this._stockList.length;
     var table = this.getTable();
 
     table.addNumOfCells(len);
     if (this._stockList && len) {
-      var params = [];
+      var url, params = [];
       for(var i=0; i < len; i++) {
         params.push(this._stockList[i].symbol);
         if (i < len -1) params.push(',');
       }
       if (params.length) {
-        var openapi = new tau.OpenAPI(tau.OpenAPI.FINANCE.STOCK.YAHOO);
-        openapi.call({
-          fn: tau.OpenAPI.FINANCE.STOCK.YAHOO.getStockInfo,
-          param: {
-            stockSymbols: params.join("")
-          },
-          callback: tau.ctxAware(this.handleResult, this)
-        });
+        query = clazz.QUERY.replace('${stockSymbols}', params.join(""));
+        url = clazz.URL.concat(encodeURIComponent(query));
+
+        tau.log.info('stocks query : '.concat(query));
+        tau.log.info('stocks url : '.concat(url));
+        
+        tau.req({
+          type: 'JSONP',
+          jsonpCallback:'callback',
+          url: url,
+          callbackFn: tau.ctxAware(this.handleResult, this)
+        }).send();
       }
     }
   },
@@ -107,9 +118,12 @@ $class('tau.stocks.MainController').extend(tau.ui.SceneController).define({
    * payload.index: the index(0-based) of rows
    */
   makeTableCell: function (e, payload) {
-    var table = this.getTable();
     var path = payload.index + payload.offset;
     var item = this._stockList[path];
+    
+    if (!item) return;
+    
+    var table = this.getTable();
     var cell = new tau.ui.TableCell({
       id: item.symbol,
       selected: path === 0,
@@ -139,28 +153,41 @@ $class('tau.stocks.MainController').extend(tau.ui.SceneController).define({
     if (cell.isSelected()) table._selectedIdx = [path];
   },  
   
-  handleResult: function (result) {
-    var items, item, cell,
-          table = this.getTable();
+  handleResult: function (resp) {
     
-    if (result && (items = result.row)) {
-      if (!tau.isArray(items)) {
-        items = [items];
-      }
-      for(var i=0, len = items.length; i < len; i++) {
-        item = items[i];
-        cell = table.getComponent(item.symbol);
+    if (!resp || resp.status !== 200 || resp.responseJSON.error) {
+      var that = this;
+      tau.confirm('<br />Response error: status='.concat(resp.status, '<br />msg=', 
+          resp.responseJSON.error.description, '<br /><br />재시도 하시겠습니까?'), {
+        title: 'Error',
+        callbackFn: function(returnVal){
+          if (returnVal) that.loadModel();
+        }
+      });
+      return;
+    }
+    
+    var row = rows = resp.responseJSON.query.results.row,
+      chartURL = tau.stocks.MainController.CHART_URL, 
+      cell,
+      table = this.getTable();
+
+    if (rows) {
+      if (!tau.isArray(rows)) rows = [rows]; 
+
+      for(var i=0; i < rows.length; i++){
+        row = rows[i];
+        row.chartURL = chartURL.concat(row.symbol, '&q', row.chartType || "l");
+        
+        cell = table.getComponent(row.symbol);
         if (cell) {
-          cell.setSubTitle(item.last_trade || '');
-          cell.getRightItem().setLabel(this.getStockValue(item));
+          cell.setSubTitle(row.last_trade || '');
+          cell.getRightItem().setLabel(this.getStockValue(row));
           
-          if (cell.isSelected()) {
-            this.changeDetailInfo(item);
-          }
+          if (cell.isSelected()) this.changeDetailInfo(row); 
         }
       }
-
-      tau.stocks.MainController.setStockListToStorage(items);
+      tau.stocks.MainController.setStockListToStorage(rows);
       this._stockList = tau.stocks.MainController.getStockListFromStorage();
       this._stockValueType = tau.stocks.MainController.getStockValueTypeFromStorage();
     }
@@ -169,25 +196,22 @@ $class('tau.stocks.MainController').extend(tau.ui.SceneController).define({
   changeDetailInfo: function (item) {
     var scene = this.getScene();
     var stockInfo = scene.getComponent('stockInfo');
-    var stockChart = scene.getComponent('stockChart');
-    var stockNews = scene.getComponent('stockNews');
+    var stockChart = scene.getComponent('detail_chart');
+
     if (stockInfo) {
-      stockInfo.getComponent('detail_title').setText(item.name || '-');
-      stockInfo.getComponent('detail_open').setText(item.open || '-');
-      stockInfo.getComponent('deatil_mktcap').setText(item.market_cap || '-');
-      stockInfo.getComponent('detail_high').setText(item.high || '-');
-      stockInfo.getComponent('detail_52whigh').setText(item.w52_high || '-');
-      stockInfo.getComponent('detail_low').setText(item.low || '-');
-      stockInfo.getComponent('detail_52wlow').setText(item.w52_low);
-      stockInfo.getComponent('detail_vol').setText(item.volume);
-      stockInfo.getComponent('detail_avgvol').setText(item.avg_daily_volume);
-      stockInfo.getComponent('detail_pe').setText('-');
-      stockInfo.getComponent('detail_yield').setText('-');
+      scene.getComponent('detail_title').setText(item.name || '-');
+      scene.getComponent('detail_open').setText(item.open || '-');
+      scene.getComponent('deatil_mktcap').setText(item.market_cap || '-');
+      scene.getComponent('detail_high').setText(item.high || '-');
+      scene.getComponent('detail_52whigh').setText(item.w52_high || '-');
+      scene.getComponent('detail_low').setText(item.low || '-');
+      scene.getComponent('detail_52wlow').setText(item.w52_low);
+      scene.getComponent('detail_vol').setText(item.volume);
+      scene.getComponent('detail_avgvol').setText(item.avg_daily_volume);
+      scene.getComponent('detail_pe').setText('-');
+      scene.getComponent('detail_yield').setText('-');
     }
-    if (stockChart) {
-      var url = item.chartURL ? item.chartURL._3m : null;
-      stockChart.getComponent('detail_chart').setSrc(url);
-    }
+    if (stockChart) stockChart.setSrc(item.chartURL); 
   },
   
   getItem: function (symbol) {
@@ -228,30 +252,30 @@ $class('tau.stocks.MainController').extend(tau.ui.SceneController).define({
   },
   
   handleTap: function (e, payload) {
-	  var src = e.getSource();
-	  if (src instanceof tau.ui.Button){ // price 버튼에 대한 처리
-	    var type = this._stockValueType,
-	          table = this.getTable(),
-	          children = table.getComponents(), 
-	          cell, item, button;
+    var src = e.getSource();
+    if (src instanceof tau.ui.Button){ // price 버튼에 대한 처리
+      var type = this._stockValueType,
+            table = this.getTable(),
+            children = table.getComponents(), 
+            cell, item, button;
 
-	    e.preventDefault();
-	    e.stopPropagation();
-	    
-	    if (type < 2) {
-	      type = type + 1;
-	    } else {
-	      type = 0;
-	    }
-	    this._stockValueType = type;
-	    
-	    for(var i=0, len = children.length; i < len; i++) {
-	      cell = children[i]; 
-	      item = this.getItem(cell.getId());
-	      button = cell.getRightItem();
-	      button.setLabel(this.getStockValue(item));
-	    }
-	  }
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (type < 2) {
+        type = type + 1;
+      } else {
+        type = 0;
+      }
+      this._stockValueType = type;
+      
+      for(var i=0, len = children.length; i < len; i++) {
+        cell = children[i]; 
+        item = this.getItem(cell.getId());
+        button = cell.getRightItem();
+        button.setLabel(this.getStockValue(item));
+      }
+    }
   },
   
   handleSetting: function (e, payload) {

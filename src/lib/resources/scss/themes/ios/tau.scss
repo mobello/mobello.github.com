@@ -1,5 +1,5 @@
 $enable-gradient: true;
 $enable-border-radius: true;
 $enable-box-shadow: true;
-$font-family: 'applegothic, Helvetica, Arial, Verdana, sans-serif';
+@IMPORT url("../../font/applegothic/stylesheet.css");
 @import 'lib/all';

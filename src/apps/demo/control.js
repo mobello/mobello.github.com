@@ -1,17 +1,22 @@
 /**
  * Checkbox
  */
-$class('tau.demo.Checkbox').extend(tau.ui.SceneController).define( {
+$class('tau.demo.Checkbox').extend(tau.ui.SceneController).define({
   loadScene: function () {
-  // 선택여부가 true인 Checkbox 컴포넌트를 생성한다.
-    var checkbox = new tau.ui.Checkbox({selected : true}); 
-    
-    // Checkbox가 클릭되었을 때 선택여부에 따른 경고창을 보여준다.
-    checkbox.onEvent(tau.rt.Event.TAP, function(e, payload){  
-      alert(checkbox.isSelected());
-    });
-    // scene에 컴포넌트를 추가한다.
+    var checkbox = new tau.ui.Checkbox({selected: true});
+    checkbox.setStyles({left: '10px', top: '10px'});
+    checkbox.onEvent(tau.rt.Event.TAP, this.handleTap, this);
     this.getScene().add(checkbox);  
+  },
+  
+  /**
+   * Event handler invoked when user clicks checkbox
+   * @param e
+   * @param payload
+   */
+  handleTap: function (e, payload) {
+    var checkbox = e.getSource();
+    tau.alert('Checkbox is ' + (checkbox.isSelected() ? 'selected' : 'unselected'));
   }
 });
 
@@ -20,38 +25,21 @@ $class('tau.demo.Checkbox').extend(tau.ui.SceneController).define( {
  */
 $class('tau.demo.Radio').extend(tau.ui.SceneController).define( {
   loadScene: function () {
-    // Radio 컴포넌트를 생성한다.
     var radioGroup = new tau.ui.RadioGroup();
-    var radio1 = new tau.ui.Radio({value : 1});
-    var radio2 = new tau.ui.Radio({value : 2});
-
-    // Radio 컴포넌트에 대한 위치를 설정한다. 
-    radio2.setStyles({
-      position : 'relative',
-      left : '110px'
-    });
+    var radio1 = new tau.ui.Radio({value: 1});
+    radio1.setStyles({left: '10px', top: '20px'});
     
-    // Radio 컴포넌트의 값을 설정한다.
-    radio1.setValue(1);
-    radio2.setValue(2);
-    
-    // Radio를 RadioGroup으로 추가한다.
+    var radio2 = new tau.ui.Radio({value: 2});
+    radio2.setStyles({left: '110px', top: '20px'});
     radioGroup.setComponents([radio1, radio2]);
     
-    // 클릭되었을 때 선택된 값과 Radio의 인덱스 값을 반환한다.
-    radioGroup.onEvent(tau.rt.Event.SELECTCHANGE, function(e, payload){
-      alert('value :' + radioGroup.getValue() + ', index :' + radioGroup.getSelectedIndex() +'');
-    });
-    
-    radio1.onEvent(tau.rt.Event.TAP, function(e, payload){
-      alert('1');
-      e.alwaysBubble;
-    });
-    
-    // scene에 컴포넌트를 추가한다.
-    this.getScene().add(radio1);
-    this.getScene().add(radio2);
+    radioGroup.onEvent(tau.rt.Event.SELECTCHANGE, this.handleRadioTouch, this);
     this.getScene().add(radioGroup);
+  },
+  
+  handleRadioTouch: function (e, payload) {
+    var  group = e.getSource();
+    tau.alert('index:' + group.getSelectedIndex() + ' value:' + group.getValue());
   }
 });
 
@@ -59,25 +47,14 @@ $class('tau.demo.Radio').extend(tau.ui.SceneController).define( {
  * TextField
  */
 $class('tau.demo.TextField').extend(tau.ui.SceneController).define( {
-  init: function () {
-    this.appCtx = tau.getCurrentContext();   // 현재 앱의 컨텍스트 정보를 가져온다.
-  },  
   loadScene: function () {
-    // TextField 컴포넌트를 생성한다.
-    var text = new tau.ui.TextField({type : tau.ui.TextField.TEXT});
-    // 타입을 설정한다.
-//    text.setType(tau.ui.TextField.SEARCH);
-    // placeholder를 지정한다.
-    text.setPlaceholderLabel('input');
-    // placeholer 이미지를 지정한다.
+    var text = new tau.ui.TextField({type: tau.ui.TextField.TEXT});
+    text.setPlaceholderLabel('Enter text value!');
     text.setPlaceholderImage('/img/1.jpg');
-    // 클리어 버튼을 사용할지 결정한다.
     text.setClearButtonMode(true);  
-    text.setStyle('width', '90%');
-    // TextField 컴포넌트를 클릭했을 때 텍스트를 클리어할지 설정한다.
+    text.setStyles({top: '10px', left: '10px', width: '90%'});
     text.setClearsOnBeginEditing(true); 
-    
-    this.getScene().add(text); // scene에 TextField 컴포넌트를 추가한다.
+    this.getScene().add(text);
   }
 });
 
@@ -86,14 +63,9 @@ $class('tau.demo.TextField').extend(tau.ui.SceneController).define( {
  */
 $class('tau.demo.TextArea').extend(tau.ui.SceneController).define( {
   loadScene: function () {
-    // 컴포넌트를 생성한다.
     var textarea = new tau.ui.TextArea(); 
-    // TextArea 컴포넌트 스타일을 설정한다.
-    textarea.setStyles({width : '90%', height : '50%'});
-    
-    // placeholder를 지정한다.
-    textarea.setPlaceholderLabel('input text....');
-    // scene에 TextArea 컴포넌트를 추가한다.
+    textarea.setStyles({left: '10px', top: '10px', width: '90%', height: '50%'});
+    textarea.setPlaceholderLabel('Enter long text value');
     this.getScene().add(textarea);
   }
 });
@@ -103,103 +75,111 @@ $class('tau.demo.TextArea').extend(tau.ui.SceneController).define( {
  */
 $class('tau.demo.Slider').extend(tau.ui.SceneController).define( {
   loadScene: function () {
-    // 수평/수직 방향, 최소값, 최대값, 기본값, 틱사이즈를 지정한 Slider 컴포넌트를 생성한다.
-    var slider, slider1, slider2, 
-        label, label1, label2;
-
-    slider = new tau.ui.Slider({
-      tickSize : 0.1,
+    var slider1, slider2, slider3, label1, label2, label3,
+        scene = this.getScene();
+    slider1 = new tau.ui.Slider({
+      id: 's1',
+      tickSize: 0.1,
       enabledBarTouch: true,
       enabledThreshold: 50,
-      styles: {width : '80%'}
-    });
-    
-    slider1 = new tau.ui.Slider({
-      vertical : false, 
-      minValue : 0, 
-      maxValue : 200, 
-      value : 50, 
-      tickSize : 50,
-      enabledBarTouch: true,
-      styles: {width : '80%'}
+      styles: {marginTop: '5px', width: '80%'}
     });
     
     slider2 = new tau.ui.Slider({
-      vertical : true, 
-      minValue : 0, 
-      maxValue : 4, 
-      value : 1, 
-      tickSize : 1,
-      styles: {width : '80%'}
+      id: 's2',
+      vertical: false, 
+      minValue: 0, 
+      maxValue: 200, 
+      value: 50, 
+      tickSize: 50,
+      enabledBarTouch: true,
+      styles: {marginTop: '5px', width: '80%'}
     });
     
-    label = new tau.ui.Label({
-      text : slider.getValue(),
-      styles: {width: '15%'}
-     });
-    label1 = new tau.ui.Label({
-      text : slider1.getValue(),
-      styles: {width: '15%'}
-    });
-    label2 = new tau.ui.Label({
-      text : slider2.getValue(),
-      styles: {width: '15%'}
+    slider3 = new tau.ui.Slider({
+      id: 's3',
+      vertical: true, 
+      minValue: 0, 
+      maxValue: 5, 
+      value: 1, 
+      tickSize: 1,
+      styles: {marginLeft: '10px', width: '80%'}
     });
     
-
-    // Slider 값이 변경되면 라벨에 값을 출력해준다.
-    this.getScene().onEvent(tau.rt.Event.VALUECHANGE, function(e, payload){
-      var source = e.getSource();
-      if (source === slider){
-        label.setText(source.getValue());
-      } else if (source === slider1){
-        label1.setText(source.getValue());
-      } else if (source === slider2){
-        label2.setText(source.getValue());
-      }
-    });
+    label1 = new tau.ui.Label(
+        {id: 'l1', text: slider1.getValue(), styles: {width: '15%'}});
+    label2 = new tau.ui.Label(
+        {id: 'l2', text: slider2.getValue(), styles: {width: '15%'}});
+    label3 = new tau.ui.Label(
+        {id: 'l3', text: slider3.getValue(), styles: {width: '15%'}});
     
-    // scene에 컴포넌트를 추가한다.
-    this.getScene().add(slider);
-    this.getScene().add(label);
-    this.getScene().add(slider1);
-    this.getScene().add(label1);
-    this.getScene().add(slider2);
-    this.getScene().add(label2);
+    scene.onEvent(tau.rt.Event.VALUECHANGE, this.handleValueChange, this);
+    scene.add(slider1);
+    scene.add(label1);
+    scene.add(slider2);
+    scene.add(label2);
+    scene.add(slider3);
+    scene.add(label3);
+  },
+  
+  /**
+   * Event listener
+   * @param e
+   * @param payload
+   */
+  handleValueChange: function (e, payload) {
+    var source = e.getSource();
+    var label = this.getScene().getComponent('l' + source.getId().charAt(1));
+    label.setText(window.parseInt(source.getValue()));
   }
 });
 
 /**
  * Switch
  */
-$class('tau.demo.Switch').extend(tau.ui.SceneController).define( {
+$class('tau.demo.Switch').extend(tau.ui.SceneController).define({
   loadScene: function () {
-    // 수평, 수직방향의 Switch 컴포넌트를 생성한다.
-    var defaultSwitch, verticalSwitch, label;
+    var defaultSwitch, verticalSwitch, label,
+        scene = this.getScene();
     
     defaultSwitch = new tau.ui.Switch({
-      styles: {width : '50%'},
+      id: 'ds',
+      styles: {margin: '5px', width: '50%'},
       onText: 'on', 
       offText: 'off'
     });
+    
     verticalSwitch = new tau.ui.Switch({
-      styles: {width : '50%'},
-      vertical : true, 
+      id: 'vs',
+      styles: {margin: '5px', width: '50%'},
+      vertical: true, 
       enabledThreshold: true,
       enabledBarTouch: true
     });
     
     label = new tau.ui.Label({
+      id: 'slabel',
+      left: '20px',
       text: defaultSwitch.getValue() + ',' + verticalSwitch.getValue()
     });
-    this.getScene().onEvent(tau.rt.Event.VALUECHANGE, function(e, payload){
-      label.setText(defaultSwitch.getValue() + ',' + verticalSwitch.getValue());
-    });
     
-    // scene에 Swith 컴포넌트를 추가한다.
-    this.getScene().add(defaultSwitch);
-    this.getScene().add(verticalSwitch);
-    this.getScene().add(label);
+    scene.onEvent(tau.rt.Event.VALUECHANGE, this.handleValueChange, this);
+    scene.add(defaultSwitch);
+    scene.add(verticalSwitch);
+    scene.add(label);
+  },
+  
+  /**
+   * Event listener
+   * @param e
+   * @param payload
+   */
+  handleValueChange: function (e, payload) {
+    var scene = this.getScene();
+    var ds = scene.getComponent('ds');
+    var vs = scene.getComponent('vs');
+    var label = scene.getComponent('slabel');
+    label.setText(ds.getValue() + ',' + vs.getValue());
   }
 });
 
@@ -208,80 +188,77 @@ $class('tau.demo.Switch').extend(tau.ui.SceneController).define( {
  */
 $class('tau.demo.Select').extend(tau.ui.SceneController).define( {
   
+  /**
+   * creates new scene
+   */
   loadScene: function () {
-  // 선택여부가 true인 Checkbox 컴포넌트를 생성한다.
-    var select1, select2, select3, 
+    var scene = this.getScene(),
+        options = [],
         button = new tau.ui.Button({
-          label : 'refresh', 
-          'tap': function (e, payload){
-            select1.refresh();
-            select2.refresh();
-            select3.refresh();},
-          styles: {width: '100%'}
-        }); 
-
+            label: 'refresh', styles: {marginTop: '5px', width: '100%'}});
+    button.onEvent(tau.rt.Event.TAP, this.handleTap, this);
     
-    select1 = new tau.ui.Select({
-      components: [
-        {label : 'option1', value :1},
-        {label : 'option2', value :2},
-        {label : 'option3', value :3},
-        {label : 'option4', value :4},
-        {label : 'option5', value :5},
-        {label : 'option6', value :6},
-        {label : 'option7', value :7},
-        {label : 'option8', value :8},
-        {label : 'option9', value :9},
-        {label : 'option10', value :10},
-        {label : 'option11', value :11},
-        {label : 'option12', value :12},
-        {label : 'option13', value :13},
-        {label : 'option14', value :14},
-        {label : 'option15', value :15}
-      ],
+    for (var i = 1; i <= 15; i++) {
+      options.push({label: 'option' + i, value: i});
+    }
+    
+    var select1 = new tau.ui.Select({
+      id: 's1',
+      components: options.slice(0, 15),
       placeHolder: 'select',
       fullscreen: true,
       modal: true,
+      styles: {marginTop: '5px'},
       maxSelectableCnt: 2,
-      valueChange: function (e, payload) {
-        
-      }
     }); 
     
-    select2 = new tau.ui.Select({
-      components: [
-        {label : 'option1', value :1},
-        {label : 'option2', value :2},
-        {label : 'option3', value :3},
-        {label : 'option4', value :4},
-        {label : 'option5', value :5},
-        {label : 'option6', value :6}
-      ],      
+    var select2 = new tau.ui.Select({
+      id: 's2',
+      components: options.slice(0, 5),
       maxSelectableCnt: 2,
       selectedIndexes: [1, 2],
-      togglable: false,
-      valueChange: function (e, payload) {},
+      styles: {marginTop: '5px'},
+      togglable: false
     }); 
     
-    select3 = new tau.ui.Select({
+    var select3 = new tau.ui.Select({
+      id: 's3',
       components: [
-        {label : '1234567890', value :1},
-        {label : 'abcdefghijklmnopqrstuvwxyz', value :2},
-        {label : 'ㄱㄴㄷ', value :3}
+        {label: '1234567890', value: 1},
+        {label: 'abcdefghijklmnopqrstuvwxyz', value: 2},
+        {label: 'ㄱㄴㄷ', value: 3}
       ],
       /*toggle: true,*/
       selectedIndexes: [1],
-      valueChange: function (e, payload) {
-        alert(payload.selectedIndexes[0]);
-      },
-      styles: {top : '50%'}
-    }); 
+      styles: {top: '50%'}
+    });
+    select3.onEvent(tau.rt.Event.VALUECHANGE, this.handleValueChange, this);
     
-    // scene에 컴포넌트를 추가한다.
-    this.getScene().add(button);  
-    this.getScene().add(select1);  
-    this.getScene().add(select2);  
-    this.getScene().add(select3);  
+    scene.add(button);  
+    scene.add(select1);  
+    scene.add(select2);  
+    scene.add(select3);  
+  },
+  
+  /**
+   * Event handler for tap event on Button Component
+   * @param e
+   * @param payload
+   */
+  handleTap: function (e, payload) {
+    var scene = this.getScene();
+    scene.getComponent('s1').refresh();
+    scene.getComponent('s2').refresh();
+    scene.getComponent('s3').refresh();
+  },
+  
+  /**
+   * Event handler for ValueChangeEvent on Select Component
+   * @param e
+   * @param payload
+   */
+  handleValueChange: function (e, payload) {
+    tau.alert('Selected index is '+ e.getSource().getSelectedIndexes()[0]);
   }
 });
 
@@ -290,100 +267,104 @@ $class('tau.demo.Select').extend(tau.ui.SceneController).define( {
  */
 $class('tau.demo.SegmentedButton').extend(tau.ui.SceneController).define( {
   
-  init: function () {
-    this.appCtx = tau.getCurrentContext();   // 현재 앱의 컨텍스트 정보를 가져온다.
-  },
-  
   loadScene: function () {
-  // 선택여부가 true인 Checkbox 컴포넌트를 생성한다.
-    var segmentedButton1, segmentedButton2, segmentedButton3, 
-        panel = new tau.ui.Panel({styles : {padding : '10%', marginTop : '10px', height : '30%', width: '90%'}}),
-        imageView1 = [],
-        button = new tau.ui.Button({
-          label : 'refresh', 
-          'tap': function (e, payload){
-            segmentedButton1.refresh();
-            segmentedButton2.refresh();
-            segmentedButton3.refresh();
-            
-            var selectedIndexes = segmentedButton1.getSelectedIndexes();
-              
-            for(var i= imageView1.length; i--;){
-              imageView1[i].setStyles({opacity : 0.3});
-            };
-            for(var i= selectedIndexes.length; i--;){
-              imageView1[selectedIndexes[i]].setStyles({opacity : 1});
-            }
-            if (segmentedButton3.getSelectedIndexes[0] === 1){
-              panel.setStyles({backgroundColor : 'red'});
-            } else {
-              panel.setStyles({backgroundColor : ''});
-            }
-          },
-          styles: {width: '100%'}
-        }); 
+    var segment1, segment2, segment3,
+        scene = this.getScene(),
+        panel = new tau.ui.Panel({id: 'images'});
+        button = new tau.ui.Button({label: 'refresh'});
+    panel.setStyles(
+        {padding: '10%', marginTop: '5px', height: '30%', width: '90%'});
+    button.setStyles({width: '100%', marginTop: '5px'});
+    button.onEvent(tau.rt.Event.TAP, this.handleTapEvent, this);
     
-    segmentedButton1 = new tau.ui.SegmentedButton({
+    segment1 = new tau.ui.SegmentedButton({
+      id: 'seg1',
+      styles: {marginLeft: '5px', marginTop: '5px'},
       maxSelectableCnt: 2,
       components: 
-      [{label: 'option1', value: 1},
-       {label: 'option2', value: 2},
-       {label: 'option3', value: 3}
-       ],
-      valueChange: function (e, payload) {
-       var selectedIndexes = payload.selectedIndexes;
-       var deselectedIndexes = payload.deselectedIndexes;
-       for(var i= deselectedIndexes.length; i--;){
-         imageView1[deselectedIndexes[i]].setStyles({opacity : 0.3});
-       }
-       for(var i= selectedIndexes.length; i--;){
-         imageView1[selectedIndexes[i]].setStyles({opacity : 1});
-       }
-     }
+        [{label: 'option1', value: 1},
+         {label: 'option2', value: 2},
+         {label: 'option3', value: 3}]
     });
-    for(var i=0; i < 3; i++){
-      imageView1[i] = new tau.ui.ImageView({
+    segment1.onEvent(tau.rt.Event.VALUECHANGE, this.handleValueChange, this);
+    
+    for (var i = 0; i < 3; i++){
+      panel.add(new tau.ui.ImageView({
         src: '/img/' + 'baskin' + i +'.png',
         styles: {height: '100%', width: '33%', opacity: 0.3}
-      });
-      panel.add(imageView1[i]);
+      }));
     }
     
-    segmentedButton2 = new tau.ui.SegmentedButton({
+    segment2 = new tau.ui.SegmentedButton({
+      id: 'seg2',
+      styles: {marginLeft: '5px', marginTop: '5px'},
       vertical: true,
       components: [
-        {label: 'pint', value :1},
-        {label: 'quarter', value :2},
-        {label: 'family', value :3},
-        {label: 'half gallon', value :4}
-      ],
+        {label: 'pint', value:1},
+        {label: 'quarter', value:2},
+        {label: 'family', value:3},
+        {label: 'half gallon', value:4} ],
       selectedIndexes: [2]
     }); 
     
-    segmentedButton3 = new tau.ui.SegmentedButton({
+    segment3 = new tau.ui.SegmentedButton({
+      id: 'seg3',
+      styles: {marginLeft: '5px', marginTop: '5px'},
       components: 
-        [{label: 'Syrup no', value :false},
-         {label: 'Syrup yes', value :true}
-        ],
-      selectedIndexes: [0],
-      valueChange: function (e, payload) {
-         if (payload.selectedIndexes[0] === 1){
-           panel.setStyles({backgroundColor : 'red'});
-         } else {
-           panel.setStyles({backgroundColor : ''});
-         }
-       }
-    }); 
+        [{label: 'Syrup no', value:false},
+         {label: 'Syrup yes', value:true}],
+      selectedIndexes: [0]
+    });
+    segment3.onEvent(tau.rt.Event.VALUECHANGE, this.handleValueChange, this);
     
-    // scene에 컴포넌트를 추가한다.
-    this.getScene().add(button);  
-    this.getScene().add(segmentedButton1);  
-    this.getScene().add(panel);  
-    this.getScene().add(segmentedButton2);  
-    this.getScene().add(segmentedButton3);  
+    scene.add(button);  
+    scene.add(segment1);  
+    scene.add(panel);
+    scene.add(segment2);  
+    scene.add(segment3);  
   },
   
-  selectedFn: function (item) {
-    alert('pint는 현재 take out 되지 않습니다.');
+  /**
+   * Event listener for button tap event
+   * @param e
+   * @param payload
+   */
+  handleTapEvent: function (e, payload) {
+    var scene = this.getScene();
+    scene.getComponent('seg1').refresh();
+    scene.getComponent('seg2').refresh();
+    scene.getComponent('seg3').refresh();
+    
+    var images = scene.getComponent('images').getComponents();
+    for(var i = 0, len = images.length; i < len; i++){
+      images[i].setStyles({opacity: 0.3});
+    }
+  },
+  
+  /**
+   * Event handler for value change event
+   * @param e
+   * @param payload
+   */
+  handleValueChange: function (e, payload) {
+    var i, len, images, color,
+        scene = this.getScene(),
+        src = e.getSource(),
+        panel = scene.getComponent('images'),
+        selectedIndexes = payload.selectedIndexes,
+        deselectedIndexes = payload.deselectedIndexes;
+    
+    if (src.getId() === 'seg1') {
+      images = panel.getComponents();
+      for(i = 0, len = selectedIndexes.length; i < len; i++) {
+        images[selectedIndexes[i]].setStyles({opacity: 1});
+      }
+      for(i = 0, len = deselectedIndexes.length; i < len; i++) {
+        images[deselectedIndexes[i]].setStyles({opacity: 0.3});
+      }
+    } else if (src.getId() === 'seg3') {
+      color = (selectedIndexes[0] === 1) ? 'red' : '';
+      panel.setStyles({backgroundColor: color});
+    }
   }
 });

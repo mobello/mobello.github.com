@@ -27,6 +27,8 @@
 @import 'systemdialog';
 @import 'picker';
 @import 'spinner';
+@import 'popoverController';
+@import 'mask';
 
 @include tau-core;
 @include tau-sequencenavigator;
@@ -58,3 +60,5 @@
 @include tau-systemdialog;
 @include tau-picker;
 @include tau-spinner;
+@include tau-popoverController;
+@include tau-mask-comp;

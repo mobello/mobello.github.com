@@ -22,4 +22,4 @@ var DATA = [
  ,{"group" : "Amphibians", "title" : "Great crested newt", "image" : "great_crested_newt_1.jpg"}
  ,{"group" : "Amphibians", "title" : "Palmate newt", "image" : "palmate_newt_1.jpg"}
  ,{"group" : "Amphibians", "title" : "Caecilians", "image" : "caecilian_1.jpg"}
-	];
+];

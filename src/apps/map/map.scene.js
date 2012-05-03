@@ -21,7 +21,9 @@ function initScene() {
     id: 'map',
     styles: {
       '-webkit-box-flex': 1, 
-      display: 'block'
+      display: 'block',
+      width: '100%',
+      height: '100%',
     }
   }));
 

@@ -113,6 +113,9 @@ $tablecell-border-radius: 8px !default;
 		&:last-child {
 		  @include tau-border-radius(0 0 $tablecell-border-radius $tablecell-border-radius);
 		}  
+		&:only-child {
+			@include tau-border-radius($tablecell-border-radius);
+		}
 	  }
   }
   @include tau-tablecell-content(tau-tablecell);

@@ -5,10 +5,10 @@ function initScene() {
       components: [
         new tau.ui.TableSection({
           groupName: tau.bbc.EditController.DEFAULT_TEXT
-        }),                   
+        }),
         new tau.ui.TableSection({
           groupName: tau.bbc.EditController.MORE_TEXT
-        })                   
+        })
       ]
     });
 

@@ -20,10 +20,10 @@ $class('tau.bbc.EditController').extend(tau.ui.TableSceneController).define({
         components: [
           new tau.ui.TableSection({
             groupName: tau.bbc.EditController.DEFAULT_TEXT
-          }),                   
+          }),
           new tau.ui.TableSection({
             groupName: tau.bbc.EditController.MORE_TEXT
-          })                   
+          })
         ]
       });
 
@@ -47,7 +47,7 @@ $class('tau.bbc.EditController').extend(tau.ui.TableSceneController).define({
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center center',
         width: '64px',
-        height: '100%',
+        height: '36px',
         border: 'none'
       }
     }));
@@ -92,7 +92,8 @@ $class('tau.bbc.EditController').extend(tau.ui.TableSceneController).define({
             backgroundImage: 'url(' + image + ')',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center center',
-            border: 'none'
+            border: 'none',
+            height: '34px'
           }
         })
       });
@@ -116,7 +117,7 @@ $class('tau.bbc.EditController').extend(tau.ui.TableSceneController).define({
   
   updateGroup: function (e, payload) {
     var button = e.getSource(),
-        cell,
+        cell, title;
         groupName = tau.bbc.EditController.MORE_TEXT,
         image = tau.bbc.EditController.PLUS_IMG;
 
@@ -134,18 +135,16 @@ $class('tau.bbc.EditController').extend(tau.ui.TableSceneController).define({
       
       this.getTable().add(cell, null, true);
 
-      this._changeRssSetting(cell.getTitle());
-    }
-  },
-  
-  _changeRssSetting: function (title) {
-    for(var i=0, len = this.rss.length; i < len; i++) {
-      if (this.rss[i].title == title) {
-        this.rss[i].isDefault = !this.rss[i].isDefault; 
-        break;
+      title = cell.getTitle();
+
+      for(var i=0, len = this.rss.length; i < len; i++) {
+        if (this.rss[i].title == title) {
+          this.rss[i].isDefault = !this.rss[i].isDefault; 
+          break;
+        }
       }
+      this.appCtx.setStorage('$rss', this.rss);
+      this._changed = true;
     }
-    this.appCtx.setStorage('$rss', this.rss);
-    this._changed = true;
   }
 });

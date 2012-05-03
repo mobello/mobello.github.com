@@ -42,23 +42,35 @@ $tau-dialog-popup-close-highlighted-icon: "textfield/clearSel.png" !default;
   
   .tau-dialog-popup-title {
     position: relative;
-    display: block;
+    @include display-box;
     height: 30px;
     width: 100%;
     margin: 0;
     padding: 0;
+
+    color: white;
     background-color: $dialog-popup-title-bgcolor;
   }
 
   .tau-dialog-popup-close {
-     position: absolute;
-     top: 0;
-     left: 0;
+     position: relative;
      width: 26px;
      height: 27px;
      margin-bottom: 50px;
      background: url(#{$images-path}/#{$tau-dialog-popup-close-icon}) no-repeat;
   }
+  
+  .tau-dialog-popup-title > h1 {
+    position: relative;
+    display: block;
+    
+    font-size: 1.4em;
+    text-align: center;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    @include box-flex(1);
+  }  
   
   .tau-dialog-popup-close:active {
     background: url(#{$images-path}/#{$tau-dialog-popup-close-highlighted-icon}) no-repeat;

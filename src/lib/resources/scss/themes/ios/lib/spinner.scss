@@ -12,13 +12,13 @@ $tau-spinner-plus-icon: "spinner/plus.png" !default;
 	@include tau-border-radius(4px);
 	@include display-box;
 	@include box-align(center);
-	width: 132px;
-	height: 30px;
+	width: 160px;
+	height: 40px;
   }
   
   .tau-spinner-button {    
 	display: block;
-	width: 35px;
+	width: 40px;
 	color: transparent;
 	text-align: center;
 	border-style: solid;

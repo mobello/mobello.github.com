@@ -5,13 +5,15 @@ $popoverController-border-color: #09090A !default;
   .tau-popoverController {  
     position: fixed;
 	overflow: visible;
-    z-index: 9998;
+    z-index: 9999;
     @include tau-dialog-popup;
     
     .tau-popoverController-content { 
       @include tau-border-radius(6px); 
       background-color: white;
       overflow: hidden;
+      position: absolute;
+	  z-index: 9999;
     }
 
     .tau-popoverController-masking{  

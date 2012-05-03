@@ -1,6 +1,6 @@
 $require('/add.js');
 $class('tau.stocks.SettingController').extend(tau.ui.SceneController).define({
-	
+  
   SettingController: function () {
     this._stockList;
     this._stockValueType = tau.stocks.MainController.getStockValueTypeFromStorage() || 0;
@@ -94,20 +94,20 @@ $class('tau.stocks.SettingController').extend(tau.ui.SceneController).define({
     }
   },
   
-	handleDone: function (e, payload) {
-	  this.fireEvent('dismiss', this._changed);
-	  if (this._changed) {
-	    tau.stocks.MainController.setStockListToStorage(this._stockList);
-	    tau.stocks.MainController.setStockValueTypeToStorage(this._stockValueType);
-	  }
-	},
-	
-	handleAdd: function (e, payload) {
+  handleDone: function (e, payload) {
+    this.fireEvent('dismiss', this._changed);
+    if (this._changed) {
+      tau.stocks.MainController.setStockListToStorage(this._stockList);
+      tau.stocks.MainController.setStockValueTypeToStorage(this._stockValueType);
+    }
+  },
+  
+  handleAdd: function (e, payload) {
     var modalCtrl = new tau.stocks.AddController();
     modalCtrl.onEvent('dismiss', this.handleDismiss, this);
     this.presentModal(modalCtrl, {'layout': 'FULL', 'animate': 'vertical'});
-	},
-	
+  },
+  
   handleDismiss: function (e, payload) {
     this.dismissModal(true);
     if (payload) {

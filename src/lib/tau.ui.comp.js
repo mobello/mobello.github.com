@@ -128,7 +128,7 @@ $class('tau.ui.Drawable').define(
     if (refresh && dom.parentNode && parent !== dom.parentNode) {
       dom.parentNode.removeChild(dom);
     }
-    
+
     // Do not redraw, unless refreshed above
     if (!this.isDrawn(true)) {
       if (refChild && parent === refChild.parentNode){
@@ -286,7 +286,7 @@ $class('tau.ui.Drawable').define(
   setStyle: function (attr, val) {
     /**
      * TODO: layout이 처리되면 주석을 해제한다.
-	 * <p />
+   * <p />
      * 다음 속성에 대해서는 일부 값만 적용됨을 유의한다.
      * <code>display</code>속성에 대해서는
      * <ul>
@@ -300,12 +300,12 @@ $class('tau.ui.Drawable').define(
      * @ignore
     */
     /*
-  	if (attr === 'display' && !(val === 'inline' ||  val === 'block' || 
-			val === 'none' || !val)) {
+    if (attr === 'display' && !(val === 'inline' ||  val === 'block' || 
+      val === 'none' || !val)) {
         throw new RangeError('display 속성은 "inline", "block", "none", "", null 만 허용합니다.: '.concat(val). 
                 concat(this.currentStack()));
-	}*/
-	  
+  }*/
+    
     var dom = this.getDOM();
 
     if (tau.ui.BaseRenderer.updateStyle.call(this, this._getRenderData(), attr, 
@@ -1015,8 +1015,14 @@ $class('tau.ui.Scene').extend(tau.rt.EventDelegator)
    * @see tau.ui.Container.getComponent
    */
   getComponent: function (index) {
-    if (this.isDrawn() && tau.isString(index)) {
-      return this.$subDelegators[index];
+    var delegators = this.$subDelegators,
+      drawableComponents;
+    
+    if (delegators && this.isDrawn() && tau.isString(index) &&
+        Object.keys(delegators).length > 0 &&
+        (!(drawableComponents = this.getDrawableComponents()) || 
+            drawableComponents.length == 0)){
+      return delegators[index];
     }
     return tau.ui.Container.prototype.getComponent.apply(this, arguments);
   },
@@ -2662,7 +2668,7 @@ $class('tau.ui.ScrollPanel').extend(tau.ui.Component).mixin(
       if (this._pullToRefresh !== 'up') 
         this.setPullToRefrehState(tau.ui.ScrollPanel.PULL_PULLTOREFREH, 'down');
       if (this._pullToRefresh !== 'down') 
-        this.setPullToRefrehState(tau.ui.ScrollPanel.PULL_PULLTOREFREH, 'up');      
+        this.setPullToRefrehState(tau.ui.ScrollPanel.PULL_PULLTOREFREH, 'up');
     }
     this.drawComponents(refresh);
   },
@@ -2729,7 +2735,7 @@ $class('tau.ui.ScrollPanel').extend(tau.ui.Component).mixin(
     }
     
     // touchstart일 때 refresh를 호출한다. 그러나 이미 initScroll를 한 상태이기 때문에 skip한다.
-    if (arguments.callee.caller !== this.handleTouchStart) {   
+    if (arguments.callee.caller !== this.handleTouchStart) {
       this._refreshDone = false;
       this.initScroll();
     }
@@ -2774,7 +2780,7 @@ $class('tau.ui.ScrollPanel').extend(tau.ui.Component).mixin(
       that.maxPageX = -Math.floor(that.maxScrollX/that.scrollWidth);
       that.maxPageY = -Math.floor(that.maxScrollY/that.scrollHeight);
   
-      snap = that.snap(resetX, resetY);
+      snap = that._getSnap(resetX, resetY);
       resetX = snap.x;
       resetY = snap.y;
     }
@@ -2818,8 +2824,13 @@ $class('tau.ui.ScrollPanel').extend(tau.ui.Component).mixin(
     that.x = x;
     that.y = y;
   
-    that.element.style.webkitTransform = tau.ui.ScrollPanel.TRANSLATEOPEN + that.x + 'px,' + that.y + 'px' + tau.ui.ScrollPanel.TRANSLATECLOSE;
-  
+    that.element.style.webkitTransform = tau.ui.ScrollPanel.TRANSLATEOPEN + 
+      that.x + 'px,' + that.y + 'px' + tau.ui.ScrollPanel.TRANSLATECLOSE;
+    
+    if (that._pullToRefresh && that._hScroll && that._pullToRefresh !== 'down') {
+      that.renderer.initPullUpToRefresh(that.$renderData);
+    }
+
     // Move the scrollbars
     if (!hideScrollBars) {
       if (that.scrollBarX) {
@@ -2874,7 +2885,7 @@ $class('tau.ui.ScrollPanel').extend(tau.ui.Component).mixin(
     e.preventDefault();
     //e.stopPropagation();
     
-    that.scrolling = true;    // This is probably not needed, but may be useful if iScroll is used in conjuction with other frameworks
+    that.scrolling = true;
 
     that.moved = false;
   
@@ -2926,9 +2937,7 @@ $class('tau.ui.ScrollPanel').extend(tau.ui.Component).mixin(
       topDelta = that.scrollY ? pageY - that.touchStartY : 0,
       newX = that.x + leftDelta,
       newY = that.y + topDelta;
-  
-//    tau.log('pageX:' + pageX + ', pageY:' + pageY + ', leftDelta:' + leftDelta + ', topDelta:' + topDelta);
-    
+
     // TODO : ScrollPanel이 이중으로 된 경우에 문제가 발생할 수 있음. 우선 주석 처리함.
     // e.stopPropagation();
 
@@ -3075,7 +3084,7 @@ $class('tau.ui.ScrollPanel').extend(tau.ui.Component).mixin(
     }
   
     if (that._snap) {
-      snap = that.snap(newPositionX, newPositionY);
+      snap = that._getSnap(newPositionX, newPositionY);
       newPositionX = snap.x;
       newPositionY = snap.y;
       newDuration = Math.max(snap.time, newDuration);
@@ -3134,12 +3143,11 @@ $class('tau.ui.ScrollPanel').extend(tau.ui.Component).mixin(
   /**
    * snap 값 객체를 반환한다.
    * <p/>
-   * TODO : 더 자세한 설명이 필요함.
    * @param {Number} x left 포지션 
    * @param {Number} y top 포지션
    * @return {Object} snap 값 객체
    */  
-  snap: function (x, y) {
+  _getSnap: function (x, y) {
     var that = this, time;
   
     if (that.directionX > 0) {
@@ -3235,7 +3243,7 @@ $class('tau.ui.ScrollPanel').extend(tau.ui.Component).mixin(
     pageY = -pageY * that.scrollHeight;
 
     if (that._snap){
-      snap = that.snap(pageX, pageY);
+      snap = that._getSnap(pageX, pageY);
       pageX = snap.x;
       pageY = snap.y;
     }
@@ -3556,18 +3564,21 @@ $class('tau.ui.Button').extend(tau.ui.Component).mixin(
 
   /**
    * Button의 라벨을 반환한다.
-   * @param  {Boolean} defaultValue 해당 상태에 값이 없는 경우 <code>normal</code> 값을 반환한다.
-   * @returns {Object} label 라벨 객체
+   * @param  {String} [key='normal'] 상태값  다음 키 값만 허용된다. {'normal', 'highlighted', 'selected', 'diasabled'} 
+   * @returns {String} label 라벨
    */
-  getLabel: function(defaultValue) {
-    if (defaultValue){
-      var label = this._label[this.$control];
-      if (tau.isUndefined(label)){
-        label = this._label[tau.ui.Control.NORMAL];
-      }
-      return label;
+  getLabel: function(key) {
+    if (tau.isUndefined(key)) {
+      key = tau.ui.Control.NORMAL;
+    } else if (key !== tau.ui.Control.NORMAL &&
+        key !== tau.ui.Control.DISABLED && key !== tau.ui.Control.SELECTED && 
+        key !== tau.ui.Control.HIGHLIGHTED) {
+      throw new RangeError(' key is out of range: '.concat(key, this.currentStack()));
     }
-    return this._label;
+    if (!this._label) return null; 
+
+    var label = this._label[key];
+    return tau.isUndefined(label) ? this._label[tau.ui.Control.NORMAL] : label;
   },
   
   /**
@@ -3603,18 +3614,21 @@ $class('tau.ui.Button').extend(tau.ui.Component).mixin(
   
   /**
    * Button의 텍스트 색상을 반환한다.
-   * @param  {Boolean} defaultValue 해당 상태에 값이 없는 경우 <code>normal</code> 값을 반환한다.
-   * @returns {Object} textColor 텍스트 color 객체
+   * @param  {String} [key='normal'] 상태값  다음 키 값만 허용된다. {'normal', 'highlighted', 'selected', 'diasabled'} 
+   * @returns {String} textColor
    */
-  getTextColor: function(defaultValue) {
-    if (defaultValue){
-      var textcolor = this._textColor[this.$control];
-      if (tau.isUndefined(textcolor)){
-        textcolor = this._textColor[tau.ui.Control.NORMAL];
-      }
-      return textcolor;
+  getTextColor: function(key) {
+    if (tau.isUndefined(key)) {
+      key = tau.ui.Control.NORMAL;
+    } else if (key !== tau.ui.Control.NORMAL && 
+        key !== tau.ui.Control.DISABLED && key !== tau.ui.Control.SELECTED &&
+        key !== tau.ui.Control.HIGHLIGHTED) {
+      throw new RangeError(' key is out of range: '.concat(key, this.currentStack()));
     }
-    return this._textColor;
+    if (!this._textColor) return null; 
+
+    var textColor = this._textColor[key];
+    return tau.isUndefined(textColor) ? this._textColor[tau.ui.Control.NORMAL] : textColor;
   },
 
   /**
@@ -3650,18 +3664,21 @@ $class('tau.ui.Button').extend(tau.ui.Component).mixin(
   },
   /**
    * Button의 배경 색상을 반환한다.
-   * @param  {Boolean} defaultValue 해당 상태에 값이 없는 경우 <code>normal</code> 값을 반환한다.
-   * @returns {Object} backgroundColor 배경색상 객체
+   * @param  {String} [key='normal'] 상태값  다음 키 값만 허용된다. {'normal', 'highlighted', 'selected', 'diasabled'} 
+   * @returns {String} backgroundColor 배경색상
    */
-  getBackgroundColor: function(defaultValue) {
-    if (defaultValue){
-      var backgroundColor = this._backgroundColor[this.$control];
-      if (tau.isUndefined(backgroundColor)){
-        backgroundColor = this._backgroundColor[tau.ui.Control.NORMAL];
-      }
-      return backgroundColor;
+  getBackgroundColor: function(key) {
+    if (tau.isUndefined(key)) {
+      key = tau.ui.Control.NORMAL;
+    } else if (key !== tau.ui.Control.NORMAL && 
+        key !== tau.ui.Control.DISABLED && key !== tau.ui.Control.SELECTED &&
+        key !== tau.ui.Control.HIGHLIGHTED) {
+      throw new RangeError(' key is out of range: '.concat(key, this.currentStack()));
     }
-    return this._backgroundColor;
+    if (!this._backgroundColor) return null; 
+
+    var backgroundColor = this._backgroundColor[key];
+    return tau.isUndefined(backgroundColor) ? this._backgroundColor[tau.ui.Control.NORMAL] : backgroundColor;
   },
 
   /**
@@ -3698,18 +3715,21 @@ $class('tau.ui.Button').extend(tau.ui.Component).mixin(
   
   /**
    * Button의 backgroundImage를 반환한다.
-   * @param  {Boolean} defaultValue 해당 상태에 값이 없는 경우 <code>normal</code> 값을 반환한다.
-   * @returns {Object} backgroundColor backgroundImage 객체
+   * @param  {String} [key='normal'] 상태값  다음 키 값만 허용된다. {'normal', 'highlighted', 'selected', 'diasabled'} 
+   * @returns {String} backgroundImage
    */
-  getBackgroundImage: function(defaultValue) {
-    if (defaultValue){
-      var backgroundImage = this._backgroundImage[this.$control];
-      if (tau.isUndefined(backgroundImage)){
-        backgroundImage = this._backgroundImage[tau.ui.Control.NORMAL];
-      }
-      return backgroundImage;
+  getBackgroundImage: function(key) {
+    if (tau.isUndefined(key)) {
+      key = tau.ui.Control.NORMAL;
+    } else if (key !== tau.ui.Control.NORMAL && 
+        key !== tau.ui.Control.DISABLED && key !== tau.ui.Control.SELECTED &&
+        key !== tau.ui.Control.HIGHLIGHTED) {
+      throw new RangeError(' key is out of range: '.concat(key, this.currentStack()));
     }
-    return this._backgroundImage;
+    if (!this._backgroundImage) return null; 
+
+    var backgroundImage = this._backgroundImage[key];
+    return tau.isUndefined(backgroundImage) ? this._backgroundImage[tau.ui.Control.NORMAL] : backgroundImage;
   },
 
   /**
@@ -3719,9 +3739,9 @@ $class('tau.ui.Button').extend(tau.ui.Component).mixin(
    *  var button = new tau.ui.Button();
    *  button.setBackgroundImage( {
    *   normal: null,
-   *   disabled: this.appCtx.getRealPath('/img/2.jpg'),
-   *   selected: this.appCtx.getRealPath('/img/3.jpg'),
-   *   highlighted: this.appCtx.getRealPath('/img/4.jpg')};
+   *   disabled: '/img/2.jpg',
+   *   selected: '/img/3.jpg',
+   *   highlighted: '/img/4.jpg'};
    * @css
    * @param {String|Object} backgroundImage 설정할 배경이미지
    */  
@@ -3753,16 +3773,16 @@ $class('tau.ui.Button').extend(tau.ui.Component).mixin(
   handleControlChanged: function (state) {
     tau.ui.Control.prototype.handleControlChanged.apply(this, arguments);
     if (this._label){
-      this.renderer.updateLabel(this.$renderData, this.getLabel(true));
+      this.renderer.updateLabel(this.$renderData, this.getLabel(state));
     }
     if (this._textColor){
-      this.renderer.updateTextColor(this.$renderData, this.getTextColor(true));
+      this.renderer.updateTextColor(this.$renderData, this.getTextColor(state));
     }
     if (this._backgroundColor){
-      this.renderer.updateBackgroundColor(this.$renderData, this.getBackgroundColor(true));
+      this.renderer.updateBackgroundColor(this.$renderData, this.getBackgroundColor(state));
     }
     if (this._backgroundImage){
-      this.renderer.updateBackgroundImage(this.$renderData, this.getBackgroundImage(true));
+      this.renderer.updateBackgroundImage(this.$renderData, this.getBackgroundImage(state));
     }
   }
 });
@@ -4676,10 +4696,12 @@ $class('tau.ui.PaginationBar').extend(tau.ui.Component).mixin(
    * @private 
    */
   render: function (refresh) {
-    if (this.getType() === tau.ui.PaginationBar.SLIDER_TYPE) {
+    var pager = this.getPager();
+
+    if (!pager && this.getType() === tau.ui.PaginationBar.SLIDER_TYPE) {
       var slider = new tau.ui.Slider({
         tickSize : 1, 
-        minValue: 1, 
+        minValue: 1,
         value: 1, 
         vertical: this._dock === tau.ui.PaginationBar.LEFT_DOCK || 
         this._dock === tau.ui.PaginationBar.RIGHT_DOCK
@@ -5426,8 +5448,8 @@ $class('tau.ui.Table').extend(tau.ui.ScrollPanel).define({
    * @private
    */
   handleTouchStart: function (e, payload) {
-	tau.ui.Table.$super.handleTouchStart.apply(this, arguments);
-	if (!this._refreshDone) this.initScroll();
+    tau.ui.Table.$super.handleTouchStart.apply(this, arguments);
+    if (!this._refreshDone) this.initScroll();
   },
   
   /**
@@ -5498,7 +5520,7 @@ $class('tau.ui.Table').extend(tau.ui.ScrollPanel).define({
         string = indexBar.getIndexChar(groupName);
       }
     } else if (this._dataSource){
-    	string = this._dataSource.getGroupName(groupName);
+      string = this._dataSource.getGroupName(groupName);
     }
     return string ? decodeURIComponent(string) : null;
   },
@@ -6170,7 +6192,7 @@ $class('tau.ui.IndexBar').extend(tau.ui.Component).mixin(
     if (e.getName() === tau.rt.Event.TOUCHMOVE) {
       e.preventDefault();
       e.stopPropagation();
-	}
+    }
     var selectedIndex = this.renderer.getSelectedIndex(this.$renderData, e.touches[0]);
     if (selectedIndex && this._selectedIndex != selectedIndex){
       var parent = this.getParent();
@@ -6569,10 +6591,8 @@ $class('tau.ui.ImageView').extend(tau.ui.Component).define({
    * 이미지들을 애니메이션 동작하기 위해 duration과 frequency를 컨트롤할 수 있다.
    * TODO : 여러 이미지 제공
    * <pre>
-   * // 컨텍스트 정보 가져온다.
-   * var context = tau.getCurrentContext();
    * // 이미지 경로를 지정해서 ImageView 컴포넌트를 생성한다.
-   * var image = new tau.ui.ImageView({src: context.getRealPath('/img/1.jpg')});
+   * var image = new tau.ui.ImageView({src: '/img/1.jpg'});
    * 
    * // 스타일을 설정한다.
    * image.setStyle('width', '100px');
@@ -6594,7 +6614,18 @@ $class('tau.ui.ImageView').extend(tau.ui.Component).define({
    * @param {String} src 이미지 경로
    */
   setSrc: function(src) {
-    this.renderer.updateSrc(this.$renderData, src);
+    if (this._src !== src) {
+      this._src = src;
+      this.renderer.updateSrc(this.$renderData, src);
+    }
+  },
+  
+  /**
+   * 이미지 경로를 반환한다.
+   * @returns {String}
+   */
+  getSrc: function () {
+    return this._src;
   }
 });
 
@@ -7165,6 +7196,7 @@ $class('tau.ui.Slider').extend(tau.ui.Component).mixin(
     e.preventDefault();
     var touch = e.touches[0], target = touch.target;
     if (this.renderer.hasElement(this.$renderData, target, tau.ui.Slider.THUMB_KEY)){
+      e.stopPropagation();
       this._sliderState = tau.ui.Slider.START;
     } else {
       this._sliderState = tau.ui.Slider.END;
@@ -7181,8 +7213,7 @@ $class('tau.ui.Slider').extend(tau.ui.Component).mixin(
   handleTouchEnd: function (e, payload) {
     e.preventDefault(); 
     if (this._sliderState === tau.ui.Slider.START && this._tickSize){
-      var position = this.renderer.getThumbPosition(this.$renderData, this._vertical);
-      this.setValue(this._getThumbValue(position), true, true);
+      this.setValue(this._value, true, true);
     }
     this._sliderState = tau.ui.Slider.END;
   },
@@ -7199,6 +7230,7 @@ $class('tau.ui.Slider').extend(tau.ui.Component).mixin(
     if (this._sliderState === tau.ui.Slider.END){
       return;
     }
+    e.stopPropagation();
     var touch = e.touches[0],
         uiRange = this.renderer.getRange(this.$renderData, this._vertical),
         position = this.renderer.getThumbPosition(this.$renderData, this._vertical, touch);
@@ -7703,7 +7735,7 @@ $class('tau.ui.Carousel').extend(tau.ui.ScrollPanel).mixin(
         /** @overrides */
         page: tau.emptyFn,
         /** @overrides */
-        snap: tau.emptyFn      
+        snap: tau.emptyFn
       }
     }, 'remix');
   },
@@ -7740,7 +7772,7 @@ $class('tau.ui.Carousel').extend(tau.ui.ScrollPanel).mixin(
       throw new TypeError(comp + " is not an instance of tau.ui.Component or tau.ui.Panel's option: "
           + this.currentStack());
     }
-    
+
     var indicator = this.getMapItem(tau.ui.Carousel.INDICATOR_KEY);
     if (indicator) {
       var label = index.toString();
@@ -7766,14 +7798,15 @@ $class('tau.ui.Carousel').extend(tau.ui.ScrollPanel).mixin(
   handlePageTouchEnd: function (e) {
     if (tau.ui.Carousel.$super.handlePageTouchEnd.apply(this, arguments)){
       var indicator = this.getMapItem(tau.ui.Carousel.INDICATOR_KEY), 
-          index, direction;
+          index;
       
       if (!this._vertical){
-        direction = this.directionX;
+        this.pageX = -Math.round(this.x / this.scrollWidth);
+        index = this.pageX;
       } else {
-        direction = this.directionY;
+        this.pageY = -Math.round(this.y / this.scrollHeight);
+        index = this.pageY;
       }
-      index = this._activeIndex + direction;
       
       if (index > -1 && index < this.getComponents().length){
         this._activeIndex = index;
@@ -9311,11 +9344,17 @@ $class('tau.ui.Select').extend(tau.ui.SegmentedButton).define({
     /** @private placeHoler 텍스트 */
     this._placeHolder = null;
     
-    this.setMapItem(tau.ui.Select.POPUP_KEY, new tau.ui.ScrollPanel({
-      parent: this,
-      bubble: this
-    }));
+    this.setMapItem(tau.ui.Select.POPUP_KEY, new tau.ui.ScrollPanel());
+    this.setMapItem(tau.ui.Select.MASK_KEY, new tau.ui.Mask({visible: false}));
     
+    var events = [tau.rt.Event.TOUCHSTART, tau.rt.Event.TOUCHMOVE, 
+                  tau.rt.Event.TOUCHEND];
+    for (var i = 0, len = events.length; i < len; i++) {
+      this.getPopupItem().publishEvent(events[i], { // listening to capture events
+        antecedentFn: this.handleCaptureEvent
+      });
+    }
+
     this.$optionize = tau.mixin(this.$optionize, {
       handler: {
         /**
@@ -9446,8 +9485,17 @@ $class('tau.ui.Select').extend(tau.ui.SegmentedButton).define({
    * @overrides
    */
   getDOM: function (key, createElement) {
+    var scene;
     if (key === tau.ui.CONTENT_KEY) {
-      return this.getPopupItem().getDOM(key, createElement);
+      var popup = this.getPopupItem();
+      return popup.getDOM(key, createElement);
+    } else if (key === tau.ui.Select.POPUP_KEY && (scene = this.getScene())) {
+      var popup = this.getPopupItem();
+      if (!popup.isDrawn()) {
+        var dom = tau.ui.Select.$super.getDOM.apply(this, arguments);
+        tau.util.dom.appendChild(scene.getDOM(), dom);
+        return dom;
+      }
     }
     return tau.ui.Select.$super.getDOM.apply(this, arguments);
   },
@@ -9470,6 +9518,29 @@ $class('tau.ui.Select').extend(tau.ui.SegmentedButton).define({
     return this.getMapItem(tau.ui.Select.POPUP_KEY);
   },
   
+  /**
+   * mask 아이템을 반환한다.
+   * @returns {tau.ui.Mask}
+   */
+  getMaskItem: function () {
+    return this.getMapItem(tau.ui.Select.MASK_KEY);
+  },  
+  
+  /**
+   * close 아이템을 반환한다.
+   * @returns {tau.ui.Button}
+   */
+  getCloseItem: function () {
+    var item = null;
+    if (this._showCloseBtn) {
+      item = this.getMapItem(tau.ui.Select.CLOSE_KEY);
+      if (!item)
+        item = new tau.ui.Button({baseStyleClass : 'tau-select-popup-close'});
+        this.setMapItem(tau.ui.Select.CLOSE_KEY, item);
+    }
+    return item;
+  },
+
   /**
    * 이벤트 {@link tau.rt.Event.VALUECHANGE} 처리 함수
    * <p/>
@@ -9494,9 +9565,14 @@ $class('tau.ui.Select').extend(tau.ui.SegmentedButton).define({
     this._updateTitle();
     this.renderer.updateFullScreen(this.$renderData, this._fullscreen);
     this.renderer.updateMuliple(this.$renderData, this._multiple);
-    this.renderer.updatePopupTitle(this.$renderData, this._popupTitle);
-    this.renderer.updateCloseBtn(this.$renderData, this._showCloseBtn);
+    this.renderer.updatePopupTitle(this.$renderData, this._popupTitle, this._fullscreen);
+
     this.drawItem(tau.ui.Select.POPUP_KEY, refresh);
+    this.drawItem(tau.ui.Select.MASK_KEY, refresh);
+    if (this._showCloseBtn) {
+      this.getCloseItem();
+      this.drawItem(tau.ui.Select.CLOSE_KEY, refresh);
+    }
   },
   
   /**
@@ -9512,6 +9588,7 @@ $class('tau.ui.Select').extend(tau.ui.SegmentedButton).define({
     this.renderer.updateBadge(this.$renderData, length);
     
     if (this.isDrawn()){
+      this.getMaskItem().setVisible(false);
       this.renderer.closePopup(this.$renderData);
       if (this._closeFn){
         this._closeFn();
@@ -9525,10 +9602,9 @@ $class('tau.ui.Select').extend(tau.ui.SegmentedButton).define({
    */
   getSelectedTitle: function () {
     var indexes = this.getSelectedIndexes(),
-        selectedTitles = [], title;
+        selectedTitles = [];
     for (var i=indexes.length; i--;){
-      title = this.getComponent(indexes[i]).getLabel();
-      selectedTitles[i] = title.normal;
+      selectedTitles[i] = this.getComponent(indexes[i]).getLabel(tau.ui.Control.NORMAL);
     }
     return selectedTitles;
   },
@@ -9546,7 +9622,16 @@ $class('tau.ui.Select').extend(tau.ui.SegmentedButton).define({
     e.stopPropagation();
 
     var comp = e.getSource();
-    if (comp !== this) {
+    
+    if (comp === this) {
+      this.getMaskItem().setVisible(true);
+      this.renderer.showPopup(this.$renderData);
+      this.getPopupItem().refresh();
+    } else if (comp === this.getCloseItem()) {
+      this._updateTitle();
+    } else if (comp === this.getMaskItem() && !this._modal) {
+      this._updateTitle();
+    } else {
       var index =  this.indexOf(comp)[0];
       if (index > -1) {
         var selectedIndexes = this.getSelectedIndexes(), 
@@ -9558,25 +9643,22 @@ $class('tau.ui.Select').extend(tau.ui.SegmentedButton).define({
           this.select(index);
         }
       }
-    } else {
-      var target = e.touches[0].target,
-      hit = this.renderer.getElemPropertyName(this.$renderData, target);
-      
-      switch (hit) {
-      case tau.ui.Select.CONTROL_KEY:
-      case tau.ui.ROOT_KEY:
-        this.renderer.showPopup(this.$renderData);
-        this.getPopupItem().refresh();
+    }
+  },
+
+  /**
+   * @param {tau.rt.Event} e Event object
+   * @param {Object} payload payload object if exists
+   * @private
+   */
+  handleCaptureEvent: function (e, payload) {
+    switch (e.getName()) {
+      case tau.rt.Event.TOUCHSTART:
+      case tau.rt.Event.TOUCHMOVE:
+      case tau.rt.Event.TOUCHEND:
+        e.preventDefault();
+        e.stopPropagation();
         break;
-      case tau.ui.Select.CLOSE_KEY:
-        this._updateTitle();
-        break;
-      case tau.ui.Select.MASK_KEY:
-        if (!this._modal){
-          this._updateTitle();
-        }
-        break;
-      }
     }
   },
   
@@ -9844,7 +9926,6 @@ $class('tau.ui.Dialog').extend(tau.ui.ScrollPanel).define({
    * @class 
    * @constructs
    * @extends tau.ui.ScrollPanel
-   * @mixins tau.ui.Mask
    * @example 
    * var dialog = new tau.ui.Dialog({
    *   dir: tau.ui.UP_DIR,
@@ -9881,6 +9962,8 @@ $class('tau.ui.Dialog').extend(tau.ui.ScrollPanel).define({
     this._popupTitle = null;
     
     this._hScroll = false;
+    
+    this.setMapItem(tau.ui.Dialog.MASK_KEY, new tau.ui.Mask({visible: false}));
     
     this.$optionize = tau.mixin(this.$optionize, {
       handler: {
@@ -9985,6 +10068,14 @@ $class('tau.ui.Dialog').extend(tau.ui.ScrollPanel).define({
   },
   
   /**
+   * mask 아이템을 반환한다.
+   * @returns {tau.ui.Mask}
+   */
+  getMaskItem: function () {
+    return this.getMapItem(tau.ui.Dialog.MASK_KEY);
+  },  
+  
+  /**
    * @param {Obejct} [opts] 
    * @param {tau.ui.Component} [opts.comp] 컴포넌트 근처에 Dialog를 표시한다.
    * @param {Boolean}[opts.animated=true] 애니메이션 적용여부
@@ -10006,6 +10097,7 @@ $class('tau.ui.Dialog').extend(tau.ui.ScrollPanel).define({
       }
     }
     // TODO 정리
+    this.getMaskItem().setVisible(true);
     this.renderer.showby(this.$renderData, dom);
     this.refresh();
     this.renderer.open(this.$renderData, tau.mixin({
@@ -10019,6 +10111,7 @@ $class('tau.ui.Dialog').extend(tau.ui.ScrollPanel).define({
    * Dialog를 보이지 않게 한다.
    */
   close: function () {
+    this.getMaskItem().setVisible(false);
     this.setVisible(false);
     this.renderer.close(this.$renderData);
     if (this._closeFn){
@@ -10034,9 +10127,10 @@ $class('tau.ui.Dialog').extend(tau.ui.ScrollPanel).define({
    * @private
    */
   handleTap: function (e, payload) {
-    if (this._showCloseBtn && this.renderer.hasElement(this.$renderData,  
-        e.touches[0].target, tau.ui.Dialog.CLOSE_KEY) || (!this._modal && 
-            this.renderer.hasElement(this.$renderData,  e.touches[0].target, tau.ui.Dialog.MASK_KEY))){
+    var src = e.getSource();
+    if (this._showCloseBtn && this.renderer.hasElement(this.$renderData,
+        e.touches[0].target, tau.ui.Dialog.CLOSE_KEY) || (!this._modal &&
+            src === this.getMaskItem())){
       this.close();
     }
   },
@@ -10058,6 +10152,7 @@ $class('tau.ui.Dialog').extend(tau.ui.ScrollPanel).define({
   render: function (refresh) {
     this.renderer.updatePopupTitle(this.$renderData, this._popupTitle);
     this.renderer.updateCloseBtn(this.$renderData, this._showCloseBtn);
+    this.drawItem(tau.ui.Dialog.MASK_KEY);
     return tau.ui.Dialog.$super.render.apply(this, arguments);
   }
 });
@@ -10155,15 +10250,16 @@ $class('tau.ui.ActionSheet').extend(tau.ui.Dialog).define({
    * @private
    */
   handleTap: function (e, payload) {
-    var source = e.getSource(), parent = source.getParent();
-    if (source === this.getCloseItem()){
+    var src = e.getSource(), 
+      parent = src.getParent();
+
+    if (src === this.getCloseItem()){
       this.close();
       this.fireEvent(tau.rt.Event.SELECTCHANGE, -1);
     } else if (parent === this){
       this.close();
-      this.fireEvent(tau.rt.Event.SELECTCHANGE, this.indexOf(source));
-    } else if (!this._modal && 
-        this.renderer.hasElement(this.$renderData,  e.touches[0].target, tau.ui.Dialog.MASK_KEY)){
+      this.fireEvent(tau.rt.Event.SELECTCHANGE, this.indexOf(src));
+    } else if (!this._modal && src === this.getMaskItem()){
       this.close();
     }
   },
@@ -10174,9 +10270,9 @@ $class('tau.ui.ActionSheet').extend(tau.ui.Dialog).define({
    * @private
    */
   render: function (refresh) {
-	this.renderer.updatePopupTitle(this.$renderData, this._popupTitle);
+    this.renderer.updatePopupTitle(this.$renderData, this._popupTitle);
     this.drawItem(tau.ui.Dialog.CLOSE_KEY, refresh);
-    // FIXME
+    this.drawItem(tau.ui.Dialog.MASK_KEY);
     this.drawComponents(refresh);
   }
 });
@@ -10795,7 +10891,28 @@ $class('tau.ui.Picker').extend(tau.ui.Component).mixin(tau.ui.Control).define({
     var id = this.getId(true);
     this.renderer.slots_refer[id] = new Array();   
     this.renderer.pickers[id] = this;
-  
+    var self = this;
+    this._done = new tau.ui.Button({
+      label:'Done',
+      parent:this, 
+      bubble:this,
+      tap: function(e){    
+        self._defaultDoneAction();
+      }
+    });
+    tau.util.dom.addClass(this._done.getDOM(), 'tau-picker-done');
+    
+    this._cancel = new tau.ui.Button({
+      label: 'Cancel',
+      parent:this, 
+      bubble:this,
+      tap: function(e){          
+        self._defaultCancelAction();
+      }
+    });
+
+    tau.util.dom.addClass(this._cancel.getDOM(), 'tau-picker-cancel');
+    
     this.swContainer = this.$renderData.$dom[tau.ui.Picker.SLOT_CONTAINER];
     
     this.onEvent(tau.rt.Event.COMPDRAWN, function (e, payload) {
@@ -10806,6 +10923,19 @@ $class('tau.ui.Picker').extend(tau.ui.Component).mixin(tau.ui.Control).define({
     }, this);
   },
   
+  render: function(){
+    this._done.draw(this.renderer.getHeaderElement(this.$renderData));
+    this._cancel.draw(this.renderer.getHeaderElement(this.$renderData));
+  },
+  
+
+  getDoneButton: function(){
+    return this._done;
+  },
+  
+  getCancelButton: function(){
+    return this._cancel;
+  },
   /**
    * 추가된 Slot 을 remove 하는 function. 
    * @param index {Number} Slot 을 add 할때 반환된 Slot Index 값 
@@ -10962,24 +11092,18 @@ $class('tau.ui.Picker').extend(tau.ui.Component).mixin(tau.ui.Control).define({
    * @private
    */
   handleTap: function (e, payload) {
-    var self = this;
-    var target = e.touches[0].target, hit = self.renderer
-        .getElemPropertyName(self.$renderData, target);
-    switch (hit) {
-    case tau.ui.Picker.CANCEL_BUTTON:
-      self.fireEvent(tau.rt.Event.TAP, {buttonType: tau.ui.Picker.CANCEL_BUTTON});      
-      self._defaultCancelAction();
-      break;
-    case tau.ui.Picker.DONE_BUTTON:
-      self.fireEvent(tau.rt.Event.TAP, {buttonType: tau.ui.Picker.DONE_BUTTON});
-      self._defaultDoneAction();
-      break;
-    case tau.ui.Picker.HEADER:
-      break;
-    default:              
-      self.renderer.jump(this.getId(true), e);
-      break;
+    var source = e.getSource();
+
+    if (source == this._done || source == this._cancel) {
+      return;
     }
+    var target = e.touches[0].target, hit = this.renderer
+        .getElemPropertyName(this.$renderData, target);
+    if(hit == tau.ui.Picker.HEADER){
+      return;
+    }              
+    
+    this.renderer.jump(this.getId(true), e);  
   },
   /**
    * 이벤트 {@link tau.rt.Event.TOUCHSTART} 처리 함수
@@ -10988,10 +11112,10 @@ $class('tau.ui.Picker').extend(tau.ui.Component).mixin(tau.ui.Control).define({
    * @see tau.ui.Component.handleTouchStart
    * @private
    */
-  handleTouchStart: function (e, payload) {            
+  handleTouchStart: function (e, payload) {       
     var target = e.touches[0].target, hit = this.renderer
-        .getElemPropertyName(this.$renderData, target);
-    if (hit != tau.ui.Picker.HEADER && hit != tau.ui.Picker.CANCEL_BUTTON && hit != tau.ui.Picker.DONE_BUTTON) {
+        .getElemPropertyName(this.$renderData, target), source = e.getSource();
+    if (hit != tau.ui.Picker.HEADER && source != this._done && source != this._cancel) {
       this.renderer.startSpinning(this.getId(true), e);
     }
   },
@@ -11004,8 +11128,8 @@ $class('tau.ui.Picker').extend(tau.ui.Component).mixin(tau.ui.Control).define({
    */
   handleTouchMove: function (e, payload) {
     var target = e.touches[0].target, hit = this.renderer
-        .getElemPropertyName(this.$renderData, target);    
-    if (hit != tau.ui.Picker.HEADER && hit != tau.ui.Picker.CANCEL_BUTTON && hit != tau.ui.Picker.DONE_BUTTON) {
+        .getElemPropertyName(this.$renderData, target), source = e.getSource();    
+    if (hit != tau.ui.Picker.HEADER && source != this._done && source != this._cancel) {
       this.renderer.spin(this.getId(true), e);
     }
   },
@@ -11018,14 +11142,16 @@ $class('tau.ui.Picker').extend(tau.ui.Component).mixin(tau.ui.Control).define({
    */
   handleTouchEnd: function (e, payload) {
     try{
-      this.renderer.endSpinning(this.getId(true), e);
+        this.renderer.endSpinning(this.getId(true), e);
     }catch(ex){}
   },
   
   _handleWebkitTransitionEnd : function() {
     var self = this;    
-    return function (e){
-      var slot = e.target == undefined ? e : e.target;
+    return function (e, slot){
+      if(e != null){
+        slot = e.target == undefined ? e : e.target;        
+      }
       var selectedIndex = self.renderer.getSelectedIndex(slot);
       var slotIndex = self.renderer.getSlotIndex(self.getId(true), slot);
       slot.memoryPosition = slot.memoryPosition == undefined ? 0 : slot.memoryPosition;
@@ -11212,6 +11338,7 @@ $class('tau.ui.DatePicker').extend(tau.ui.Picker).mixin(tau.ui.Control).define({
     case tau.ui.DatePicker.DATE_ONLY:
       var thisMonth = nowLocal.getMonth();
       var toDay = nowLocal.getDate();
+      var thisYear = nowLocal.getFullYear();
       switch (this.LOCALE) {
       case tau.ui.DatePicker.SUPPORTED_LOCALE.KOREAN.id:
         this.spinTo(0, 0);
@@ -11221,7 +11348,15 @@ $class('tau.ui.DatePicker').extend(tau.ui.Picker).mixin(tau.ui.Control).define({
       case tau.ui.DatePicker.SUPPORTED_LOCALE.US_ENG.id:
         this.spinTo(0, thisMonth);
         this.spinTo(1, toDay -1);
-        this.spinTo(2, 0);
+        
+        var yearIndex = 0;
+        for(var i=this.minimumYear; i<this.maximumYear; i++,yearIndex++){
+          if(i == thisYear){
+            break;
+          }
+        }
+        
+        this.spinTo(2, yearIndex);
         break;
       }         
       break;
@@ -11264,11 +11399,11 @@ $class('tau.ui.DatePicker').extend(tau.ui.Picker).mixin(tau.ui.Control).define({
    */
   _setDateSlots: function (type, opts) {
     var self = this;
-    opts = opts ? opts : {};
-  
+    opts = opts ? opts : {};  
+    
     var minimumDate = opts.minimum && tau.isDate(opts.minimum) ? opts.minimum : new Date();
     var maximumDate = opts.maximum && tau.isDate(opts.maximum) ? opts.maximum : new Date();                   
-    
+   
     if (!(opts.minimum && tau.isDate(opts.minimum)) && !(opts.maximum && tau.isDate(opts.maximum))) {           
       minimumDate.setDate(-182);
       maximumDate.setTime(minimumDate.getTime() + ((365) * 60 * 60 * 24 * 1000));
@@ -11277,6 +11412,9 @@ $class('tau.ui.DatePicker').extend(tau.ui.Picker).mixin(tau.ui.Control).define({
         throw new Error('minimum date > maximum date');
       }
     }    
+
+    this.minimumYear = minimumDate.getFullYear();
+    this.maximumYear = maximumDate.getFullYear();
     
     if (type == tau.ui.DatePicker.DATETIME) {                    
       var datesOfYear = {};
@@ -11481,4 +11619,64 @@ $class('tau.ui.DatePicker').extend(tau.ui.Picker).mixin(tau.ui.Control).define({
       }    
   }
 });
+
 //------------------------------------------------------------------------------
+/** @lends tau.ui.Mask */
+$class('tau.ui.Mask').extend(tau.ui.Component).define({
+  
+  /**
+   * 생성자, 새로운 Mask객체를 생성한다.
+   * 
+   * @class Mask는 주로 {@link tau.ui.Container} 컴포넌트에서 배경을 mask하기 위해 사용된다.
+   * @constructs
+   * @extends tau.rt.EventDelegator
+   * @mixins tau.ui.Drawable
+   */
+  Mask: function () {
+    
+    this._fullscreen = true;
+    
+    this.$optionize = tau.mixin(this.$optionize, {
+      handler: { /** @lends tau.ui.Mask */
+        /**
+         * fullscreen 설정
+         */
+        fullscreen: function (prop, val) {
+          if (!tau.isBoolean(val)) {
+            throw new TypeError(prop.concat(' option is not Boolean: ', val, this.currentStack()));
+          }
+          this._fullscreen = val;
+        }
+      }
+    }, 'remix');
+  },
+
+  /**
+   * 컴포넌트를 draw한다.
+   * @overrides tau.ui.Drawable.prototype.draw
+   * @param {HTMLElement} parent 컨텐츠를 렌더링할 부모 DOM element
+   * @param {Boolean} [refresh=false] <code>true</code>일 경우 화면을 refresh한다.
+   * @param {HTMLElement} [refChild]컨텐츠를 렌더링할 이전 Child DOM element
+   * @returns {Boolean} 실제 컨텐츠가 이 메소드에 의해 draw 되었다면 <code>true</code>.
+   * @see tau.ui.Component.draw
+   */
+  draw: function (parent, refresh, refChild) {
+    if (this._fullscreen) {
+      parent = this.getScene().getDOM();
+      this.renderer.updateFullscreen(this.$renderData, true);
+    }
+    return tau.ui.Mask.$super.draw.call(this, parent, refresh, refChild);
+  },
+  
+  /**
+   * 이벤트 {@link tau.rt.Event.TOUCHMOVE} 처리 함수
+   * @param {tau.rt.Event} e Event 인스턴스
+   * @param {Object} [payload] propagation동안 전송할 수 있는 payload 객체 
+   * @see {tau.ui.Component.handleTouchMove}
+   * @private
+   */
+  handleTouchMove: function (e, payload) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+});

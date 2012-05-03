@@ -44,6 +44,7 @@ $actionsheet-large-dark-bgcolor: black;
       @include box-pack(end);
       @include box-align(justify);
       @include tau-popup;
+      
       @include tau-box-shadow(0 1px 0 #fff inset !important);
     
       background-color:rgba($actionsheet-large-bgcolor,0.5);
@@ -121,7 +122,7 @@ $actionsheet-large-dark-bgcolor: black;
       @include tau-dialog-popup;
       position: fixed;
       overflow: visible; /** arrow를 표시하기 위해 visible이어야 함.*/
-      
+      z-index: 999982;
       & > .tau-button-dark {
         @extend .tau-button-blue;
         @extend .tau-button;

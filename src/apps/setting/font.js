@@ -5,7 +5,6 @@ $class('tau.demo.Font').extend(tau.ui.SceneController).define( {
   $static: { 
     FONTS : [
       {label: 'default'},
-      {label: 'olleh'},
       {label: 'simple'},
     ]
   },

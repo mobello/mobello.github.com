@@ -63,7 +63,7 @@ $class('tau.sample.RSSTableController').extend(tau.ui.TableSceneController).defi
         }
       };
       tau.req({
-        type: 'JSONP',  	   
+        type: 'JSONP',
         url: url,
         callbackFn: tau.ctxAware(loaded, this)
       }).send();

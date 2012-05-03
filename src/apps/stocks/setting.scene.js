@@ -1,7 +1,7 @@
 function initScene() {
   var scene = this.getScene();
   scene.setStyles({
-	  background: 'black',
+    background: 'black',
       padding: '2px'
   });
   var toolbar = new tau.ui.ToolBar({
@@ -39,13 +39,13 @@ function initScene() {
   scene.add(toolbar);
   
   var table = new tau.ui.Table({
-	  styles: {
-		  background: 'white',
-		  height: '78%',
-		  marginBottom: '2%',
-		  borderRadius: '10px',
-		  cellRightItemWidth: '80px'
-	  }
+    styles: {
+      background: 'white',
+      height: '78%',
+      marginBottom: '2%',
+      borderRadius: '10px',
+      cellRightItemWidth: '80px'
+    }
   });
   table.onEvent(tau.rt.Event.TAP, this.handleTap, this);
   table.onEvent(tau.ui.Table.EVENT_MODEL_LOAD, this.loadModel, this);
@@ -59,12 +59,12 @@ function initScene() {
       display: 'flexbox',
       padding: '4px'
     },
-	  components: [
-	    {label: '%'},
-	    {label: '주식가격'},
-	    {label: '시가총액'},
-	  ],
-	  selectedIndexes: [parseInt(this._stockValueType)]
+    components: [
+      {label: '%'},
+      {label: '주식가격'},
+      {label: '시가총액'},
+    ],
+    selectedIndexes: [parseInt(this._stockValueType)]
   });
   segmentedButton.onEvent(tau.rt.Event.VALUECHANGE, this.handleStockValueType, this);
   scene.add(segmentedButton);

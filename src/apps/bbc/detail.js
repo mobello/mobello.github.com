@@ -54,15 +54,14 @@ $class('tau.bbc.DetailController').extend(tau.ui.SceneController).define(
     var back = navigationbar.getLeftItem();
     var label = this.getScene().getComponent('date');
     var text = this.getItem().pubDate ? this.getItem().pubDate: this.getItem().author;
-    
+
     label.setText(text);
-    
     navigationbar.setStyles({
       backgroundImage: 'url(/img/title.png)', 
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center center'
     });
-    
+
     back.setBackgroundImage({
       normal: '/img/back.png',
       selected: '/img/back_selected.png'
@@ -116,8 +115,8 @@ $class('tau.bbc.DetailController').extend(tau.ui.SceneController).define(
     
     this.updatePrevNextButton();
     
-    prevBtn.onEvent(tau.rt.Event.TAP, this.prevBtnSelected, this);
-    nextBtn.onEvent(tau.rt.Event.TAP, this.nextBtnSelected, this);
+    prevBtn.onEvent(tau.rt.Event.TAP, this.handlePrevNext, this);
+    nextBtn.onEvent(tau.rt.Event.TAP, this.handlePrevNext, this);
     
     tau.bbc.DetailController.$super.sceneLoaded.apply(this, arguments);
   },
@@ -162,71 +161,73 @@ $class('tau.bbc.DetailController').extend(tau.ui.SceneController).define(
   },
   
   /**
-   * 폰크 크기를 줄인다.
+   * font size를 조정한다.
    */
-  decreaseFontSize: function (e, payload) {
-    if (this.fontSize == 60) {
-      var button1 = this.getScene().getComponent('button1');
-      button1.setStyles({
-        opacity: .3    
+  handleFontSize: function (e, payload) {
+    var scene = this.getScene(),
+      src = e.getSource(),
+      active = src.getId(), 
+      deactive;
+    
+    if (this.fontSize == 60 && active === 'button1' ||
+        this.fontSize == 180 && active === 'button2') {
+      src.setStyles({
+        opacity: .3
       });
       return;
     }
-    var button2 = this.getScene().getComponent('button2');
-    
-    button2.setStyles({
-      opacity: 1    
-    });
-    
-    this.fontSize = this.fontSize - 10;
-    this.getScene().getComponent(1).setStyle('fontSize', this.fontSize + '%');
-  },
 
-  /**
-   * 폰크 크기를 늘린다.
-   */
-  increaseFontSize: function (e, payload) {
-    
-    if (this.fontSize == 180) {
-      var button2 = this.getScene().getComponent('button2');
-      button2.setStyles({
-        opacity: .3    
-      });
-      return;
+    if (active === 'button1') {
+      deactive = 'button2';
+      this.fontSize = this.fontSize - 10;
+    } else {
+      deactive = 'button1';
+      this.fontSize = this.fontSize + 10;
     }
-    var button1 = this.getScene().getComponent('button1');
-    button1.setStyles({
-      opacity: 1    
+    deactive = scene.getComponent(deactive);
+    deactive.setStyles({
+      opacity: 1
     });
-
-    this.fontSize = this.fontSize + 10;
-    this.getScene().getComponent(1).setStyle('fontSize', this.fontSize + '%');
+    
+    scene.getComponent(1).setStyle('fontSize', this.fontSize + '%');
+    scene.getComponent('textview1').refresh();
   },
   
   /**
-   * 이전 버튼을 TAP했을 때 이전 아이템 정보를 보여준다.
-   */
-  prevBtnSelected: function (e, payload) {
+   * 이전, 다음 item을 가져온다.
+   */  
+  handlePrevNext: function (e, payload) {
+    var index = this.getIndex(),
+      src = e.getSource(),
+      active = src.getId(), 
+      position;
     
-    var index = this.getIndex();
+    if (active === 'prevBtn' && index < 1 || active === 'nextBtn' && index > 7) return;
     
-    if (index < 1) return;
+    var scene = this.getScene(), 
+      curContent = scene.getComponent(1), 
+      newContent = this.makeContent(),
+      curDom = curContent.getDOM(),
+      newDom = newContent.getDOM();
     
-    this.setRssId('rss'.concat(this.getRSSIndex(), ',', --index));
+    if (active === 'prevBtn') {
+      this.setRssId('rss'.concat(this.getRSSIndex(), ',', --index));
+      position = -100;
+    } else {
+      this.setRssId('rss'.concat(this.getRSSIndex(), ',', ++index));
+      position = 100;
+    }
 
     this.updatePrevNextButton();
     
-    var curContent = this.getScene().getComponent(1), 
-          newContent = this.makeContent();
+    curDom.style.webkitTransform = 'translate3d(0, 0, 0)';
+    newDom.style.display = 'none';
+    newDom.style.webkitTransform = 'translate3d(' + position + '%, 0, 0)';
     
-    curContent.getDOM().style.webkitTransform = 'translate3d(0, 0, 0)';
-    newContent.getDOM().style.display = 'none';
-    newContent.getDOM().style.webkitTransform = 'translate3d(-100%, 0, 0)';
-    
-    this.getScene().add(newContent, 1, true);
+    scene.add(newContent, 1, true);
 
     var anim1 = new tau.fx.Transition();
-    anim1.setStyle('-webkit-transform', 'translate3d(100%, 0, 0)', {
+    anim1.setStyle('-webkit-transform', 'translate3d(' + (-position) + '%, 0, 0)', {
       onEnd: function (e){
         e.target.style.webkitTransform = '';
         curContent.destroy();
@@ -241,50 +242,8 @@ $class('tau.bbc.DetailController').extend(tau.ui.SceneController).define(
         style.width =null;
         style.height = null;
       }});
-    anim1.animate(curContent.getDOM());
-    anim2.animate(newContent.getDOM());
-  },
-  
-
-  /**
-   * 다음 버튼을 TAP했을 때 다음 아이템 정보를 보여준다.
-   */
-  nextBtnSelected: function (e, payload) {
-    var index = this.getIndex();
-    
-    if (index > 7) return;
-    
-    this.setRssId('rss'.concat(this.getRSSIndex(), ',', ++index));
-    this.updatePrevNextButton();
-    
-    var curContent = this.getScene().getComponent(1), 
-          newContent = this.makeContent();
-    
-    curContent.getDOM().style.webkitTransform = 'translate3d(0, 0, 0)';
-    newContent.getDOM().style.display = 'none';
-    newContent.getDOM().style.webkitTransform = 'translate3d(100%, 0, 0)';
-    
-    this.getScene().add(newContent, 1, true);
-
-    var anim1 = new tau.fx.Transition();
-    anim1.setStyle('-webkit-transform', 'translate3d(-100%, 0, 0)', {
-      onEnd: function (e){
-        e.target.style.webkitTransform = '';
-        curContent.destroy();
-      }});
-    var anim2 = new tau.fx.Transition();
-    anim2.setStyle('display', null);
-    anim2.setStyle('-webkit-transform', 'translate3d(0, 0, 0)', {
-      onEnd: function (e){
-        var style = e.target.style; 
-        style.webkitTransform = '';
-        style.position = 'relative';
-        style.width =null;
-        style.height = null;
-      }});
-    anim1.animate(curContent.getDOM());
-    anim2.animate(newContent.getDOM());
-    
+    anim1.animate(curDom);
+    anim2.animate(newDom);
   },
   
   updatePrevNextButton: function () {

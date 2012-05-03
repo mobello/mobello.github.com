@@ -271,6 +271,7 @@ tau.ui.BaseRenderer = {
   updateStyle: function ($renderData, attr, value, rootId) {
     var $dom = $renderData.$dom,
         dom = $dom[tau.ui.ROOT_KEY];
+
     switch(attr){
     case 'background':
     case 'backgroundImage':
@@ -308,21 +309,21 @@ tau.ui.BaseRenderer = {
       } 
       break;
     case 'position':
-        if (value === 'relative' && $renderData.$style.display === '_tau-disp-block'){
+      if (value === 'relative' && $renderData.$style.display === '_tau-disp-block'){
         tau.util.dom.removeClass(dom, '_tau-disp-block');
       }
       break;
-  case 'display':
-	  if (!value || value === 'none') break;
+    case 'display':
+      if (!value || value === 'none') break;
       else if (value.indexOf('inline-box') > -1) value = 'inline-flexbox';
       else if (value.indexOf('box') > -1) value = 'flexbox';
-	  
-	  var disp = $renderData.$style.display;
-	  $renderData.$style.display = 'tau-disp-' + value;
-	  dom.style.display = null;
-	  tau.util.dom.replaceClass(dom, disp, value, 'tau-disp-');
-	  return false;
-  }
+
+      var disp = $renderData.$style.display;
+      $renderData.$style.display = 'tau-disp-' + value;
+      dom.style.display = null;
+      tau.util.dom.replaceClass(dom, disp, value, 'tau-disp-');
+      return false;
+    }
     return true;
   },
   
@@ -401,7 +402,7 @@ tau.ui.BaseRenderer = {
         dom = $dom[tau.ui.ROOT_KEY], value = null;
     
     if (dom.id && tau.util.dom.elementOf(dom.id)) {
-      value = tau.util.css(dom, prop, false);
+      value = tau.util.getComputedStyle(dom, prop, false);
     } else {
       value = tau.util.style(dom, prop);
     }
@@ -635,8 +636,8 @@ tau.ui.Button.prototype.renderer = tau.mixin({
   updateBackgroundImage: function ($renderData, value) {
     var $dom = $renderData.$dom;
     if (value) {
-    	var appCtx = tau.getCurrentContext();
-    	value = "url(" + appCtx.getRealPath(value) + ")";
+      var appCtx = tau.getCurrentContext();
+      value = "url(" + appCtx.getRealPath(value) + ")";
     }
     tau.util.style($dom[tau.ui.ROOT_KEY], 'background-image', value);
   }
@@ -676,8 +677,8 @@ tau.ui.Picker.prototype.renderer = tau.mixin({
   },
   
   _template: [ '<div>', '<div class=\'${base}${header}\'>',
-      '<span class=\'tau-button ${base}${cancel}\'>Cancel</span>',
-      '<span class=\'tau-button ${base}${done}\'>Done</span>',
+//      '<span class=\'tau-button ${base}${cancel}\'>Cancel</span>',
+//      '<span class=\'tau-button ${base}${done}\'>Done</span>',
       '</div>', '<div class=\'${base}${slotswrapper}\'>',
       '<div class=\'${base}${slots}\'>', '</div>', '</div>',
       '<div class=\'${base}${frame}\'>', '</div>', '</div>' ],
@@ -731,7 +732,18 @@ tau.ui.Picker.prototype.renderer = tau.mixin({
       }
     }
   },
-  
+
+  /**
+   * $dom의 key가 추가될 parent DOM element를 반환한다.
+   * @param {Object} $renderData base style class와 $dom 구조를 가지는 객체
+   * @param {String} key $dom 키값  
+   * @returns {HTMLElement}
+   * @see tau.ui.BaseRenderer.getParentElement
+   */
+  getHeaderElement: function ($renderData) {
+    var $dom = $renderData.$dom;   
+    return $dom[tau.ui.Picker.HEADER];
+  },
   
   /**
    * 현재 picker 가 화면에 표시중인지를 boolean 값으로 반환한다.
@@ -969,7 +981,7 @@ tau.ui.Picker.prototype.renderer = tau.mixin({
             -(options.selectedAt * this.cellHeight));
       }
     }
-
+    this.slots_refer[componentId][this.slots_refer[componentId].length - 1].callbackFn = valueChangedCallBack; 
     this.slots_refer[componentId][this.slots_refer[componentId].length - 1]
         .addEventListener("webkitTransitionEnd", valueChangedCallBack, false);
 
@@ -1053,6 +1065,7 @@ tau.ui.Picker.prototype.renderer = tau.mixin({
     this.scrollTo(this.c_slot[componentId],
         this.c_slot[componentId].slotYPosition
             + (this.cellHeight * itemIndex));
+    
   },
 
   /**
@@ -1221,6 +1234,7 @@ tau.ui.Picker.prototype.renderer = tau.mixin({
     var theTransform = window
         .getComputedStyle(this.c_slot[componentId]).webkitTransform;
     theTransform = new WebKitCSSMatrix(theTransform).m42;
+    
     if (theTransform != this.c_slot[componentId].slotYPosition) {
       this.setPosition(this.c_slot[componentId], theTransform);
     }
@@ -1299,17 +1313,8 @@ tau.ui.Picker.prototype.renderer = tau.mixin({
                 / this.cellHeight)
             * this.cellHeight, "100ms");
       }else{
-        // 사용자 scroll 이 정확히 cell 중간값에서 정지 했을때, webkittransitionEnd Event 가 발생 하지 않는 현상을 대비 하기 위해 -1, +1 한번씩 transition 한다.
-        // 개선 필요.
-        this.scrollTo(this.c_slot[componentId], (Math
-            .round(this.c_slot[componentId].slotYPosition
-                / this.cellHeight) -1)
-            * this.cellHeight, "100ms");
-
-        this.scrollTo(this.c_slot[componentId], (Math
-            .round(this.c_slot[componentId].slotYPosition
-                / this.cellHeight) +1)
-            * this.cellHeight, "100ms");
+        var slotIndex = this.getTargetSlotIndex(componentId, e);
+        this.slots_refer[componentId][slotIndex].callbackFn(null, this.c_slot[componentId]);
       }
 
       return false;
@@ -1431,7 +1436,7 @@ tau.ui.Picker.prototype.renderer = tau.mixin({
     }
   },
 
-  setPosition: function (slot, pos, runtime) {
+  setPosition: function (slot, pos, runtime) {    
     slot.slotYPosition = pos;
     slot.style.webkitTransitionDuration = runtime == undefined ? "100ms"
        : runtime;
@@ -1736,8 +1741,8 @@ tau.ui.TextField.prototype.renderer = tau.mixin({
           $base =  $renderData.$base,
           elem = this._createElement($dom, $base, tau.ui.TextField.HOLDERIMAGE_KEY, 
               this._templatePlaceholderImage, {refChildKey: tau.ui.TextField.TEXT_KEY});
-      
-	  var appCtx = tau.getCurrentContext();
+
+      var appCtx = tau.getCurrentContext();
       elem.setAttribute('src', appCtx.getRealPath(value));
     } else {
       this.releaseElement($renderData, tau.ui.TextField.HOLDERIMAGE_KEY);
@@ -1863,7 +1868,7 @@ tau.ui.Label.prototype.renderer = tau.mixin({
           height = 'auto';
 
     if (numberOfLines > 0) {
-      fontSize = unit= $dom[tau.ui.ROOT_KEY].style.fontSize;
+      fontSize = unit= $dom[tau.ui.ROOT_KEY].style.fontSize || '1em';
       
       if (fontSize) {
         // absolute-size에 대해 추후에 지원해야함.
@@ -2003,8 +2008,8 @@ tau.ui.ImageView.prototype.renderer = tau.mixin({
   updateSrc: function ($renderData, src) {
     var $dom = $renderData.$dom;
     if (src) {
-	  var appCtx = tau.getCurrentContext();
-	  src = appCtx.getRealPath(src);
+      var appCtx = tau.getCurrentContext();
+      src = appCtx.getRealPath(src);
       $dom[tau.ui.ROOT_KEY].src = src;
     } else {
       $dom[tau.ui.ROOT_KEY].src = null;
@@ -2236,6 +2241,10 @@ tau.ui.ScrollPanel.prototype.renderer = tau.mixin({
         style = vertical ? 'Height' : 'Width';
     
     if (!$dom[tau.ui.ROOT_KEY].parentNode) return 0;
+    
+    if (!vertical && $dom._pullup) {
+      return $dom[tau.ui.CONTENT_KEY]['scroll' + style] - $dom._pullup.offsetWidth;  
+    }
 
     return $dom[tau.ui.CONTENT_KEY]['scroll' + style];
   },
@@ -2325,7 +2334,22 @@ tau.ui.ScrollPanel.prototype.renderer = tau.mixin({
       tau.util.dom.removeClass(pull, this.$styleClass.loading, prefix);
       pullLabel.innerHTML = text;
       $dom[tau.ui.ScrollPanel.SCROLLER_KEY].style[margin] = 0 ;
+      if (!vertical && pullToRefresh === 'up') {
+        $dom._pullup.style.left = this.getScrollerSize($renderData, false) + 'px';
+      }
       break;
+    }
+  },
+  
+  /**
+   * horizontal인 경우 pullUpToRefresh 위치를 설정해 준다.
+   * @param {Object} $renderData base style class와 $dom 구조를 가지는 객체
+   */
+  initPullUpToRefresh: function ($renderData) {
+    var $dom = $renderData.$dom,
+      left = $dom._pullup.style.left;
+    if (!left) {
+      $dom._pullup.style.left = this.getScrollerSize($renderData, false) + 'px';
     }
   },
   
@@ -2348,9 +2372,6 @@ tau.ui.ScrollPanel.prototype.renderer = tau.mixin({
             'margin-top' : 'margin-left') || 0);
       }
       size = $dom._pullup[vertical ? 'scrollHeight' : 'scrollWidth'] + offset;
-      
-      tau.log('size [' + size);
-      
     } else {
       size = $dom._pulldown[vertical ? 'offsetHeight' : 'offsetWidth'];
     }
@@ -2814,7 +2835,7 @@ tau.ui.TableSection.prototype.renderer = tau.mixin({
       option2.duration = '1ms';
     }
     
-    if (folded){
+    if (!folded){
       tau.util.dom.removeClass(root, this.$styleClass.close, $base);
       tau.ui.TableSection.prototype.renderer.OPEN.animate($dom[tau.ui.CONTENT_KEY], option1);
       tau.ui.TableSection.prototype.renderer.ROTATE90.animate(elem, option2);
@@ -4186,21 +4207,23 @@ tau.ui.Select.prototype.renderer = tau.mixin({
    * style class는 <code>${key}</code>로 묶어서 표시한다.
    * {@link $base}, {@link $styleClass}에 설정되어 있는 style class가 <code>${key}</code>를 대체한다.
    */
-  _template: ['<div>',
-                '<div class=${base}${control}><div class=${base}${title}></div></div>',
-                '<div class=${base}${mask} style="display: none"></div>',
-                '<div class=${base}${popup} style="display: none; position: fixed;">',
-                  '<div class=${base}${popuptitle} style="display: none">',
-                    '<div class=${base}${close} style="display: none"></div>',
-                    '<h1 style="display: none"></h1>',
-                  '</div>',
-                  '<div class=${base}${arrow}></div>',
-                '</div>',  
-              '</div>'],
-  
-  _templateBadge: ['<div class=${base}${badge}>',
-                     '<span class=${base}${badgelabel}></span>',
-                   '</div>'],
+  _template: [
+    '<div>',
+      '<div class=${base}${control}><div class=${base}${title}></div></div>',
+    '</div>'],
+
+  _templateBadge: [
+     '<div class=${base}${badge}>',
+       '<span class=${base}${badgelabel}></span>',
+     '</div>'],
+
+  _templatePopup: [
+    '<div class=${base}${popup} style="display:none">',
+      '<div class=${base}${popuptitle} style="display: none">',
+        '<h1 style="display: none"></h1>',
+      '</div>',
+      '<div class=${base}${arrow}></div>',
+    '</div>'],
 
  /**
   * $dom 구조를 설정한다.
@@ -4212,18 +4235,16 @@ tau.ui.Select.prototype.renderer = tau.mixin({
   * @see tau.ui.BaseRenderer._initializeDOM
   */
   _initializeDOM: function ($dom, $base, root) {
-    var mask = root.childNodes[1], 
-        popup = root.childNodes[2],
+    var popup = this._createElement($dom, $base, tau.ui.Select.POPUP_KEY, 
+        this._templatePopup, {parentElement: document.createDocumentFragment()}),
         titleContainer = popup.firstChild;
 
     $dom[tau.ui.Select.CONTROL_KEY] = root.firstChild;
-    $dom[tau.ui.Select.MASK_KEY] = mask;
-    $dom[tau.ui.Select.POPUP_KEY] = popup,
-    $dom[tau.ui.Select.CLOSE_KEY] = titleContainer.firstChild,
-
-    $dom._title = root.firstChild.firstChild;
+    $dom[tau.ui.Select.CLOSE_KEY] = titleContainer;
+    
+    $dom._title = $dom[tau.ui.Select.CONTROL_KEY].firstChild;
     $dom._titleContainer = titleContainer;
-    $dom._popupTitle = titleContainer.childNodes[1];
+    $dom._popupTitle = titleContainer.firstChild;
   },
 
   /**
@@ -4238,6 +4259,7 @@ tau.ui.Select.prototype.renderer = tau.mixin({
     var $dom = $renderData.$dom;
     switch (key) {
     case tau.ui.Select.POPUP_KEY:
+    case tau.ui.Select.CLOSE_KEY:
       return $dom[key];
     default:
       return tau.ui.Select.$super.renderer.getParentElement.apply(this, arguments);
@@ -4263,21 +4285,6 @@ tau.ui.Select.prototype.renderer = tau.mixin({
   },
   
   /**
-   * popup을 닫는 버튼을 보여줄지 여부를 설정한다.
-   * @param {Object} $renderData base style class와 $dom 구조를 가지는 객체
-   * @param {Boolean} show
-   */
-  updateCloseBtn: function ($renderData, show){
-    var $dom = $renderData.$dom;
-    $dom[tau.ui.Select.CLOSE_KEY].style.display = show ? '' : 'none';
-    if (show || $dom._popupTitle.innerHTML){
-      $dom._titleContainer.style.display = '';
-    } else {
-      $dom._titleContainer.style.display = 'none';
-    }
-  },
-  
-  /**
    * popup을 fullscrenn으로 보여줄지 여부를 설정한다.
    * @param {Object} $renderData base style class와 $dom 구조를 가지는 객체
    * @param {Boolean} fullScreen
@@ -4294,6 +4301,21 @@ tau.ui.Select.prototype.renderer = tau.mixin({
       tau.util.dom.removeClass(popup, this.$styleClass.full, $base);
     }
   },
+  
+  /**
+   * 멀티로 선택가능한 여부를 설정한다.
+   * @param {Object} $renderData base style class와 $dom 구조를 가지는 객체
+   * @param {Boolean} multiple
+   * @overrides
+   */
+  updateMuliple: function ($renderData, multiple){
+    var $dom = $renderData.$dom;
+    if (multiple){
+      tau.util.dom.addClass($dom[tau.ui.Select.POPUP_KEY], this.$styleClass.multiple, $renderData.$base);
+    } else {
+      tau.util.dom.removeClass($dom[tau.ui.Select.POPUP_KEY], this.$styleClass.multiple, $renderData.$base);
+    }
+  },  
   
   /**
    * 현재 선택된 아이템 개수를 배지에 설정한다.
@@ -4321,18 +4343,16 @@ tau.ui.Select.prototype.renderer = tau.mixin({
    * @param {Object} $renderData base style class와 $dom 구조를 가지는 객체
    * @param {String} title
    */
-  updatePopupTitle: function ($renderData, title) {
+  updatePopupTitle: function ($renderData, title, visible) {
     var $dom = $renderData.$dom,
         popupTitle = $dom._popupTitle;
+    
+    if (visible) $dom._titleContainer.style.display = visible ? '' : 'none';
     
     if (title){
       popupTitle.innerHTML = title;
       popupTitle.style.display = '';
-      $dom._titleContainer.style.display = '';
     } else {
-      if ($dom[tau.ui.Select.CLOSE_KEY].style.display === 'none'){
-        $dom._titleContainer.style.display = 'none';
-      }
       popupTitle.style.display = 'none';
       popupTitle.innerHTML = null;
     }
@@ -4379,8 +4399,8 @@ tau.ui.Select.prototype.renderer = tau.mixin({
         popupStyle.left = x + 'px';
       }
     }
-
-    $dom[tau.ui.Select.MASK_KEY].style.display = '';
+    // FIXME
+    //$dom[tau.ui.Select.MASK_KEY].style.display = '';
     popupStyle.display = '';
   },
   
@@ -4390,7 +4410,8 @@ tau.ui.Select.prototype.renderer = tau.mixin({
    */
   closePopup: function ($renderData) {
     var $dom = $renderData.$dom;
-    $dom[tau.ui.Select.MASK_KEY].style.display = 'none';
+    // FIXME
+    //$dom[tau.ui.Select.MASK_KEY].style.display = 'none';
     $dom[tau.ui.Select.POPUP_KEY].style.display = 'none';
   },
   
@@ -4440,7 +4461,6 @@ tau.ui.Dialog.prototype.renderer = tau.mixin({
    * template에서 사용하는 style Class를 정의한다.
    */
   $styleClass: tau.mixin({
-    mask: '-mask',
     popup: '-popup',
     popuptitle: '-popup-title',
     close: '-popup-close',
@@ -4456,16 +4476,16 @@ tau.ui.Dialog.prototype.renderer = tau.mixin({
    * style class는 <code>${key}</code>로 묶어서 표시한다.
    * {@link $base}, {@link $styleClass}에 설정되어 있는 style class가 <code>${key}</code>를 대체한다.
    */
-  _template: ['<div>',
-                '<div class=${base}${mask}></div>',
-                '<div class=${base}${popup} style="display: none">',
-                  '<div class=${base}${popuptitle} style="display: none">',
-                    '<div class=${base}${close} style="display: none"></div>',
-                    '<h1 style="display: none"></h1>',
-                  '</div>',
-                  '<div class=${base}${arrow} style="display: none"></div>',
-                '</div>',
-              '</div>'],
+  _template: [
+    '<div>',
+      '<div class=${base}${popup} style="display: none">',
+        '<div class=${base}${popuptitle} style="display: none">',
+          '<div class=${base}${close} style="display: none"></div>',
+          '<h1 style="display: none"></h1>',
+        '</div>',
+        '<div class=${base}${arrow} style="display: none"></div>',
+      '</div>',
+    '</div>'],
   
   /**
    * $dom 구조를 설정한다.
@@ -4477,12 +4497,10 @@ tau.ui.Dialog.prototype.renderer = tau.mixin({
    * @see tau.ui.BaseRenderer._initializeDOM
    */
   _initializeDOM: function ($dom, $base, root) {
-    var mask = root.childNodes[0], 
-        popup = root.childNodes[1],
+    var  popup = root.childNodes[0],
         panel,
         titleContainer = popup.firstChild;
     
-    $dom[tau.ui.Dialog.MASK_KEY] = mask;
     $dom[tau.ui.Dialog.POPUP_KEY] = popup;
     $dom[tau.ui.Dialog.CLOSE_KEY] = titleContainer.firstChild;
     $dom._titleContainer = titleContainer;
@@ -4556,23 +4574,24 @@ tau.ui.Dialog.prototype.renderer = tau.mixin({
    */
   showby: function ($renderData, elem) {
     var $dom = $renderData.$dom,
-        popup = $dom[tau.ui.Dialog.POPUP_KEY], 
+        popup = $dom[tau.ui.Dialog.POPUP_KEY],
+        root = $dom[tau.ui.ROOT_KEY],
         style = popup.style,
         arrowStyle = $dom._arrow.style,
         styleText = [],
         arrowStyleText = [];
     
-    $dom[tau.ui.ROOT_KEY].style.opacity = 0;
-    $dom[tau.ui.ROOT_KEY].style.display = null;
+    root.style.opacity = 0;
+    root.style.display = null;
     
     if (!elem){
       style.cssText = '';
       arrowStyle.cssText = '';
-      tau.util.dom.replaceClass($dom[tau.ui.ROOT_KEY], this.$styleClass.small, 
+      tau.util.dom.replaceClass(root, this.$styleClass.small, 
           this.$styleClass.large, $renderData.$base);
       return;  
     }
-    tau.util.dom.replaceClass($dom[tau.ui.ROOT_KEY], this.$styleClass.large, 
+    tau.util.dom.replaceClass(root, this.$styleClass.large, 
         this.$styleClass.small, $renderData.$base);
     
     var xy = tau.util.dom.getXY(elem), 
@@ -5251,6 +5270,7 @@ tau.ui.SplitViewController.prototype.renderer = tau.mixin({
   }
   
 }, tau.ui.BaseRenderer);
+
 /**
  * Renders PopoverController
  * @class
@@ -5286,4 +5306,27 @@ tau.ui.PopoverController.prototype.renderer = tau.mixin({
       return tau.ui.BaseRenderer.getParentElement.apply(this, arguments);
     }
   },
+}, tau.ui.BaseRenderer);
+
+/**
+ * @class
+ * @private
+ */
+tau.ui.Mask.prototype.renderer = tau.mixin({
+  $base: 'tau-mask',
+  
+  $styleClass: {
+    fullscreen: '-fullscreen',
+  },
+  
+  updateFullscreen: function ($renderData, fullscreen) {
+    var $dom = $renderData.$dom;
+    if (fullscreen) {
+      tau.util.dom.addClass($dom[tau.ui.ROOT_KEY], 
+          this.$styleClass.fullscreen, $renderData.$base);
+    } else {
+      tau.util.dom.removeClass($dom[tau.ui.ROOT_KEY], 
+          this.$styleClass.fullscreen, $renderData.$base);
+    }
+  }
 }, tau.ui.BaseRenderer);

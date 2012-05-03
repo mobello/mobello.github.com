@@ -38,22 +38,13 @@ $class('tau.demo.TableController').extend(tau.ui.TableSceneController).define({
     tau.demo.TableController.$super.init.apply(this, arguments);
     this.setTitle('Demo');
     var table = new tau.ui.Table({
-      group : true,
+      group: true,
       sectionSort: tau.ui.ASC_SORT,
       styleClass: {section: 'sectionGroup'}
     });
-    this.getScene().add(table);
-  },
-  
-  /**
-   * loads scene which contains Table component
-   */
-  sceneLoaded: function () {
-	this.appCtx = tau.getCurrentContext();
-    this.getScene().setStyles({
-		 backgroundImage: 'url(/img/ios_background.gif)', 
-	  });
-    tau.demo.TableController.$super.sceneLoaded.apply(this, arguments);
+    var scene = this.getScene();
+    scene.setStyleClass({type: 'ios'});
+    scene.add(table);
   },
   
   /**
@@ -63,35 +54,36 @@ $class('tau.demo.TableController').extend(tau.ui.TableSceneController).define({
    * @returns {Number} the number of cells to load
    */
   loadModel: function (start, size) {
-    this.model =  [{group: 'Control', title: 'Checkbox'},
-                   {group: 'Control', title: 'Radio'},
-                   {group: 'Control', title: 'TextField'},
-                   {group: 'Control', title: 'TextArea'},
-                   {group: 'Control', title: 'Slider'},
-                   {group: 'Control', title: 'Switch'},
-                   {group: 'Control', title: 'Select'},
-                   {group: 'Control', title: 'SegmentedButton'},
-                   {group: 'Dialog', title: 'SystemDialog'},
-                   {group: 'Dialog', title: 'ActionSheet'},
-                   {group: 'Dialog', title: 'Dialog'},
-                   {group: 'Panel', title: 'ScrollPanel'},
-                   {group: 'Panel', title: 'Table'},
-                   {group: 'Panel', title: 'TextView'},
-                   {group: 'Panel', title: 'Carousel'},
-                   {group: 'Bar', title: 'ToolBar'},
-                   {group: 'Etc', title: 'Badge'},
-                   {group: 'Etc', title: 'Redraw'},
+    this.model =  [
+     {group: 'Control', title: 'Checkbox'},
+     {group: 'Control', title: 'Radio'},
+     {group: 'Control', title: 'TextField'},
+     {group: 'Control', title: 'TextArea'},
+     {group: 'Control', title: 'Slider'},
+     {group: 'Control', title: 'Switch'},
+     {group: 'Control', title: 'Select'},
+     {group: 'Control', title: 'SegmentedButton'},
+     {group: 'Dialog', title: 'SystemDialog'},
+     {group: 'Dialog', title: 'ActionSheet'},
+     {group: 'Dialog', title: 'Dialog'},
+     {group: 'Panel', title: 'ScrollPanel'},
+     {group: 'Panel', title: 'Table'},
+     {group: 'Panel', title: 'TextView'},
+     {group: 'Panel', title: 'Carousel'},
+     {group: 'Bar', title: 'ToolBar'},
+     {group: 'Etc', title: 'Badge'},
+     {group: 'Etc', title: 'Redraw'},
 
-                   {group: 'Spinner', title: 'Spinner'},
-                   {group: 'Picker', title: 'Picker'},
-                   {group: 'Picker', title: 'DatePicker'},
-                   {group: 'Button', title: 'Button'},
-                   {group: 'Label', title: 'Label'},
-                   {group: 'ActivityIndicator', title: 'ActivityIndicator'},
-                   {group: 'Image', title: 'ImageView'},
-                   {group: 'Modal', title: 'ModalController'},
-                   {group: 'Popover', title: 'PopoverController'}
-                   ];
+     {group: 'Spinner', title: 'Spinner'},
+     {group: 'Picker', title: 'Picker'},
+     {group: 'Picker', title: 'DatePicker'},
+     {group: 'Button', title: 'Button'},
+     {group: 'Label', title: 'Label'},
+     {group: 'ActivityIndicator', title: 'ActivityIndicator'},
+     {group: 'Image', title: 'ImageView'},
+     {group: 'Modal', title: 'ModalController'},
+     {group: 'Popover', title: 'PopoverController'}
+     ];
     return this.model.length;
   },
   
@@ -104,8 +96,8 @@ $class('tau.demo.TableController').extend(tau.ui.TableSceneController).define({
    */
   makeTableCell: function (index, offset) {
     var model = this.model;
-    return new tau.ui.TableCell({title: model[index].title,
-                                  groupName: model[index].group});
+    return new tau.ui.TableCell({title: model[index].title, 
+      groupName: model[index].group});
   },
   
   /**

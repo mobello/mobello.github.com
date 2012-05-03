@@ -1,4 +1,6 @@
-
+/**
+ * ModalController demo class
+ */
 $class('tau.demo.ModalController').extend(tau.ui.SceneController).define({
   
   /**
@@ -14,7 +16,7 @@ $class('tau.demo.ModalController').extend(tau.ui.SceneController).define({
   },
   
   /**
-   * 
+   * event listener invoked when button compoment is touched
    * @param e
    * @param payload
    */
@@ -27,7 +29,7 @@ $class('tau.demo.ModalController').extend(tau.ui.SceneController).define({
   },
   
   /**
-   * 
+   * event listener invoked when dismiss event of modal controller is fired
    * @param e
    * @param payload
    */
@@ -36,6 +38,9 @@ $class('tau.demo.ModalController').extend(tau.ui.SceneController).define({
   }
 });
 
+/**
+ * ModalSceneNavigator demo class
+ */
 $class('tau.demo.ModalSceneNavigator').extend(tau.ui.SequenceNavigator).define({
   
   /**
@@ -47,6 +52,9 @@ $class('tau.demo.ModalSceneNavigator').extend(tau.ui.SequenceNavigator).define({
   }
 });
 
+/**
+ * ModalSceneController demo class
+ */
 $class('tau.demo.ModalSceneController').extend(tau.ui.SceneController).define({
   
   /**
@@ -91,14 +99,14 @@ $class('tau.demo.ModalSceneController').extend(tau.ui.SceneController).define({
   /**
    * 
    */
-  handleDismiss: function () {
+  handleDismiss: function (e, payload) {
     this.dismissModal(true);
   },
   
   /**
    * 
    */
-  fireDismiss: function () {
+  fireDismiss: function (e, payload) {
     this.fireEvent('dismiss');
   }
 });

@@ -1,14 +1,18 @@
 $class('tau.stocks.AddController').extend(tau.ui.SceneController).define({
-	
+  
+  $static: {
+    URL: "http://autoc.finance.yahoo.com/autoc?callback=YAHOO.Finance.SymbolSuggest.ssCallback&query="
+  },
+  
   AddController: function () {
     this._stockList;
   },
-  
-	loadModel : function(result) {
+
+  loadModel : function(resp) {
     var items;
     var table = this.getTable();
     
-    if (result && (items = result.Result)) {
+    if (resp && resp.ResultSet && (items = resp.ResultSet.Result)) {
       if (!tau.isArray(items)) {
         items = [items];
       }
@@ -16,8 +20,8 @@ $class('tau.stocks.AddController').extend(tau.ui.SceneController).define({
       table.removeComponents(true);
       table.addNumOfCells(items.length);
     }
-	},
-	
+  },
+  
   makeTableCell: function (e, payload) {
     var table = this.getTable();
     var path = payload.index + payload.offset;
@@ -43,7 +47,7 @@ $class('tau.stocks.AddController').extend(tau.ui.SceneController).define({
   },
   
   getTable: function () {
-	  return this.getScene().getComponent('list');
+    return this.getScene().getComponent('list');
   },
   
   handleCellSelected: function (e, payload) {
@@ -53,7 +57,7 @@ $class('tau.stocks.AddController').extend(tau.ui.SceneController).define({
       this.fireEvent('dismiss', true);
     }
   },
-	
+  
   handleCancel: function (e, payload) {
     this.fireEvent('dismiss');
   },
@@ -63,14 +67,21 @@ $class('tau.stocks.AddController').extend(tau.ui.SceneController).define({
     var text = src.getText() || '';
     
     if (text.length > 1) {
-      var openapi = new tau.OpenAPI(tau.OpenAPI.FINANCE.STOCK.YAHOO);
-      openapi.call({
-        fn: tau.OpenAPI.FINANCE.STOCK.YAHOO.lookupStockSymbols,
-        param: {
-          query: text
-        },
-        callback: tau.ctxAware(this.loadModel, this)
-      });
+      if (!window.YAHOO) {
+        YAHOO = {Finance: {SymbolSuggest: {
+          ssCallback: tau.ctxAware(this.loadModel, this)
+        }}};
+      }
+      tau.req({
+        type: 'JSONP',
+        url: tau.stocks.AddController.URL + text
+      }).send();      
+    } else {
+      this.getTable().removeComponents(true);
     }
+  },
+  
+  destroy: function () {
+    delete YAHOO;
   }
 });
