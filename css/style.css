@@ -6,12 +6,17 @@ body {
 	font-family: Arial, sans-serif;
 }
 
-@media ( max-width : 979px) {
-	body {
-		padding-top: 0px;
-	}
+@media
+(
+max-width
+:
+979px)
+{
+body {
+	padding-top: 0px;
 }
 
+}
 .btn.btn-large {
 	font-size: 20px;
 	padding: 14px 20px;
@@ -31,6 +36,9 @@ li .fb_iframe_widget span {
 
 .default-banner {
 	background-image: url('/img/default-background.jpg');
+	height: 78px;
+	padding-top: 25px;
+	margin-bottom: 25px;
 }
 
 /* Nav */
@@ -98,11 +106,11 @@ li .fb_iframe_widget span {
 }
 
 .home-hero-button-img {
-	float: left;
-	background-repeat: no-repeat;
+	float: left; background-repeat : no-repeat;
 	width: 64px;
 	height: 53px;
 	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .home-hero-h1 {
