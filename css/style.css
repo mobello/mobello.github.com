@@ -81,10 +81,11 @@ li .fb_iframe_widget span {
 	margin: 12px 0;
 	font-size: 20px;
 	font-weight: bold;
-	padding-left: 64px;
+	
 	width: 331px;
 	height: 55px;
 	box-sizing: border-box;
+	padding: 0px;
 }
 
 .home-hero-button-content {
@@ -93,6 +94,7 @@ li .fb_iframe_widget span {
 	display: block;
 	width: 331px;
 	height: 55px;
+	padding-left: 64px;
 }
 
 .home-hero-h1 {
