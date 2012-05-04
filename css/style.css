@@ -57,6 +57,10 @@ li .fb_iframe_widget span {
 	font-size: 15px;
 }
 
+.navbar .nav .active>a,.navbar .nav .active>a:hover {
+	background-color: transparent;
+}
+
 .navbar .nav>li>a:hover {
 	text-shadow: 0px 0px 8px #fff;
 }
@@ -88,13 +92,18 @@ li .fb_iframe_widget span {
 }
 
 .home-hero-button-content {
-	background-repeat: no-repeat;
-	background-position: left;
-	display: block;
+	display: inline-block;
 	box-sizing: border-box;
-	width: 329px;
+	width: 265px;
 	height: 53px;
-	padding-left: 64px;
+	
+}
+
+.home-hero-button-img {
+	display: inline-block;
+	background-repeat: no-repeat;
+	width: 64px;
+	height: 53px;
 }
 
 .home-hero-h1 {
