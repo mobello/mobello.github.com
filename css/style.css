@@ -93,6 +93,7 @@ li .fb_iframe_widget span {
 	box-sizing: border-box;
 	padding: 0px;
 	color: white;
+	text-shadow: none;
 	background: #abb9ba;
 	background: -moz-linear-gradient(top, #abb9ba 0%, #6d7673 49%, #0b0d0a 50%, #0a0809
 		100%);
@@ -113,7 +114,7 @@ li .fb_iframe_widget span {
 .home-hero-button-content {
 	float: left;
 	width: 248px;
-	margin-top: 16px;
+	margin-top: 14px;
 }
 
 .home-hero-button-img {
