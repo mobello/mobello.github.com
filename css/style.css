@@ -33,6 +33,10 @@ li .fb_iframe_widget span {
 	height: 23px !important;
 }
 
+.default-banner {
+	background-image: url('/img/home-background.jpg');
+}
+
 /* Nav */
 .navbar-fixed-top {
 	margin-bottom: 0px !important;
