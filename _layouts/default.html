@@ -10,8 +10,8 @@
 <link href="/bootstrap/google-code-prettify/prettify.css" rel="stylesheet">
 <script type="text/javascript">
 	function openBlog() {
-		alert(window.navigator.language);
-		if(window.navigator.language == 'ko') {
+		var language = window.navigator.userLanguage || window.navigator.language;
+		if(language.indexOf('ko') !== -1) {
 			window.open('http://mobello.tumblr.com/');
 		} else {
 			window.open('http://mobellojs.tumblr.com/');
