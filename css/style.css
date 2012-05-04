@@ -154,6 +154,7 @@ li .fb_iframe_widget span {
 	float: left;
 	width: 113px;
 	height: 93px;
+	margin-right: 14px;
 }
 
 .feature-item {
@@ -161,6 +162,7 @@ li .fb_iframe_widget span {
 }
 
 .feature-item h3 {
+	color: #545454;
 	font-size: 24px;
 	font-weight:bold;
 	margin: 0 0 0.7em 98px;
@@ -168,6 +170,7 @@ li .fb_iframe_widget span {
 
 .feature-item p {
 	padding-right: 30px;
+	padding-left: 27px;
 	font-size: 16px; 
 	color: #606060;
 	line-height: 1.5;
