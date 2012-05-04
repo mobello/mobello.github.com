@@ -14,11 +14,11 @@ h1(feature-h1). Mobello.js
 
 h3. Core Runtime
 
-Runtime manages the lifecycle of installed apps and provides abstractions for interaction and animation, advanced effects.
-* Device independent event system (touch events)
-* Provides advanced animation
-* Runtime system for multi-app running
-* Provides controllers for general UX patterns
+Runtime manages the lifecycle of web apps and provides abstraction layers for user interaction and animation, advanced effects.
+* Device agnostic event system (touch events)
+* Provides advanced amimation
+* Runtime system for multi-tasking
+* Provides Controllers for general UX patterns
 
 </div>
 
@@ -38,12 +38,11 @@ Runtime manages the lifecycle of installed apps and provides abstractions for in
 
 h3. UI Components
 
-Mobello offers a complete set of user interface components for building rich mobile web apps.
-
+Mobello includes a complete set of user interface components for building rich mobile web apps.
 * 20+ beautifully designed components
-* Supports an wide range of device form-factors
-* Optimized for touch interface
-* You can easily extend default components to meet your needs
+* Supports wide range of device form-factor
+* Optimized for touch UI
+* Extendable and customizable components in easy way
 
 </div>
 </div>
@@ -154,7 +153,7 @@ h3. Powerful layout editing
 <div class="row">
 <div class="span9">
 
-h3. Eclipse-based
+h3. Eclipse plug-in architecture
 
 * Eclipse is industry-standard IDE platform and open source. You can build native web apps along with plugins which Appspresso or PhoneGap provides. 
 
