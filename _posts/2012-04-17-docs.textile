@@ -5,17 +5,13 @@ description: To help you get started we created comprehensive step-by-step guide
 ---
 
 
-h1. 시작하기
+h1. Getting Started (under construction)
 
-* <a href="#">설치 가이드</a>
-* <a href="#">처음으로 간단한 앱 만들어 보기</a>
+* <a href="#">Installation Guide</a>
 
-<br>
+h1. Articles (under construction)
 
-h1. 따라하기
-
-* <a href="#">네비게이션 구현하기</a>
-* <a href="#">Table 과 TableCell 을 이용한 연락처 구현하기</a>
+* <a href="#">Scene and Controller </a>
 
 <br>
 
