@@ -5,7 +5,7 @@ description: Mobello includes javascript framework(Mobello.js) and IDE(Mobello S
 ---
 
 
-h1. Mobello.js
+h1(feature-h1). Mobello.js
 
 <br>
 
@@ -52,7 +52,7 @@ Mobello offers a complete set of user interface components for building rich mob
 <br>
 <br>
 
-h1. Mobello Studio
+h1(feature-h1). Mobello Studio
 
 <br>
 
@@ -66,7 +66,7 @@ h3. Design web apps with HTML5 and CSS3
 
 </div>
 <div class="span4">
-!{height:157px}/img/feature-04.jpg!
+!{height:157px}/img/feature-03.png!
 </div>
 </div>
 
@@ -74,7 +74,7 @@ h3. Design web apps with HTML5 and CSS3
 
 <div class="row">
 <div class="span4">
-!{height:157px}/img/feature-05.jpg!
+!{height:157px}/img/feature-04.png!
 </div>
 <div class="span8">
 
@@ -96,7 +96,7 @@ h3. Real-time synchronized editing
 
 </div>
 <div class="span4">
-!{height:157px}/img/feature-06.jpg!
+!{height:157px}/img/feature-05.png!
 </div>
 </div>
 
@@ -104,7 +104,7 @@ h3. Real-time synchronized editing
 
 <div class="row">
 <div class="span4">
-!{height:157px}/img/feature-07.jpg!
+!{height:157px}/img/feature-06.png!
 </div>
 <div class="span8">
 
@@ -128,7 +128,7 @@ h3. Device emulator
 
 </div>
 <div class="span3">
-!{height:157px}/img/feature-10.png!
+!{height:157px}/img/feature-07.png!
 </div>
 </div>
 
@@ -136,7 +136,7 @@ h3. Device emulator
 
 <div class="row">
 <div class="span4">
-!{height:157px}/img/feature-07.jpg!
+!{height:157px}/img/feature-08.png!
 </div>
 <div class="span8">
 
