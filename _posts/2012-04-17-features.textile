@@ -30,11 +30,11 @@ Runtime manages the lifecycle of web apps and provides abstraction layers for us
 <hr>
 
 <div class="row">
-<div class="span4">
+<div class="span6">
 !/img/feature-02.png!
 </div>
 
-<div class="span8">
+<div class="span6">
 
 h3. UI Components
 
@@ -73,10 +73,10 @@ h3. Design web apps with HTML5 and CSS3
 <hr>
 
 <div class="row">
-<div class="span4">
+<div class="span6">
 !/img/feature-04.png!
 </div>
-<div class="span8">
+<div class="span6">
 
 h3. Visual design editor
 
@@ -103,10 +103,10 @@ h3. Real-time synchronized editing
 <hr>
 
 <div class="row">
-<div class="span4">
+<div class="span6">
 !{height:221px}/img/feature-06.png!
 </div>
-<div class="span8">
+<div class="span6">
 
 h3. Javascript debugging
 
@@ -137,10 +137,10 @@ h3. Device emulator
 <hr>
 
 <div class="row">
-<div class="span4">
+<div class="span6">
 !/img/feature-08.png!
 </div>
-<div class="span8">
+<div class="span6">
 
 h3. Powerful layout editing
 
