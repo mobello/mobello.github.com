@@ -84,6 +84,7 @@ li .fb_iframe_widget span {
 	padding-left: 64px;
 	width: 331px;
 	height: 55px;
+	box-sizing: border-box;
 }
 
 .home-hero-button-content {
