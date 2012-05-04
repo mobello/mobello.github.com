@@ -48,7 +48,8 @@ Mobello offers a complete set of user interface components for building rich mob
 </div>
 </div>
 
-<br>
+<hr>
+
 <br>
 <br>
 
