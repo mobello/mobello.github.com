@@ -92,6 +92,7 @@ li .fb_iframe_widget span {
 	height: 55px;
 	box-sizing: border-box;
 	padding: 0px;
+	color: white;
 	background: #abb9ba;
 	background: -moz-linear-gradient(top, #abb9ba 0%, #6d7673 49%, #0b0d0a 50%, #0a0809
 		100%);
