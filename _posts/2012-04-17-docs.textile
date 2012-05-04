@@ -5,15 +5,24 @@ description: To help you get started we created comprehensive step-by-step guide
 ---
 
 
-h1. Getting Started (under construction)
+h1. Getting Started
 
-* <a href="#">Installation Guide</a>
+* "모벨로를 소개합니다 [korean]":http://mobello.tumblr.com/post/21634260724
+* "설치하기 - FileSystem [korean]":http://mobello.tumblr.com/post/21685709384/filesystem
+* "설치하기 - WebServer [korean]":http://mobello.tumblr.com/post/21692818757/webserver
+* "처음 시작하기 - part1 [korean]":http://mobello.tumblr.com/post/21686783051/part1
+* "처음 시작하기 - part2 [korean]":http://mobello.tumblr.com/post/21691198274/part2
 
-h1. Articles (under construction)
+<hr>
 
-* <a href="#">Scene and Controller </a>
+h1. Tutorials
 
-<br>
+* "네비게이션 구현하기 - part1 [korean]":http://mobello.tumblr.com/post/21706116835/part1
+* "네비게이션 구현하기 - part2 [korean]":http://mobello.tumblr.com/post/21706121024/part2
+* "Table과 TableCell을 이용한 연락처 구현하기 - part1 [korean]":http://mobello.tumblr.com/post/21706131998/table-tablecell-part1
+* "Table과 TableCell을 이용한 연락처 구현하기 - part2 [korean]":http://mobello.tumblr.com/post/21706135932/table-tablecell-part2
+
+<hr>
 
 h1. Reference
 
