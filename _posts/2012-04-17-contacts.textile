@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Contacts
+description: We need your feedback. Send us any comment on Mobello.
 ---
 
 h1. Contact Us

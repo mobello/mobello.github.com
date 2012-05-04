@@ -1,9 +1,8 @@
 ---
 layout: default
 title: Features
+description: Mobello includes javascript framework(Mobello.js) and IDE(Mobello Studio).
 ---
-
-Mobello consists of javascript framework(Mobello.js) and IDE(Mobello Studio)
 
 
 h1. Mobello.js
