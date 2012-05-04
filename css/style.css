@@ -81,7 +81,6 @@ li .fb_iframe_widget span {
 	margin: 12px 0;
 	font-size: 20px;
 	font-weight: bold;
-	
 	width: 331px;
 	height: 55px;
 	box-sizing: border-box;
@@ -92,8 +91,9 @@ li .fb_iframe_widget span {
 	background-repeat: no-repeat;
 	background-position: left;
 	display: block;
-	width: 331px;
-	height: 55px;
+	box-sizing: border-box;
+	width: 329px;
+	height: 53px;
 	padding-left: 64px;
 }
 
