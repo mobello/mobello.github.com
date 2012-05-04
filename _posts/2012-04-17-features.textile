@@ -23,7 +23,7 @@ Runtime manages the lifecycle of installed apps and provides abstractions for in
 </div>
 
 <div class="span3"> 
-!{height:157px}/img/feature-01.png!
+!/img/feature-01.png!
 </div>
 </div>
 
@@ -31,7 +31,7 @@ Runtime manages the lifecycle of installed apps and provides abstractions for in
 
 <div class="row">
 <div class="span4">
-!{height:157px}/img/feature-02.png!
+!/img/feature-02.png!
 </div>
 
 <div class="span8">
@@ -67,7 +67,7 @@ h3. Design web apps with HTML5 and CSS3
 
 </div>
 <div class="span4">
-!{height:157px}/img/feature-03.png!
+!/img/feature-03.png!
 </div>
 </div>
 
@@ -75,7 +75,7 @@ h3. Design web apps with HTML5 and CSS3
 
 <div class="row">
 <div class="span4">
-!{height:157px}/img/feature-04.png!
+!/img/feature-04.png!
 </div>
 <div class="span8">
 
@@ -97,7 +97,7 @@ h3. Real-time synchronized editing
 
 </div>
 <div class="span4">
-!{height:157px}/img/feature-05.png!
+!/img/feature-05.png!
 </div>
 </div>
 
@@ -105,7 +105,7 @@ h3. Real-time synchronized editing
 
 <div class="row">
 <div class="span4">
-!{height:157px}/img/feature-06.png!
+!{height:221px}/img/feature-06.png!
 </div>
 <div class="span8">
 
@@ -129,7 +129,7 @@ h3. Device emulator
 
 </div>
 <div class="span3">
-!{height:157px}/img/feature-07.png!
+!/img/feature-07.png!
 </div>
 </div>
 
@@ -137,7 +137,7 @@ h3. Device emulator
 
 <div class="row">
 <div class="span4">
-!{height:157px}/img/feature-08.png!
+!/img/feature-08.png!
 </div>
 <div class="span8">
 
@@ -160,6 +160,6 @@ h3. Eclipse-based
 
 </div>
 <div class="span3">
-!{height:157px}/img/feature-09.png!
+!/img/feature-09.png!
 </div>
 </div>
