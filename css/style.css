@@ -233,6 +233,11 @@ li .fb_iframe_widget span {
 	float: left;
 	margin-right: 19px;
 }
+.demo-tip {
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    margin-bottom: 50px;
+}
 
 /* contacts page */
 .contacts-list {
