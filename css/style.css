@@ -30,7 +30,9 @@ li .fb_iframe_widget span {
 }
 
 .default-banner {
-	background-image: url('/img/default-background.jpg');
+	background-image: url('/img/default-background.jpg'), url('/img/home-background.jpg');
+	background-repeat: no-repeat, repeat;
+	background-position: 50% 100%, 0% 100%;
 	height: 78px;
 	padding-top: 25px;
 	margin-bottom: 25px;
