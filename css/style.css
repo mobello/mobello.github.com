@@ -232,3 +232,13 @@ li .fb_iframe_widget span {
 	float: left;
 	margin-right: 19px;
 }
+
+/* contacts page */
+.contacts-list {
+	font-size: 20px;
+	color: #575757;
+}
+
+.contacts-list > li{
+	margin-bottom: 10px;
+}
