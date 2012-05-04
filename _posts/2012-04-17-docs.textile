@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Documentation
-description: We provide development resources for Mobello. 
+description: To help you get started we created comprehensive step-by-step guide and documentation. 
 ---
 
 
