@@ -6,17 +6,12 @@ body {
 	font-family: Arial, sans-serif;
 }
 
-@media
-(
-max-width
-:
-979px)
-{
-body {
-	padding-top: 0px;
+@media ( max-width : 979px) {
+	body {
+		padding-top: 0px;
+	}
 }
 
-}
 .btn.btn-large {
 	font-size: 20px;
 	padding: 14px 20px;
@@ -97,6 +92,21 @@ li .fb_iframe_widget span {
 	height: 55px;
 	box-sizing: border-box;
 	padding: 0px;
+	background: #abb9ba;
+	background: -moz-linear-gradient(top, #abb9ba 0%, #6d7673 49%, #0b0d0a 50%, #0a0809
+		100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #abb9ba),
+		color-stop(49%, #6d7673), color-stop(50%, #0b0d0a),
+		color-stop(100%, #0a0809) );
+	background: -webkit-linear-gradient(top, #abb9ba 0%, #6d7673 49%, #0b0d0a 50%,
+		#0a0809 100%);
+	background: -o-linear-gradient(top, #abb9ba 0%, #6d7673 49%, #0b0d0a 50%, #0a0809
+		100%);
+	background: -ms-linear-gradient(top, #abb9ba 0%, #6d7673 49%, #0b0d0a 50%, #0a0809
+		100%);
+	background: linear-gradient(top, #abb9ba 0%, #6d7673 49%, #0b0d0a 50%, #0a0809 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(  startColorstr='#abb9ba',
+		endColorstr='#0a0809', GradientType=0 );
 }
 
 .home-hero-button-content {
@@ -106,7 +116,8 @@ li .fb_iframe_widget span {
 }
 
 .home-hero-button-img {
-	float: left; background-repeat : no-repeat;
+	float: left;
+	background-repeat: no-repeat;
 	width: 64px;
 	height: 53px;
 	background-position: center;
@@ -210,11 +221,11 @@ li .fb_iframe_widget span {
 
 /* features page */
 .feature-h1 {
-	font-size: 28px;	
+	font-size: 28px;
 }
 
 /* demo page */
 .demo-img {
-	float:left;
+	float: left;
 	margin-right: 19px;
 }
