@@ -92,14 +92,11 @@ li .fb_iframe_widget span {
 }
 
 .home-hero-button-content {
-	display: inline-block;
-	box-sizing: border-box;
-	width: 259px;
-	height: 53px;
+	float: left;
 }
 
 .home-hero-button-img {
-	display: inline-block;
+	float: left;
 	background-repeat: no-repeat;
 	width: 64px;
 	height: 53px;
