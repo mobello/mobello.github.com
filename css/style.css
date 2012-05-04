@@ -1,17 +1,13 @@
 body {
-	padding-top: 80px;
+	padding-top: 60px;
 	padding-bottom: 40px;
 	padding-left: 0px !important;
 	padding-right: 0px !important;
 	font-family: Arial, sans-serif;
 }
 
-.home-body {
-	padding-top: 60px;
-}
-
 @media ( max-width : 979px) {
-	.home-body {
+	body {
 		padding-top: 0px;
 	}
 }
@@ -34,7 +30,7 @@ li .fb_iframe_widget span {
 }
 
 .default-banner {
-	background-image: url('/img/home-background.jpg');
+	background-image: url('/img/default-background.jpg');
 }
 
 /* Nav */
