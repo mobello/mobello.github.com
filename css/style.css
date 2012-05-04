@@ -67,7 +67,7 @@ li .fb_iframe_widget span {
 	background-color:#E6E3E3;
 	background-image: url('/img/home-1.jpg'), url('/img/home-background.jpg');
 	background-repeat: no-repeat, repeat;
-	background-position-x: 83%, 0;
+	background-position-x: 68%, 0;
 	margin-bottom: 30px;
 	height: 430px;
 }
@@ -83,32 +83,12 @@ li .fb_iframe_widget span {
 	font-weight: bold;
 }
 
-.icon-github {
-	background-image: url('/img/home-2.png');
+.home-hero-h1 {
+	font-size: 43px; margin-bottom: 18px;  padding-top: 50px; text-shadow: 0px 0px 9px #F7F7F7; font-weight: bold;
 }
 
-.icon-download {
-	background-image: url('/img/home-3.png');
-}
-
-.icon-demo {
-	background-image: url('/img/home-4.png');
-}
-
-.icon-architecture {
-	background-image: url('/img/home-5.png');
-}
-
-.icon-native {
-	background-image: url('/img/home-6.png');
-}
-
-.icon-ide {
-	background-image: url('/img/home-7.png');
-}
-
-.icon-easy {
-	background-image: url('/img/home-8.png');
+.home-hero-h3 {
+	margin-bottom: 52px; font-size: 20px; font-weight: normal;text-shadow: 0px 0px 9px #F7F7F7;
 }
 
 /* Quick Links */
