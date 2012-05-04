@@ -212,3 +212,9 @@ li .fb_iframe_widget span {
 .feature-h1 {
 	font-size: 28px;	
 }
+
+/* demo page */
+.demo-img {
+	float:left;
+	margin-right: 19px;
+}
