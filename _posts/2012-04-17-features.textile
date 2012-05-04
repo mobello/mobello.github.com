@@ -61,7 +61,7 @@ h1(feature-h1). Mobello Studio
 
 h3. Design web apps with HTML5 and CSS3
 
-* Leverage the latest in web technologies and specifications.
+* Leverage the latest web technologies and specifications.
 * You don't have to concern vendor prefixes like -webkit or -moz.
 
 </div>
@@ -80,7 +80,7 @@ h3. Design web apps with HTML5 and CSS3
 
 h3. Visual design editor
 
-* Studio helps you add or remove components easily and accurately, with features such as the drag and drop.
+* Studio helps you add or remove components easily and accurately, with features such as drag and drop.
 * You can preview while editing, with standard compliant css rendering engine.
 </div>
 </div>
@@ -112,6 +112,8 @@ h3. Javascript debugging
 
 * Set up breakpoints in source code
 * Step into/over/out
+* Inspect variables
+* Consolve view
 
 </div>
 </div>
@@ -123,7 +125,7 @@ h3. Javascript debugging
 
 h3. Device emulator
 
-* Emulate device form factor (screen size and resolution)
+* Emulate device form factor (iOS and android)
 * Rotate / Zoom / Multi-touch gesture
 
 </div>
@@ -142,7 +144,7 @@ h3. Device emulator
 
 h3. Powerful layout editing
 
-* Alignment/snap-to-line helps you to arrange UI components.
+* Alignment/snap-to-line helps you arrange UI components.
 * Visual editor support a range of layouts: absolute layout/flow layout/flexbox layout.
 
 </div>
