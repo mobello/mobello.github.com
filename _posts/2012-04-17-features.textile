@@ -15,8 +15,8 @@ h1(feature-h1). Mobello.js
 h3. Core Runtime
 
 Runtime manages the lifecycle of installed apps and provides abstractions for interaction and animation, advanced effects.
-* Device indepandant event system (touch events)
-* Provides advanced amimation
+* Device independent event system (touch events)
+* Provides advanced animation
 * Runtime system for multi-app running
 * Provides controllers for general UX patterns
 
