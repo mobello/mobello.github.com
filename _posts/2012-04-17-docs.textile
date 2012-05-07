@@ -8,8 +8,7 @@ description: To help you get started we created comprehensive step-by-step guide
 h1. Getting Started
 
 * "모벨로를 소개합니다 [korean]":http://mobello.tumblr.com/post/21634260724
-* "설치하기 - FileSystem [korean]":http://mobello.tumblr.com/post/21685709384/filesystem
-* "설치하기 - WebServer [korean]":http://mobello.tumblr.com/post/21692818757/webserver
+* "설치하기 [korean]":http://mobello.tumblr.com/post/21685709384
 * "처음 시작하기 - part1 [korean]":http://mobello.tumblr.com/post/21686783051/part1
 * "처음 시작하기 - part2 [korean]":http://mobello.tumblr.com/post/21691198274/part2
 
