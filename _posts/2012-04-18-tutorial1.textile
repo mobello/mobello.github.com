@@ -3,6 +3,6 @@ layout: default
 title: Tutorial
 ---
 
-h3. English version of tutorial is comming soon!
+h3. "korean version":/tutorial1-ko/
 
-h3. korean version:"/tutorail1-ko/"
+h3. English version of tutorial is comming soon!
