@@ -10,19 +10,21 @@
 <link href="/bootstrap/google-code-prettify/prettify.css" rel="stylesheet">
 <script type="text/javascript">
 	function openBlog() {
-		var language = window.navigator.userLanguage || window.navigator.language;
-		if(language.indexOf('ko') !== -1) {
+		if(getLanguage().indexOf('ko') !== -1) {
 			window.open('http://mobello.tumblr.com/');
 		} else {
 			window.open('http://mobellojs.tumblr.com/');
 		}
 	}
 	function navigateToTutorial() {
-		if(language.indexOf('ko') !== -1) {
+		if(getLanguage().indexOf('ko') !== -1) {
 			window.loaction.href="/tutorial1-ko/";
 		} else {
 			window.loaction.href="/tutorial1/";
 		}
+	}
+	function getLanguage() {
+		return  window.navigator.userLanguage || window.navigator.language;
 	}
 </script>
 
