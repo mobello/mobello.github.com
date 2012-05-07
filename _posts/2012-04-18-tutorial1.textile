@@ -1,4 +1,8 @@
 --- 
 layout: default 
-title: Tutorial1 
+title: Tutorial
 ---
+
+h3. "Korean version":/tutorial1-ko/
+
+h3. English version of tutorial is comming soon!

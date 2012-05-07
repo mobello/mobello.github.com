@@ -32,7 +32,7 @@ description: Kitchen sink demo demonstrates UI components and functionalities of
 				<img src="/img/demo-qr.png" style="float: right" alt="" />
 			</div>
 		</div>
-		<div class="well">
+		<div class="well demo-tip">
 			<div style="font-weight: bold">Tip1: &nbsp; Long click the bottom area of left
 				iPhone screen!</div>
 			<div style="font-weight: bold">Tip2: &nbsp; Scan the QR code with your
@@ -60,3 +60,11 @@ description: Kitchen sink demo demonstrates UI components and functionalities of
 		</p>
 	</div>
 </div>
+
+<script type="text/javascript">
+    	if(navigator.userAgent.indexOf("MSIE") != -1) {
+    		alert("This demo doesn't support Internet Explorer. Please use Chrome or Safari or other webkit based browser.");
+    	} else if(navigator.userAgent.indexOf("Firefox") != -1) {
+    		alert("This demo doesn't support Firefox. Please use Chrome or Safari or other webkit based browser.");
+    	}
+</script>

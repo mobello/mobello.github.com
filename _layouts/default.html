@@ -11,11 +11,21 @@
 <link href="/bootstrap/google-code-prettify/prettify.css" rel="stylesheet">
 <script type="text/javascript">
 	function openBlog() {
-		if(navigator.language == 'ko') {
+		if(getLanguage().indexOf('ko') !== -1) {
 			window.open('http://mobello.tumblr.com/');
 		} else {
 			window.open('http://mobellojs.tumblr.com/');
 		}
+	}
+	function navigateToTutorial() {
+		if(getLanguage().indexOf('ko') !== -1) {
+			window.location.href="/tutorial1-ko/";
+		} else {
+			window.location.href="/tutorial1/";
+		}
+	}
+	function getLanguage() {
+		return  window.navigator.userLanguage || window.navigator.language;
 	}
 </script>
 
@@ -26,7 +36,7 @@
 			<div class="container">
 				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span
 					class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a href="/" class="brand"><img src="/img/logo.png"><span style="font-size:9px; color: white">(웹사이트 준비중입니다^^)</span> </a>
+				</a> <a href="/" class="brand"><img src="/img/logo.png"></a>
 				
 				<div class="nav-collapse">
 					<ul class="nav">
@@ -39,8 +49,8 @@
 						<li {% if page.title == 'Demo' %} class="active" {% endif %} >
 							<a href="/demo">Demo</a>
 						</li>
-						<li {% if page.title == 'Tutorial1' %} class="active" {% endif %} >
-							<a href="/tutorial1">Tutorial</a>
+						<li {% if page.title == 'Tutorial' %} class="active" {% endif %} >
+							<a href="#" onclick="navigateToTutorial();">Tutorial</a>
 						</li>
 						<li {% if page.title == 'Documentation' %} class="active" {% endif %} >
 							<a href="/docs">Documentation</a>
@@ -86,7 +96,7 @@
 	{% if page.title != 'Home' %}
 	<div class="default-banner">
 		<div class="container">
-			<h1 style="font-size: 46px;margin-bottom: 24px;margin-top: 27px;">
+			<h1 style="font-size: 46px;margin-bottom: 24px;margin-top: 48px;">
 				{{ page.title }}
 			</h1>
 			<p style="font-size: 19px;">
