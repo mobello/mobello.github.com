@@ -1,7 +1,7 @@
 --- 
 layout: default 
 title: Tutorial
-description: 이 문서는 Mobello UI Framework을 이용한 App 개발 과정을 간략하게 소개합니다. 뿐만 아니라 코딩, UI 디자인, 디버깅을 포함한 기본적인 개발 단계도 같이 볼 수 있습니다.
+description: 이 문서는 Mobello UI Framework을 이용한 App 개발 과정을 간략하게 소개합니다.
 ---
 
 h2. Before you start
