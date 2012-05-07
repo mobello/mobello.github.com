@@ -97,7 +97,7 @@ http://localhost:8080/tau/launcher.html?app=firstapp
 
 정상적으로 실행되면 다음과 같은 결과가 출력됩니다.
 
-!{width:250px}/img/firstapp1.png!
+!{width:250px}http://media.tumblr.com/tumblr_m2zawoRk821rnkrh8.jpg!
 
 이제 좀 더 확장해서 단순히 문자열을 출력하는 형태가 아니라 사용자의 입력에 반응할 수 있도록 기능을 추가해 보겠습니다. 사용자의 입력을 위해 버튼 하나를 만들고 이 버튼을 눌렀을 때 현재 출력된 문자열이 다른 문자로 변경되록 수정하겠습니다. 먼저 버튼 컴포넌트 클래스를 이용해서 Change문자열로 라벨을 설정하고 화면 위로 부터 100px 떨어진 위치에 출력되도록 추가합니다.
 
