@@ -5,6 +5,13 @@
     <link type="text/css" rel="stylesheet" href="emulator.css" />
     <script type="text/javascript"  src="tau.lang.js"></script>
     <script type="text/javascript" src="emulator.js"></script>
+    <script type="text/javascript">
+    	if(navigator.userAgent.indexOf("MSIE") != -1) {
+    		alert('This emulator doesn't support Internet Explorer. Please use Chrome or Safari or other webkit based browser.');
+    	} else if(navigator.userAgent.indexOf("Firefox") != -1) {
+    		alert('This emulator doesn't support Firefox. Please use Chrome or Safari or other webkit based browser.');
+    	}
+    </script>
   </head>
 
   <body onload='util.createEmulator();'>
