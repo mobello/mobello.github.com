@@ -6,7 +6,7 @@ config({
   version     : '1.0.0',
   vendor      : 'KT Corp',
   theme       : 'ios',
-  desc        : '아이폰의 연락처 앱을 Mobello Framework으로 재구성했습니다. 빠른시간 안에 아이폰과 동일한 주솔록 앱을 쉽게 만들 수 있습니다. 동작을 확인해 보세요!',
+  desc        : '아이폰의 연락처 앱을 Mobello Framework으로 재구성했습니다. 빠른시간 안에 아이폰과 동일한 주소록 앱을 쉽게 만들 수 있습니다. 동작을 확인해 보세요!',
   model	      : [{group: '친구', name: 'Steve', mobile: '011-1024-1111', company: 'ABCD Inc.', position: 'Chairman', img: '/img/02.jpg'},
                  {group: '친구', name: 'Billy', mobile: '011-1024-2222', company: 'CC Inc.', position: 'Chairman', img: '/img/01.jpg'},
                  {group: '친구', name: 'Mark', mobile: '011-1024-3333', company: 'DD Inc.', position: 'CEO', img: '/img/03.jpg'},
