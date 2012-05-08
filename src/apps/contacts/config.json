@@ -13,9 +13,9 @@ config({
                  {group: '가족', name: '아버지', mobile: '011-1024-9999', img: ''},
                  {group: '가족', name: '어머니', mobile: '011-1024-1122', img: ''},
                  {group: '가족', name: '누나', mobile: '011-1024-1123', img: ''},
-                 {group: '회사', name: '김정근', mobile: '010-1234-1234', office: '010-1234-1234', email: 'skanto.kim@kt.com', deppartment: '웹플랫폼개발팀', company: 'kt corp.', position: '팀장', img: '/img/jeonggeun.jpg'},                 
-                 {group: '회사', name: '이왕수', mobile: '010-1234-1234', office: '010-1234-1234', email: 'ws.lee@kt.com', deppartment: '웹플랫폼개발팀', company: 'kt corp.', position: '매니저', img: '/img/wangsoo.jpg'},
-                 {group: '회사', name: '민병욱', mobile: '010-1234-1234', office: '010-1234-1234', email: 'bw.min@kt.com ', deppartment: '웹플랫폼개발팀', company: 'kt corp.', position: '매니저', img: '/img/byunguk.jpg'},
-                 {group: '회사', name: '권종현', mobile: '010-1234-1234', office: '010-1234-1234', email: 'jonghyun.kwon@kt.com', deppartment: '웹플랫폼개발팀', company: 'kt corp.', position: '매니저', img: '/img/jonghyun.jpg'},
-                 {group: '회사', name: '이호연', mobile: '010-1234-1234', office: '010-1234-1234', email: 'hoyeon.lee@kt.com', deppartment: '웹플랫폼개발팀', company: 'kt corp.', position: '매니저', img: '/img/hoyeon.jpg'}]
+                 {group: '회사', name: '김정근', mobile: '010-1234-1234', office: '010-1234-1234', email: kim@mycompany.com', deppartment: '개발팀', company: 'kt corp.', position: '팀장', img: '/img/jeonggeun.jpg'},                 
+                 {group: '회사', name: '이왕수', mobile: '010-1234-1234', office: '010-1234-1234', email: 'lee@mycompany.com', deppartment: '개발팀', company: 'kt corp.', position: '매니저', img: '/img/wangsoo.jpg'},
+                 {group: '회사', name: '민병욱', mobile: '010-1234-1234', office: '010-1234-1234', email: 'min@mycompany.com ', deppartment: '개발팀', company: 'kt corp.', position: '매니저', img: '/img/byunguk.jpg'},
+                 {group: '회사', name: '권종현', mobile: '010-1234-1234', office: '010-1234-1234', email: 'kwon@mycompany.com', deppartment: '개발팀', company: 'kt corp.', position: '매니저', img: '/img/jonghyun.jpg'},
+                 {group: '회사', name: '이호연', mobile: '010-1234-1234', office: '010-1234-1234', email: 'hoy@mycompany.com', deppartment: '개발팀', company: 'kt corp.', position: '매니저', img: '/img/hoyeon.jpg'}]
 });
