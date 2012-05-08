@@ -2,6 +2,7 @@
 layout: default 
 title: Tutorial
 description: 이 문서는 Mobello UI Framework을 이용한 App 개발 과정을 간략하게 소개합니다.
+keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial,튜토리얼, 강의
 ---
 
 h2. Before you start
