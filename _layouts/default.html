@@ -10,16 +10,6 @@
 <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css" type="text/css" />
 <link href="/bootstrap/google-code-prettify/prettify.css" rel="stylesheet">
 <script type="text/javascript">
-
-	function loadPage() {
-	  prettyPrint();
-	  if(page.title =='Home'){
-	    document.title = {{page.title}};
-	  }else{
-	    document.title = {{page.title}}+" | Mobello"
-	  }
-	}
-
 	function openBlog() {
 		if(getLanguage().indexOf('ko') !== -1) {
 			window.open('http://mobello.tumblr.com/');
