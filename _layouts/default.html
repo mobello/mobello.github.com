@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>{% if page.title == 'Home' %}Mobello | HTML5 framework for building mobile web app {% else %}{{page.title}} | Mobello {% endif %}</title>
 <meta charset="UTF-8">
 <meta name="description" content="{{page.description}}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
 <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css" type="text/css" />
 <link href="/bootstrap/google-code-prettify/prettify.css" rel="stylesheet">
 <script type="text/javascript">
+
 	function openBlog() {
 		if(getLanguage().indexOf('ko') !== -1) {
 			window.open('http://mobello.tumblr.com/');
