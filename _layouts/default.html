@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>{{page.title}} | Mobello</title>
 <meta name="description" content="{{page.description}}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="keywords" content="{{page.keywords}}">
@@ -11,6 +10,16 @@
 <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css" type="text/css" />
 <link href="/bootstrap/google-code-prettify/prettify.css" rel="stylesheet">
 <script type="text/javascript">
+
+	function loadPage() {
+	  if(page.title =='Home'){
+	    document.title = {{page.title}};
+	  }else{
+	    document.title = {{page.title}}+" | Mobello"
+	  }
+	  prettyPrint();
+	}
+
 	function openBlog() {
 		if(getLanguage().indexOf('ko') !== -1) {
 			window.open('http://mobello.tumblr.com/');
