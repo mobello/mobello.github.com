@@ -12,12 +12,12 @@
 <script type="text/javascript">
 
 	function loadPage() {
+	  prettyPrint();
 	  if(page.title =='Home'){
 	    document.title = {{page.title}};
 	  }else{
 	    document.title = {{page.title}}+" | Mobello"
 	  }
-	  prettyPrint();
 	}
 
 	function openBlog() {
