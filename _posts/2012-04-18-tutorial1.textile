@@ -1,9 +1,173 @@
 --- 
 layout: default 
 title: Tutorial
+description: This tutorial will introduce you to the fundamentals of developing with Mobello framework. 
 keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial,튜토리얼, 강의
 ---
 
-h3. "Korean version":/tutorial1-ko/
+h2. Before you start
 
-h3. English version of tutorial is comming soon!
+In this tutorial you will go through developing simple demo application that displays "Hello Mobello Framework!" text on the iphone screen. Before you get started, you need to know several steps to make you up and running.
+
+h4. 1. App folder creation
+
+If the name of an application we will write is 'firstapp' you need to create new folder named with 'firstapp' under the [apps] folder as follows. All the source codes we write will be located under this folder.
+
+<pre class="prettyprint">
+[Mobello Framework]
+  +-[apps]
+  |  +-[firstapp]  <- newly created folder!
+  |  +- ... (sample apps)
+  +-[lib]
+  +-[shared]
+  +-config.json
+  +-launcher.html
+</pre>
+
+h4. 2. Configurations
+
+To set up config information, you need to create new text file name with 'config.json'. And then fill the file with the following simple contents.
+
+<pre class="prettyprint">
+config({
+  classname: 'sample.FirstAppController'
+});
+</pre>
+
+Above code states that the name of class to load initially is 'sample.FirstAppController' when the app is to start executing. Now, we create javascript source file named as the one specified in the configuration file.
+
+h4. 3. Source file creation
+
+Next, we create a source file under the [firstapp] folder and leave the name of the source file as 'main.js' by default. When Mobello UI framework launches it searches for that file first. If that file is found then loads and executes it. If all the steps so far has finished the folder hierarchy will be as follows:
+
+<pre class="prettyprint">
+[Mobello Framework]
+  +-[apps]
+  |  +-[firstapp]  <- newly created folder!
+  |  |  +- main.js
+  |  |  +- config.json
+  |  +- ... (sample apps)
+  +-[lib]
+  +-[shared]
+  +-config.json
+  +-launcher.html
+</pre>
+
+All the steps before you get started are completed. Now we will start writing application codes.
+
+h2. Let's hit the road!
+
+Open the 'main.js' file we created from the above section and write 'sample.FirstAppController' class specified in the config.json file. The source code of that class looks like as follows.
+
+h5. main.js
+
+<pre class="prettyprint">
+$class('sample.FirstAppController').extend(tau.ui.SceneController).define({
+  loadScene: function () {
+ 
+  }
+});
+</pre>
+
+You can create UI which will be drawn on the iPhone screen through loadScene() method. loadScene() method is callback method which is invoked when Mobello framework is ready to draw UI.
+
+h4. Creating Interfaces
+
+As you can see the following codes we instantiate Label component first. We will make use of text string 'Hello Mobello!' as the argument of the constructor of Label component and let the component position apart 50px from the top. And then add the instance of Label component to the Scene.
+
+h5. main.js
+
+<pre class="prettyprint">
+$class('sample.FirstAppController').extend(tau.ui.SceneController).define({
+  loadScene: function () {
+    var scene = this.getScene();
+    var label = new tau.ui.Label({text: 'Hello Mobello!', styles: {top: '50px'}});
+    scene.add(label);
+  }
+});
+</pre>
+
+We finished creating an app just using a few lines of code. Now then, we will run the app through the iPhone. To make the app run on the iPhone you need to install web server like Tomcat before hand. Run the Safari browser on the iPhone and type the followwing URL in the address bar.
+
+<pre class="prettyprint">
+http://localhost:8080/tau/launcher.html?app=firstapp
+</pre>
+
+If the situation goes well the reuslts will be the same as the following image.
+
+!{width:250px}http://media.tumblr.com/tumblr_m2zawoRk821rnkrh8.jpg!
+
+Let us tweak the existing code and add additional feature that responds against the user's action. To listen user's action we will add a Button component. And then change the logic to alter the existing text string to another if an user touches the button.
+First, we create Button component with the 'Change' label and let the component position apart 100px from the top.
+
+h5. main.js
+
+<pre class="prettyprint">
+$class('sample.FirstAppController').extend(tau.ui.SceneController).define({
+  loadScene: function () {
+    var scene = this.getScene();
+    var label = new tau.ui.Label({text: 'Hello Mobello!', styles: {top: '50px'}});
+    scene.add(label);
+ 
+    var button = new tau.ui.Button({label: 'Change', styles: {top: '100px'}});
+    scene.add(button);
+  }
+});
+</pre>
+
+After that we create an event handler method and register it as a tap event handler of Button component. In the event handler method we will add some logic that changes text string whenever an user touches the Button component.
+
+h5. main.js
+
+<pre class="prettyprint">
+$class('sample.FirstAppController').extend(tau.ui.SceneController).define({
+ 
+  loadScene: function () {
+    var scene = this.getScene();
+    var label = new tau.ui.Label({text: 'Hello Mobello!', styles: {top: '50px'}});
+    scene.add(label);
+ 
+    var button = new tau.ui.Button({label: 'Change', styles: {top: '100px'}});
+    // register buttonTapped method as a tap event handler
+    button.onEvent(tau.rt.Event.TAP, this.buttonTapped, this);
+    scene.add(button);
+  },
+ 
+  buttonTapped: function (event, payload) {
+    var scene = this.getScene();
+    var label = scene.getComponent(0);
+ 
+    var text = label.getText();
+    text = (text == 'Hello Mobello!') ? 'Hello World!' : 'Hello Mobello!';
+    label.setText(text);
+  }
+});
+</pre>
+
+The buttonTapped() event handler method searches Label component registered at index 0 from the Scene and switches the text string from 'Hello Mobello!' to 'Hello World!' vice versa.
+If you run the complete sample app, the result will be the same as the following image.
+
+!{width:250px}/img/firstapp2.png!
+
+You can find that the text string changes whenever you touch the Button component.
+
+h2. Using the Debugger
+
+When you are in the middle of development you sometimes run into errors that stop normal function. When you encounter an error in javascript it's more convenient to make use of debugger provided by web browser than just using alert() javascript method. If you exploit the debugger you can easily find the cause of an error and fix it. The debugger provided by the Chrome browser is as the following image.
+
+!{width:600px}/img/debugger.png!
+
+To make it explained we will insert an error by intention. From the the source code above, we will change the argument of secne.getComponent(0); from 0 to 3. If you run the app after the modification, the text label will not change any more even though you touch the button component. When the app is not functioning normally we can regcognize that there are some problems in the event handler method(buttonTapped). After starting the debugger web browser provides you might set the break point in the event handler method as follows.
+
+!{width:600px}/img/breakpoint.png!
+
+After that if you touch the button component you can find that the control of the logic stops at the break point you set.
+
+!{width:600px}/img/breakpoint2.png!
+
+In this state you can find the value of associated variables and proceed with the next step by pressing F10 key.
+
+!{width:600px}/img/breakpoint3.png!
+
+In this manner you can find the cause of an error. From the above debugging example, you can notice that the the error is raised because the return value of scene.getComponent(3); is undefined.
+Once you identified how to resolve the error you can fix it in easy way..

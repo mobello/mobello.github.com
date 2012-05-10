@@ -12,6 +12,7 @@ h1. Getting Started
 * "설치하기 [korean]":http://mobello.tumblr.com/post/21685709384
 * "처음 시작하기 - part1 [korean]":http://mobello.tumblr.com/post/21686783051/part1
 * "처음 시작하기 - part2 [korean]":http://mobello.tumblr.com/post/21691198274/part2
+* "Single and Multitasking Mode [korean]":http://mobello.tumblr.com/post/22641902896/single-and-multi-tasking-mode
 
 <hr>
 
@@ -21,6 +22,7 @@ h1. Tutorials
 * "네비게이션 구현하기 - part2 [korean]":http://mobello.tumblr.com/post/21706121024/part2
 * "Table과 TableCell을 이용한 연락처 구현하기 - part1 [korean]":http://mobello.tumblr.com/post/21706131998/table-tablecell-part1
 * "Table과 TableCell을 이용한 연락처 구현하기 - part2 [korean]":http://mobello.tumblr.com/post/21706135932/table-tablecell-part2
+
 
 <hr>
 
