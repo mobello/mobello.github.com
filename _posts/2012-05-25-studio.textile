@@ -5,6 +5,8 @@ description: Mobello Studio is ultimate IDE for building webapps with Mobello Fr
 keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial, 튜토리얼, 강의
 ---
 
+<iframe width="560" height="315" style="float:right;" src="http://www.youtube.com/embed/2Bh2ggdMPrA" frameborder="0" allowfullscreen></iframe>
+
 h3. Mobello Studio give you ultimate productivity
 
 * Develop mobile apps with Mobello Framework
@@ -16,7 +18,7 @@ h3. Mobello Studio give you ultimate productivity
 * Powerful layout editing
 * Eclipse plug-in architecture
 
-<iframe width="560" height="315" style="float:right;margin-right:30px;" src="http://www.youtube.com/embed/2Bh2ggdMPrA" frameborder="0" allowfullscreen></iframe>
+
 
 <br style="clear:both">
 
