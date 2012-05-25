@@ -1,0 +1,36 @@
+--- 
+layout: default 
+title: Mobello Studio
+description: Mobello Studio is ultimate IDE for building webapps with Mobello Framework. Mobello Studio also help you to create standards-based web sites.   
+keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial, 튜토리얼, 강의
+---
+
+h3. Introduction
+
+<iframe width="560" height="315" src="http://www.youtube.com/embed/2Bh2ggdMPrA" frameborder="0" allowfullscreen></iframe>
+
+* Develop mobile apps with Mobello Framework
+* Design web with HTML5 and CSS3
+* WYSIWYG design editor
+
+<hr>
+
+
+h3. Download
+
+Request download link of Mobello Studio 1.0 preview
+
+* Enter your email address.
+* Your download link will be sent to this email, so please use valid email address.
+
+Your email (required): <input type="text" name="email">
+
+<input type="checkbox" name="eula"><label for="eula">I have read and agree to the "EULA":/studio-license
+<input type="checkbox" name="subscribe"><label for="subscribe">I agree to receive newsletter.
+
+
+
+<a href="#" class="btn btn-primary btn-large">Request</a> 
+
+<hr>
+
