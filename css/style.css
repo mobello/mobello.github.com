@@ -8,10 +8,12 @@ body {
 
 a {
 	color: #616161;
+	font-weight: bold;
 }
 
 a:hover {
 	color: #2E2E2E;
+	font-weight: bold;
 }
 
 @media ( max-width : 979px) {
