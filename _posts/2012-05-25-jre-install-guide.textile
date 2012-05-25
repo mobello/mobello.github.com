@@ -12,17 +12,16 @@ h2. 설치파일 다운로드하기
 h3. 최신버전의 JRE 다운로드하기
 
 # 자바 다운로드 사이트(http://java.com/ko/download/index.jsp)에서 Java JRE 설치파일을 다운로드 받습니다.
-!http://10.214.49.53:8090/download/attachments/6357185/image2012-5-10+17%3A16%3A31.png|width=500!
-# 다음의 링크가 동작하지 않을경우 하단의 JRE 다운로드하기를 참고하십시오.
+!/img/studio/jre_install_01.png|width=500!
 
 h2. JRE 설치하기
 
 # 다운로드 받은 설치파일을 더블클릭하여 실행합니다.
 # *설치* 버튼 을 클릭하여 JRE설치를 진행합니다.
-!http://10.214.49.53:8090/download/attachments/6357185/image2012-5-11+10%3A41%3A22.png?version=1&modificationDate=1336700448363!
+!/img/studio/jre_install_03.png!
 # 설정된 경로로 파일 설치가 진행됩니다.
-!http://10.214.49.53:8090/download/attachments/6357185/image2012-5-11+10%3A41%3A34.png?version=1&modificationDate=1336700460619!
+!/img/studio/jre_install_04.png!
 참고: JRE 최신버전에서는 Java FX도 함께 설치됩니다.
 # 이전 단계의 JRE 파일 설치가 완료되면 *"JAVA를 성공적으로 설치했습니다"* 라는 메세지를 확인 할 수 있습니다.
-!http://10.214.49.53:8090/download/attachments/6357185/image2012-5-11+10%3A41%3A57.png?version=1&modificationDate=1336700483165!
+!/img/studio/jre_install_05.png!
 # *"닫기"* 버튼 을 누르면 Java 설치 프로세스가 완료됩니다.

@@ -17,20 +17,6 @@ Java 가상머신(JVM), Java 플랫폼, Java 플랫폼 지원 라이브러리로
 
 h2. Mobello Studio 요청하기
 
-h3. KT 에코노베이션 센터에서 요청하기
-
-# 에코노베이션의 모벨로 페이지(http://econovation.co.kr/mobello/)에 접속합니다.
-# 상단의 *"Studio"* 탭을 선택합니다.
-!http://10.214.49.53:8090/download/attachments/6357213/image2012-5-18+13%3A36%3A36.png|width=500!
-# *"Studio 다운로드"* 버튼을 선택합니다.
-!http://10.214.49.53:8090/download/attachments/6357213/image2012-5-18+13%3A37%3A25.png|width=500!
-# 이메일 주소를 기입한 후 약관동의 버튼을 선택합니다.
-# 전송하기 버튼을 선택합니다.
-!http://10.214.49.53:8090/download/attachments/6357213/image2012-5-18+13%3A38%3A30.png|width=500!
-# 전송완료 창이 나타납니다.
-!http://10.214.49.53:8090/download/attachments/6357213/image2012-5-18+13%3A39%3A41.png!
-
-
 h3. Mobello 홈페이지에서 요청하기
 
 # Mobello 홈페이지(http://mobello.github.com/)에 접속합니다.
@@ -51,6 +37,6 @@ h2. Mobello Studio 실행하기
 # 다운로드받은 설치 파일의 압축을 해제합니다.
 # studio.exe 파일을 실행합니다.
 # 프로젝트들이 저장될 workspace을 지정합니다.
-!http://10.214.49.53:8090/download/attachments/6357213/image2012-5-16+18%3A6%3A27.png|width=500!
+!/img/studio/studio_install_01.png|width=500!
 # 스튜디오가 성공적으로 설치가 완료된 경우 Mobello Studio가 실행되면 Design 퍼스펙티브가 활성화됩니다.
-!http://10.214.49.53:8090/download/attachments/6357213/image2012-5-16+18%3A2%3A4.png|width=500!
+!/img/studio/studio_install_02.png|width=500!
