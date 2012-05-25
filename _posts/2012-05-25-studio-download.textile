@@ -17,4 +17,4 @@ Your email (required): <input type="text" name="email" id="email">
 
 <br style="clear:both"/>
 
-<a href="#" onclick="request_download();" class="btn btn-primary btn-large" style="padding-left: 60px; padding-right:60px; margin-top: 15px; ">Request</a> 
+<a href="#" onclick="request_download('en');" class="btn btn-primary btn-large" style="padding-left: 60px; padding-right:60px; margin-top: 15px; ">Request Link</a> 
