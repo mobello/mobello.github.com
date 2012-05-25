@@ -22,7 +22,31 @@ h3. Mobello Studio 기능
 
 <hr style="clear:both">
 
-h3. 소개 비디오
+h1. Mobello app 개발 관련 자료
+
+h3. 문서
+
+* "설치 가이드":/studio-install-guide-ko 
+* "Mobeelo Studio 처음 시작하기 (추천)":/studio-getstarted-ko
+* "Navigation based App 제작 및 Publish 하기 (추천)":/studio-build-navigation-ko 
+* "RSS 기반 app 만들기":/studio-build-rss-ko
+* "Mobello Studio 로 디버깅 하기 (추천)":/studio-debug-ko
+* "Design Perspective 소개":/studio-perspective-ko
+* "Mobello Studio Preference Page 소개":/studio-preferences-ko
+
+h3. 동영상 가이드
+
+* "Mobello Studio 처음 시작하기 (추천)":http://youtu.be/jLbUfaLjkmA
+* "Navigation based App 제작 및 Publish 하기 (추천)":http://youtu.be/b2kOgdgLJTQ
+* "RSS 기반 app 만들기":http://youtu.be/Xqkbk4lGScg
+* "Mobello Studio 로 디버깅 하기 (추천)":http://youtu.be/sb1cNGiI8WE
+
+
+<hr>
+
+h1. Web site 개발 관련 자료
+
+h3. 소개 영상
 
 * "CSS3 로 디자인하기":http://youtu.be/uMJHIBTdRYE
 * "Absolute Layout":http://youtu.be/V6YoLo07Reo
@@ -30,21 +54,7 @@ h3. 소개 비디오
 * "QuickStyler TextSection":http://youtu.be/UTreLaZoHtY
 * "Attributes Edit":http://youtu.be/P6LkmxFktBA
 
-<hr>
-
-h3. 문서
-
-* "설치 가이드":/studio-install-guide-ko
-* "Studio 처음 시작하기 (추천)":/studio-getstarted-ko
-* "Navigation based App 제작 및 Publish 하기 (추천)":/studio-build-navigation-ko 
-* "RSS 기반 app 만들기":/studio-build-rss-ko
-* "Mobello Studio 로 디버깅 하기 (추천)":/studio-debug-ko
-* "Design Perspective 소개":/studio-perspective-ko
-* "Mobello Studio Preference Page 소개":/studio-preferences-ko
-
-<hr>
-
-h3. Tutorial videos
+h3. 동영상 가이드
 
 * "Build web pages with Mobello Studio - part1":http://youtu.be/1uyzcWvqhvg
 * "Build web pages with Mobello Studio - part2":http://youtu.be/saqBkJ5lewI
