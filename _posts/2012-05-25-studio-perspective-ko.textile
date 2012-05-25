@@ -15,12 +15,12 @@ h3. Eclipse 구성 요소
 * *퍼스펙티브(perspective)* :각종 에디터와 뷰의 모임. 작업의 종류에 따라 다른 모양이 됩니다.
 	예를 들어, 'Design'을 선택하면 모벨로 앱을 만들기 위한 디자인에디터, 퀵스타일러, 어트리뷰트 뷰 등으로 바뀌고 'debug'를 선택하면 모벨로 앱을 디버깅하기 위한 뷰들로 바뀝니다. 
 	플러그 인의 설치에 따라 플러그 인과 관련된 퍼스펙티브를 선택할 수 있습니다.
-	
-h2. Design Perspective 란?
+
+h3. Design Perspective 구성 요소
+
+h5. Design Perspective 란?
 
 모벨로 프로젝트 개발을 위한 도구를 제공합니다. 디자인 퍼스펙티브의 구성은 다음과 같습니다.
-
-h3. Design Perspective의 구성요소
 
 !/img/studio/studio-perspective-01.png!
 
