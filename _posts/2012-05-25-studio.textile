@@ -28,7 +28,7 @@ Your email (required): <input type="text" name="email">
 <input type="checkbox" id="eula" name="eula" style="float:left;margin-right:10px"><label style="float:left" for="eula"> I have read and agree to the "EULA":/studio-license . </label>
 <input type="checkbox" id="subscribe" name="subscribe" style="clear:left;float:left;margin-right:10px"><label style="float:left" for="subscribe">I agree to receive newsletter. </label>
 
-
+<br/>
 
 <a href="#" class="btn btn-primary btn-large;" style="padding-left: 35px; padding-right:35px;">Request</a> 
 
