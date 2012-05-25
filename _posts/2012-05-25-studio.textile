@@ -18,13 +18,9 @@ h3. Mobello Studio give you ultimate productivity
 * Powerful layout editing
 * Eclipse plug-in architecture
 
-
-
-<br style="clear:both">
-
 <a href="/studio-download" class="btn btn-primary btn-large" style="padding-left: 70px;padding-right:70px;margin-top: 15px;">Download Mobello Studio</a>
 
-<hr>
+<hr style="clear:both">
 
 h3. Introduction videos
 
