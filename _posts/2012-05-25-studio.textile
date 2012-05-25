@@ -39,7 +39,7 @@ h4. Documents
 * "Build RSS app":/studio-build-rss
 * "Debug app with Mobello Studio":/studio-debug
 
-h4. Ttutorial videos
+h4. Video tutorials
 
 * "Mobello Studio Getting Started [recommended]":http://youtu.be/jLbUfaLjkmA
 * "Build navigation based app and publish [recommended]":http://youtu.be/b2kOgdgLJTQ
@@ -50,7 +50,7 @@ h4. Ttutorial videos
 
 h2. Build web site
 
-h4. Introduction videos
+h4. Video introductions
 
 * "Design web with CSS3":http://youtu.be/uMJHIBTdRYE
 * "Absolute Layout":http://youtu.be/V6YoLo07Reo
@@ -58,7 +58,7 @@ h4. Introduction videos
 * "QuickStyler TextSection":http://youtu.be/UTreLaZoHtY
 * "Attributes Edit":http://youtu.be/P6LkmxFktBA
 
-h4. Ttutorial videos
+h4. Video tutorials
 
 * "Build web pages with Mobello Studio - part1":http://youtu.be/1uyzcWvqhvg
 * "Build web pages with Mobello Studio - part2":http://youtu.be/saqBkJ5lewI

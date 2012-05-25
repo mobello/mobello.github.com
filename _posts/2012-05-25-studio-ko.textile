@@ -44,7 +44,7 @@ h4. 동영상 가이드
 * "Mobello Studio 처음 시작하기 [추천]":http://youtu.be/jLbUfaLjkmA
 * "Navigation based App 제작 및 Publish 하기 [추천]":http://youtu.be/b2kOgdgLJTQ
 * "RSS 기반 app 만들기":http://youtu.be/Xqkbk4lGScg
-* "Mobello Studio 로 디버깅 하기 [추천]":http://youtu.be/sb1cNGiI8WE
+* "Mobello Studio 로 디버깅 하기":http://youtu.be/sb1cNGiI8WE <i class="icon-thumbs-up"></i>
 
 
 <hr>
