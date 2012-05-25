@@ -3,7 +3,7 @@ function request_download() {
 		alert('You have to agree to the EULA.')
 		return;
 	}
-	var url = ‘http:// 125.131.85.49/Mobello/web2/_res/_server/mobello_download.asp’;
+	var url = ‘http://125.131.85.49/Mobello/web2/_res/_server/mobello_download.asp’;
 		 
 		var data = {
 		  _M_ID: $('email').text,
