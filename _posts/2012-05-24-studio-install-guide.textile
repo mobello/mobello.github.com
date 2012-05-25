@@ -8,8 +8,8 @@ keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Frame
 p(well). Mobello Studio에는 Mobello Framework이 내장되어 있어 별도로 설치할 필요가 없습니다.
 
 p(well). Mobello Studio를 실행하기 위해서는 JRE 1.6 이상의 버전이 설치되어야 합니다.
-<br/><br/>
-*JRE \(Java Runtime Environment)* 
+<br/>
+*JRE (Java Runtime Environment)* 
 JRE는 자바 실행부분으로 Java 기반의 소프트웨어가 실행되는데 필요합니다.
 Java 가상머신(JVM), Java 플랫폼, Java 플랫폼 지원 라이브러리로 구성되어있습니다.
 
