@@ -4,3 +4,30 @@ title: Mobello Studio
 description: Mobello Studio is ultimate IDE for building webapps with Mobello Framework. Mobello Studio also help you to create standards-based web sites.   
 keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial, 튜토리얼, 강의
 ---
+
+h2. Design Perspective 소개
+
+h4. Eclipse 구성 요소
+
+*워크벤치(workbench)* : eclipse의 사용자 인터페이스. 윈도우의 집합이며, 각 윈도우는 위 화면과 같은 구성요소들로 이루어져 있습니다.
+*퍼스펙티브 바(Perspective bar)* : 스튜디오의 맨 위, 오른쪽에 위치하고 있는 툴바. 퍼스펙티브 바를 이용하여 퍼스펙티브간의 이동을 쉽게 할 수 있습니다.
+*뷰(View)* : 정보를 표시하는데 사용. 하나의 워크벤치 내에는 같은 뷰가 2개 이상 존재할 수 없습니다.
+*퍼스펙티브(perspective)* :각종 에디터와 뷰의 모임. 작업의 종류에 따라 다른 모양이 됩니다. 
+	예를 들어, 'Design'을 선택하면 모벨로 앱을 만들기 위한 디자인에디터, 퀵스타일러, 어트리뷰트 뷰 등으로 바뀌고 'debug'를 선택하면 모벨로 앱을 디버깅하기 위한 뷰들로 바뀝니다. 
+	플러그 인의 설치에 따라 플러그 인과 관련된 퍼스펙티브를 선택할 수 있습니다.
+	
+h4. Design Perspective란?
+
+모벨로 프로젝트 개발을 위한 도구를 제공합니다. 디자인 퍼스펙티브의 구성은 다음과 같습니다.
+
+h4. Design Perspective의 구성요소
+
+!/img/studio/studio-perspective-01.png!
+
+# *Toolbar* - 툴바에서는 새로운 프로젝트 생성, 파일 및 리소스의 저장과 인쇄, Zoom in/out 및 기본 디자인 사이즈 설정과 같은 디자인 에디터에 필요한 기능들이 나열되어 있습니다.
+# *Project Explorer* - 프로젝트 자원(프로젝트, 폴더, 파일)의 계층구조를 출력합니다. 파일의 저장, 수정, 삭제가 가능합니다.
+# *Outline view* - 선택 된 디자인 에디터에 포함된 컴포넌트들의 구조적인 개요를 나타냅니다. 컴포넌트들의 배치 순서와 포함 관계를 파악할 수 있습니다.
+# *Palette view* - 디자인 가능한 컴포넌트 리스트를 나타내는 View. 이 팔레트 뷰를 이용해 D&D 방식으로 손쉽게 디자인 할 수 있습니다.
+# *Design Editor* - 디자인 퍼스펙티브의 주요 에디터로 팔레트를 이용하여 모벨로 프로젝트 디자인을 할 수 있습니다.
+# *QuickStyler* - 빠른 스타일 입력을 위한 View. 폰트 속성이나 색상, 위치 관련 정보를 수정할 수 있습니다.
+# *Attributes* - 컴포넌트 상세 정보 변경을 위한 View. 컴포넌트 자체 속성 및 CSS, Event 정보를 수정할 수 있습니다.

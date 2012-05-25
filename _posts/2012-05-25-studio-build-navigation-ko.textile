@@ -4,3 +4,97 @@ title: Mobello Studio
 description: Mobello Studio is ultimate IDE for building webapps with Mobello Framework. Mobello Studio also help you to create standards-based web sites.   
 keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial, 튜토리얼, 강의
 ---
+
+h1. Navigation based App 제작 및 Publish  하기
+ 
+이 가이드에서는 Mobello Studio 를 사용해서 Navigation based App 을 만들고 publish 하는 방법을 설명합니다. Mobello Studio 의 기본적인 사용법은 Mobello Studio 처음 시작하기를 참조하시기 바랍니다.
+ 
+h3. Mobello Application Project 생성
+ 
+툴바에서 *Mobello Application Project 위자드* 를 띄우고 프로젝트 이름으로 'navi' 을 입력한 다음 *Next* 를 선택합니다.
+ 
+!/studio/img/studio-navigation-01.png!
+ 
+*위자드* 의 Templates 화면에서 Navigation based 를 선택하고 *Finish* 를 선택합니다.
+ 
+!/studio/img/studio-navigation-02.png!
+
+h3. foo.scene 생성
+ 
+화면을 정의하는 새로운 scene 을 추가하기 위해서 툴바에서 *Scene File 위자드* 를 선택합니다.
+ 
+!/studio/img/studio-navigation-03.png!
+ 
+*File name* 으로 'foo' 를 입력하고 *Finish* 를 선택합니다.
+ 
+!/studio/img/studio-navigation-04.png!
+ 
+생성된 foo.scene 은 자동으로 scene designer 를 통해 열리게 됩니다.
+ 
+오른쪽 *QuickStyler* 의 *Color Edit* 에서 scene 의 background color 를 변경해 봅니다.
+ 
+!/studio/img/studio-navigation-05.png!
+ 
+h3. default.scene 에서 foo.scene 을 호출하는 버튼 추가
+ 
+*Project Explorer* 에서 default.scene 을 더블 클릭해 *scene designer* 를 통해 열고 *Palette* 에서 *Button* 을 더블 클릭해 배치합니다.
+ 
+!/studio/img/studio-navigation-06.png!
+ 
+Button 이 선택된 상태에서 *Attributes* 뷰 에서 *Events* 탭을 선택하고 *onTap* 값으로 navigate 를 입력 합니다. 이제 button 을 tap 하면 navigate function 이 실행됩니다.
+ 
+!/studio/img/studio-navigation-07.png!
+ 
+h3. default.js 에서 foo.scene 의 controller 를 push 하기
+ 
+*Project Explorer* 에서 *default.js* 를 더블 클릭해서 *javascript editor* 를 엽니다.
+ 
+!/studio/img/studio-navigation-08.png!
+ 
+default.js 의 첫번째 빈 라인에 're' 을 입력하고 *Ctrl+Space* 를 누른 다음 require 를 선택합니다.
+ 
+!/studio/img/studio-navigation-09.png!
+ 
+생성된 $require('/'); 안에 다음과 같이 foo.js 를 입력합니다. _이제 default.js 에서 foo.scene 에 대한 *controller* 인 *FooController* 를 호출할 수 있게 됩니다._
+ 
+!/studio/img/studio-navigation-10.png!
+ 
+*init function* 이전 라인에 커서를 두고 'fu' 라고 입력한 다음 *Ctrl+Space* 를 누릅니다. 여기서는 *new mobello function* 을 선택합니다.
+ 
+!/studio/img/studio-navigation-11.png!
+!/studio/img/studio-navigation-12.png!
+ 
+생성된 function 의 name 을 navigate 로 변경합니다.
+ 
+!/studio/img/studio-navigation-13.png!
+ 
+navigate function 의 내용에는 다음 코드를 복사해서 넣습니다. 이제 navigate 를 호출되면 foo.scene 으로 현재 화면이 전환 됩니다.
+ 
+<pre class="prettyPrint">
+ var fooCtrl = new navi.FooController();	// foo.scene 에 대한 Controller 인 navi.FooController 의 개체 생성합니다.
+ this.getParent().pushController(fooCtrl);	// parent controller 에 FooController 개체를 push 합니다.
+</pre>
+ 
+툴바의 *Run* 버튼을 눌러 에뮬레이터에서 실행해 봅니다. default.scene 의 버튼을 누르면 다음과 같이 foo.scene 으로 전환됩니다.
+ 
+!/studio/img/studio-navigation-14.png!
+ 
+h3. Publish 하기
+ 
+방금 만든 app을 브라우저에서 바로 실행 하기 위해서는 *publish* 를 수행해야 합니다.
+ 
+*Project Explorer* 에서 'navi' 프로젝트를 마우스 오른쪽 버튼으로 선택합니다. 이때 나오는 메뉴 항목에서 *Publish as Webapp...* 을 선택합니다.
+ 
+!/studio/img/studio-navigation-15.png!
+ 
+*To directory* 항목에 publish 할 경로를 지정하고 *Finish* 를 선택합니다.
+ 
+!/studio/img/studio-navigation-16.png!
+ 
+Publish 가 완료되고 윈도우즈 탐색기(또는 MacOS 의 파인더) 에서 publish 한 폴더를 살펴보면 다음과 같은 구조로 파일과 폴더가 생성된 것을 확인할 수 있습니다.
+ 
+!/studio/img/studio-navigation-17.png! !/studio/img/studio-navigation-18.png!
+ 
+생성된 파일 중 navi.html 을 크롬 브라우저(또는 사파리) 에서 실행해 볼 수 있습니다.
+ 
+!/studio/img/studio-navigation-19.png!
