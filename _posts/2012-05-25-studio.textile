@@ -32,5 +32,4 @@ Your email (required): <input type="text" name="email">
 
 <a href="#" class="btn btn-primary btn-large;" style="padding-left: 35px; padding-right:35px;">Request</a> 
 
-<hr>
 
