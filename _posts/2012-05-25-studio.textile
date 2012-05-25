@@ -22,19 +22,24 @@ h3. Mobello Studio give you ultimate productivity
 
 <hr style="clear:both">
 
-h1. Build Mobello apps
-
-h3. Documents
+h2. Mobello Studio basics
 
 * "Installation Guide":/studio-install-guide
+* "Design Perspective":/studio-perspective
+* "Preferences":/studio-preferences 
+
+<hr>
+
+h2. Build Mobello apps
+
+h4. Documents
+
 * "Mobello Studio Getting Started [recommended]":/studio-getstarted
 * "Build navigation based app and publish":/studio-build-navigation 
 * "Build RSS app":/studio-build-rss
 * "Debug app with Mobello Studio":/studio-debug
-* "Design Perspective":/studio-perspective
-* "Preferences":/studio-preferences 
 
-h3. Ttutorial videos
+h4. Ttutorial videos
 
 * "Mobello Studio Getting Started [recommended]":http://youtu.be/jLbUfaLjkmA
 * "Build navigation based app and publish [recommended]":http://youtu.be/b2kOgdgLJTQ
@@ -43,13 +48,9 @@ h3. Ttutorial videos
 
 <hr>
 
+h2. Build web site
 
-
-<hr>
-
-h1. Build web site
-
-h3. Introduction videos
+h4. Introduction videos
 
 * "Design web with CSS3":http://youtu.be/uMJHIBTdRYE
 * "Absolute Layout":http://youtu.be/V6YoLo07Reo
@@ -57,7 +58,7 @@ h3. Introduction videos
 * "QuickStyler TextSection":http://youtu.be/UTreLaZoHtY
 * "Attributes Edit":http://youtu.be/P6LkmxFktBA
 
-h3. Ttutorial videos
+h4. Ttutorial videos
 
 * "Build web pages with Mobello Studio - part1":http://youtu.be/1uyzcWvqhvg
 * "Build web pages with Mobello Studio - part2":http://youtu.be/saqBkJ5lewI
