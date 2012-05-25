@@ -16,7 +16,7 @@ function request_download() {
 	var data = {
 		_M_ID : id,
 		_M_DOMAIN : domain,
-		_LANG : 'en' // ko, en
+		// _LANG : 'ko' // ko, en
 	};
 
 	$.ajax({
