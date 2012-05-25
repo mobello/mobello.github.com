@@ -19,7 +19,7 @@ h4.  Mobello Studio 요청하기
 
 # "Mobello Studio 다운로드 페이지":http://mobello.github.com/studio-download-ko/ 에 접속합니다.
 # 이메일을 입력하고 이용 약관 동의를 선택 합니다.
-# "이메일 요청"을 클릭합니다.
+# "이메일 요청"을 클릭하면 해당 이메일 주소로 다운로드 링크가 발송됩니다.
 
  
 
