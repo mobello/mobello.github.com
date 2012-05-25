@@ -1,15 +1,17 @@
 function request_download() {
-	if ($('#eula')[0].checked != true) {
-		alert('You have to agree to the EULA.')
-		return;
-	}
-	var email = $('#email')[0].value;
+	var url = "http://125.131.85.49/Mobello/web2/_res/_server/mobello_download.asp";
 	var pattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	var email = $('#email')[0].value;
+	
 	if (pattern.test(email) != true) {
 		alert("Enter valid email address.");
 		return;
 	}
-	var url = "http://125.131.85.49/Mobello/web2/_res/_server/mobello_download.asp";
+	if ($('#eula')[0].checked != true) {
+		alert('You have to agree to the EULA.')
+		return;
+	}
+	
 	var id = email.split('@')[0];
 	var domain = email.split('@')[1];
 
@@ -18,7 +20,6 @@ function request_download() {
 		_M_DOMAIN : domain,
 		// _LANG : 'ko' // ko, en
 	};
-
 	$.ajax({
 		type : 'GET',
 		crossDomain : true,
@@ -26,9 +27,11 @@ function request_download() {
 		data : data,
 		success : function(result) {
 			alert('success: ' + result);
+			window.location.href = "/studio/";
 		},
 		error : function(jqxhr, textStatus, errorThrown) {
 			alert('success: ' + textStatus);
+			window.location.href = "/studio/";
 		},
 	});
 }
