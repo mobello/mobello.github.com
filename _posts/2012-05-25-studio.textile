@@ -25,12 +25,12 @@ Request a download link for Mobello Studio 1.0 preview
 
 Your email (required): <input type="text" name="email">
 
-<input type="checkbox" id="eula" name="eula"><label style="display:inline" for="eula">I have read and agree to the "EULA":/studio-license . </label>
-<input type="checkbox" id="subscribe" name="subscribe"><label style="display:inline" for="subscribe">I agree to receive newsletter. </label>
+<input type="checkbox" id="eula" name="eula" style="float:left;margin-right:10px"><label style="float:left" for="eula"> I have read and agree to the "EULA":/studio-license . </label>
+<input type="checkbox" id="subscribe" name="subscribe" style="float:left;margin-right:10px"><label style="float:left" for="subscribe">I agree to receive newsletter. </label>
 
 
 
-<a href="#" class="btn btn-primary btn-large">Request</a> 
+<a href="#" class="btn btn-primary btn-large; padding-left: 35px; padding-right:35px;">Request</a> 
 
 <hr>
 
