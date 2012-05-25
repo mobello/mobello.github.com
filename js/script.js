@@ -27,11 +27,11 @@ function request_download() {
 		data : data,
 		success : function(result) {
 			alert('The Studio Download link has been sent to the email address you have entered.');
-			navigateTo('studio');
+			navigateTo('studio-install-guide');
 		},
 		error : function(jqxhr, textStatus, errorThrown) {
 			alert('The Studio Download link has been sent to the email address you have entered.');
-			navigateTo('studio');
+			navigateTo('studio-install-guide');
 		},
 	});
 }
