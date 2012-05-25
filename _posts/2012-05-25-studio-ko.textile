@@ -28,6 +28,8 @@ h2. Mobello Studio 기본 자료
 * "Design Perspective 소개":/studio-perspective-ko
 * "Mobello Studio Preference Page 소개":/studio-preferences-ko
 
+<hr>
+
 h2. Mobello app 개발 관련 자료
 
 h4. 문서
