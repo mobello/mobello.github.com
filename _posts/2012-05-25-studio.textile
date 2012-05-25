@@ -17,13 +17,15 @@ h3. Mobello Studio give you ultimate productivity
 
 <hr>
 
-h3. Demo Videos
+h3. Introduction videos
 
 * "Introduction - Design web with CSS3":http://youtu.be/uMJHIBTdRYE
 * "Introduction - Absolute Layout":http://youtu.be/V6YoLo07Reo
 * "Introduction - QuickStyler ColorSection":http://youtu.be/rG8hCzlu874
 * "Introduction - QuickStyler TextSection":http://youtu.be/UTreLaZoHtY
 * "Introduction - Attributes Edit":http://youtu.be/P6LkmxFktBA
+
+<hr>
 
 h3. Documents
 
@@ -35,7 +37,9 @@ h3. Documents
 * "Design Perspective":/studio-perspective
 * "Preferences":/studio-preferences
 
-h3. Tutorial Videos
+<hr>
+
+h3. Tutorial videos
 
 * "Build web pages with Mobello Studio - part1":http://youtu.be/1uyzcWvqhvg
 * "Build web pages with Mobello Studio - part2":http://youtu.be/saqBkJ5lewI
@@ -43,8 +47,3 @@ h3. Tutorial Videos
 * "Build mobile pages with Mobello Studio - part2":http://youtu.be/H-Wh-SlRFbU
 * "Design stylish form with Mobello Studio":http://youtu.be/dB0JVeZLSPc
 * "Design mobile SNS pages with Mobello Studio":http://youtu.be/6Nu5yxoHAug
-
-
-
-
-
