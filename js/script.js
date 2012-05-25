@@ -43,11 +43,11 @@ function openBlog() {
 		window.open('http://mobellojs.tumblr.com/');
 	}
 }
-function navigateToTutorial() {
+function navigateToStudio() {
 	if (getLanguage().indexOf('ko') !== -1) {
-		window.location.href = "/tutorial1-ko/";
+		window.location.href = "/studio-ko/";
 	} else {
-		window.location.href = "/tutorial1/";
+		window.location.href = "/studio/";
 	}
 }
 function getLanguage() {

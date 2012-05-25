@@ -18,6 +18,12 @@ img {
 	max-width: 100%;
 }
 
+.icon-best {
+	background: url('/img/icon_best.gif');
+	width: 29px;
+	height: 11px;
+}
+
 .contacts-list > li > a {
 	color: #616161;
 }
