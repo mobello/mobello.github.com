@@ -1,4 +1,8 @@
 function request_download() {
+	if($('eula') != true) {
+		alert('You have to agree to the EULA.')
+		return;
+	}
 	var url = ‘http:// 125.131.85.49/Mobello/web2/_res/_server/mobello_download.asp’;
 		 
 		var data = {
