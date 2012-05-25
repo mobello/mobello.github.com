@@ -1,5 +1,5 @@
 function request_download() {
-	var url = "http://125.131.85.49/Mobello/web2/_res/_server/mobello_download.asp";
+	var url = "http://125.131.85.49/Mobello/web/_res/_server/mobello_download.asp";
 	var pattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	var email = $('#email')[0].value;
 	
