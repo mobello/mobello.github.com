@@ -17,7 +17,7 @@ Java 가상머신(JVM), Java 플랫폼, Java 플랫폼 지원 라이브러리로
 
 h4.  Mobello Studio 요청하기
 
-# "Mobello Studio 다운로드 페이지":http://mobello.github.com/studio-download/ 에 접속합니다.
+# "Mobello Studio 다운로드 페이지":http://mobello.github.com/studio-download-ko/ 에 접속합니다.
 # 이메일을 입력하고 이용 약관 동의를 선택 합니다.
 # "이메일 요청"을 클릭합니다.
 
