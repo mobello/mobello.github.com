@@ -33,7 +33,7 @@
 							<a href="/demo">Demo</a>
 						</li>
 						<li {% if page.title == 'Mobello Studio' %} class="active" {% endif %} >
-							<a href="#" onclick="navigateToStudio();">Studio</a>
+							<a href="#" onclick="navigateTo('studio');">Studio</a>
 						</li>
 						<li {% if page.title == 'Documentation' %} class="active" {% endif %} >
 							<a href="/docs">Documentation</a>
@@ -79,10 +79,10 @@
 	{% if page.title != 'Home' %}
 	<div class="default-banner">
 		<div class="container">
-			<h1 style="font-size: 46px;margin-bottom: 24px;margin-top: 48px;">
+			<h1 style="font-size: 46px;margin-bottom: 20px;margin-top: 48px;">
 				{{ page.title }}
 			</h1>
-			<p style="font-size: 19px;">
+			<p style="font-size: 18px; line-height: 15px;">
 			 {{ page.description }}
 			</p>
 		</div>

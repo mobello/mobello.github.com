@@ -5,7 +5,7 @@ description: Request a download link for Mobello Studio.
 keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial, 튜토리얼, 강의
 ---
 
-h4. Request a download link for Mobello Studio 1.0 preview
+h3. Request a download link for Mobello Studio 1.0 preview
 
 * Enter your email address.
 * Your download link will be sent to this email, so please use valid email address.
@@ -17,4 +17,4 @@ Your email (required): <input type="text" name="email" id="email">
 
 <br style="clear:both"/>
 
-<a href="#" onclick="request_download('en');" class="btn btn-primary btn-large" style="padding-left: 60px; padding-right:60px; margin-top: 15px; ">Request</a> 
+<a href="#" onclick="request_download();" class="btn btn-primary btn-large" style="padding-left: 60px; padding-right:60px; margin-top: 15px; ">Request</a> 

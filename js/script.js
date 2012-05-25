@@ -27,13 +27,21 @@ function request_download() {
 		data : data,
 		success : function(result) {
 			alert('success: ' + result);
-			window.location.href = "/studio/";
+			navigateTo('studio');
 		},
 		error : function(jqxhr, textStatus, errorThrown) {
 			alert('success: ' + textStatus);
-			window.location.href = "/studio/";
+			navigateTo('studio');
 		},
 	});
+}
+
+function navigateTo(page) {
+	if (getLanguage().indexOf('ko') !== -1) {
+		window.location.href = '/' + page + '-ko';
+	} else {
+		window.location.href = '/' + page;
+	}
 }
 
 function openBlog() {
@@ -43,13 +51,7 @@ function openBlog() {
 		window.open('http://mobellojs.tumblr.com/');
 	}
 }
-function navigateToStudio() {
-	if (getLanguage().indexOf('ko') !== -1) {
-		window.location.href = "/studio-ko/";
-	} else {
-		window.location.href = "/studio/";
-	}
-}
+
 function getLanguage() {
 	return window.navigator.userLanguage || window.navigator.language;
 }
