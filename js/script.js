@@ -26,11 +26,11 @@ function request_download() {
 		url : url,
 		data : data,
 		success : function(result) {
-			alert('The Studio Download link has been sent to the email address you have entered.');
+			alert('The Studio download link has been sent to the email address you have entered.');
 			navigateTo('studio-install-guide');
 		},
 		error : function(jqxhr, textStatus, errorThrown) {
-			alert('The Studio Download link has been sent to the email address you have entered.');
+			alert('The Studio download link has been sent to the email address you have entered.');
 			navigateTo('studio-install-guide');
 		},
 	});
