@@ -5,7 +5,7 @@ description: Mobello Studio is ultimate IDE for building webapps with Mobello Fr
 keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial, 튜토리얼, 강의
 ---
 
-h3. Introduction
+h3. Mobello Studio give you ultimate productivity
 
 <iframe width="560" height="315" src="http://www.youtube.com/embed/2Bh2ggdMPrA" frameborder="0" allowfullscreen></iframe>
 
@@ -13,23 +13,38 @@ h3. Introduction
 * Design web with HTML5 and CSS3
 * WYSIWYG design editor
 
+<a href="/studio-download" class="btn btn-primary btn-large" style="padding-left: 70px;padding-right:70px;margin-top: 15px;">Download Studio</a>
+
 <hr>
 
+h3. Demo Videos
 
-h3. Download
+* "Introduction - Design web with CSS3":http://youtu.be/uMJHIBTdRYE
+* "Introduction - Absolute Layout":http://youtu.be/V6YoLo07Reo
+* "Introduction - QuickStyler ColorSection":http://youtu.be/rG8hCzlu874
+* "Introduction - QuickStyler TextSection":http://youtu.be/UTreLaZoHtY
+* "Introduction - Attributes Edit":http://youtu.be/P6LkmxFktBA
 
-Request a download link for Mobello Studio 1.0 preview
+h3. Documents
 
-* Enter your email address.
-* Your download link will be sent to this email, so please use valid email address.
+* "Installation Guide":/studio-install-guide
+* "Studio Getting Started":/studio-getstarted
+* "Build navigation based app and publish":/studio-build-navigation 
+* "Build RSS app":/studio-build-rss
+* "Debug app with Mobello Studio":/studio-debug
+* "Design Perspective":/studio-perspective
+* "Preferences":/studio-preferences
 
-Your email (required): <input type="text" name="email">
+h3. Tutorial Videos
 
-<input type="checkbox" id="eula" name="eula" style="float:left;margin-right:10px"><label style="float:left" for="eula"> I have read and agree to the "EULA":/studio-license . </label>
-<input type="checkbox" id="subscribe" name="subscribe" style="clear:left;float:left;margin-right:10px"><label style="float:left" for="subscribe">I agree to receive newsletter. </label>
+* "Build web pages with Mobello Studio - part1":http://youtu.be/1uyzcWvqhvg
+* "Build web pages with Mobello Studio - part2":http://youtu.be/saqBkJ5lewI
+* "Build mobile pages with Mobello Studio - part1":http://youtu.be/duSGGM-OywU
+* "Build mobile pages with Mobello Studio - part2":http://youtu.be/H-Wh-SlRFbU
+* "Design stylish form with Mobello Studio":http://youtu.be/dB0JVeZLSPc
+* "Design mobile SNS pages with Mobello Studio":http://youtu.be/6Nu5yxoHAug
 
-<br style="clear:both"/>
 
-<a href="#" class="btn btn-primary btn-large" style="padding-left: 35px; padding-right:35px;">Request</a> 
+
 
 
