@@ -3,16 +3,19 @@ function request_download() {
 		alert('You have to agree to the EULA.')
 		return;
 	}
+	var email = pattern.test($('#email')[0].value;
 	var pattern = new RegExp("\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b");
-	if (pattern.test($('#email')[0].value) != true) {
+	if (pattern.test(email) != true) {
 		alert("Enter valid email address.");
 		return;
 	}
 	var url = "http://125.131.85.49/Mobello/web2/_res/_server/mobello_download.asp";
+	var id = email.split('@')[0];
+	var domain = email.split('@')[1];
 
 	var data = {
-		_M_ID : $('#email')[0].value,
-		_M_DOMAIN : '',
+		_M_ID : id,
+		_M_DOMAIN : domain,
 		_LANG : 'en' // ko, en
 	};
 
@@ -22,10 +25,10 @@ function request_download() {
 		url : url,
 		data : data,
 		success : function(result) {
-			alert('success');
+			alert('success: ' + result);
 		},
 		error : function(jqxhr, textStatus, errorThrown) {
-			alert('success');
+			alert('success: ' + textStatus);
 		},
 	});
 }
