@@ -12,7 +12,7 @@ h2. 설치파일 다운로드하기
 h3. 최신버전의 JRE 다운로드하기
 
 # 자바 다운로드 사이트(http://java.com/ko/download/index.jsp)에서 Java JRE 설치파일을 다운로드 받습니다.
-!/img/studio/jre_install_01.png|width=500!
+!{width:500px}/img/studio/jre_install_01.png!
 
 h2. JRE 설치하기
 
