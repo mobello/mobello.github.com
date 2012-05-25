@@ -3,8 +3,8 @@ function request_download() {
 		alert('You have to agree to the EULA.')
 		return;
 	}
+	var email = $('#email')[0].value;
 	var pattern = new RegExp("\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b");
-	var email = pattern.test($('#email')[0].value);
 	if (pattern.test(email) != true) {
 		alert("Enter valid email address.");
 		return;
