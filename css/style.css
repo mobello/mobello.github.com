@@ -14,15 +14,13 @@ li {
 	line-height: 24px;
 }
 
-/*
-a {
+.contacts-list > li > a {
 	color: #616161;
 }
 
-a:hover {
+.contacts-list > li > a:hover {
 	color: #2E2E2E;
 }
-*/
 
 @media ( max-width : 979px) {
 	body {
