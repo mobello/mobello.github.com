@@ -7,6 +7,8 @@ keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Frame
 
 h2. Studio 화면 구성 소개
 
+<br>
+
 h3. Eclipse 구성 요소
 
 * *워크벤치(workbench)* : eclipse의 사용자 인터페이스. 윈도우의 집합이며, 각 윈도우는 위 화면과 같은 구성요소들로 이루어져 있습니다.
