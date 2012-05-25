@@ -23,7 +23,7 @@ main.js 를 열고 아래 그림에서 표시된 부분을 더블 클릭하면 �
  
 이제 에뮬레이터에서 Button 컴포넌트를 클릭합니다. Debug 모드로 실행된 상태이기 때문에 breakpoint 가 설정된 라인에서 실행이 멈추면서 다음과 같은 다이얼로그가 나타납니다.
  
-!/img/studio/studio-debug-03.png|width=600!
+!/img/studio/studio-debug-03.png!
  
 여기서 *Yes* 를 클릭하면 *Debug 퍼스펙티브* 로 전환됩니다. 멈춤 상태에서 Debug 뷰의 Step Over 버튼이나 F6 키를 누르면 한 라인씩 진행하게 됩니다.
  
