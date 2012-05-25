@@ -34,17 +34,17 @@ h2. Build Mobello apps
 
 h4. Documents
 
-* "Mobello Studio Getting Started [recommended]":/studio-getstarted
+* "Mobello Studio Getting Started":/studio-getstarted <i class="icon-best"></i>
 * "Build navigation based app and publish":/studio-build-navigation 
 * "Build RSS app":/studio-build-rss
 * "Debug app with Mobello Studio":/studio-debug
 
 h4. Video tutorials
 
-* "Mobello Studio Getting Started [recommended]":http://youtu.be/jLbUfaLjkmA
-* "Build navigation based app and publish [recommended]":http://youtu.be/b2kOgdgLJTQ
+* "Mobello Studio Getting Started":http://youtu.be/jLbUfaLjkmA <i class="icon-best"></i>
+* "Build navigation based app and publish":http://youtu.be/b2kOgdgLJTQ <i class="icon-best"></i>
 * "Build RSS app":http://youtu.be/Xqkbk4lGScg
-* "Debug app with Mobello Studio [recommended]":http://youtu.be/sb1cNGiI8WE
+* "Debug app with Mobello Studio":http://youtu.be/sb1cNGiI8WE <i class="icon-best"></i>
 
 <hr>
 
