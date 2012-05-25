@@ -10,26 +10,7 @@
 <link rel="stylesheet" href="/css/style.css" type="text/css" />
 <link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css" type="text/css" />
 <link href="/bootstrap/google-code-prettify/prettify.css" rel="stylesheet">
-<script type="text/javascript">
-
-	function openBlog() {
-		if(getLanguage().indexOf('ko') !== -1) {
-			window.open('http://mobello.tumblr.com/');
-		} else {
-			window.open('http://mobellojs.tumblr.com/');
-		}
-	}
-	function navigateToTutorial() {
-		if(getLanguage().indexOf('ko') !== -1) {
-			window.location.href="/tutorial1-ko/";
-		} else {
-			window.location.href="/tutorial1/";
-		}
-	}
-	function getLanguage() {
-		return  window.navigator.userLanguage || window.navigator.language;
-	}
-</script>
+<script type="text/javascript" src="/js/script.js"></script>
 
 </head>
 <body onload="prettyPrint()" {% if page.title == 'Home' %} class="home-body" {% endif %}>
