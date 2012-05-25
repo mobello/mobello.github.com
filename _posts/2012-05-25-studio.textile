@@ -7,11 +7,16 @@ keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Frame
 
 h3. Mobello Studio give you ultimate productivity
 
-<iframe width="560" height="315" style="float:left;margin-right:30px;" src="http://www.youtube.com/embed/2Bh2ggdMPrA" frameborder="0" allowfullscreen></iframe>
-
 * Develop mobile apps with Mobello Framework
 * Design web with HTML5 and CSS3
 * WYSIWYG design editor
+* Real-time synchronized editing
+* Javascript debugging
+* Device emulator
+* Powerful layout editing
+* Eclipse plug-in architecture
+
+<iframe width="560" height="315" style="float:right;margin-right:30px;" src="http://www.youtube.com/embed/2Bh2ggdMPrA" frameborder="0" allowfullscreen></iframe>
 
 <br style="clear:both">
 
