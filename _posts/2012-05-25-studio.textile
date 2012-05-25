@@ -22,6 +22,33 @@ h3. Mobello Studio give you ultimate productivity
 
 <hr style="clear:both">
 
+h1. Build Mobello apps
+
+h3. Documents
+
+* "Installation Guide":/studio-install-guide
+* "Mobello Studio Getting Started [recommended]":/studio-getstarted
+* "Build navigation based app and publish":/studio-build-navigation 
+* "Build RSS app":/studio-build-rss
+* "Debug app with Mobello Studio":/studio-debug
+* "Design Perspective":/studio-perspective
+* "Preferences":/studio-preferences 
+
+h3. Ttutorial videos
+
+* "Mobello Studio Getting Started [recommended]":http://youtu.be/jLbUfaLjkmA
+* "Build navigation based app and publish [recommended]":http://youtu.be/b2kOgdgLJTQ
+* "Build RSS app":http://youtu.be/Xqkbk4lGScg
+* "Debug app with Mobello Studio [recommended]":http://youtu.be/sb1cNGiI8WE
+
+<hr>
+
+
+
+<hr>
+
+h1. Build web site
+
 h3. Introduction videos
 
 * "Design web with CSS3":http://youtu.be/uMJHIBTdRYE
@@ -30,21 +57,7 @@ h3. Introduction videos
 * "QuickStyler TextSection":http://youtu.be/UTreLaZoHtY
 * "Attributes Edit":http://youtu.be/P6LkmxFktBA
 
-<hr>
-
-h3. Documents
-
-* "Installation Guide":/studio-install-guide
-* "Studio Getting Started":/studio-getstarted
-* "Build navigation based app and publish":/studio-build-navigation 
-* "Build RSS app":/studio-build-rss
-* "Debug app with Mobello Studio":/studio-debug
-* "Design Perspective":/studio-perspective
-* "Preferences":/studio-preferences
-
-<hr>
-
-h3. Tutorial videos
+h3. Ttutorial videos
 
 * "Build web pages with Mobello Studio - part1":http://youtu.be/1uyzcWvqhvg
 * "Build web pages with Mobello Studio - part2":http://youtu.be/saqBkJ5lewI

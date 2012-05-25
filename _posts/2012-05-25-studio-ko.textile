@@ -27,19 +27,19 @@ h1. Mobello app 개발 관련 자료
 h3. 문서
 
 * "설치 가이드":/studio-install-guide-ko 
-* "Mobeelo Studio 처음 시작하기 (추천)":/studio-getstarted-ko
-* "Navigation based App 제작 및 Publish 하기 (추천)":/studio-build-navigation-ko 
+* "Mobeelo Studio 처음 시작하기 [추천]":/studio-getstarted-ko
+* "Navigation based App 제작 및 Publish 하기 [추천]":/studio-build-navigation-ko 
 * "RSS 기반 app 만들기":/studio-build-rss-ko
-* "Mobello Studio 로 디버깅 하기 (추천)":/studio-debug-ko
+* "Mobello Studio 로 디버깅 하기 [추천]":/studio-debug-ko
 * "Design Perspective 소개":/studio-perspective-ko
 * "Mobello Studio Preference Page 소개":/studio-preferences-ko
 
 h3. 동영상 가이드
 
-* "Mobello Studio 처음 시작하기 (추천)":http://youtu.be/jLbUfaLjkmA
-* "Navigation based App 제작 및 Publish 하기 (추천)":http://youtu.be/b2kOgdgLJTQ
+* "Mobello Studio 처음 시작하기 [추천]":http://youtu.be/jLbUfaLjkmA
+* "Navigation based App 제작 및 Publish 하기 [추천]":http://youtu.be/b2kOgdgLJTQ
 * "RSS 기반 app 만들기":http://youtu.be/Xqkbk4lGScg
-* "Mobello Studio 로 디버깅 하기 (추천)":http://youtu.be/sb1cNGiI8WE
+* "Mobello Studio 로 디버깅 하기 [추천]":http://youtu.be/sb1cNGiI8WE
 
 
 <hr>
