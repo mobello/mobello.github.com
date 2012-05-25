@@ -13,7 +13,7 @@ h3. Mobello Studio give you ultimate productivity
 * Design web with HTML5 and CSS3
 * WYSIWYG design editor
 
-<hr style="clear:both">
+<br style="clear:both">
 
 <a href="/studio-download" class="btn btn-primary btn-large" style="padding-left: 70px;padding-right:70px;margin-top: 15px;">Download Mobello Studio</a>
 
