@@ -1,12 +1,12 @@
 function request_download() {
-	if ($('#eula').checked != true) {
+	if ($('#eula')[0].checked != true) {
 		alert('You have to agree to the EULA.')
 		return;
 	}
 	var url = "http://125.131.85.49/Mobello/web2/_res/_server/mobello_download.asp";
 
 	var data = {
-		_M_ID : $('#email').value,
+		_M_ID : $('#email')[0].value,
 		_M_DOMAIN : '',
 		_LANG : 'en' // ko, en
 	};
