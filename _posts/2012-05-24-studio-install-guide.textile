@@ -15,11 +15,11 @@ JRE는 자바 실행부분으로 Java 기반의 소프트웨어가 실행되는�
 Java 가상머신(JVM), Java 플랫폼, Java 플랫폼 지원 라이브러리로 구성되어있습니다.
 
 
-h4. Mobello 홈페이지에서  Mobello Studio 요청하기
+h4.  Mobello Studio 요청하기
 
-# "Mobello 홈페이지":http://mobello.github.com/ 에 접속합니다.
-# *"Download Mobello Studio"* 버튼을 선택합니다.
-# Mobello 사이트의 "다운로드 페이지"에서 이메일을 입력합니다.
+# "Mobello Studio 다운로드 페이지":http://mobello.github.com/studio-download/ 에 접속합니다.
+# 이메일을 입력하고 이용 약관 동의를 선택 합니다.
+# "이메일 요청"을 클릭합니다.
 
  
 
