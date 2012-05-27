@@ -37,7 +37,7 @@ function request_download() {
 }
 
 function navigateTo(page) {
-	if (getLanguage().indexOf('ko') !== -1) {
+	if (isKorean()) {
 		window.location.href = '/' + page + '-ko';
 	} else {
 		window.location.href = '/' + page;
@@ -45,7 +45,7 @@ function navigateTo(page) {
 }
 
 function openBlog() {
-	if (getLanguage().indexOf('ko') !== -1) {
+	if (isKorean()) {
 		window.open('http://mobello.tumblr.com/');
 	} else {
 		window.open('http://mobellojs.tumblr.com/');
@@ -54,4 +54,8 @@ function openBlog() {
 
 function getLanguage() {
 	return window.navigator.userLanguage || window.navigator.language;
+}
+
+function isKorean() {
+	return getLanguage().indexOf('ko') !== -1;
 }

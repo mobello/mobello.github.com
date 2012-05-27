@@ -32,6 +32,14 @@
 						<li {% if page.title == 'Demo' %} class="active" {% endif %} >
 							<a href="/demo">Demo</a>
 						</li>
+						<li {% if page.title == 'Mobello Studio' %} class="active" {% endif %} >
+							<a id="studio_link" href="/studio">Studio</a>
+							<script type="text/javascript">
+							if(isKorean())
+								$('studio_link')[0].href += '-ko';
+							</script>
+						</li>
+						
 						<!-- 
 						<li {% if page.title == 'Mobello Studio' %} class="active" {% endif %} >
 							<a href="#" onclick="navigateTo('studio');">Studio</a>
@@ -47,6 +55,7 @@
 							<a href="#" onclick="openBlog();">Blog</a>
 						</li>
 					</ul>
+					
 				</div>
 			</div>
 		</div>
