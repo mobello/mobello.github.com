@@ -46,7 +46,8 @@ img {
 
 .btn.btn-black:hover {
 	color: white;
-	background: #0a0809;
+	background-color: #0a0809;
+	background-position: 0 50px;
 }
 
 .btn.btn-black:active {
