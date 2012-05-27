@@ -24,6 +24,26 @@ img {
 	height: 11px;
 }
 
+.btn-black {
+	color: white;
+	text-shadow: none;
+	background: #abb9ba;
+	background: -moz-linear-gradient(top, #abb9ba 0%, #6d7673 49%, #0b0d0a 50%, #0a0809
+		100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #abb9ba),
+		color-stop(49%, #6d7673), color-stop(50%, #0b0d0a),
+		color-stop(100%, #0a0809) );
+	background: -webkit-linear-gradient(top, #abb9ba 0%, #6d7673 49%, #0b0d0a 50%,
+		#0a0809 100%);
+	background: -o-linear-gradient(top, #abb9ba 0%, #6d7673 49%, #0b0d0a 50%, #0a0809
+		100%);
+	background: -ms-linear-gradient(top, #abb9ba 0%, #6d7673 49%, #0b0d0a 50%, #0a0809
+		100%);
+	background: linear-gradient(top, #abb9ba 0%, #6d7673 49%, #0b0d0a 50%, #0a0809 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(  startColorstr='#abb9ba',
+		endColorstr='#0a0809', GradientType=0 );
+}
+
 .contacts-list > li > a {
 	color: #616161;
 }

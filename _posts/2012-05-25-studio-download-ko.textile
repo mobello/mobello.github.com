@@ -17,4 +17,4 @@ h3. Mobello Studio 1.0 preview 다운로드
 
 <br style="clear:both"/>
 
-<a href="#" onclick="request_download();" class="btn btn-primary btn-large" style="padding-left: 60px; padding-right:60px; margin-top: 15px; ">이메일 요청</a> 
+<a href="#" onclick="request_download();" class="btn btn-black btn-large" style="padding-left: 60px; padding-right:60px; margin-top: 15px; ">이메일 요청</a> 
