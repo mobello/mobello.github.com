@@ -44,6 +44,16 @@ img {
 		endColorstr='#0a0809', GradientType=0 );
 }
 
+.btn.btn-black:hover {
+	color: white;
+	background-color: #abb9ba;
+	background-position: 0 -1px;
+}
+
+.btn.btn-black:active {
+	background-color: #abb9ba;
+}
+
 .contacts-list > li > a {
 	color: #616161;
 }
