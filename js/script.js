@@ -34,6 +34,7 @@ function request_download() {
 			navigateTo('studio-install-guide');
 		},
 	});
+	_gaq.push(['_trackEvent', 'Studio', 'Download', 'Request studio download link.']);
 }
 
 function navigateTo(page) {
