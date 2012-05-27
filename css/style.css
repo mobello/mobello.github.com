@@ -27,7 +27,7 @@ img {
 .btn-black {
 	color: white;
 	text-shadow: none;
-	background: #abb9ba;
+	background: #0a0809;
 	background: -moz-linear-gradient(top, #abb9ba 0%, #6d7673 49%, #0b0d0a 50%, #0a0809
 		100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #abb9ba),
@@ -46,12 +46,11 @@ img {
 
 .btn.btn-black:hover {
 	color: white;
-	background-color: #abb9ba;
-	background-position: 0 -1px;
+	background: #0a0809;
 }
 
 .btn.btn-black:active {
-	background-color: #abb9ba;
+	background: #0a0809;
 }
 
 .contacts-list > li > a {
