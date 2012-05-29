@@ -12,9 +12,9 @@ h3. Mobello Studio 1.0 preview 다운로드
 
 이메일: <input type="text" name="email" id="email">
 
-<input type="checkbox" id="eula" name="eula" style="float:left;margin-right:10px"><label style="float:left" for="eula"> 이용 약관에 동의합니다. "EULA":/studio-license </label>
+<input type="checkbox" id="eula" name="eula" style="float:left;margin-right:10px"><label style="float:left" for="eula"> 이용 약관에 동의합니다. <a href="/studio-license-ko" target="_blank">EULA</a> </label>
 <input type="checkbox" id="subscribe" name="subscribe" style="clear:left;float:left;margin-right:10px"><label style="float:left" for="subscribe">뉴스 레터 수신 동의 </label>
 
 <br style="clear:both"/>
 
-<a href="#" onclick="request_download();" class="btn btn-primary btn-large" style="padding-left: 60px; padding-right:60px; margin-top: 15px; ">이메일 요청</a> 
+<a href="#" onclick="request_download();" class="btn btn-black btn-large" style="padding-left: 60px; padding-right:60px; margin-top: 15px; ">이메일 요청</a> 

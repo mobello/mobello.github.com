@@ -12,16 +12,24 @@ h1. RSS 기반 app 만들기
 h3. 프로젝트 생성
  
 Mobello Application Project 위자드를 통해 프로젝트를 생성합니다. Project name 으로 'rss' 를 입력하고 Theme 는 'ios' 를 선택한 다음 *Next* 를 선택합니다.
+
 !/img/studio/studio-rss-01.png!
+
+<br/>
  
 위자드의 Templates 페이지 에서는 Navigation based 를 선택합니다.
+
 !/img/studio/studio-rss-02.png!
+
+<br/>
  
 h3. default.js 에 RSS Table 배치
 
 default.js 를 열고 기존 내용은 지운 다음 영문자 'r' 을 입력하고 Ctrl 을 누른 상태에서 Space 를 두번 입력합니다. 여기서 나오는 목록중 RSSTableController 를 선택합니다.
  
 !/img/studio/studio-rss-03.png!
+
+<br/>
  
 생성된 클래스 이름을 바로 변경할 수 있습니다. 클래스 이름은 'rss.DefaultController' 으로 변경합니다.
 config.json 파일을 열고 다음 url 항목을 그대로 복사 합니다. 이제 앱을 실행하면 해당 url 로 부터 RSS 데이터를 가져와서 Table 을 통해 보여주게 됩니다.
@@ -33,12 +41,16 @@ url: 'http://blog.olleh.com/rss/',
 여기서 모든 파일을 저장하고 툴바의 Run 버튼으로 실행해 에뮬레이터에서 확인해 봅니다.
  
 !/img/studio/studio-rss-04.png!
+
+<br/>
  
 h3. Article Scene 추가
  
 Scene File 위자드에서 article 이라는 이름의 scene 을 추가합니다.
  
 !/img/studio/studio-rss-05.png!
+
+<br/>
  
 생성된 article.js 를 열고 다음과 같이 코드를 수정합니다.
  
@@ -54,10 +66,14 @@ $class('rss.ArticleController').extend(tau.ui.SceneController).define({
 article.scene 을 scene designer 를 통해 열고 TextView 컴포넌트를 배치합니다.
  
 !/img/studio/studio-rss-06.png!
+
+<br/>
  
 Attributes 뷰에서 TextView 컴포넌트의 text 속성을 @article.description 으로 지정합니다.
  
 !/img/studio/studio-rss-07.png!
+
+<br/>
 
 h3. default.js 에서 article scene 호출 구현
  
