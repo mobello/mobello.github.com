@@ -61,7 +61,7 @@ QuickStyler나 Attributes 뷰에서 사용 될 기본 Swatch를 설정할 수 �
 
 원하는 팔레트에서 오른버튼을 선택합니다. "다른 이름으로 링크 저장" 버튼을 선택하면 해당 팔레트가 다운로드 됩니다.
 
-!/img/studio/studio-preference-07.png|width=400!
+!/img/studio/studio-preference-07.png!
 
  * Swatch 추가 -- *Add 버튼* 을 선택하여 다운로드받은 파일을 추가하면 즉시 사용이 가능합니다.
 
