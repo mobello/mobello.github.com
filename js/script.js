@@ -14,10 +14,13 @@ function request_download() {
 	
 	var id = email.split('@')[0];
 	var domain = email.split('@')[1];
-
+	var subscribe = 'N';
+	if($('#subscribe').checked)
+		subscribe = 'Y';
 	var data = {
 		_M_ID : id,
 		_M_DOMAIN : domain,
+		_M_NEWS: subscribe,
 		// _LANG : 'ko' // ko, en
 	};
 	$.ajax({
