@@ -15,7 +15,7 @@ function request_download() {
 	var id = email.split('@')[0];
 	var domain = email.split('@')[1];
 	var subscribe = 'N';
-	if($('#subscribe').checked)
+	if($('#subscribe')[0].checked)
 		subscribe = 'Y';
 	var data = {
 		_M_ID : id,
