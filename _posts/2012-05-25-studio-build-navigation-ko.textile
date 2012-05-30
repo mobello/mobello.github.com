@@ -8,6 +8,8 @@ keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Frame
 h1. Navigation based App 제작 및 Publish  하기
  
 이 가이드에서는 Mobello Studio 를 사용해서 Navigation based App 을 만들고 publish 하는 방법을 설명합니다. Mobello Studio 의 기본적인 사용법은 Mobello Studio 처음 시작하기를 참조하시기 바랍니다.
+
+이 가이드의 내용은 "동영상":http://youtu.be/b2kOgdgLJTQ 을 통해서도 보실 수 있습니다. 
  
 h3. Mobello Application Project 생성
  

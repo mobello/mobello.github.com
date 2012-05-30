@@ -8,6 +8,8 @@ keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Frame
 h1. Mobello Studio 로 디버깅 하기
  
 "Mobello Studio 처음 시작하기":/studio-getstarted-ko/ 가이드에서 만든 HelloMobello 프로젝트를 통해서 Mobello Studio 에서 디버깅하는 법과 Hot Code Replace 에 대해 알아 봅니다.
+
+이 가이드의 내용은 "동영상":http://youtu.be/sb1cNGiI8WE 을 통해서도 보실 수 있습니다.
  
 h3. Debug 모드로 실행하기
  

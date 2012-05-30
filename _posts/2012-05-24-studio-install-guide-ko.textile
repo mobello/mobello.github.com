@@ -38,3 +38,7 @@ h4. Mobello Studio 실행하기
 !/img/studio/studio_install_01.png!
 # 스튜디오가 성공적으로 설치가 완료된 경우 Mobello Studio가 실행되면 Design 퍼스펙티브가 활성화됩니다.
 !/img/studio/studio_install_02.png!
+
+h3. 관련 자료
+
+* "Mobello Studio 처음 시작하기":http://mobello.github.com/studio-getstarted-ko
