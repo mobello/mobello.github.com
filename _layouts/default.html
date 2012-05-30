@@ -67,13 +67,16 @@
 				<span class="home-hero-button-img" style="background-image: url('/img/home-2.png')"></span>
 				<span class="home-hero-button-content">View Project on Github</span>
 			</a> 
-			<a	class="btn btn-large home-hero-button" >
+			<a id="home_button_studio_down" class="btn btn-large home-hero-button" href="http://mobello.github.com/studio-download/">
 				<span class="home-hero-button-img" style="background-image: url('/img/home-3.png')"></span>
-				<span class="home-hero-button-content" style="margin-top: 8px;">
+				<span class="home-hero-button-content">
 					Download Mobello Studio
-					<span style="display:block; font-size: 50%">(Coming Soon)</span>
 				</span>
 			</a> 
+			<script type="text/javascript">
+						if(isKorean())
+							$('#home_button_studio_down')[0].href += '-ko';
+			</script>
 			<a class="btn btn-large home-hero-button " href="/demo">
 				<span class="home-hero-button-img" style="background-image: url('/img/home-4.png')"></span>
 				<span class="home-hero-button-content">
