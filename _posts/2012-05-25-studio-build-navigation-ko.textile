@@ -132,3 +132,7 @@ Publish 가 완료되고 윈도우즈 탐색기(또는 MacOS 의 파인더) 에�
 생성된 파일 중 navi.html 을 크롬 브라우저(또는 사파리) 에서 실행해 볼 수 있습니다.
  
 !/img/studio/studio-navigation-19.png!
+
+h3. 관련 문서
+
+* "RSS 기반 app 만들기":http://mobello.github.com/studio-build-rss-ko
