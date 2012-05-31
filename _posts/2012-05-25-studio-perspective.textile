@@ -33,3 +33,4 @@ Design perspecitve is the perspecitve for developing Mobello projects. It includ
 # *Design Editor* : It's main editor of the Design Perspective. You can build user interface visually in the Design Editor.
 # *QuickStyler* : For components, styles like fonts and colors can be easily and quickly modified via the QuickStyler view.
 # *Attributes* : General attributes, styles and event attributes for components can be modified via the Attributes view.
+
