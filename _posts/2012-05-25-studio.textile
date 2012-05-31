@@ -24,7 +24,7 @@ h3. Mobello Studio give you ultimate productivity
 
 h2. Mobello Studio basics
 
-* "Installation Guide [korean]":/studio-install-guide
+* "Installation Guide":/studio-install-guide
 * "Design Perspective [korean]":/studio-perspective
 * "Preferences [korean]":/studio-preferences 
 
