@@ -25,8 +25,8 @@ h3. Mobello Studio give you ultimate productivity
 h2. Mobello Studio basics
 
 * "Installation Guide":/studio-install-guide
-* "Design Perspective [korean]":/studio-perspective
-* "Preferences [korean]":/studio-preferences 
+* "Design Perspective":/studio-perspective
+* "Preferences":/studio-preferences 
 
 <hr>
 
@@ -34,10 +34,10 @@ h2. Build Mobello apps
 
 h4. Documents
 
-* "Mobello Studio Getting Started [korean]":/studio-getstarted <i class="icon-best"></i>
-* "Build navigation based app and publish [korean]":/studio-build-navigation 
-* "Build RSS app [korean]":/studio-build-rss
-* "Debug app with Mobello Studio [korean]":/studio-debug
+* "Mobello Studio Getting Started":/studio-getstarted <i class="icon-best"></i>
+* "Build navigation based app and publish":/studio-build-navigation 
+* "Build RSS app":/studio-build-rss
+* "Debug app with Mobello Studio":/studio-debug
 
 h4. Video tutorials
 
