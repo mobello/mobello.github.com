@@ -5,36 +5,28 @@ description: This tutorial will help you to install Mobello Studio.
 keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial, 튜토리얼, 강의
 ---
 
-p(well). Mobello Studio에는 Mobello Framework이 내장되어 있어 별도로 설치할 필요가 없습니다.
+p(well). You don't need to install Mobello Framework because Mobello Studio includes it.
 
-p(well). Mobello Studio를 실행하기 위해서는 JRE 1.6 이상의 버전이 설치되어야 합니다.
-PC 에 JRE 설치하는 방법은 "JRE 설치 가이드":/jre-install-guide 를 참고하세요.
-<br/>
-*JRE (Java Runtime Environment)* 
-JRE는 자바 실행부분으로 Java 기반의 소프트웨어가 실행되는데 필요합니다.
-Java 가상머신(JVM), Java 플랫폼, Java 플랫폼 지원 라이브러리로 구성되어있습니다.
+p(well). Mobello Studio requires JRE 1.6 or higher. "JRE Install Guide":/jre-install-guide will help you to install jre.
+
+h4.  Request Mobello Studio download linke
+
+# Open "Mobello Studio Download Page":http://mobello.github.com/studio-download/ in your browser.
+# Enter your email address and agree to the EULA.
+# Click "Request".
 
 
-h4.  Mobello Studio 요청하기
+h4. Mobello Studio Downloads
 
-# "Mobello Studio 다운로드 페이지":http://mobello.github.com/studio-download/ 에 접속합니다.
-# 이메일을 입력하고 이용 약관 동의를 선택 합니다.
-# "이메일 요청"을 클릭하면 해당 이메일 주소로 다운로드 링크가 발송됩니다.
-
- 
-
-h4. Mobello Studio 다운로드
-
-# Mobello Studio의 다운로드 링크가 입력한 이메일로 발송됩니다.
-# 메일로 전송 된 링크 중 자신의 환경에 맞는 링크를 선택하여 다운로드 받습니다.
-
+# Download links will be sent to your email.
+# Download Mobello Studio for your system.
 
  
-h4. Mobello Studio 실행하기
+h4. Running Mobello Studio 
 
-# 다운로드받은 설치 파일의 압축을 해제합니다.
-# studio.exe 파일을 실행합니다.
-# 프로젝트들이 저장될 workspace을 지정합니다.
+# Extract the downloaded zip file.
+# Execute studio.exe file.
+# Setting a the workspace location for projects.
 !/img/studio/studio_install_01.png!
-# 스튜디오가 성공적으로 설치가 완료된 경우 Mobello Studio가 실행되면 Design 퍼스펙티브가 활성화됩니다.
+# If installation is successful, *Design perspective* will be activated.
 !/img/studio/studio_install_02.png!
