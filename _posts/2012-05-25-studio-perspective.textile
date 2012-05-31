@@ -4,3 +4,32 @@ title: Mobello Studio
 description: Mobello Studio is ultimate IDE for building webapps with Mobello Framework. Mobello Studio also help you to create standards-based web sites.   
 keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial, 튜토리얼, 강의
 ---
+
+h2. Introduction to Mobello Studio UI basics
+
+<br>
+
+h3. Eclipse Fundamentals
+
+* *Workbench* : The term workbench is used to describe the environment in which all of your work will be done. The workbench contains the menu bar and tool bars, and one or more perspectives.
+* *Perspective* : A perspective is a special layout of particular views and tools that you will need to use in your work. The currently open perspective will occupy most of the Eclipse workbench. You may have more than one perspective open at a time, but only the active one will be visible. Other open perspectives can be accessed quickly by small buttons in a toolbar on the upper right-hand side of the workbench.
+* *View* : Views are designed to support interaction with the information in your workbench. Eclipse is designed to be extensible, so views can be designed to show nearly any kind of information. 
+* *Menu Bar and Tool Bars* : These are exactly as you would expect from any graphical user interface (GUI) application. They contain the commands to perform many common tasks such as saving and editing files.
+
+<hr>
+
+h3. Design Perspective
+
+h5. What is Design Perspective?
+
+Design perspecitve is the perspecitve for developing Mobello projects. It includes following elements:
+
+!/img/studio/studio-perspective-01.png!
+
+# *Toolbar* : It contains the actions for creating project, saving files, setting the viewport size and others.
+# *Project Explorer* : It shows hierarchy of project resources. You can save, rename or delete files in the Project Explorer view.
+# *Outline view* : It shows hierarchy of components within design editor. You can figure out orders and containments of components.
+# *Palette view* : You can build a user interface by dragging and dropping components from the Palette view.
+# *Design Editor* : It's main editor of the Design Perspective. You can build user interface visually in the Design Editor.
+# *QuickStyler* : For components, styles like fonts and colors can be easily and quickly modified via the QuickStyler view.
+# *Attributes* : General attributes, styles and event attributes for components can be modified via the Attributes view.
