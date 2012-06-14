@@ -71,7 +71,7 @@ QuickStyler나 Attributes 뷰에서 사용 될 기본 Swatch를 설정할 수 �
 
  * Swatch 삭제 -- *Remove 버튼* 을 선택하면 Swatch를 삭제할 수 있습니다.
 
-h3. Viewport Size
+h3(#viewport_size). Viewport Size
  
 Visual Designer 의 툴바에서 선택 가능한 viewport size 를 편집할 수 있습니다. 
 
