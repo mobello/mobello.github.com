@@ -8,20 +8,20 @@ keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Frame
 
 h1. Getting Started
 
-* "모벨로를 소개합니다 [korean]":http://mobello.tumblr.com/post/21634260724
-* "설치하기 [korean]":http://mobello.tumblr.com/post/21685709384
-* "처음 시작하기 - part1 [korean]":http://mobello.tumblr.com/post/21686783051/part1
-* "처음 시작하기 - part2 [korean]":http://mobello.tumblr.com/post/21691198274/part2
+* "Introduction to Mobello [korean]":http://mobello.tumblr.com/post/21634260724
+* "Installation [korean]":http://mobello.tumblr.com/post/21685709384
+* "Hello World!"[English]:/tutorial1
+* "Getting Started - part1 [korean]":http://mobello.tumblr.com/post/21686783051/part1
+* "Getting Started - part2 [korean]":http://mobello.tumblr.com/post/21691198274/part2
 * "Single and Multitasking Mode [korean]":http://mobello.tumblr.com/post/22641902896/single-and-multi-tasking-mode
-
 <hr>
 
 h1. Tutorials
 
-* "네비게이션 구현하기 - part1 [korean]":http://mobello.tumblr.com/post/21706116835/part1
-* "네비게이션 구현하기 - part2 [korean]":http://mobello.tumblr.com/post/21706121024/part2
-* "Table과 TableCell을 이용한 연락처 구현하기 - part1 [korean]":http://mobello.tumblr.com/post/21706131998/table-tablecell-part1
-* "Table과 TableCell을 이용한 연락처 구현하기 - part2 [korean]":http://mobello.tumblr.com/post/21706135932/table-tablecell-part2
+* "Page Navigation - part1 [korean]":http://mobello.tumblr.com/post/21706116835/part1
+* "Page Navigation - part2 [korean]":http://mobello.tumblr.com/post/21706121024/part2
+* "Contacts using Table and TableCell - part1 [korean]":http://mobello.tumblr.com/post/21706131998/table-tablecell-part1
+* "Contacts using Table and TableCell - part2 [korean]":http://mobello.tumblr.com/post/21706135932/table-tablecell-part2
 
 
 <hr>
