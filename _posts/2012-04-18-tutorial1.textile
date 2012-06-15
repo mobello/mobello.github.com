@@ -7,7 +7,7 @@ keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Frame
 
 h2. Before you start
 
-In this tutorial you will go through developing simple demo application that displays "Hello Mobello Framework!" text on the iphone screen. Before you get started, you need to know several steps to make you up and running.
+In this tutorial we will walk you through developing simple demo application that displays "Hello Mobello Framework!" text on the iphone screen. Before you get started, you need to know several steps to make you up and running.
 
 h4. 1. App folder creation
 
