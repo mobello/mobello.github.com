@@ -10,7 +10,7 @@ h1. Getting Started
 
 * "Introduction to Mobello [korean]":http://mobello.tumblr.com/post/21634260724
 * "Installation [korean]":http://mobello.tumblr.com/post/21685709384
-* "Hello World!"[English]:/tutorial1
+* "Hello World! [English]":/tutorial1
 * "Getting Started - part1 [korean]":http://mobello.tumblr.com/post/21686783051/part1
 * "Getting Started - part2 [korean]":http://mobello.tumblr.com/post/21691198274/part2
 * "Single and Multitasking Mode [korean]":http://mobello.tumblr.com/post/22641902896/single-and-multi-tasking-mode
