@@ -5,12 +5,13 @@ description: Mobello Studio is ultimate IDE for building webapps with Mobello Fr
 keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial, 튜토리얼, 강의
 ---
 
+h1. QuickStyler
 
 QuickStyler view 는 스타일 관련 속성들을 쉽게 수정할 수 있는 UI 를 제공합니다. QuickStyler 는 여러개의 section 으로 구성되어 있으며 컴포넌트에 따라 나타나는 section 이 다를 수 있습니다.
 
 !http://s17.postimage.org/btry0z2lb/quickstyler.png!
 
-h1. Text section
+h2. Text section
  
 !http://s13.postimage.org/ya6j7odbb/text_section.png!
  
@@ -43,7 +44,7 @@ Font 크기를 pixel 단위로 선택합니다.
 
 <hr>
 
-h1. Color Section
+h2. Color Section
  
 Color Section 에서 배경색, 텍스트색, border 색상을 변경할 수 있습니다. 변경할 색상을 선택한 후 하단의 Swatchs, Solid, Graident, Image 중 한곳에서 색상을 변경합니다.
  
