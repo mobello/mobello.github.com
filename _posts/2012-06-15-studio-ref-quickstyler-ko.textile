@@ -1,4 +1,4 @@
-﻿--- 
+--- 
 layout: default 
 title: Mobello Studio
 description: Mobello Studio is ultimate IDE for building webapps with Mobello Framework. Mobello Studio also help you to create standards-based web sites.   
