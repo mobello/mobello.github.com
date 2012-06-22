@@ -17,7 +17,7 @@ h3. Core Runtime
 
 Runtime manages the lifecycle of web apps and provides abstraction layers for user interaction and animation, advanced effects.
 * Device agnostic event system (touch events)
-* Provides advanced amimation
+* Provides advanced animation
 * Runtime system for multi-tasking
 * Provides Controllers for general UX patterns
 
