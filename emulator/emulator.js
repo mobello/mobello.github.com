@@ -140,7 +140,7 @@
       this.refreshVisuals();
     },
     refreshPhoneVisual: function() {
-      this.phoneComp.phoneFigure.setAttribute('src', 'img/iphone4.jpg');
+      this.phoneComp.phoneFigure.setAttribute('src', 'img/iphone.png');
     },
     refreshButtonVisual: function() {
       this.homeButton.style.width = "80px";
