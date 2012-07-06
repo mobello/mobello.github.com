@@ -156,8 +156,8 @@
       // iframeDIV DOM
       browser.width = '320px';
       browser.height = '480px';
-      browser.style.marginLeft = "-158px";
-      browser.style.top = "135px";
+      browser.style.marginLeft = "-163px";
+      browser.style.top = "156px";
 
       this.bodyDOM.style.zoom = "100%";
     }
