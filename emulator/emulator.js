@@ -27,7 +27,7 @@
         },
         switchApp: function() {
           var locate = window.location.href;
-          this.iframeSrc = "../src/launcher.html";
+          this.iframeSrc = "http://www.econovation.co.kr/mobello/demo/launcher.html";
 
           if (locate.indexOf("?") == -1) { // dashboardApp
             this.browser.src = this.iframeSrc;
@@ -37,7 +37,7 @@
             if (param.indexOf("=") == -1)
               return;
             this.appName = param.split("=")[1];
-            this.browser.src = "../src/launcher.html?app=" + this.appName;
+            this.browser.src = "http://www.econovation.co.kr/mobello/demo/launcher.html?app=" + this.appName;
             this.isSingleApp = true;
           }
         },
