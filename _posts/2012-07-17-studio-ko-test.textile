@@ -1,0 +1,69 @@
+--- 
+layout: default 
+title: Mobello Studio
+description: Mobello Studio is ultimate IDE for building webapps with Mobello Framework. Mobello Studio also help you create standards-based web sites.   
+keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial, 튜토리얼, 강의
+---
+
+<iframe width="500" height="281" style="float:right;" src="http://www.youtube.com/embed/smxXEXOOJSM" frameborder="0" allowfullscreen></iframe>
+
+h3. Mobello Studio 기능
+
+* Develop mobile apps with Mobello Framework
+* Design web with HTML5 and CSS3
+* WYSIWYG design editor
+* Real-time synchronized editing
+* Javascript debugging
+* Device emulator
+* Powerful layout editing
+* Eclipse plug-in architecture
+
+<a href="/studio-download-ko" class="btn btn-black btn-large" style="padding-left: 70px;padding-right:70px;margin-top: 15px;">Download Mobello Studio</a>
+
+<hr style="clear:both">
+
+h2. Mobello Studio 기본 자료
+
+* "설치 가이드":/studio-install-guide-ko
+* "Design Perspective 소개":/studio-perspective-ko
+* "Mobello Studio Preference Page 소개":/studio-preferences-ko
+
+<hr>
+
+h2. Mobello app 개발 관련 자료
+
+h4. 문서
+
+ * "Mobello Studio 처음 시작하기":/studio-getstarted-ko <i class="icon-best"></i>
+* "Navigation based App 제작 및 Publish 하기":/studio-build-navigation-ko <i class="icon-best"></i> 
+* "RSS 기반 app 만들기":/studio-build-rss-ko
+* "Mobello Studio 로 디버깅 하기":/studio-debug-ko <i class="icon-best"></i>
+
+h4. 동영상 가이드
+
+* "Mobello Studio 처음 시작하기":http://youtu.be/jLbUfaLjkmA <i class="icon-best"></i>
+* "Navigation based App 제작 및 Publish 하기":http://youtu.be/b2kOgdgLJTQ <i class="icon-best"></i>
+* "RSS 기반 app 만들기":http://youtu.be/Xqkbk4lGScg
+* "Mobello Studio 로 디버깅 하기":http://youtu.be/sb1cNGiI8WE <i class="icon-best"></i>
+
+
+<hr>
+
+h2. Web site 개발 관련 자료
+
+h4. 소개 영상
+
+* "CSS3 로 디자인하기":http://youtu.be/uMJHIBTdRYE
+* "Absolute Layout":http://youtu.be/V6YoLo07Reo
+* "QuickStyler ColorSection":http://youtu.be/rG8hCzlu874
+* "QuickStyler TextSection":http://youtu.be/UTreLaZoHtY
+* "Attributes Edit":http://youtu.be/P6LkmxFktBA
+
+h4. 동영상 가이드
+
+* "Build web pages with Mobello Studio - part1":http://youtu.be/1uyzcWvqhvg
+* "Build web pages with Mobello Studio - part2":http://youtu.be/saqBkJ5lewI
+* "Build mobile pages with Mobello Studio - part1":http://youtu.be/duSGGM-OywU
+* "Build mobile pages with Mobello Studio - part2":http://youtu.be/H-Wh-SlRFbU
+* "Design stylish form with Mobello Studio":http://youtu.be/dB0JVeZLSPc
+* "Design mobile SNS pages with Mobello Studio":http://youtu.be/6Nu5yxoHAug
