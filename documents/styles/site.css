@@ -67,12 +67,13 @@ td, th {
     font: 12px Monaco, Consolas, "Courier New", monospace;
 }
 
+/*
 pre {
     padding: 0;
     margin: 10px 0;
     text-align: left;
     overflow: auto;
-}
+}*/
 
 
 /* Page layout groupings */
@@ -3100,8 +3101,11 @@ table.confluenceTable th.confluenceTh.nohighlight > p {
 
 /* Code styles */
 .code {
+/*
     border-width: 1px;
     border-style: dashed;
+*/
+  border: none !important;
 }
 
 .code, .preformatted {
@@ -3112,6 +3116,7 @@ table.confluenceTable th.confluenceTh.nohighlight > p {
 .code pre, .preformatted pre { /* needs 'pre' to override TinyMCE style */
     font-family:"Courier New", Courier, monospace;
     line-height: 1.3;
+    padding:
 }
 
 /* The code macro classes are overridden by the fixed width theme so have been
