@@ -1,0 +1,192 @@
+---
+layout: confluence
+title: Button 사용하기
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, 버튼, button, 가이드, 문서
+---
+
+<p>일반적으로 많이 사용하는 버튼 컴포넌트에 대해서 알아보고, Button 컴포넌트에서 제공하는 스타일을 적용해 보도록 하겠습니다.</p><p> </p><p>목차:</p><p><div>
+<ul>
+    <li><a href='#Button사용하기-Button이란'>Button이란?</a></li>
+    <li><a href='#Button사용하기-테마적용하기'>테마 적용하기</a></li>
+    <li><a href='#Button사용하기-상태별버튼스타일적용하기'>상태별 버튼 스타일 적용하기</a></li>
+</ul></div></p><h1 id="Button사용하기-Button이란">Button이란?</h1><p>HTML element의 하나인 button을 모바일 버전에 맞게 만든 컴포넌트입니다. 일반적으로 탭했을 때 이벤트를 받아 사용자의 업무로직을 처리할 수 있습니다.</p><p>Mobello에서는 버튼 컴포넌트에 대한 다양한 스타일을 제공하고, 버튼의 상태에 따라 스타일을 적용할 수 있는 기능을 제공하고 있습니다.</p><h1 id="Button사용하기-테마적용하기">테마 적용하기</h1><p>Mobello에서 적용되어 있는 Button의 배경은 CSS3의 gradient가 적용이 되어 있습니다.  또한 버튼은 터치했을 때 탭했을 때 버튼을 터치하지 못하였을 때 다른 배경색상을 제공하고 있습니다.</p><p>사용자가 직접 CSS를 적용해도 무방하지만, 꽤 번거로운 작업이기 때문에  Mobello에서 스타일 클래스로 정의해서 바로 적용할 수 있습니다.</p><p>Mobello의 default테마는 버튼에 대해서 기본적으로 6개의 타입의 스타일 클래스를 제공하고 있습니다.</p><p> </p><ul><li><strong>normal</strong>: gradient가 없고, shadow가 적용되지 않은 간단한 형태.</li><li><strong>default</strong> : 회색계열</li><li><strong>dark</strong> : 검정색 개열. 네비게이션바의 이전 버튼에 적용되어 있음.</li><li><strong>red</strong> : 적색계열</li><li><strong>khaki</strong> : 카키색  계열</li><li><strong>green</strong> : 녹색계열<br /><br /></li></ul><div><p> </p><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=tbuttons">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/tbuttons/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=tbuttons" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Button.html" class="external-link" rel="nofollow">API docs</a></p></td></tr></table></div></td></tr></tbody></table><p> </p></div><div><p> </p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var normal = new tau.ui.Button({
+  label: 'normal',
+  styleClass: {
+    type: 'normal'
+  }
+});
+var def = new tau.ui.Button({
+  label: 'default',
+  styleClass: {
+    type: 'default'
+  }
+});</pre>
+		</div>
+</div></div><p> </p><p> </p><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone full">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=tbuttons2">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/tbuttons2/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=tbuttons2" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Button.html" class="external-link" rel="nofollow">API docs</a><span> </span></p></td></tr></table></div></td></tr></tbody></table><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var def = new tau.ui.Button({
+  label: 'default',
+  styleClass: {
+    type: 'default'
+  }
+});
+var dark = new tau.ui.Button({
+  label: 'dark',
+  styleClass: {
+    type: 'dark'
+  }
+});
+
+var red = new tau.ui.Button({
+  label: 'red',
+  styleClass: {
+    type: 'red'
+  }
+});
+
+var khaki = new tau.ui.Button({
+  label: 'khaki',
+  styleClass: {
+    type: 'khaki'
+  }
+});
+
+var green = new tau.ui.Button({
+  label: 'green',
+  styleClass: {
+    type: 'green'
+  }
+};</pre>
+		</div>
+</div></div><p> </p></div><div>모양에 대해서도 다음 세가지 스타일 클래스를 제공합니다.</div><div><ul><li><strong>round</strong> : 모서리가 둥근 모양</li><li><strong>rectangle</strong> :  사각형 모양</li><li><strong>corner</strong> : 모서리가 약간 둥근 모양</li></ul></div><p> </p><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=sbuttons">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/sbuttons/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=sbuttons" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Button.html" class="external-link" rel="nofollow">API docs</a><span> </span></p></td></tr></table></div></td></tr></tbody></table><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var rectangle = new tau.ui.Button({
+  label: 'rectangle',
+  styleClass: {
+    shape: 'rectangle'
+  }
+});
+ 
+var round = new tau.ui.Button({
+  label: 'round',
+  styleClass: {
+    shape: 'round'
+  }
+});
+ 
+var corner = new tau.ui.Button({
+  label: 'corner',
+  styleClass: {
+    shape: 'corner'
+  }
+});</pre>
+		</div>
+</div></div><p> </p><h1 id="Button사용하기-상태별버튼스타일적용하기">상태별 버튼 스타일 적용하기</h1><p>버튼 컴포넌트는 버튼의 상태에 따라 스타일과 라벨 텍스트를 적용할 수 있습니다.</p><p>여기서 버튼 상태는 다음과 같습니다.</p><ul><li><strong>normal</strong> : 일반적인 상태</li><li><strong>disabled</strong>: 터치 불가능한 상태</li><li><strong>highlighted</strong>: 터치 했을 때</li><li><strong>selected</strong>: 탭하거나, 탭을 유지하고 있는 상태</li></ul><p>설정할 수 있는 스타일은 다음과 같습니다.</p><ul><li>라벨 텍스트 값</li><li>배경색</li><li>배경이미지</li><li>텍스트색</li></ul><p> </p><div><p> </p><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=button">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/button/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=button" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Button.html" class="external-link" rel="nofollow">API docs</a><span> </span></p></td></tr></table></div></td></tr></tbody></table><p> </p><p>일반적으로 사용자가 터치이벤트를 받아서 콜백함수에서 스타일을 적용할 수 있습니다.</p></div><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var button = new tau.ui.Button({
+  id: 'btn1',
+  label: 'normal'
+});
+button.onEvent(tau.rt.Event.TOUCHSTART, this.handleTouchStart, this);
+button.onEvent(tau.rt.Event.TAP, this.handleTouchStart, this);</pre>
+		</div>
+</div></div><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">handleTouchStart: function (e, payload) {
+  var src = e.getSource();
+  src.setLabel('touchStart');
+},
+ 
+handleTap: function (e, payload) {
+  var src = e.getSource();
+  src.setLabel('tap');
+ 
+  window.setTimeout(function () { src.setLabel('normal');}, 500);
+},</pre>
+		</div>
+</div></div><p> </p><p>다음은 텍스트 색상을 상태에 따라 설정한 예제입니다.</p><div><p> </p><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=button2">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/button2/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=button2" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Button.html" class="external-link" rel="nofollow">API docs</a><span> </span></p></td></tr></table></div></td></tr></tbody></table></div><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var button = new tau.ui.Button({
+  textColor: {
+   normal: 'Black',
+   disabled: 'Gray',
+   highlighted: 'Blue',
+   selected: 'DarkBlue'
+  }
+});</pre>
+		</div>
+</div></div><p>상태가 변경되면 설정되었던 값으로 적용되는 것을 확인할 수 있습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">button.onEvent(tau.rt.Event.TAP, this.handleTap, this);
+....
+},
+ 
+handleTap: function (e, payload) {
+  var src = e.getSource();
+  tau.log.info(src.getTextColor());  // DarkBlue 
+}</pre>
+		</div>
+</div></div><div class='panelMacro'><table class='warningMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/forbidden.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>현재 버전(<strong>v0.9.0M</strong>) Mobello에서는 상태별 스타일이 제대로 동작하지 않습니다.</p><p>버그사항</p><ul><li><strong>터치했을 때</strong>  <span><span><a href="http://mobello.github.com/api/symbols/tau.ui.Button.html#setLabel" class="external-link" rel="nofollow">tau.ui.Button#setLabel</a>, <span><a href="http://mobello.github.com/api/symbols/tau.ui.Button.html#setTextColor" class="external-link" rel="nofollow">tau.ui.Button#setTextColor</a>, <span><a href="http://mobello.github.com/api/symbols/tau.ui.Button.html#setBackgroundColor" class="external-link" rel="nofollow">tau.ui.Button#setBackgroundColor</a>, <span><a href="http://mobello.github.com/api/symbols/tau.ui.Button.html#setBackgroundImage" class="external-link" rel="nofollow">tau.ui.Button#setBackgroundImage</a> 에 설정한   </span></span></span></span></span><em><strong>highlighted</strong> </em>값이 적용되지 않습니다.</li><li><strong>탭 되었을 때 </strong><a href="http://mobello.github.com/api/symbols/tau.ui.Button.html#setLabel" class="external-link" rel="nofollow">tau.ui.Button#setLabel</a> , <a href="http://mobello.github.com/api/symbols/tau.ui.Button.html#setTextColor" class="external-link" rel="nofollow">tau.ui.Button#setTextColor</a>, <a href="http://mobello.github.com/api/symbols/tau.ui.Button.html#setBackgroundColor" class="external-link" rel="nofollow">tau.ui.Button#setBackgroundColor</a>, <a href="http://mobello.github.com/api/symbols/tau.ui.Button.html#setBackgrounImage" class="external-link" rel="nofollow">tau.ui.Button#setBackgrounImage</a><span> 에 설정한 </span><span> <em><strong>selected</strong></em></span><span> 값이 적용되지 않습니다.</span></li></ul><p>이후 버전(Jul 03, 2012)에서는 해당 버그가 수정되었습니다. 참고하시기 바랍니다.</p></td></tr></table></div>
