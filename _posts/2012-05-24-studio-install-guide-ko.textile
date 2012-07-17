@@ -39,7 +39,7 @@ h4. Mobello Studio 실행하기
 # 스튜디오가 성공적으로 설치가 완료된 경우 Mobello Studio가 실행되면서 Welcome 페이지가 나타납니다.
 !http://s19.postimage.org/d27tdkoar/welcome01.png!
 
-Welcome 페이지에서는 Studio 에서 제공하는 예제 프로젝트들을 import 할 수 있습니다. 또한 사용자 가이드문서나 동영상 가이드를 확인할 수 있으며 *Open Cheat Sheet* 를 클릭하면 cheat sheet 를 실행할 수 있습니다.
+Welcome 페이지에서는 Studio 에서 제공하는 예제 프로젝트들을 import 할 수 있습니다. 또한 사용자 가이드문서나 동영상 가이드를 확인할 수 있으며 *Open Cheat Sheet* 를 클릭하면 예제를 따라해볼 수 있는 cheat sheet 를 실행할 수 있습니다.
 
 
 h3. 관련 자료
