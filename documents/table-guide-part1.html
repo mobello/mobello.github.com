@@ -1,0 +1,88 @@
+---
+layout: confluence
+title: Table 사용하기 part1(simple, grouping)
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework
+,문서
+,가이드
+,테이블
+,컴포넌트
+,table
+---
+
+<p>일반적으로 많이 사용하는 테이블 컴포넌트에 대해서 알아보고, 간단하게 UI를 구성하는 예를 통해 테이블 컴포넌트를 활용해 보도록 하겠습니다.</p><p> </p><p>목차:</p><p><div>
+<ul>
+    <li><a href='#Table사용하기part1simplegrouping-Table이란'>Table 이란?</a></li>
+    <li><a href='#Table사용하기part1simplegrouping-단순한목록테이블'>단순한 목록 테이블</a></li>
+    <li><a href='#Table사용하기part1simplegrouping-그룹핑한테이블'>그룹핑한 테이블</a></li>
+    <li><a href='#Table사용하기part1simplegrouping-인덱스바적용한테이블'>인덱스바 적용한 테이블</a></li>
+</ul></div></p><p> </p><h1 id="Table사용하기part1simplegrouping-Table이란">Table 이란?</h1><p>테이블 컴포넌트는 목록을 표현하는데 주로 사용됩니다.  다음은 테이블 컴포넌트가 제공하는 주요한 기능입니다.</p><ul><li>계층적인 데이터를 표현하는데 사용합니다. 즉, 목록의 셀을 선택하면 네비게이션되면서 하위 목록이나, 상세 내용이 나오는 형태를 표현할 수 있습니다.</li><li>목록을 그룹핑해서 표현할 수 있습니다.</li><li>그룹핑되어 있는 목록을 빠르게 접근하기 위해 인덱스바를 제공하고 있습니다.</li></ul><p> </p><p><img class="confluence-embedded-image" src="attachments/7307501/7536646.png" data-image-src="attachments/7307501/7536646.png"> <img class="confluence-embedded-image" src="attachments/7307501/7536648.png" data-image-src="attachments/7307501/7536648.png"> <img class="confluence-embedded-image" src="attachments/7307501/7536649.png" data-image-src="attachments/7307501/7536649.png"></p><p> </p><p>이 글에서는 단순한 목록, 그룹화한 목록, 인덱스바를 적용한 예제를 통해서 Table을 살펴보도록 하겠습니다.</p><p> </p><h1 id="Table사용하기part1simplegrouping-단순한목록테이블">단순한 목록 테이블</h1><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=simpletable">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="https://github.com/mobello/mobello-learn/blob/master/apps/simpletable/main.js" class="external-link" rel="nofollow">전체 소스</a></p><p><a href="http://mobello.github.com/mobello-learn/launcher.html?app=simpletable" class="external-link" rel="nofollow">데모</a> : 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Table.html" class="external-link" rel="nofollow">API docs</a></p></td></tr></table></div></td></tr></tbody></table><p> </p><p> </p><p>테이블 하위에 셀 컴포넌트를 추가할 수 있습니다. 셀 배열을 한꺼번에 설정할 수 있고,</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">var table = new tau.ui.Table({
+  components: [
+    new tau.ui.TableCell({title: 'list1'}),
+    new tau.ui.TableCell({title: 'list2'}),
+    new tau.ui.TableCell({title: 'list3'})
+  ]
+});</pre>
+		</div>
+</div></div><p> </p><p>셀 하나씩 추가 가능합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var table = new tau.ui.Table();
+ 
+table.add(new tau.ui.TableCell({title: 'list1'}));
+table.add(new tau.ui.TableCell({title: 'list2'}));
+table.add(new tau.ui.TableCell({title: 'list3'}));</pre>
+		</div>
+</div></div><p> </p><h1 id="Table사용하기part1simplegrouping-그룹핑한테이블">그룹핑한 테이블</h1><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=grouptable">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="https://github.com/mobello/mobello-learn/blob/master/apps/grouptable/main.js" class="external-link" rel="nofollow">전체소스</a></p><p><a href="http://mobello.github.com/mobello-learn/launcher.html?app=grouptable" class="external-link" rel="nofollow">데모</a> : 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Table.html" class="external-link" rel="nofollow">API docs</a><span> </span></p></td></tr></table></div></td></tr></tbody></table><p> </p><p> 테이블을 그룹핑하기 위해서는 group 속성값을 true로 설정합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var groupTable = new tau.ui.Table({
+  group: true,
+  sectionSort: tau.ui.DESC_SORT
+});</pre>
+		</div>
+</div></div><p>셀은 그룹명(groupName)으로 그룹핑을 할 수 있습니다.  </p><p> </p><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>섹션 정렬</p><ul><li>tau.ui.ASC_SORT : 그룹명에 대해 오름차순. 기본값</li><li>tau.ui.DESC_SORT : <span>그룹명에 대해 오름차순.</span></li><li>tau.ui.INDEX_SORT : 섹션을 추가한 인덱스 순으로 정렬</li></ul></td></tr></table></div><p> </p><p> </p><p>그룹화 되어 있는 셀들을 확연하게 분리되게 표현하고자 한다면 Mobello 테이블에서 다음과 같은 스타일 클래스을 제공합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var groupTable = new tau.ui.Table({
+  group: true,
+  styleClass: {section: 'sectionGroup'}
+});</pre>
+		</div>
+</div></div><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=grouptable2">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="https://github.com/mobello/mobello-learn/blob/master/apps/grouptable2/main.js" class="external-link" rel="nofollow">전체소스</a></p><p><a href="http://mobello.github.com/mobello-learn/launcher.html?app=grouptable2" class="external-link" rel="nofollow">데모</a> : 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Table.html" class="external-link" rel="nofollow">API docs</a><span> </span></p></td></tr></table></div></td></tr></tbody></table><p> </p><p>그룹명(groupName)으로 지정하면 자동으로 섹션이 생성되고, 그 하위에 같은 그룹명으로 되어 있는 셀이 추가됩니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">groupTable.add(new tau.ui.TableCell({title: 'apple', groupName: 'A'}));
+groupTable.add(new tau.ui.TableCell({title: 'avocado', groupName: 'A'}));</pre>
+		</div>
+</div></div><p> </p><p>다음과 같이 직접 섹션을 생성할 수 있습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">groupTable.add(new tau.ui.TableSection({groupName: 'B'}));</pre>
+		</div>
+</div></div><p> </p><h1 id="Table사용하기part1simplegrouping-인덱스바적용한테이블">인덱스바 적용한 테이블</h1><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=indexedtable">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="https://github.com/mobello/mobello-learn/blob/master/apps/indexedtable/main.js" class="external-link" rel="nofollow">전체소스</a></p><p><a href="http://mobello.github.com/mobello-learn/launcher.html?app=indexedtable" class="external-link" rel="nofollow">데모</a> : 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Table.html" class="external-link" rel="nofollow">API docs</a><span> </span></p></td></tr></table></div></td></tr></tbody></table><p> </p><p>인덱스바를 적용하기 위해서는 기본적으로 테이블은 그룹핑되어 있는 테이블에서 적용이 가능합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var indexTable = new tau.ui.Table({
+  group: true,
+  indexBar: tau.ui.Table.INDEXBAR_EN
+});</pre>
+		</div>
+</div></div><p>indexbar 타입을 한글 인덱스로 설정합니다. </p><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><span>현재 버전(</span><strong>v0.9.0M</strong><span>) Mobello에서</span> 인덱스바는 <strong>한글 인덱스(tau.ui.Table.INDEXBAR_KR)</strong>, <strong>영문 인덱스(tau.ui.Table.INDEXBAR_EN)</strong>를 제공합니다.</p><ul><li>한글 인덱스(tau.ui.Table.INDEXBAR_KR) : ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎA*F*K*P*U*Z#</li><li>영문 인덱스(tau.ui.Table.INDEXBAR_EN) : ABCDEFGHIJKLMNOPQRSTUVWXYZ#</li></ul><p>사용자가 직접 지정한 인덱스는 현재 제공하고 있지 않습니다. 해당 사항은 추후 고려하고 있습니다.</p></td></tr></table></div><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">indexTable.add(new tau.ui.TableCell({title: 'apple', groupName: 'A'}));
+indexTable.add(new tau.ui.TableCell({title: 'avocado', groupName: 'A'}));</pre>
+		</div>
+</div></div><p> </p><p> </p><p> </p>

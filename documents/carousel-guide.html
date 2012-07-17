@@ -1,0 +1,59 @@
+---
+layout: confluence
+title: Carousel 사용하기
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework
+,carousel
+,문서
+,가이드
+---
+
+<p>자주 활용되는 Carousel 컴포넌트에 대해서 알아보고, 간단하게 UI를 구성하는 예를 통해 Carousel 컴포넌트를 활용해 보도록 하겠습니다.</p><p> </p><p>목차:</p><p><div>
+<ul>
+    <li><a href='#Carousel사용하기-Carousel이란'>Carousel 이란?</a></li>
+    <li><a href='#Carousel사용하기-하위 Panel추가하기'>하위 &nbsp;Panel 추가하기</a></li>
+</ul></div></p><div class="panelMacro"><h1 id="Carousel사용하기-Carousel이란">Carousel 이란?</h1><p>탭바를 탭해서 해당 Scene(화면)으로 이동하는 것과 비숫하게 Carousel에서는 여러 Panel을 Swipe(옆으로 스크롤)해서 해당 패널을 볼 수 있도록 제공하고 있습니다.</p><p>Mobello에서 제공하는 Carousel는 수평방향, 수직방향 Carousel을 제공하고 있습니다.</p><p><img class="confluence-embedded-image" src="attachments/7307616/7536651.png" data-image-src="attachments/7307616/7536651.png"> <img class="confluence-embedded-image" src="attachments/7307616/7536652.png" data-image-src="attachments/7307616/7536652.png"></p><p> </p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var vCarousel = new tau.ui.Carousel({
+  vertical: true
+});</pre>
+		</div>
+</div></div><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=vcarousel">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="https://github.com/mobello/mobello-learn/blob/master/apps/vcarousel/main.js" class="external-link" rel="nofollow">전체 소스</a></p><p><a href="http://mobello.github.com/mobello-learn/launcher.html?app=vcarousel" class="external-link" rel="nofollow">데모</a> : 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Carousel.html" class="external-link" rel="nofollow">API docs</a><span> </span></p></td></tr></table></div></td></tr></tbody></table><p> </p><p> </p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var hCarosel = new tau.ui.Carousel({
+  vertical: false // 설정하지 않아도 기본값은 수평방향임.
+});</pre>
+		</div>
+</div></div><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=hcarousel">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="https://github.com/mobello/mobello-learn/blob/master/apps/hcarousel/main.js" class="external-link" rel="nofollow">전체 소스</a></p><p><a href="http://mobello.github.com/mobello-learn/launcher.html?app=hcarousel" class="external-link" rel="nofollow">데모</a> : 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Carousel.html" class="external-link" rel="nofollow">API docs</a><span> </span></p></td></tr></table></div></td></tr></tbody></table><p> </p><h1 id="Carousel사용하기-하위 Panel추가하기">하위  Panel 추가하기</h1><p>Carousel 컴포넌트는 하위로 Panel컴포넌트를 가질 수 있습니다. 하위에 Panel 컴포넌트는 Carousel 컴포넌트 크기로 고정됩니다. </p><p> </p><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=vcarousel">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="https://github.com/mobello/mobello-learn/blob/master/apps/vcarousel/main.js" class="external-link" rel="nofollow">전체 소스</a></p><p><a href="http://mobello.github.com/mobello-learn/launcher.html?app=vcarousel" class="external-link" rel="nofollow">데모</a> : 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Carousel.html" class="external-link" rel="nofollow">API docs</a><span> </span></p></td></tr></table></div></td></tr></tbody></table><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var carousel = new tau.ui.Carousel({vertical: true}),
+var panel1 = new tau.ui.Panel({styles: {backgroundColor: 'red'}});
+var panel2 = new tau.ui.Panel({styles: {backgroundColor: 'blue'}});
+...
+ 
+carousel.setComponents([panel1, panel2, panel3]);</pre>
+		</div>
+</div></div><p> </p><p>다른 컴포넌트를 배치하고자 한다면 Panel 컴포넌트 하위에 추가하면 됩니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var panel3 = new tau.ui.Panel({
+ styles: {backgroundColor: 'yellow'},
+ components: [
+   new tau.ui.Button({label: 'button1'})
+ ]
+});
+
+...</pre>
+		</div>
+</div></div><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>되도록이면<a href="http://mobello.github.com/api/symbols/tau.ui.Panel.html" class="external-link" rel="nofollow"> Panel</a> 컴포넌트에 스크롤 기능이 있는 컴포넌트 배치는 지양해야 합니다. 이중 스크롤이 생기게 되면 의도하지 않게 오동작할 수 있습니다.</p></td></tr></table></div><p> </p></div><p> </p>

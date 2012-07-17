@@ -1,0 +1,76 @@
+---
+layout: confluence
+title: Table 사용하기 part3(pagination, pull to refresh)
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework
+---
+
+<p><a href="table-guide-part1.html">Table &#49324;&#50857;&#54616;&#44592; part1</a>에서는 일반적으로 Table에서 제공하는 기능에 대해 살펴보았고,  <a href="table-guide-part2.html">Table &#49324;&#50857;&#54616;&#44592; part2</a>에서는 외부 데이터 가져오는 예제를 통해서 Table 컴포넌트를 사용해 보았습니다.</p><p>이번 마지막 part3에서는 부가적으로 제공하는 <strong>pagination</strong>과 <strong>끌었다 놓기 기능(pull to refresh)</strong>에 대해서 알아보도록 하겠습니다.</p><p>이 기능들은 목록이 많아 질 때, 동적으로 목록을 더 가져와서 추가할 때 유용한 기능들입니다.</p><p> </p><p>목차:</p><p><div>
+<ul>
+    <li><a href='#Table사용하기part3paginationpulltorefresh-pagination'>pagination</a></li>
+    <li><a href='#Table사용하기part3paginationpulltorefresh-끌어다놓기pulltorefresh'>끌어다 놓기(pull to refresh)</a></li>
+</ul></div></p><h1 id="Table사용하기part3paginationpulltorefresh-pagination">pagination</h1><p>페이지네이션은 전통적인 웹의 게시판에서 자주사용하는 UX 패턴입니다. 페이지 번호를 클릭하면 해당 페이지로 갑니다. Mobello에서 제공하는 Table도 마찬가지로 페이지번호를 탭하면 해당 페이지로 이동합니다.</p><p>부가적으로 Slider를 제공해서 원하는 페이지로 빠르게 이동할 수 있도록 제공하고 있습니다.</p><p> </p><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><b>Table 생성자 페이지네이션 관련 옵션</b><br /><ul><li><strong>type</strong>: 페이지에 접근하기 위한 방법으로 두가지 타입을 제공합니다.<ul><li>tau.ui.PaginationBar.<strong>NORMAL_TYPE </strong>: 페이지 번호를 탭해서 해당 페이지로 이동하는 방법</li><li><span>tau.ui.PaginationBar.<strong>SLIDER_TYPE</strong> : 슬라이더를 이동해서 해당 페이지로 이동하는 방법</span></li></ul></li><li><strong>firstLastButtonVisible</strong> : 맨처음, 맨마지막 버튼 사용 여부</li><li><strong>prevNextButtonVisible</strong> : 이전, 다음 버튼 사용 여부</li><li><strong>pageSize</strong> : 한번에 보여지는 페이지번호의 개수</li><li><strong>listSize</strong> : 한번에 보여지는 테이블 목록 개수</li><li><strong>dock</strong>: 페이지네이션바가 보여질 위치<ul><li>tau.ui.PaginationBar.<strong>TOP_DOCK</strong></li><li><span>tau.ui.PaginationBar.<strong>BOTTOM_DOCK</strong></span></li><li><span><span>tau.ui.PaginationBar.<strong>LEFT_DOCK</strong></span></span></li><li><span><span><span>tau.ui.PaginationBar.<strong>RIGHT_DOCK</strong></span></span></span></li></ul></li></ul></td></tr></table></div><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=pagination">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/pagination/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=pagination" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Table.html" class="external-link" rel="nofollow">API docs</a></p></td></tr></table></div></td></tr></tbody></table><p>테이블 컴포넌트를 생성할 때 생성자 옵션으로 pagination을 설정할 수 있습니다.<a href="http://mobello.github.com/api/symbols/tau.ui.PaginationBar.html" class="external-link" rel="nofollow"> tau.ui.PaginationBar</a> 컴포넌트 객체로 설정할 수 도 있고, <a href="http://mobello.github.com/api/symbols/tau.ui.PaginationBar.html#constructor" class="external-link" rel="nofollow">tau.ui.PaginationBar 생성자 옵션</a>으로 설정할 수 있습니다.</p><p>여기에서는 일반적으로 많이 사용하는 tau.ui.PaginationBar 생성자 옵션으로 설정하는 것을 예로 살펴보겠습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var table = new tau.ui.Table({
+  pagination: {
+    type: tau.ui.PaginationBar.SLIDER_TYPE,
+    listSize: 5,
+    dock: tau.ui.PaginationBar.TOP_DOCK // default는 tau.ui.PaginationBar.BOTTOM_DOCK
+  }
+});
+ </pre>
+		</div>
+</div></div><p>테이블 생성자 옵션으로 설정을 끝마치고, 테이블 하위에 셀을 추가하면 설정된 값에 의해 테이블 셀이 추가된 인덱스에 따라 해당 페이지 하위에 추가됩니다.</p><p> </p><div class='panelMacro'><table class='warningMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/forbidden.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><span>현재 버전(</span><strong>v0.9.0M</strong><span>) Mobello에서</span> pagination을 사용할 때 사용에 제한이 있으니 유의하기 바랍니다.</p><ul><li><strong>group</strong> 생성자 옵션은 현재 지원하고 있지 않습니다. <span>다음 버전에서 해당 속성에 대해 정리하도록 하겠습니다.</span></li><li><strong>indexbar</strong> <span>생성자 옵션은</span> 현재 지원하고 있지 않습니다. 다음 버전에서 해당 속성에 대해 정리하도록 하겠습니다.</li></ul></td></tr></table></div><p> </p><h1 id="Table사용하기part3paginationpulltorefresh-끌어다놓기pulltorefresh">끌어다 놓기(pull to refresh)</h1><p>데이터를 더 가져오는 방법으로 Table에서는 더 보기 셀을 제공하고 있습니다. 이 더 보기 셀의 경우에는 목록 하단에 추가가 되어 탭하면 데이터를 로드해서 셀을 마지막 인덱스에 추가합니다.</p><p>그러나 <a href="http://mobello.github.com/api/symbols/tau.ui.ScrollPanel.html" class="external-link" rel="nofollow">ScrollPanel</a>에서는 pull to refresh의 경우에는 테이블의 최상단, 혹은 최하단에 위치해서 끌어다 놓으면 셀의 첫번째 인덱스, 마지막 인덱스에 선택적으로 추가할 수 있습니다. </p><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>참고로 Table의 상위 클래스는 ScrollPanel입니다.</p></td></tr></table></div><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><b>Table 생성자 pull to refresh 관련 옵션</b><br /><ul><li><strong>pullToRefresh</strong>: 끌어다 놓기할 때 끌 방향을 설정합니다.<ul><li><strong>both</strong>: 양방향</li><li><strong>down</strong> : 최상위에 끌어다 놓기가 위치합니다. (끌때 아래 방향을 향하기 때문에 down이라고 정의합니다.)</li><li><strong>up</strong> : 최하단에 끌어다 놓기가 위치합니다. (끌때 위 방향을 향하기 때문에 up이라고 정의합니다.)</li></ul></li><li><strong>pullDownLabel</strong>: 아래 방향으로 끌 때 텍스트를 설정합니다.<ul><li>0번째 인덱스 : 경계값이하로 끌 때 출력되는 텍스트입니다. 예) pull down to refresh</li><li>1번째 인덱스 : 경계값이상으로 끌때 출력되는 텍스트입니다. 예) release to refresh</li><li>2번째 인덱스 : 경계값이상으로 끌다가 놓았을 때 출력되는 텍스트입니다. 예) loading...</li></ul></li><li><strong>pullUpLabel</strong> : 위 <span>방향으로 끌 때 텍스트를 설정합니다.</span><ul><li>0번째 인덱스 : 경계값이하로 끌 때 출력되는 텍스트입니다. 예) pull up to refresh</li><li>1번째 인덱스 : 경계값이상으로 끌때 출력되는 텍스트입니다. 예) release to refresh</li><li>2번째 인덱스 : 경계값이상으로 끌다가 놓았을 때 출력되는 텍스트입니다. 예) loading...</li></ul></li><li><strong>pullDownFn</strong> : <span>아래 방향으로 끌어서 완료 상태될 때 콜백함수를 설정합니다.</span></li><li><strong>pullUpFn</strong> : 위 <span>방향으로 끌어서 완료 상태가 될 때 콜백함수를 설정합니다.</span></li></ul></td></tr></table></div><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=pulltorefresh">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/pulltorefresh/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=pulltorefresh" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Table.html" class="external-link" rel="nofollow">API docs</a></p></td></tr></table></div></td></tr></tbody></table><p> </p><p>테이블 생성자 옵션으로 pull To refresh를 설정합니다. pullToRefresh의 값에 따라 콜백함수(pullDownFn | pullUpFn), 라벨 설정(pullDownLabel | pullUpLabel)을 할 수 있습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">var table = new tau.ui.Table({
+  pullToRefresh: 'down',  // 'both' | 'down' | 'up'
+  pullDownFn: tau.ctxAware(this.loadModel, this)  // 끌어다 놓았을 때 발생하는 콜백함수를 설정한다.
+});
+table.onEvent(tau.ui.Table.EVENT_LOAD_MODEL, this.handleLoadModel, this);</pre>
+		</div>
+</div></div><p> </p><p>끌어다 놓았을 때 데이터를 로드하도록 콜백함수를 정의하였습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">loadModel: function () {
+  var scene = this.getScene();
+  var table = scene.getComponent('table');
+  table.loadModel();
+},</pre>
+		</div>
+</div></div><p> </p><p>데이터가 로드되고, 첫번째 인덱스에 셀을 추가하였습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: true">handleLoadModel: function (e, payload) {
+  var table = e.getSource();
+  var size = payload.size;
+  table.addNumOfCells(size);
+},
+ 
+handleCellLoad: function (e, payload) {
+  ...    
+  table.add(tableCell, 0); // 첫번째 인덱스에 추가되도록 한다.
+}</pre>
+		</div>
+</div></div><div class='panelMacro'><table class='warningMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/forbidden.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><ul><li><strong>pullDownLabel</strong>, <strong>pullUpLabel</strong>은 생성자 옵션에서만 설정할 수 있습니다. 다음 버전에서 동적으로 설정할 수 있도록 수정할 예정입니다.</li><li><strong>pullDownFn</strong>, <strong>pullUpFn</strong> 콜백함수는 다음 버전에서 이벤트 받아서 처리할 수 있도록 수정할 예정입니다.</li></ul></td></tr></table></div>

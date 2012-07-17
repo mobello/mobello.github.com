@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% if page.title == 'Home' %}Mobello | HTML5 framework for building mobile web app {% else %}{{page.title}} | Mobello {% endif %}</title>
+<meta charset="UTF-8">
+<meta name="description" content="{{page.description}}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="{{page.keywords}}">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="/css/style.css" type="text/css" />
+<link rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css" type="text/css" />
+<link rel="stylesheet" href="/documents/styles/site.css" type="text/css" />
+<link rel="stylesheet" href="/documents/styles/mobello.css" type="text/css" />
+
+<link href="/bootstrap/google-code-prettify/prettify.css" rel="stylesheet">
+<script type="text/javascript" src="/bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
+
+</head>
+<body onload="prettyPrint()" {% if page.title == 'Home' %} class="home-body" {% endif %}>
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</a> <a href="/" class="brand"><img src="/img/logo.png"></a>
+				
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li {% if page.title == 'Home' %} class="active" {% endif %} >
+							<a href="/">Home</a>
+						</li>
+						<li {% if page.title == 'Features' %} class="active" {% endif %} >
+							<a href="/features">Features</a>
+						</li>
+						<li {% if page.title == 'Demo' %} class="active" {% endif %} >
+							<a href="/demo">Demo</a>
+						</li>
+						<li {% if page.title == 'Mobello Studio' %} class="active" {% endif %} >
+							<a id="studio_link" href="/studio">Studio</a>
+							<script type="text/javascript">
+							if(isKorean())
+								$('#studio_link')[0].href += '-ko';
+							</script>
+						</li>
+						
+						<li {% if page.title == 'Documentation' %} class="active" {% endif %} >
+							<a href="/docs">Documentation</a>
+						</li>
+						<li {% if page.title == 'Contacts' %} class="active" {% endif %} >
+							<a href="/contacts">Contacts</a>
+						</li>
+						<li>
+							<a href="#" onclick="openBlog();">Blog</a>
+						</li>
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	{% if page.title == 'Home' %}
+	<div class="home-hero">
+		<div class="container">
+			<h1 class="home-hero-h1" >
+				Build great HTML5 mobile apps</h1>
+			<h3 class="home-hero-h3" >
+				Mobello is high performance javascript UI framework for HTML5 mobile apps</h3>
+			<a href="https://github.com/mobello/mobello" class="btn btn-large home-hero-button ">
+				<span class="home-hero-button-img" style="background-image: url('/img/home-2.png')"></span>
+				<span class="home-hero-button-content">View Project on Github</span>
+			</a> 
+			<a id="home_button_studio_down" class="btn btn-large home-hero-button" href="http://mobello.github.com/studio-download">
+				<span class="home-hero-button-img" style="background-image: url('/img/home-3.png')"></span>
+				<span class="home-hero-button-content">
+					Download Mobello Studio
+				</span>
+			</a> 
+			<script type="text/javascript">
+						if(isKorean())
+							$('#home_button_studio_down')[0].href += '-ko';
+			</script>
+			<a class="btn btn-large home-hero-button " href="/demo">
+				<span class="home-hero-button-img" style="background-image: url('/img/home-4.png')"></span>
+				<span class="home-hero-button-content">
+				 	View Demo
+				 </span>
+			</a>
+		</div>
+	</div>
+	{% endif %}
+	{% if page.title != 'Home' %}
+	<div class="default-banner">
+		<div class="container">
+			<h1 style="font-size: 46px;margin-bottom: 20px;margin-top: 48px;">
+				{{ page.title }}
+			</h1>
+			<p style="font-size: 18px; line-height: 15px;">
+			 {{ page.description }}
+			</p>
+		</div>
+	</div>
+	{% endif %}
+	<div class="container">
+		{{ content }}
+	</div>
+	<hr/>
+	<footer>
+		<div class="container">
+      <p class="pull-right"><a href="#">Back to top</a></p>
+      <p>Serviced by olleh.  Copyright (c) 2012 KT corp.</p>
+      <p>Code licensed under the
+        <a href="http://www.gnu.org/copyleft/lesser.html" target="_blank">LGPL v3</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+      </p>
+    </div>
+	</footer>
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+	<script src="/bootstrap/google-code-prettify/prettify.js"></script>
+	<script type="text/javascript">
+	
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-30982497-1']);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	
+	</script>
+</body>
+</html>
