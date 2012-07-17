@@ -1,0 +1,32 @@
+---
+layout: default
+title: Documentation > Studio
+description: To help you get started we created comprehensive step-by-step guide and documentation. 
+keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, document, Document, 문서
+---
+
+h1. Getting Started
+
+* "설치 가이드":/studio-install-guide-ko
+* "Design Perspective 소개":/studio-perspective-ko
+* "Mobello Studio 처음 시작하기":/studio-getstarted-ko <i class="icon-best"></i>
+
+<hr>
+
+h1. Tutorials
+
+* "Mobello Studio 처음 시작하기":/studio-getstarted-ko <i class="icon-best"></i>
+* "Navigation based App 제작 및 Publish 하기":/studio-build-navigation-ko <i class="icon-best"></i> 
+* "Mobello Studio 로 디버깅 하기":/studio-debug-ko <i class="icon-best"></i>
+
+<hr>
+
+h1. UI Reference
+
+* "Mobello Studio Preference Page 소개":/studio-preferences-ko
+* 
+<hr>
+
+h1. Articles
+
+* "RSS 기반 app 만들기":/studio-build-rss-ko
