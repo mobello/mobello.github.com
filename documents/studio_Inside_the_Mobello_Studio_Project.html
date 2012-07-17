@@ -1,0 +1,59 @@
+---
+layout: confluence
+title: Inside the Mobello Studio Project
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<h1><a name="InsidetheMobelloStudioProject-MobelloApplicationProject"></a>Mobello Application Project</h1>
+<p> <br/>
+Mobello Application Project 는 전형적인 단일 application 을 개발하기 위한 project 입니다. Mobello Application Project 의 기본 구조는 다음과 같습니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/k9vggf75v/project01.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+Application 설정 파일인 config.json 은 반드시 root 폴더에 존재해야 하지만 이외의 js 나 scene 파일들과 폴더들은 자유롭게 만들 수 있습니다.<br/>
+ </p>
+<h1><a name="InsidetheMobelloStudioProject-MobelloDashboardProject"></a>Mobello Dashboard Project</h1>
+<p> <br/>
+Mobello Dashboard Project 는 여러개의 application 들로 이루어지며 사용자가 application 을 선택해서 실행할 수 있는 다음과 같은 dashboard 화면을 제공합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/5jeu1zb7n/dashboard.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+Mobello Dashboard Project 의 기본 구조는 다음과 같습니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/t3qjldr43/project02.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+Dashboard project 에 대한 설정 파일인 config.json 과 app 실행시 bootstrapper 역할을 하는 launcher.html 은 반드시 project root 에 존재해야 합니다. Project 를 구성하는 app 들은 apps 폴더 안에 존재하면 app 폴더 이름은 application 이름과 같아야 합니다. app 폴더안의 내용은 Application Project 의 구조와 같습니다. 여러 application 들이 함께 사용하는 파일들은 shared 폴더에 두면 공유해서 사용할 수 있습니다.<br/>
+ </p>
+<h1><a name="InsidetheMobelloStudioProject-Publish된webapp의구조"></a>Publish 된 web app 의 구조</h1>
+<p> <br/>
+Publish as WebApp 기능으로 Application Project 를 publish 하면 해당 폴더에 다음과 같이 생성됩니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/fsb4hes8v/project03.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+Publish 된 web app 의 구조는 Mobello Dashboard Project 구조와 유사하지만 lib 폴더가 추가되고 shared 폴더는 존재하지 않습니다.<br/>
+또한 root 폴더에는 다음과 같은 파일이 생성되는데 launcher.html 은 dashboard project 와 동일하지만 해당 application 을 바로 실행할 수 있는 html 파일이 추가적으로 생성됩니다. <br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/skz8hc3un/project04.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+Dashboard project 를 publish 했을 때 생성되는 폴더 구조는 다음과 같습니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/v64t4ut8f/project05.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+원본 project 구조와 동일하지만 lib 폴더가 추가된것을 볼 수 있습니다.<br/>
+ <br/>
+Publish 된 application 폴더안의 내용을 보면 원본에 scene.js 확장자를 가지는 파일이 추가된것을 볼 수 있습니다. Project 의 모든 scene 파일은 publish 과정에서 실행 가능한 scene.js 파일로 컴파일 되는데 이에 대한 자세한 설명은 "Scene 파일의 실체" 에서 자세히 다루고 있습니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/3o0ge64qn/project07.png" style="border: 0px solid black" /></span><br/>
+ </p>
+<h1><a name="InsidetheMobelloStudioProject-브라우저로실행하기"></a>브라우저로 실행하기</h1>
+<p> <br/>
+Web app 으로 publish 된 dashboard project 를 크롬 브라우저에서 실행하려면 launcher.html 파일을 브라우저에서 열면 됩니다. <br/>
+Dashboard project 가 아닌 application 을 브라우저에서 바로 실행하기 위해서는 주소창에 다음과 같이 ?app=<a href="/pages/createpage.action?spaceKey=public&amp;encodedTitle=YXBwIOydtOumhA==&amp;linkCreation=true&amp;fromPageId=7307307" class="createlink">app 이름</a> 형식으로 parameter 를 붙여주어야 합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/chrcv9rpf/project06.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ </p>

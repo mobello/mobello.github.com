@@ -1,0 +1,122 @@
+---
+layout: confluence
+title: Designing UI - Absolute Layout
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p>Absolute layout 은 고정된 좌표를 기준으로 배치되는 가장 간단한 layout 방식입니다. 그러나 다양한 스크린 사이즈에 대응하기 어렵기 때문에 고정된 UI 배치가 필요한 영역에서만 한정적으로 사용하는것이 좋습니다.<br/>
+ </p>
+<h3><a name="DesigningUI-AbsoluteLayout-AbsoluteLayoutPanel"></a>Absolute Layout Panel</h3>
+<p>Absolute Layout 을 사용하기 위해서는 먼저 Panel 을 배치하고 layout type 을 Absolute Layout 으로 변경해주어야 합니다.</p>
+
+<p><span class="image-wrap" style=""><img src="http://s19.postimage.org/xg4gji64j/abs01.png" style="border: 0px solid black" /></span></p>
+
+<ol>
+	<li>비어있는 Scene 에 Panel 을 배치합니다.</li>
+	<li>QuickStyler &gt; Position and Size 에서 height 를 50% 로 변경해서 Panel 의 크기를 늘립니다.</li>
+	<li>QuickStyler &gt; Layout 에서 Layout 속성의 값을 Absolute Layout 으로 변경합니다.</li>
+</ol>
+
+
+<h3><a name="DesigningUI-AbsoluteLayout-AbsoluteLayoutPanel에컴포넌트배치 "></a>Absolute Layout Panel 에 컴포넌트 배치 </h3>
+<p> </p>
+<ol>
+	<li>Palette view 에서 Label 을 선택하고 Panel 에 배치합니다. 마우스를 Panel 좌측 상단에 위치시키면 다음과 같이 주황색으로 default padding 이 표시됩니다. 마우스를 클릭하면 Label 이 padding 위치에 배치됩니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/c54k2tytb/abs02.png" style="border: 0px solid black" /></span> <span class="image-wrap" style=""><img src="http://s19.postimage.org/4dnu49unz/abs03.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>마찬가지로 TextField 컴포넌트를 Label 옆에 배치합니다. Label 오른쪽에 마우스를 올리면 다음과 같이 default margin 이 적용되어 컴포넌트간에 일정한 간격을 유지할 수 있습니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/feiz9amwz/abs04.png" style="border: 0px solid black" /></span></li>
+</ol>
+
+
+<h3><a name="DesigningUI-AbsoluteLayout-컴포넌트정렬하기"></a>컴포넌트 정렬하기</h3>
+<p> </p>
+<ol>
+	<li>다음과 같이 Label 과 Switch 컴포넌트를 추가 배치한 후 Ctrl 키를 누른 상태에서 TextField 와 Switch 를 함께 선택합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/43gbkxg1v/abs05.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>QuickStyler 의 Position and Size section 에서 Align Right 를 선택하면 다음과 같이 오른쪽 정렬 됩니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/5wj89918j/abs06.png" style="border: 0px solid black" /></span><br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/blzgtk7er/abs07.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+마찬가지로 Position and Size 에서 Align Left, Align Center 등을 선택하면 선택된 컴포넌트들을 좌측 정렬 하거나  중앙 정렬 할 수 있습니다.<br/>
+ 
+<h3><a name="DesigningUI-AbsoluteLayout-WidthandHeight"></a>Width and Height</h3>
+ </li>
+	<li>Label 을 선택한 후 Designer 에서 마우스 드래그로 크기를 조정하면 Position and Size 에 변경된 크기값이 반영되는 것을 확인할 수 있습니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/9vgfs2pvn/abs08.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>여기서 width 속성의 <strong>px</strong> 버튼을 누르면 현재 크기에 대응되는 % 값으로 변환됩니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/ra0o0cn0f/abs09.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+컴포넌트 크기가 % 로 지정되면 상위 Panel 에 대한 상대크기로 계산되기 때문에 상위 Panel 의 크기가 변경되면 해당 컴포넌트의 크기도 같이 변경되게 됩니다.<br/>
+ </li>
+	<li>여기서 <strong>%</strong> 버튼을 한번더 누르면 값이 <strong>auto</strong> 로 변경 됩니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/fmb7jjn9b/abs10.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+Width,height 값이 auto 이면 컴포넌트의 content 에 따라 크기가 자동으로 조정되게 됩니다. 예를 들어 Label 컴포넌트의 width 로 auto 를 지정하면 text 값에 따라 크기가 달라지게 됩니다.<br/>
+ <br/>
+Ctrl 키로 여러개의 컴포넌트를 선택하고 Position and Size 의 Match Width 버튼을 누르면 가장 마지막에 선택된 컴포넌트를 기준으로 width 값이 동일하게 변경됩니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/o4g2a54e7/abs11.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+마찬가지로 Match Height, Match Size 로 height 또는 width,height 모두를 동일하게 맞출 수 있습니다.<br/>
+ 
+<h3><a name="DesigningUI-AbsoluteLayout-좌표기준변경"></a>좌표 기준 변경</h3>
+ <br/>
+Absolute Layout 에서는 기본적으로 top, left 를 기준으로 컴포넌트의 위치가 결정되며 container 의 크기가 변하면 컴포넌트와 container 오른쪽 하단 (right bottom) 과의 간격이 달라지게 됩니다.<br/>
+만일 container 의 크기와 상관없이 container 우하단과 컴포넌트와의 거리를 일정하게 유지하려면 bottom, right 의 값을 px 로 변경해야 합니다.<br/>
+ <br/>
+다음은 top,left 를 px 값으로 지정하고 botttom,right 를 auto 로 지정한 경우를 나타내는 그림입니다.<br/>
+<span class="image-wrap" style=""><img src="http://s16.postimage.org/pcva4zeo5/abs12.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+다음은 top,left 를 auto 로 지정하고 bottom,right 를 px 값으로 지정한 경우를 나타내는 그림입니다.<br/>
+<span class="image-wrap" style=""><img src="http://s10.postimage.org/f0pkdu1a1/abs13.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+만일 container panel 의 크기가 늘어날때 component 의 크기도 함께 늘어나도록 하려면 top,left,right,bottom 을 px 값으로 지정하고 width,height 를 auto 로 지정하면 됩니다.<br/>
+ <br/>
+다음은 top,left,right,bottom 을 px 값으로 지정하고 width,height 를 auto 로 지정한 경우를 나타내는 그림입니다.<br/>
+<span class="image-wrap" style=""><img src="http://s15.postimage.org/9ypnhgpqz/abs14.png" style="border: 0px solid black" /></span><br/>
+ 
+<h5><a name="DesigningUI-AbsoluteLayout-좌표기준을bottomright로변경"></a>좌표 기준을 bottom,right 로 변경</h5>
+ </li>
+	<li>Button 을 Panel 오른쪽 하단에 배치합니다.<br/>
+<span class="image-wrap" style=""><img src="http://s17.postimage.org/5722g6i27/abs15.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>QuickStyler 의 Position and Size 에서 bottom 에 해당되는 부분과 right 에 해당하는 부분을 모두 클릭합니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/dgcuzsoan/abs16.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>다음과 같이 left,top 가 auto 로 변경되고 right,bottom 은 px 값으로 변경된 것을 확인할 수 있습니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/49z5q98g3/abs17.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>Toolbar 에서 viewport size 를 변경해보면 화면 크기가 늘어남에 따라 Button 컴포넌트의 위치도 변경되는 것을 볼 수 있습니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/rcpopf9xf/abs18.png" style="border: 0px solid black" /></span><br/>
+ 
+<h3><a name="DesigningUI-AbsoluteLayout-관련자료"></a>관련 자료</h3>
+ </li>
+</ol>
+<ul>
+	<li>"Designing UI : Flow Layout":/studio-tutorial-layout-flow<br/>
+가장 기본적인 layout 인 flow layout 에 대해서 설명하고 있습니다.</li>
+	<li>"Designing UI : Flexbox Layout":/studio-tutorial-layout-flexbox<br/>
+컴포넌트를 수평 또는 수직 방향으로 배치하는 flexbox layout 에 대해서 설명하고 있습니다.<br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ </li>
+</ul>
+<p> </p><p> </p><p> </p>

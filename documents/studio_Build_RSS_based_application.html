@@ -1,0 +1,145 @@
+---
+layout: confluence
+title: Build RSS based application
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<h1><a name="BuildRSSbasedapplication-RSS기반app만들기"></a>RSS 기반 app 만들기</h1>
+<p> <br/>
+요즘 대부분의 블로그는 누구나 사용할 수 있는 rss feed 를 제공하기 때문에 웹사이트에 접속하지 않고도 블로그의 컨텐츠를 접근하고 활용할 수 있습니다. 이 가이드에서는 olleh 공식 블로그에서는 제공하는 rss 를 활용하는 모바일 app 을 만들어 보도록 하겠습니다.<br/>
+ </p>
+<h3><a name="BuildRSSbasedapplication-프로젝트생성"></a>프로젝트 생성</h3>
+<p> <br/>
+Mobello Application Project 위자드를 통해 프로젝트를 생성합니다. Project name 으로 'rss' 를 입력하고 Theme 는 'ios' 를 선택한 다음 <strong>Next</strong> 를 선택합니다.<br/>
+<span class="image-wrap" style=""><img src="attachments/6750523/6914169.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+위자드의 Templates 페이지 에서는 Navigation based 를 선택합니다.<br/>
+<span class="image-wrap" style=""><img src="attachments/6750523/6914170.png" style="border: 0px solid black"/></span><br/>
+ </p>
+<h3><a name="BuildRSSbasedapplication-defaultjs에RSSTable배치"></a>default.js 에 RSS Table 배치</h3>
+
+<p>default.js 를 열고 기존 내용은 지운 다음 영문자 'r' 을 입력하고 Ctrl 을 누른 상태에서 Space 를 두번 입력합니다. 여기서 나오는 목록중 RSSTableController 를 선택합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750523/6914189.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+생성된 클래스 이름을 바로 변경할 수 있습니다. 클래스 이름은 'rss.DefaultController' 으로 변경합니다.<br/>
+config.json 파일을 열고 다음 url 항목을 그대로 복사 합니다. 이제 앱을 실행하면 해당 url 로 부터 RSS 데이터를 가져와서 Table 을 통해 보여주게 됩니다.<br/>
+ </p>
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">url: 'http://blog.olleh.com/rss/',</pre>
+		</div>
+</div></div>
+<p> <br/>
+여기서 모든 파일을 저장하고 툴바의 Run 버튼으로 실행해 에뮬레이터에서 확인해 봅니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750523/6914172.png" style="border: 0px solid black"/></span><br/>
+ </p>
+<h3><a name="BuildRSSbasedapplication-ArticleScene추가"></a>Article Scene 추가</h3>
+<p> <br/>
+Scene File 위자드에서 article 이라는 이름의 scene 을 추가합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750523/6914191.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+생성된 article.js 를 열고 다음과 같이 코드를 수정합니다.<br/>
+ </p>
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('rss.ArticleController').extend(tau.ui.SceneController).define({
+	ArticleController: function (opts){
+		this.article = opts;
+		this.setTitle(this.article.title);
+	},
+ });</pre>
+		</div>
+</div></div>
+<p> <br/>
+article.scene 을 scene designer 를 통해 열고 TextView 컴포넌트를 배치합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750523/6914176.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+Attributes 뷰에서 TextView 컴포넌트의 text 속성을 @article.description 으로 지정합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750523/6914178.png" style="border: 0px solid black"/></span></p>
+
+<h3><a name="BuildRSSbasedapplication-defaultjs에서articlescene호출구현"></a>default.js 에서 article scene 호출 구현</h3>
+<p> <br/>
+default.js 를 열고 파일의 첫 라인에 다음과 같이 article.js 를 require 로 선언합니다.<br/>
+ </p>
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$require('/article.js');</pre>
+		</div>
+</div></div>
+<p> <br/>
+default.js 의 <strong>cellSelected</strong> function 에서 article scene 에 대한 controller 인 rss.ArticleController 를 <strong>parent navigator</strong> 에 <strong>push</strong> 합니다. ArticleController 의 생성자 옵션으로는 article 객체를 넣어주어야 합니다.<br/>
+ </p>
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">cellSelected : function(current, before) {
+ var table = this.getTable();
+ var index = table.indexOf(current);
+ var article = this.feed[index[0]];
+ var navigator = this.getParent();
+ // push article view's controller
+ navigator.pushController(new rss.ArticleController(article));
+}, </pre>
+		</div>
+</div></div>
+
+<p>드디어 app 이 완성되었습니다.<br/>
+ <br/>
+default.js 의 최종 코드는 다음과 같습니다.</p>
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$require('/article.js');
+$class('rss.DefaultController').extend(tau.ui.TableSceneController).define(
+        {
+            DefaultController : function() {
+                this.appCtx = tau.getCurrentContext();
+                this.appConfig = this.appCtx.getConfig();
+                this.setTitle(this.appConfig.title);
+            },
+            loadModel : function(start, size) {
+                var table = this.getTable();
+                var max = start + size;
+                function load(resp) {
+                    this.feed = resp.responseJSON.query.results.item;
+                    size = (max &lt; this.feed.length) ? size
+                            : this.feed.length - start;
+                    table.addNumOfCells(size);
+ 
+                }
+                tau.req({
+                    type : 'JSONP',
+                    jsonpCallback : 'callback',
+                    url : this.appConfig.url,
+                    timeout : 20000,
+                    callbackFn : tau.ctxAware(load, this)
+                }).send();
+            },
+            cellSelected : function(current, before) {
+                var table = this.getTable();
+                var index = table.indexOf(current);
+                var article = this.feed[index[0]];
+                var navigator = this.getParent();
+                // push article view's controller
+                navigator.pushController(new rss.ArticleController(article));
+            },
+            makeTableCell : function(index, offset) {
+                var cell = new tau.ui.TableCell();
+                cell.setTitle(this.feed[offset + index].title);
+                return cell;
+            },
+ 
+        });</pre>
+		</div>
+</div></div>
+<p> </p>
+
+<p>에뮬레이터로 실행해본 결과는 다음과 같습니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750523/6914180.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+ </p><p> </p><p> </p>

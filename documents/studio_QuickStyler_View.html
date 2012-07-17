@@ -1,0 +1,459 @@
+---
+layout: confluence
+title: QuickStyler View
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p><div>
+<ul>
+    <li><a name="QuickStylerView-Textsection" />Text section</li>
+    <li><a name="QuickStylerView-ColorSection" />Color Section</li>
+<ul>
+    <li><a name="QuickStylerView-Swatches" />Swatches</li>
+<ul>
+    <li><a name="QuickStylerView-Solid" />Solid</li>
+    <li><a name="QuickStylerView-Gradient" />Gradient</li>
+    <li><a name="QuickStylerView-Image" />Image</li>
+</ul>
+</ul>
+    <li><a name="QuickStylerView-BorderSection" />Border Section</li>
+    <li><a name="QuickStylerView-LayoutSection" />Layout Section</li>
+<ul>
+    <li><a name="QuickStylerView-FlowLayout" />Flow Layout</li>
+<ul>
+    <li><a name="QuickStylerView-PositionandSizeforflowlayout" />Position and Size for flow layout</li>
+</ul>
+    <li><a name="QuickStylerView-AbsoluteLayout" />Absolute Layout</li>
+<ul>
+    <li><a name="QuickStylerView-Positionandsizeforabsolutelayout" />Position and size for absolute layout</li>
+</ul>
+    <li><a name="QuickStylerView-FlexboxLayout" />Flexbox Layout</li>
+<ul>
+    <li><a name="QuickStylerView- Positionandsizeforflexboxlayout" />&nbsp;Position and size for flexbox layout</li>
+</ul>
+</ul>
+    <li><a name="QuickStylerView-CSSStyleHTMLonly" />CSS Style (HTML only)</li>
+</ul></div></p><hr /><p> </p><p>QuickStyler view 는 스타일 관련 속성들을 쉽게 수정할 수 있는 UI 를 제공합니다. QuickStyler 는 여러개의 section 으로 구성되어 있으며 컴포넌트에 따라 나타나는 section 이 다를 수 있습니다.</p>
+
+<p><span class="image-wrap" style=""><img src="http://s17.postimage.org/btry0z2lb/quickstyler.png" style="border: 0px solid black" /></span></p>
+<h1><a name="QuickStylerView-Textsection"></a>Text section</h1>
+<p> <br/>
+<span class="image-wrap" style=""><img src="http://s13.postimage.org/ya6j7odbb/text_section.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>1: Font Family</strong> <br/>
+Font를 선택합니다. 선택 항목 중 마지막 ADD... 를 선택하면 <strong>Window &gt; Preferences &gt; Visual Designer &gt; Font Families page</strong> 가 뜨고 선택할 수 있는 Font 의 종류를 편집할 수 있습니다.<br/>
+ <br/>
+<strong>2: Font Size</strong><br/>
+Font 크기를 pixel 단위로 선택합니다.<br/>
+ <br/>
+<strong>3: Align Left</strong><br/>
+텍스트를 왼쪽으로 정렬합니다.<br/>
+ <br/>
+<strong>4: Align Center</strong><br/>
+텍스트를 중앙으로 정렬합니다.<br/>
+ <br/>
+<strong>5: Align Right</strong><br/>
+텍스트를 오른쪽으로 정렬합니다.<br/>
+ <br/>
+<strong>6: Bold</strong><br/>
+텍스트에 bold 스타일을 적용합니다.<br/>
+ <br/>
+<strong>7: Italic</strong><br/>
+텍스트에 italic 스타일을 적용합니다.<br/>
+ <br/>
+<strong>8: Underline</strong><br/>
+텍스트에 underline 스타일을 적용합니다.<br/>
+ <br/>
+<strong>9: Line Height</strong><br/>
+텍스트의 줄간격을 변경합니다. 숫자 또는 pixel 값을 적용할 수 있습니다.<br/>
+ </p>
+<h1><a name="QuickStylerView-ColorSection"></a>Color Section</h1>
+<p> <br/>
+Color Section 에서 배경색, 텍스트색, border 색상을 변경할 수 있습니다. 변경할 색상을 선택한 후 하단의 Swatchs, Solid, Graident, Image 중 한곳에서 색상을 변경합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s15.postimage.org/amspgttxn/color_section.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>1: Background Color</strong><br/>
+배경색을 선택합니다. Reset 버튼으로 배경을 초기화할 수 있습니다.<br/>
+ <br/>
+<strong>2: Foreground Colo</strong><br/>
+텍스트색상을 선택합니다. Reset 버튼으로 텍스트색을 초기화할 수 있습니다.<br/>
+ <br/>
+<strong>3: Border Color</strong><br/>
+Border 색을 선택합니다. Reset 버튼으로 border 색을 초기화할 수 있습니다.<br/>
+ </p>
+<h3><a name="QuickStylerView-Swatches"></a>Swatches</h3>
+<p> <br/>
+미리 정의된 swatch 에서 색상을 선택합니다. 또한 색상을 ==transparent(투명)== 으로 변경할 수 있습니다.<br/>
+ <br/>
+<strong>4</strong><br/>
+Swatch 의 종류를 선택합니다.<br/>
+ <br/>
+<strong>5</strong><br/>
+Swatch 를 추가합니다. "이곳":<a href="http://www.colorzilla.com/firefox/palettes.html" class="external-link" rel="nofollow">http://www.colorzilla.com/firefox/palettes.html</a> 에서 swatch 정의 파일을 받아서 추가할 수 있습니다.<br/>
+ <br/>
+<strong>6</strong><br/>
+선택된 색상을 transparent 로 변경합니다.<br/>
+ </p>
+<h4><a name="QuickStylerView-Solid"></a>Solid</h4>
+<p> <br/>
+단일 색상을 선택할 수 있습니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s17.postimage.org/bvzvo2xun/solid_color.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>1</strong><br/>
+이곳에서 원하는 색상을 마우스로 선택합니다.<br/>
+ <br/>
+<strong>2</strong><br/>
+1번에서 출력되는 색상의 기본 색상을 지정합니다. <br/>
+ <br/>
+<strong>3,4,5</strong><br/>
+선택된 색상의 RGB값을 보여주고 변경할 수 있습니다.<br/>
+ <br/>
+<strong>6</strong><br/>
+선택된 색상값을 web color 형식으로 보여주고 변경할 수 있습니다.<br/>
+ <br/>
+<strong>7</strong><br/>
+현재 선택된 색상을 나타냅니다.<br/>
+ <br/>
+<strong>8</strong><br/>
+색상값을 모니터 화면에서 선택합니다.<br/>
+ </p>
+<h4><a name="QuickStylerView-Gradient"></a>Gradient</h4>
+<p> <br/>
+Gradient 색상을 선택할 수 있습니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s16.postimage.org/t6nkveg2t/gradient_color.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>1</strong><br/>
+현재 선택된 stop 의 색상을 선택합니다. <br/>
+ <br/>
+<strong>2</strong><br/>
+1 의 기본 색상을 변경합니다.<br/>
+ <br/>
+<strong>3,4,5</strong><br/>
+현재 선택된 stop 의 색상 값을 보여주고 변경할 수 있습니다.<br/>
+ <br/>
+<strong>6: STOP</strong><br/>
+현재 선택된 stop 의 위치를 % 단위로 보여주고 변경할 수 있습니다.<br/>
+ <br/>
+<strong>7: WebColor</strong><br/>
+현재 선택된 stop 의 색상을 web color 형식으로 보여주고 변경할 수 있습니다.<br/>
+ <br/>
+<strong>8: Type</strong><br/>
+Gradient type 을 linear 와 radial 중 선택할 수 있습니다.<br/>
+ <br/>
+<strong>9: Direction</strong><br/>
+Gradient type 이 linear 인 경우 나타납니다. Gradient 방향을 Vertical(수직), Horizontal(수평), UpwardDiagonal(대각선 45도 오른쪽 위 방향), DownwardDiagonal(대각선 45도 오른쪽 아래 방향) 중 하나로 선택할 수 있습니다.<br/>
+ <br/>
+<strong>10</strong><br/>
+현재 선택된 stop 의 색상을 보여줍니다.<br/>
+ <br/>
+<strong>11</strong><br/>
+현재 적용된 gradient 를 미리보기로 보여줍니다. 이영역을 클릭하면 stop 이 추가됩니다.<br/>
+ <br/>
+<strong>12</strong><br/>
+검은 배경은 현재 선택된 stop 을 나타냅니다. stop 을 위쪽이나 아래쪽으로 마우스 드래그하면 stop 이 제거됩니다.<br/>
+ <br/>
+<strong>13</strong><br/>
+흰 배경은 현재 선택되지 않은 stop 을 나타냅니다. stop 을 위쪽이나 아래쪽으로 마우스 드래그하면 stop 이 제거됩니다.<br/>
+ <br/>
+<strong>14</strong><br/>
+graident stop 의 위치를 반전시킵니다.<br/>
+ <br/>
+<strong>15</strong><br/>
+stop 색상값을 모니터 화면에서 직접 선택합니다.<br/>
+ </p>
+<h4><a name="QuickStylerView-Image"></a>Image</h4>
+<p> <br/>
+배경 이미지를 지정합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s17.postimage.org/a374hj1sv/image.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>1: Background Image</strong><br/>
+배경 이미지 파일의 경로를 지정합니다.<br/>
+ <br/>
+<strong>2: Repeat</strong><br/>
+배경 이미지가 반복되는 방식을 정의합니다.<br/>
+ <br/>
+ </p>
+<h1><a name="QuickStylerView-BorderSection"></a>Border Section</h1>
+<p> <br/>
+<span class="image-wrap" style=""><img src="http://s11.postimage.org/by2mfmdlf/border1.png" style="border: 0px solid black" /></span></p>
+
+<p><strong>1: Border</strong><br/>
+Border 의 두께를 지정합니다.<br/>
+ <br/>
+<strong>2: Radius</strong><br/>
+Border radius 의 크기를 지정합니다.<br/>
+ <br/>
+<strong>3: Border Style</strong><br/>
+점선, 실선과 같은 border style 을 지정합니다.<br/>
+<span class="image-wrap" style=""><img src="http://s13.postimage.org/54o10jlfb/css_border_style.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>4: Border Detail</strong><br/>
+4방향(top, right, bottom, left) border 의 속성을 각각 설정할 수 있습니다.<br/>
+<span class="image-wrap" style=""><img src="http://s7.postimage.org/yqdbp312z/border_detail.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>Style</strong><br/>
+Border style 을 지정합니다.<br/>
+ <br/>
+<strong>Width</strong><br/>
+Border width 를 지정합니다.<br/>
+ <br/>
+<strong>Color</strong><br/>
+Border color 를 지정합니다.<br/>
+ <br/>
+ </p>
+<h1><a name="QuickStylerView-LayoutSection"></a>Layout Section</h1>
+<p> <br/>
+Layout section 에는 선택된 컴포넌트의 layout 이 어떤 type 인지에 따라 다른 section 내용이 보여집니다. 또한 parent 컴포넌트의 layout type 에 따라 다른 position and size section 이 나타납니다.<br/>
+ </p>
+<h3><a name="QuickStylerView-FlowLayout"></a>Flow Layout</h3>
+<p> <br/>
+<strong>Layout type</strong> 이 <strong>flow</strong> 인 <strong>container</strong> 를 선택한 경우 다음과 같은 section 이 나타납니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s15.postimage.org/7mahe33sb/flow_layout.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>1: Layout</strong><br/>
+선택된 container 의 <strong>layout type</strong> 으로 <strong>flow, absolute, flexbox</strong> 중에 하나를 선택할 수 있습니다.<br/>
+ <br/>
+<strong>2: Align Left</strong><br/>
+Child 컴포넌트들을 좌측 정렬합니다.<br/>
+ <br/>
+<strong>3: Align Center</strong><br/>
+Child 컴포넌트들을 중앙 정렬합니다.<br/>
+ <br/>
+<strong>4: Align Right</strong><br/>
+Child 컴포넌트들을 우측 정렬합니다.<br/>
+ </p>
+<h5><a name="QuickStylerView-PositionandSizeforflowlayout"></a>Position and Size for flow layout</h5>
+<p> <br/>
+<strong>Flow layout container</strong> 안에 위치하는 컴포넌트의 경우 다음과 같은 position and size section 이 나타납니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s17.postimage.org/6a71139jj/position_size_flow.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>1: Flow Type</strong><br/>
+<strong>Flow type</strong> 을 block, inline-block, inline 중 하나로 선택할 수 있습니다.<br/>
+ <br/>
+<strong>2: Width</strong><br/>
+선택된 컴포넌트의 width 를 지정합니다.<br/>
+ <br/>
+<strong>3: Height</strong><br/>
+선택된 컴포넌트의 height 를 지정합니다.<br/>
+ <br/>
+<strong>4: Margin</strong><br/>
+선택된 컴포넌트의 margin 을 지정합니다.<br/>
+ <br/>
+<strong>5/6/7/8: top/right/bottom/left</strong><br/>
+선택된 컴포넌트의 top/right/bottom/left margin 을 지정합니다.<br/>
+ <br/>
+<strong>9: Padding</strong><br/>
+선택된 컴포넌트의 padding 을 지정합니다.<br/>
+ <br/>
+<strong>10/11/12/13: top/right/bottom/left</strong><br/>
+선택된 컴포넌트의 top/right/bottom/left padding 을 지정합니다.<br/>
+ <br/>
+<strong>14/15</strong><br/>
+4방향의 margin/padding 을 각각 설정할 수 있는 입력 필드를 보여주거나 숨깁니다.<br/>
+ <br/>
+<strong>16</strong><br/>
+해당 속성 값을 px ↔ % ↔ Auto 간에 변환합니다. px ↔ % 간에 변환시에는 계산된 크기가 최대한 동일하게 변환됩니다.<br/>
+ </p>
+<h3><a name="QuickStylerView-AbsoluteLayout"></a>Absolute Layout</h3>
+<p> <br/>
+<strong>Layout type</strong> 이 <strong>absolute</strong> 인 <strong>container</strong> 를 선택하면 다음과 같은 layout section 이 나타납니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s8.postimage.org/6rk7tc4ol/absolute_layout.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>1: Layout</strong><br/>
+선택된 container 의 <strong>layout type</strong> 을 <strong>flow, absolute, flexbox</strong> 중에 하나를 선택할 수 있습니다.<br/>
+ </p>
+<h5><a name="QuickStylerView-Positionandsizeforabsolutelayout"></a>Position and size for absolute layout</h5>
+<p> <br/>
+<strong>Absolute layout container</strong> 안에 위치하는 컴포넌트의 경우 다음과 같은 position and size section 이 나타납니다. <br/>
+Section 좌측 십자선 모양의 UI 를 통해 화면 사이즈가 가변적일때, 고정 영역과 가변 영역을 지정할 수 있습니다. 파란색 직선이 화면 사이즈와 관계없이 고정되는 부분이고 빨간색 스프링이 크기가 가변적인 부분입니다. 마우스로 파란색 직선을 클릭하면 빨간색 스프링으로 변환되면서 연관된 인접 영역이 파란색 직선으로 변하게 됩니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s14.postimage.org/srf0n33k1/position_size_absolute.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>1:Width</strong><br/>
+Width 를 고정 영역 ↔ 가변 영역간에 전환합니다. Right 값이 함께 전환됩니다.<br/>
+ <br/>
+<strong>2:Height</strong><br/>
+Height 를 고정 영역 ↔ 가변 영역간에 전환합니다. Bottom 값이 함께 전환됩니다.</p>
+
+<p><strong>3:Top</strong><br/>
+Top 을 고정 영역 ↔ 가변 영역간에 전환합니다. Bottom 값이 함께 전환됩니다.</p>
+
+<p><strong>4:Right</strong><br/>
+Right 를 고정 영역 ↔ 가변 영역간에 전환합니다. Left 값이 함께 전환됩니다.</p>
+
+<p><strong>5:Bottom</strong><br/>
+Bottom 을 고정 영역 ↔ 가변 영역간에 전환합니다. Top 값이 함께 전환됩니다.</p>
+
+<p><strong>6:Left</strong><br/>
+Left 를 고정 영역 ↔ 가변 영역간에 전환합니다. Right 값이 함께 전환됩니다.</p>
+
+<p><strong>7:Width</strong><br/>
+Width 를 지정합니다.<br/>
+ <br/>
+<strong>8:Height</strong><br/>
+Height 를 지정합니다.<br/>
+ <br/>
+<strong>9:Top</strong><br/>
+Top 을 지정합니다.<br/>
+ <br/>
+<strong>10:Right</strong><br/>
+Right 를 지정합니다.<br/>
+ <br/>
+<strong>11:Bottom</strong><br/>
+Bottom 을 지정합니다.<br/>
+ <br/>
+<strong>12:Left</strong><br/>
+Left 를 지정합니다.<br/>
+ <br/>
+<strong>13</strong><br/>
+해당 속성 값을 px ↔ % ↔ Auto 간에 변환합니다. px ↔ % 간에 변환시에는 계산된 값이 최대한 같게 변환됩니다.</p>
+
+<p><strong>14:Align Left</strong><br/>
+선택된 컴포넌트들을 가장 좌측에 있는 컴포넌트를 기준으로 정렬합니다.<br/>
+ <br/>
+<strong>15: Align Center</strong><br/>
+선택된 컴포넌트들을 계산된 중앙 위치로 정렬합니다.<br/>
+ <br/>
+<strong>16: Align Right</strong><br/>
+선택된 컴포넌트들을 가장 우측에 있는 컴포넌트를 기준으로 정렬합니다.<br/>
+ <br/>
+<strong>17: Align Top</strong><br/>
+선택된 컴포넌트들을 가장 위쪽에 있는 컴포넌트를 기준으로 정렬합니다.<br/>
+ <br/>
+<strong>18: Align Middle</strong><br/>
+선택된 컴포넌트들의 계산된 중앙 위치로 정렬합니다.<br/>
+ <br/>
+<strong>19: Align Bottom</strong><br/>
+선택된 컴포넌트들을 가장 아래족에 있는 컴포넌트를 기준으로 정렬합니다.<br/>
+ <br/>
+<strong>20: Make Horizontal Spacing Equal</strong><br/>
+선택된 컴포넌트들의 수평 간격을 동일하게 조정합니다.<br/>
+ <br/>
+<strong>21: Make Vertical Spacing Equal</strong><br/>
+선택된 컴포넌트들의 수직 간격을 동일하게 조정합니다.<br/>
+ <br/>
+<strong>22: Match Width</strong><br/>
+선택된 컴포넌트들의 width 를 동일하게 조정합니다.<br/>
+ <br/>
+<strong>23: Match Height</strong><br/>
+선택된 컴포넌트들의 height 를 동일하게 조정합니다.<br/>
+ <br/>
+<strong>24: Match Size</strong><br/>
+선택된 컴포넌트들의 width 및 height 를 동일하게 조정합니다.<br/>
+ <br/>
+<strong>25: Bring Forward</strong><br/>
+선택된 컴포넌트의 <strong>z-index</strong> 를 1 만큼 증가시킵니다.<br/>
+ <br/>
+<strong>26: Bring To Front</strong><br/>
+선택된 컴포넌트의 <strong>z-index</strong> 를 현재 container 의 child 중 가장 큰 값으로 증가시킵니다.<br/>
+ <br/>
+<strong>27: Send Backward</strong><br/>
+선택된 컴포넌트의 <strong>z-index</strong> 를 1 만큼 감소시킵니다.<br/>
+ <br/>
+<strong>28: Send To Back</strong><br/>
+선택된 컴포넌트의 <strong>z-index</strong> 를 현재 container 의 child 중 가장 작은 값으로 감소 시킵니다.<br/>
+ </p>
+<h3><a name="QuickStylerView-FlexboxLayout"></a>Flexbox Layout</h3>
+
+<p><strong>Layout type</strong> 이 <strong>flexbox</strong> 인 <strong>container</strong> 를 선택하면 다음과 같은 layout section 이 나타납니다.<br/>
+flexbox layout 에 관련된 다음 3가지 CSS 속성을 이 layout section 에서 control 할 수 있습니다.<br/>
+<strong>box-orient</strong> <br/>
+child 가 배치되는 방향을 수평(horizontal) 또는 수직(vertical) 으로 지정할 수 있는 속성입니다.<br/>
+<strong>box-align</strong> <br/>
+box-orient 가 지정된 방향의 수직방향(Align 축 방향)에 대한 정렬을 지정합니다.<br/>
+<strong>box-pack</strong> <br/>
+box-orient 로 지정된 방향으로의 정렬을 지정합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s18.postimage.org/qs69oqe1l/flexbox_layout.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>1: Layout</strong><br/>
+선택된 container 의 <strong>layout type</strong> 을 <strong>flow, absolute, flexbox</strong> 중에 하나를 선택할 수 있습니다.<br/>
+ <br/>
+<strong>2: Orientation</strong><br/>
+<strong>box-orient</strong> 속성에 해당되며 선택된 container 의 child 가 배치되는 방향을 horizontal 또는 vertical 로 지정합니다.<br/>
+ <br/>
+<strong>3: Align Start</strong><br/>
+<strong>box-align</strong> 속성값을 start 로 지정합니다. Align 축의 시작 위치에 컴포넌트들이 배치됩니다.<br/>
+ <br/>
+<strong>4: Align Center</strong><br/>
+<strong>box-align</strong> 속성값을 center 로 지정합니다. Align 축의 중앙에 컴포넌트들이 배치됩니다.<br/>
+ <br/>
+<strong>5: Align End</strong><br/>
+<strong>box-align</strong> 속성값을 end 로 지정합니다. Align 축의 마지막 위치에 컴포넌트들이 배치됩니다.<br/>
+ <br/>
+<strong>6: Align Stretch</strong><br/>
+<strong>box-align</strong> 속성값을 stretch 로 지정합니다. 컴포넌트들의 Align 축 방향 크기가 container 만큼 늘어나게 됩니다.<br/>
+ <br/>
+<strong>7: Pack Start</strong><br/>
+<strong>box-pack</strong> 속성값을 start 로 지정합니다. 컴포넌트들은 box-orient 방향의 시작 위치에 배치됩니다.<br/>
+ <br/>
+<strong>8: Pack Center</strong><br/>
+<strong>box-pack</strong> 속성값을 center 로 지정합니다. 컴포넌트들은 box-orient 방향의 중앙에 배치됩니다.<br/>
+ <br/>
+<strong>9: Pack End</strong><br/>
+<strong>box-pack</strong> 속성값을 end 로 지정합니다. 컴포넌트들은 box-orient 방향의 마지막 위치에 배치됩니다.<br/>
+ <br/>
+<strong>10: Justify</strong><br/>
+<strong>box-pack</strong> 속성값을 jusity 로 지정합니다. 컴포넌트들은 box-orient 방향을 기준으로 일정한 간격으로 배치됩니다.<br/>
+ </p>
+<h5><a name="QuickStylerView- Positionandsizeforflexboxlayout"></a> Position and size for flexbox layout</h5>
+<p> <br/>
+<strong>Flexbox layout container</strong> 안에 위치하는 컴포넌트의 경우 다음과 같은 position and size section 이 나타납니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s17.postimage.org/gn6owk2rz/position_size_flexbox.png" style="border: 0px solid black" /></span></p>
+
+<p><strong>1: Flow Type</strong><br/>
+<strong>Flow type</strong> 을 block, inline-block, inline 중 하나로 선택할 수 있습니다.</p>
+
+<p><strong>2: Width</strong><br/>
+선택된 컴포넌트의 width 를 지정합니다.</p>
+
+<p><strong>3: Height</strong><br/>
+선택된 컴포넌트의 height 를 지정합니다.</p>
+
+<p><strong>4: Margin</strong><br/>
+선택된 컴포넌트의 margin 을 지정합니다.</p>
+
+<p><strong>5/6/7/8: top/right/bottom/left</strong><br/>
+선택된 컴포넌트의 top/right/bottom/left margin 을 지정합니다.</p>
+
+<p><strong>9: Padding</strong><br/>
+선택된 컴포넌트의 padding 을 지정합니다.</p>
+
+<p><strong>10/11/12/13: top/right/bottom/left</strong><br/>
+선택된 컴포넌트의 top/right/bottom/left padding 을 지정합니다.<br/>
+ <br/>
+<strong>14: Box Flex</strong><br/>
+선택된 컴포넌트의 <strong>box-flex</strong> 값을 지정합니다. <strong>box-flex</strong> 값이 0 보다 크면 container 의 여유공간을 box-flex 값의 비율만큼 차지하게 됩니다.</p>
+
+<p><strong>15</strong><br/>
+해당 속성 값을 px ↔ % ↔ Auto 간에 변환합니다. px ↔ % 간에 변환시에는 계산된 길이가 최대한 동일하게 변환됩니다.<br/>
+ <br/>
+<strong>16/17</strong><br/>
+4방향의 margin/padding 을 각각 따로 설정할 수 있는 입력 필드를 보여주거나 숨깁니다.</p>
+
+<h1><a name="QuickStylerView-CSSStyleHTMLonly"></a>CSS Style (HTML only)</h1>
+<p> <br/>
+<span class="image-wrap" style=""><img src="http://s13.postimage.org/g9xu9v6qf/css_style.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>1: ID</strong><br/>
+HTML tag 의 id 속성을 지정합니다.<br/>
+ <br/>
+<strong>2: Class</strong><br/>
+HTML tag 의 class 속성을 지정합니다.</p>
+
+
+
+
+
+<p> <br/>
+ <br/>
+ </p>

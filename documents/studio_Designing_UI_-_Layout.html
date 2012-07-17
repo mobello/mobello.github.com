@@ -1,0 +1,33 @@
+---
+layout: confluence
+title: Designing UI - Layout
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p> <br/>
+layout 은 UI 디자인의 핵심으로서 컴포넌트들이 어떻게 배치되는지를 결정합니다.<br/>
+ <br/>
+컴포넌트중 child 를 가질 수 있는 컴포넌트를 container 컴포넌트라고 합니다. container 컴포넌트에 layout type 을 지정해야 하는데 다음 3가지 layout 방식중에 하나를 선택할 수 있습니다.<br/>
+ </p>
+<ul>
+	<li><strong>flow layout</strong><br/>
+일반 텍스트 위주의 문서에 적합한 layout 으로서 수평으로 컴포넌트와 텍스트가 정렬되는 layout 방식 입니다.</li>
+	<li><strong>flexbox layout</strong><br/>
+수평 또는 수직 방향으로 배치되는 layout 이며 다양한 정렬 기능과 flex 기능으로 application UI 제작에 적합한 layout 방식 입니다.</li>
+	<li><strong>absolute layout</strong><br/>
+고정된 좌표에 배치되는 layout 으로서 크기가 일정한 영역을 디자인하기에 적합한 layout 입니다.<br/>
+ <br/>
+container 안에 속한 child element 에는 layout type 에 따른 position 과 size 정보를 설정하여 컴포넌트의 위치와 크기를 지정하게 됩니다.</li>
+</ul>
+
+
+<p>layout type 과 position and size 는 QuickStyler 를 통해서 쉽게 지정할 수 있습니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/4mz6zfblv/layout01.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+Layout section 의 Layout 항목을 통해서 container 의 layout type 을 지정합니다.<br/>
+Position and Size section 은 현재 선택된 컴포넌트가 속한 container 의 layout type 에 따라 다른 항목이 출력됩니다. <br/>
+위의 예제 화면에서 선택된 컴포넌트의 layout type 은 flow layout 으로 선택되었지만 container 의 layout type 이 absolute layout 이기 때문에 Position and Size section 의 내용은 absolute layout 에 맞는 항목이 출력되고 있습니다.</p>
+
+<p> </p><p> </p><p><ul><li><a href="Designing%2BUI%2B-%2BFlow%2BLayout.html">Designing UI - Flow Layout</a></li><li><a href="Designing%2BUI%2B-%2BFlexbox%2BLayout.html">Designing UI - Flexbox Layout</a></li><li><a href="Designing%2BUI%2B-%2BAbsolute%2BLayout.html">Designing UI - Absolute Layout</a></li></ul></p>

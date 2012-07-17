@@ -1,0 +1,113 @@
+---
+layout: confluence
+title: Writing Source Code
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p>컴포넌트를 터치하는것과 같은 사용자 반응이 발생했을 때 이를 처리하기 위해서는 이벤트 핸들러 메소드를 작성해 주어야 합니다. 이 문서에서는 이벤트 핸들러를 SceneController 에 추가하는 법과 javascript 코드를 작성해서 scene 을 정의하는 과정을 설명하도록 하겠습니다.<br/>
+ </p>
+<h5><a name="WritingSourceCode-참고"></a>참고</h5>
+<p> </p>
+<ul>
+	<li>Mobello Studio 처음 시작하기</li>
+	<li>In-depth look at SceneController</li>
+	<li>Controller 문서</li>
+	<li>Event 문서<br/>
+ 
+<h1><a name="WritingSourceCode-이벤트핸들러작성하기"></a>이벤트 핸들러 작성하기</h1>
+ </li>
+</ul>
+<ol>
+	<li>이벤트 핸들러가 추가될 SceneController js 파일을 Project Explorer 에서 더블 클릭해 editor 로 엽니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/6g206pvr7/code01.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>이벤트 핸들러를 추가할 위치에서 'fun' 을 입력하고 Ctrl+Space 키를 누른 다음 new Mobello function 을 선택합니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/be7n96zgj/code02.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>function 이름으로는 'buttonTapped' 를 입력합니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/t8l0mjimb/code03.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>buttonTapped function 의 내용을 다음과 같이 작성합니다.<br/>
+ <br/>
+&lt;pre class="prettyprint"&gt;<br/>
+buttonTapped: function() {<br/>
+    alert('Hello'); // show Hello message<br/>
+},<br/>
+&lt;/pre&gt;<br/>
+ </li>
+	<li>Scene 파일을 열고 Button 컴포넌트를 배치한 다음 Attributes view 에서 컴포넌트의 onTap 이벤트 속성값을 buttonTapped function 으로 지정합니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/r6kj8akn7/code04.png" style="border: 0px solid black" /></span></li>
+</ol>
+
+
+<ol>
+	<li>Toolbar 의 Run 메뉴로 에뮬레이터에서 실행해 봅니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/uhil6kirj/code05.png" style="border: 0px solid black" /></span><br/>
+Button 컴포넌트를 tap 할 때 마다 Hello 메시지가 뜨는것을 확인할 수 있습니다.<br/>
+ 
+<h1><a name="WritingSourceCode-Scene파일없는SceneController작성하기"></a>Scene 파일 없는 SceneController 작성하기</h1>
+ <br/>
+Visual Designer 에서 scene 을 디자인하지 않고 javascript 코드를 작성하는 것 만으로 scene 을 만들어 낼 수 있습니다. 동적인 요소가 많은 화면의 경우에는 Designer 에서 모두 디자인하는 것 보다 코드를 작성해서 화면을 만드는 것이 더 바람직합니다.<br/>
+ </li>
+	<li>Javascript File wizard 를 통해 SceneController javascript 파일을 만들어야 합니다. Toolbar 에서 New → JavaScript Source File 을 선택합니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/5sc1dnk03/code06.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>New JavaScript file wizard 에서 File name 으로 scene 을 입력합니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/hhkmfd0cj/code07.png" style="border: 0px solid black" /></span><br/>
+Finish 를 클릭하면 비어었는 scene.js 파일이 생성됩니다.<br/>
+ </li>
+	<li>scene.js 에 새로운 SceneController class 를 추가해 보겠습니다. scene.js 에서 'scene' 을 입력한 후 Ctrl+Space 키를 입력합니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/6j9cx6br3/code08.png" style="border: 0px solid black" /></span><br/>
+다음과 같이 SceneController 가 자동 생성된 것을 볼 수 있습니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/51shzcweb/code09.png" style="border: 0px solid black" /></span></li>
+	<li>생성된 SceneController 에 scene 을 생성하는 역할을 하는 loadScene function 을 추가합니다.<br/>
+ </li>
+	<li>다음 code 를 loadScene function 안에 작성 합니다.<br/>
+ <br/>
+&lt;pre class="prettyprint"&gt;<br/>
+var scene = this.getScene();<br/>
+var button = new tau.ui.Button({<br/>
+label : {<br/>
+	normal : "Button"<br/>
+}<br/>
+});<br/>
+button.onEvent('tap', this.buttonTapped);<br/>
+scene.add(button);<br/>
+&lt;/pre&gt;<br/>
+ <br/>
+button 을 생성하는 코드를 작성할 때 'button' 을 입력하고 Ctrl+Space 키를 누른 후 Button - new Mobello Component 를 선택하면 코드를 쉽게 작성할 수 있습니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/6lt8k0fer/code10.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>loadScene function 에서 button 에 tap 이벤트가 발생하면 buttonTapped function 이 실행되도록 지정습니다. buttonTapped funciton 의 내용은 다음과 같이 작성해 줍니다.<br/>
+ <br/>
+&lt;pre class="prettyprint"&gt;<br/>
+buttonTapped: function() {<br/>
+	alert('Hello');<br/>
+},<br/>
+&lt;/pre&gt;<br/>
+ </li>
+	<li>새로 생성한 scene.js 의 Mobello.sceneController class 를 application 의 main controller 로 지정하기 위해서는 config.json 의 classname 항목과 require 항목을 다음과 같이 수정해 주어야 합니다.<br/>
+ <br/>
+&lt;pre class="prettyprint"&gt;<br/>
+config({<br/>
+  classname : 'Mobello.sceneController',<br/>
+  require 	: '/scene.js',<br/>
+	...<br/>
+&lt;/pre&gt;<br/>
+ </li>
+	<li>이제 application 을 실행해보면 loadScene 에서 작성한 코드대로 button 이 생성되고 button 을 tap 할 때마다 'Hello' 메시지가 출력되는 것을 볼 수 있습니다.<br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ </li>
+</ol>

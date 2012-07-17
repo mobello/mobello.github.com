@@ -1,0 +1,101 @@
+---
+layout: confluence
+title: Build Navigation based App and Publish
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<h1><a name="BuildNavigationbasedAppandPublish-NavigationbasedApp제작및Publish하기"></a>Navigation based App 제작 및 Publish  하기</h1>
+<p> <br/>
+이 가이드에서는 Mobello Studio 를 사용해서 Navigation based App 을 만들고 publish 하는 방법을 설명합니다. Mobello Studio 의 기본적인 사용법은 Mobello Studio 처음 시작하기를 참조하시기 바랍니다.<br/>
+ </p>
+<h3><a name="BuildNavigationbasedAppandPublish-MobelloApplicationProject생성"></a>Mobello Application Project 생성</h3>
+<p> <br/>
+툴바에서 <strong>Mobello Application Project 위자드</strong> 를 띄우고 프로젝트 이름으로 'navi' 을 입력한 다음 <strong>Next</strong> 를 선택합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914122.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+<strong>위자드</strong> 의 Templates 화면에서 Navigation based 를 선택하고 <strong>Finish</strong> 를 선택합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914123.png" style="border: 0px solid black"/></span></p>
+
+<h3><a name="BuildNavigationbasedAppandPublish-fooscene생성"></a>foo.scene 생성</h3>
+<p> <br/>
+화면을 정의하는 새로운 scene 을 추가하기 위해서 툴바에서 <strong>Scene File 위자드</strong> 를 선택합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914124.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+<strong>File name</strong> 으로 'foo' 를 입력하고 <strong>Finish</strong> 를 선택합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914125.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+생성된 foo.scene 은 자동으로 scene designer 를 통해 열리게 됩니다.<br/>
+ <br/>
+오른쪽 <strong>QuickStyler</strong> 의 <strong>Color Edit</strong> 에서 scene 의 background color 를 변경해 봅니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914126.png" width="500" style="border: 0px solid black"/></span><br/>
+ </p>
+<h3><a name="BuildNavigationbasedAppandPublish-defaultscene에서fooscene을호출하는버튼추가"></a>default.scene 에서 foo.scene 을 호출하는 버튼 추가</h3>
+<p> <br/>
+<strong>Project Explorer</strong> 에서 default.scene 을 더블 클릭해 <strong>scene designer</strong> 를 통해 열고 <strong>Palette</strong> 에서 <strong>Button</strong> 을 더블 클릭해 배치합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914127.png" width="500" style="border: 0px solid black"/></span><br/>
+ <br/>
+Button 이 선택된 상태에서 <strong>Attributes</strong> 뷰 에서 <strong>Events</strong> 탭을 선택하고 <strong>onTap</strong> 값으로 navigate 를 입력 합니다. 이제 button 을 tap 하면 navigate function 이 실행됩니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914129.png" style="border: 0px solid black"/></span><br/>
+ </p>
+<h3><a name="BuildNavigationbasedAppandPublish-defaultjs에서fooscene의controller를push하기"></a>default.js 에서 foo.scene 의 controller 를 push 하기</h3>
+<p> <br/>
+<strong>Project Explorer</strong> 에서 <strong>default.js</strong> 를 더블 클릭해서 <strong>javascript editor</strong> 를 엽니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914130.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+default.js 의 첫번째 빈 라인에 're' 을 입력하고 <strong>Ctrl+Space</strong> 를 누른 다음 require 를 선택합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914210.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+생성된 $require('/'); 안에 다음과 같이 foo.js 를 입력합니다. <em>이제 default.js 에서 foo.scene 에 대한 <strong>controller</strong> 인 <strong>FooController</strong> 를 호출할 수 있게 됩니다.</em><br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914132.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+<strong>init function</strong> 이전 라인에 커서를 두고 'fu' 라고 입력한 다음 <strong>Ctrl+Space</strong> 를 누릅니다. 여기서는 <strong>new mobello function</strong> 을 선택합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914133.png" style="border: 0px solid black"/></span><br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914134.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+생성된 function 의 name 을 navigate 로 변경합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914135.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+navigate function 의 내용에는 다음 코드를 복사해서 넣습니다. 이제 navigate 를 호출되면 foo.scene 으로 현재 화면이 전환 됩니다.<br/>
+ <br/>
+&lt;pre class="prettyPrint"&gt;<br/>
+ var fooCtrl = new navi.FooController();	// foo.scene 에 대한 Controller 인 navi.FooController 의 개체 생성합니다.<br/>
+ this.getParent().pushController(fooCtrl);	// parent controller 에 FooController 개체를 push 합니다.<br/>
+&lt;/pre&gt;<br/>
+ <br/>
+툴바의 <strong>Run</strong> 버튼을 눌러 에뮬레이터에서 실행해 봅니다. default.scene 의 버튼을 누르면 다음과 같이 foo.scene 으로 전환됩니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914157.png" width="500" style="border: 0px solid black"/></span><br/>
+ </p>
+<h3><a name="BuildNavigationbasedAppandPublish-Publish하기"></a>Publish 하기</h3>
+<p> <br/>
+방금 만든 app을 브라우저에서 바로 실행 하기 위해서는 <strong>publish</strong> 를 수행해야 합니다.<br/>
+ <br/>
+<strong>Project Explorer</strong> 에서 'navi' 프로젝트를 마우스 오른쪽 버튼으로 선택합니다. 이때 나오는 메뉴 항목에서 <strong>Publish as Webapp...</strong> 을 선택합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914137.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+<strong>To directory</strong> 항목에 publish 할 경로를 지정하고 <strong>Finish</strong> 를 선택합니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914138.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+Publish 가 완료되고 윈도우즈 탐색기(또는 MacOS 의 파인더) 에서 publish 한 폴더를 살펴보면 다음과 같은 구조로 파일과 폴더가 생성된 것을 확인할 수 있습니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914139.png" style="border: 0px solid black"/></span> <span class="image-wrap" style=""><img src="attachments/6750451/6914140.png" style="border: 0px solid black"/></span><br/>
+ <br/>
+생성된 파일 중 navi.html 을 크롬 브라우저(또는 사파리) 에서 실행해 볼 수 있습니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="attachments/6750451/6914142.png" style="border: 0px solid black"/></span><br/>
+ </p>

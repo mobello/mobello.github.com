@@ -1,0 +1,100 @@
+---
+layout: confluence
+title: Designing UI - Flexbox Layout
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p>Flexbox layout 은 child 컴포넌트를 수평 방향 또는 수직 방향으로 배치하는 layout 방식입니다.<br/>
+다양한 정렬방식을 지원하고 컴포넌트별로 flex 값을 줄 수 있기 때문에 application UI 를 만들기에 적합한 layout 방식입니다.<br/>
+ </p>
+<h1><a name="DesigningUI-FlexboxLayout-Panel에flexboxlayout적용하기"></a>Panel 에 flexbox layout 적용하기</h1>
+<p> </p>
+<ol>
+	<li>비어있는 Scene 에 Panel 을 배치합니다.<br/>
+ </li>
+	<li>Panel 에 Button 컴포넌트를 여러개 배치합니다.<br/>
+ </li>
+	<li>Panel 을 선택하고 QuickStyler &gt; Layout 에서 Flexbox Layout 을 선택하면 다음과 같이 Button 컴포넌트가 배치됩니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/wk5y6gao3/flex01.png" style="border: 0px solid black" /></span></li>
+</ol>
+
+
+<ol>
+	<li>이 상태에서 Panel 을 선택하고 QuickStyler &gt; Layout 에서 Orientation 속성을 Horizontal 에서 Vertical 로 변경합니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/qx9l8z85f/flex02.png" style="border: 0px solid black" /></span><br/>
+그러면 다음과 같이 Button 이 수직으로 배치되는 것을 볼 수 있습니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/4zhpsxiir/flex03.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>여기서 마지막 Button 을 선택하고 palette 에서 Button 을 더블 클릭해서 Button 을 추가합니다. Visual Designer 에서 보면 다음과 같이 Button 의 크기가 다른것을 확인할 수 있습니다. 이는 flexbox layout 의 속성 (align, pack 등) 은 flow type 이 block 인 child 에만 적용되는데 방금 추가된 Button 의 layout type 은 기본적으로 inline-block 이기 때문입니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/7w4qt7ocj/flex04.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>추가된 Button 의 flow type 을 block 으로 변경하면 align stretch 속성이 적용되어 다른 Button 과 같이 늘어나게 됩니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/bwbw5getf/flex05.png" style="border: 0px solid black" /></span>
+<h1><a name="DesigningUI-FlexboxLayout-Flexboxlayoutpanel에서정렬하기"></a>Flexbox layout panel 에서 정렬하기</h1>
+ <br/>
+Flexbox layout panel 에서는 orientation 방향으로의 정렬은 pack 속성이 적용되고 orientation 방향과 수직 방향으로의 정렬은 align 속성이 적용됩니다.<br/>
+먼저 align 속성을 사용해서 정렬해 보도록 하겠습니다.<br/>
+ </li>
+	<li>Panel 을 선택하고 align start, align center, align end, align stretch 를 차례로 선택해 봅니다.<br/>
+ <br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/ychakbnk3/flex11.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>Align Start</strong><br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/d6nhpqcqr/flex06.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>Align Center</strong><br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/86q1hs743/flex07.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>Align End</strong><br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/oka10xn9f/flex08.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>Align Stretch</strong><br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/mgzlt9ngj/flex09.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>Pack 속성을 적용해보기 전에 Panel 의 height 를 100% 로 늘려서 정렬하기 위한 여유공간을 확보합니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/4i0ciax37/flex10.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>Pack Start, Pack Center, Pack End, Justify 를 차례로 선택해 봅니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/ql0klrjer/flex12.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>Pack Start</strong><br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/se8j77awz/flex13.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>Pack Center</strong><br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/r0gwbwbnn/flex14.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>Pack End</strong><br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/j906dc7ib/flex15.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+<strong>Justify</strong><br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/h5pr5o7pf/flex16.png" style="border: 0px solid black" /></span><br/>
+ <br/>
+만일 Button 의 크기를 기본 값이 아닌 상대적인 비율로 지정하고 싶다면 BoxFlex 속성을 사용하면 됩니다.<br/>
+ </li>
+	<li>Button 중 하나를 선택하고 Position and Size 에서 BoxFlex 의 값을 1 로 변경합니다. 다음과 같이 Button 의 크기가 Panel 의 여유공간만큼 늘어나는 것을 확인할 수 있습니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/554b4y0ar/flex17.png" style="border: 0px solid black" /></span><br/>
+ </li>
+	<li>다른 Button 을 선택한 후 BoxFlex 값을 2 로 변경합니다. 다음과 같이 Button 의 크기가 BoxFlex 가 1인 button 보다 크게 늘어나는것을 볼 수 있습니다. BoxFlex 가 0 이 아닌 값을 지정하면 여유공간을 BoxFlex 비율에 따라 나누어서 분배됩니다.<br/>
+<span class="image-wrap" style=""><img src="http://s19.postimage.org/sxdmgh2bn/flex18.png" style="border: 0px solid black" /></span><br/>
+ 
+<h3><a name="DesigningUI-FlexboxLayout-관련자료"></a>관련 자료</h3></li>
+</ol>
+
+
+<ul>
+	<li>"Designing UI : Flow Layout":/studio-tutorial-layout-flow<br/>
+가장 기본적인 layout 인 flow layout 에 대해서 설명하고 있습니다.</li>
+	<li>"Designing UI : Absolute Layout":/studio-tutorial-layout-absolute<br/>
+고정된 좌표를 기준으로 배치하는 absolute layout 에 대해서 설명하고 있습니다. <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+ </li>
+</ul>
+<p> </p><p> </p>
