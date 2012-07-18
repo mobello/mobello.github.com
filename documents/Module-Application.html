@@ -1,0 +1,198 @@
+---
+layout: confluence
+title: Module/Application
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p><a href="http://mobello.github.com/api/symbols/tau.rt.Runtime.html" class="external-link" rel="nofollow">Runtime</a>에서 생성하고 관리하는 대상인 <a href="http://mobello.github.com/api/symbols/tau.rt.Module.html" class="external-link" rel="nofollow">Module</a>/<a href="http://mobello.github.com/api/symbols/tau.rt.Application.html" class="external-link" rel="nofollow">Application</a>에 대해서 간단히 알아보고 <a href="http://mobello.github.com/api/symbols/tau.rt.ApplicationContext.html" class="external-link" rel="nofollow">ApplicationContext</a>를 사용한 예제를 설명하겠습니다.</p><p>목차:</p><p><div>
+<ul>
+    <li><a href='#ModuleApplication-Module'>Module</a></li>
+    <li><a href='#ModuleApplication-Application '>Application&nbsp;</a></li>
+    <li><a href='#ModuleApplication-ApplicationContext '>ApplicationContext&nbsp;</a></li>
+<ul>
+    <li><a href='#ModuleApplication-예제1'>예제1.</a></li>
+    <li><a href='#ModuleApplication-예제2'>예제2.</a></li>
+    <li><a href='#ModuleApplication-복합예제'>복합예제</a></li>
+</ul>
+</ul></div></p><h2 id="ModuleApplication-Module">Module</h2><div class="image-wrap" style=""><img src="download/temp/plantuml1111445105500791197.png" style=""/></div><p>위의 그림에서 보듯이 <a href="http://mobello.github.com/api/symbols/tau.rt.Module.html" class="external-link" rel="nofollow">Module</a>은 <a href="http://mobello.github.com/api/symbols/tau.rt.Application.html" class="external-link" rel="nofollow">Applicatoin</a>의 상위 클래스입니다. <a href="http://mobello.github.com/api/symbols/tau.rt.Runtime.html" class="external-link" rel="nofollow">Runtime</a>이 lifecycle을 관리하는 객체는 모두 <a href="http://mobello.github.com/api/symbols/tau.rt.Module.html" class="external-link" rel="nofollow">Module</a>을 상속 받습니다. <a href="http://mobello.github.com/api/symbols/tau.rt.Module.html" class="external-link" rel="nofollow">Module</a>은 아래와 같은 기능을 합니다.</p><ul><li>Config 파일 관리</li><li>Controller 관리</li><li>ModalController 생성</li><li>Badge 관리</li></ul><h2 id="ModuleApplication-Application ">Application </h2><p><a href="http://mobello.github.com/api/symbols/tau.rt.Module.html" class="external-link" rel="nofollow">Module</a>을 상속 받은 <a href="http://mobello.github.com/api/symbols/tau.rt.Application.html" class="external-link" rel="nofollow">Application</a>클래스는 실제 동작하는 앱을 나타냅니다.  <a href="http://mobello.github.com/api/symbols/tau.rt.Module.html" class="external-link" rel="nofollow">Module</a>를 상속받아서 Module의  기능과 추가적으로 동적 로딩기능이 추가 되었습니다. 동적 로딩 기능은 <span style="color: rgb(0,0,0);">$require를 통해 javascript 파일을 로딩할 수 있게 되어 있습니다. 조금 더 자세히 알아보기 위해서 아래의 상황이 있다고 가정해보겠습니다.</span></p><p><img class="confluence-embedded-image" src="attachments/6751585/7536684.png" data-image-src="attachments/6751585/7536684.png"></p><p><span style="color: rgb(0,0,0);">main.js 에서  javascript 파일을 로딩하는 순서는 다음 아래 그림과 같이 depth first 알고리즘으로 진행 됩니다.</span></p><p><img class="confluence-embedded-image" src="attachments/6751585/7536686.png" data-image-src="attachments/6751585/7536686.png"></p><p>그리하여 main.js에서 부터 javascript loading 순서는 <strong>lib1.js -&gt; lib4.js -&gt; lib5.js -&gt; lib7.js -&gt; lib2.js -&gt; lib6.js -&gt; lib3.js</strong> 됩니다.</p><h2 id="ModuleApplication-ApplicationContext ">ApplicationContext </h2><p>개발자들은 <a href="http://mobello.github.com/api/symbols/tau.rt.Application.html" class="external-link" rel="nofollow">Application</a>에 직접 접근 하지는 못하고  tau.<a href="http://mobello.github.com/api/symbols/tau.html#.getCurrentContext" class="external-link" rel="nofollow">getCurrentContext</a> 함수를 통해서 <a href="http://mobello.github.com/api/symbols/tau.rt.ApplicationContext.html" class="external-link" rel="nofollow">ApplicationContext</a>를 가져와서 사용할 수 있습니다. 예제를 통해 살펴보도록 하겠습니다.</p><p> </p><h4 id="ModuleApplication-예제1">예제1.</h4><p>다음 예제는 <a href="http://mobello.github.com/api/symbols/tau.rt.ApplicationContext.html" class="external-link" rel="nofollow">ApplicationContext</a>를 사용하여 config.json의 설정값을 읽어와서 콘솔에 출력하는  예제입니다.</p><p>config.json은 다음과 같습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>config.json</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">config({
+  classname   : 'sample.ApplicationCtx',
+  require     : '/main.js', 
+  icon        : '/icon.png',
+  title       : 'AppCtx',
+  version     : '1.0.0',
+  vendor      : 'KT Corp',
+  theme       : 'ios'
+});</pre>
+		</div>
+</div></div><p>main.js 파일은 다음과 같다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">$class('sample.ApplicationCtx').extend(tau.ui.SceneController).define({
+  
+  loadScene: function () {
+    var scene = this.getScene();
+    var button = new tau.ui.Button({
+      id: 'configlogging',
+      label: 'config logging', 
+      styles: {height: '50px',width: '100%', backgroundColor: 'lime'}
+    });
+    button.onEvent(tau.rt.Event.TAP, this.handleButton, this);
+  
+    scene.add(button);
+  },
+ 
+  handleButton: function (event, payload) {
+   //현재의 application의 ApplicationContext를 가져온다. 
+    var appCtx = tau.getCurrentContext();
+   //ApplicationContext를 통해서 config.json의 설정값을 가져온다. 
+    var config = appCtx.getConfig();
+    //콘솔에 classname, title을 출력한다.
+    console.log(config.classname);
+    console.log(config.title);    
+  }  
+});</pre>
+		</div>
+</div></div><p>위의 예제의 결과는 다음과 같습니다.</p><div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>sample.ApplicationCtx 
+AppCtx </pre>
+</div></div><h4 id="ModuleApplication-예제2">예제2.</h4><p>다음 예제는 ApplicationContext를 이용하여 Storage에 값을 저장하고 읽어오는 예제입니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">$class('sample.ApplicationCtx').extend(tau.ui.SceneController).define({
+  
+  loadScene: function () {
+    var scene = this.getScene();
+    var button = new tau.ui.Button({
+      id: 'configlogging',
+      label: 'config logging', 
+      styles: {height: '50px',width: '100%', backgroundColor: 'lime'}
+    });
+    button.onEvent(tau.rt.Event.TAP, this.handleButton, this);
+  
+    scene.add(button);
+  },
+ 
+  handleButton: function (event, payload) {
+   //현재의 application의 ApplicationContext를 가져온다. 
+    var appCtx = tau.getCurrentContext();
+   //ApplicatonContext를 통해서 hello란 값을 ctx라는 키로 저장한다.
+    appCtx.setStorage('ctx', 'hello');
+   //ApplicationContext를 통해서 ctx란 키값에 저장된 hello값을 가져온다.
+    console.log(appCtx.getStorage('ctx'))
+  }  
+});</pre>
+		</div>
+</div></div><p>위의 예제의 결과는 다음과 같습니다.</p><div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>hello </pre>
+</div></div><h4 id="ModuleApplication-복합예제">복합예제</h4><p>로딩 버튼을 tap하면 config.json에서 읽어와서 textarea에 저장하고 save버튼을 tap하면 textarea에서 변경한 값을 로컬데이터에 저장하는 예제입니다.</p><h5 id="ModuleApplication-1단계">1단계</h5><p> loading 버튼을 tap 하면 config에 있는 data란 필드의 값을 읽어서 textarea에 set합니다. </p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>config.json</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">config({
+  classname   : 'sample.ApplicationCtx',
+  require     : '/main.js', 
+  icon        : '/icon.png',
+  title       : 'AppCtx',
+  version     : '1.0.0',
+  vendor      : 'KT Corp',
+  theme       : 'ios',  
+  data        : '세상에서 어두워진 눈을 들어 하늘을 보아요'
+});</pre>
+		</div>
+</div></div><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false"> $class('sample.ApplicationCtx').extend(tau.ui.SceneController).define({
+  
+  loadScene: function () {
+    var scene = this.getScene();
+    var loadBtn= new tau.ui.Button({
+      id: 'load',
+      label: 'loading', 
+      styles: {height: '50px',width: '100%', backgroundColor: 'lime'}
+    });
+    loadBtn.onEvent(tau.rt.Event.TAP, this.handleLoadData, this);
+    
+    scene.add(loadBtn);
+    
+    var textarea = new tau.ui.TextArea({
+      id: 'textarea',
+      styles: {top: '50px', width: '100%', height: '50%'}
+    }); 
+    textarea.setPlaceholderLabel('write here');
+    scene.add(textarea);
+  },
+ 
+  handleLoadData: function (event, payload) {
+   //Scene을 가져온다.
+    var scene = this.getScene();
+   //현재의 application의 ApplicationContext를 가져온다. 
+    var appCtx = tau.getCurrentContext();
+   //ApplicationContext를 통해서 config.json의 설정값을 가져온다. 
+    var config = appCtx.getConfig();
+    //textArea에 값을 설정한다.
+    var textarea = scene.getComponent('textarea');
+    textarea.setText(config.data);
+  }  
+});</pre>
+		</div>
+</div></div><h5 id="ModuleApplication-2단계">2단계</h5><p>save버튼을 추가하고 save버튼을 tap하면 textarea의 현재 값을 localstorage에 저장하는 이벤트 핸들러를 만듭니다. </p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">$class('sample.ApplicationCtx').extend(tau.ui.SceneController).define({
+  
+  loadScene: function () {
+    var scene = this.getScene();
+    var loadBtn= new tau.ui.Button({
+      id: 'load',
+      label: 'loading', 
+      styles: {height: '50px',width: '100%', backgroundColor: 'lime'}
+    });
+    loadBtn.onEvent(tau.rt.Event.TAP, this.handleLoadData, this);
+    
+    scene.add(loadBtn);
+    
+    var textarea = new tau.ui.TextArea({
+      id: 'textarea',
+      styles: {top: '50px', width: '100%', height: '200px'}
+    }); 
+    textarea.setPlaceholderLabel('write here');
+    scene.add(textarea);
+    
+    var savebtn = new tau.ui.Button({
+      id: 'save',
+      label: 'save', 
+      styles: {
+        top: '250px',
+        height: '50px',
+        width: '100%', 
+        backgroundColor: 'orange'}
+    });
+    savebtn.onEvent(tau.rt.Event.TAP, this.handleSavaData, this);
+    
+    scene.add(savebtn);
+  },
+ 
+  handleLoadData: function (event, payload) {
+   //Scene을 가져온다.
+    var scene = this.getScene();
+   //현재의 application의 ApplicationContext를 가져온다. 
+    var appCtx = tau.getCurrentContext();
+   //ApplicationContext를 통해서 config.json의 설정값을 가져온다. 
+    var config = appCtx.getConfig();
+    
+    var textarea = scene.getComponent('textarea');
+    textarea.setText(config.data);
+  },
+  
+  handleSavaData: function (event, payload) {
+    //Scene을 가져온다.
+    var scene = this.getScene();
+    var textarea = scene.getComponent('textarea');
+    var data = textarea.getText();
+    //현재의 application의 ApplicationContext를 가져온다. 
+    var appCtx = tau.getCurrentContext();
+    //localStorage에 'data'라는 키로 저장한다.
+    appCtx.setStorage('data', data);
+    
+  }
+});</pre>
+		</div>
+</div></div><p> </p><p> </p><p> </p><p> </p>

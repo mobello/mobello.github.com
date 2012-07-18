@@ -1,0 +1,617 @@
+---
+layout: confluence
+title: 클래스 작성하기
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p>Mobello Framework은 모바일 환경에 최적화되고 Native 앱에 준하는 웹 앱을 쉽게 개발할 수 있도록 지원하는 프레임워크 입니다. 일반적으로 모바일 환경에서 웹 앱을 개발하기 위해서는 표준 웹기술인 HTML5, CSS3, JavaScript를 활용합니다. PC환경의 브라우저에서 UI를 개발하기 위해 웹 표준기술을 MVC패턴으로 나누어 접근하였는데 HTML이 모델을 담당하도록하고, CSS가 화면영역인 뷰를 그리고 JavaScript를 사용하여 모델과 뷰의 변경 또는 사용자의 입력을 처리하는 컨트롤러 역할을 수행하도록 하였습니다. 이런 패러다임은 온라인 카탈로그 제작과 같이 화려하면서 상대적으로 정적인 리프레쉬가 발생하는 화면을 제작하는데 많이 사용하였지만 모바일 환경에서 그대로 활용하기에는 어려움이 있습니다.</p><p>모바일 환경에서의 앱은 PC환경에 비해 상대적으로 화려하지는 않지만 터치환경과 애니메이션과 같이 높은 수준의 UX를 제공하는 것이 필수적입니다. 이런 기능들을 구현하기 위해 기존의 PC환경에서 화면을 개발했던 방법으로는 엄청난 시간과 비용을 소모해야 하고 재사용 가능한 모듈 개발을 어렵게 만듭니다.</p><p>이를 위해 Mobello Framework에서는 HTML, CSS와 같은 방대한 지식을 습득하지 않고 JavaScript 언어만으로도 원하는 앱을 쉽게 개발할 수 있도록 프로그래밍적인 요소를 강화하였습니다. JavaScript로 프로그래밍을 할 때 가장 어려운 부분은 재사용 가능한 모듈 제작과 확장성이라 볼 수 있습니다. 이런 단점을 보완하기 위해 OO(Object Oriented) 방식의 클래스 개념을 도입하였고 초보 개발자들도 쉽게 습득하고 편리하게 모듈을 작성할 수 있도록 클래스 선언을 위한 문법을 정의하였습니다. 이 클래스 정의 문법은 Java 또는 C# 등의 언어를 사용한 경험이 있는 개발자들이라면 보다 쉽게 접근할 수 있습니다.</p><p>Mobello Framework상에서 앱 개발자들은 확장 가능한 UI 컴포넌트와 앱 로직 개발을 위해 다양한 클래스를 생성하게 되는데 이 문서는 클래스의 정의, 상속, 오버라이드(Override) 등 다양한 활용방법에 대해 설명합니다.</p><p>이 문서에서 소개될 내용:</p><p><div>
+<ul>
+    <li><a href='#id-클래스작성하기-GuidebookConventions'>Guidebook Conventions</a></li>
+    <li><a href='#id-클래스작성하기-Environment'>Environment</a></li>
+    <li><a href='#id-클래스작성하기-DefiningClasses'>Defining Classes</a></li>
+    <li><a href='#id-클래스작성하기-Instantiation'>Instantiation</a></li>
+    <li><a href='#id-클래스작성하기-Inheritance'>Inheritance</a></li>
+    <li><a href='#id-클래스작성하기-Override'>Override</a></li>
+    <li><a href='#id-클래스작성하기-Mixin'>Mixin</a></li>
+    <li><a href='#id-클래스작성하기-StaticVariable'>Static Variable</a></li>
+    <li><a href='#id-클래스작성하기-ImportingExternalLibraries'>Importing External Libraries</a></li>
+    <li><a href='#id-클래스작성하기-Miscellaneous'>Miscellaneous</a></li>
+    <li><a href='#id-클래스작성하기-ComponentClassHierarchy'>Component Class Hierarchy</a></li>
+</ul></div></p><p> </p><h1 id="id-클래스작성하기-GuidebookConventions">Guidebook Conventions</h1><ol><li>문서에서 중요한 부분을 강조하기 위해 다음과 같은 아이콘들을 사용하여 설명합니다.<ul><li><img class="emoticon emoticon-tick" src="s/ko_KR/3129/8/_/images/icons/emoticons/check.png" data-emoticon-name="tick" alt="(tick)"/> — 사용상의 유용한 팁을 설명합니다.</li><li><img class="emoticon emoticon-information" src="s/ko_KR/3129/8/_/images/icons/emoticons/information.png" data-emoticon-name="information" alt="(info)"/> — 중요한 부분을 설명합니다.</li><li><img class="emoticon emoticon-warning" src="s/ko_KR/3129/8/_/images/icons/emoticons/warning.png" data-emoticon-name="warning" alt="(warning)"/> — 주의가 필요한 내용을 설명합니다.</li></ul></li><li><p>소스코드는 다음과 같이 소스코드 블럭으로 표시를 합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>Flickr.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('tau.sample.fr.Flickr').extend(tau.ui.SequenceNavigator).define({
+  init: function () {
+    var config = tau.getCurrentContext().getConfig();
+    this.url = config.flickrUrl + '?tags=' + config.flickrTags
+      + '&amp;tagmode=any&amp;format=json';
+    this.pushController(new tau.sample.fr.ListController(this.url));
+  },
+  ...
+});</pre>
+		</div>
+</div></div></li><li>설명상에서 중요한 부분을 강조하기 위해 <strong>굵은 글씨체</strong>로 기술합니다.</li></ol><h1 id="id-클래스작성하기-Environment">Environment</h1><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>Mobello Framework에서 제공되는 클래스를 사용하기 위해서는 먼저 Framework이 설치되어 있어야 합니다. Mobello Framework을 설치하기 위해서는 <a href="http://mobello.tumblr.com/post/21685709384" class="external-link" rel="nofollow">Installation Guide</a>를 참고하십시오.</p></td></tr></table></div><p>Mobello Framework에서 작성하는 모든 앱은 JavaScript언어로 코딩하며 생성된 코드는 해당 앱 폴더에 자바스크립트 파일(.js)로 저장됩니다. 하나의 자바스크립트 파일 안에서 복수개의 클래스를 정의할 수 있으며 모듈화 및 재사용성을 위해 자바스크립트 파일을 기능별로 생성할 수도 있습니다. 이렇게 작성한 코드는 Framework의 런타임에 의해 실행되는며 앱별 환경설정 파일인 <cite>config.json</cite>에 실행할 클래스 이름을 기술해 줌으로써 동작이 가능해 집니다. 다음은 개발자가 코드를 작성하여 실행하기 위한 환경설정 과정을 보여줍니다.</p><ol><li><p><cite>apps</cite> 폴더에 작성하고자 하는 앱을 생성합니다. 작성하고자 하는 앱 이름을 <cite>myapp</cite>이라고 하면 <cite>apps</cite> 폴더 밑에 <cite>myapp</cite>이라는 폴더를 생성합니다.</p><div class="preformatted panel" style="border-style: none;border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>[Mobello Framework]
+  +-[apps]
+  |  +-[demo]
+  |  +-[flickr]
+  |  +-[myapp]  &lt;- app name to write
+  |  +- ... (the other apps)
+  +-[lib]
+  +-[shared]
+  +-config.json
+</pre>
+</div></div></li><li>코드를 작성하기 위한 자바스크립트 파일을 생성합니다. 자바스크립트 파일의 이름을 <cite>main.js</cite>로 합니다. 런타임은 <cite>main.js</cite>라는 자바스크립트 파일이 있으면 자동으로 이 파일을 로딩합니다.</li><li><p><cite>main.js</cite>를 열고 작성하고자 하는 클래스 이름이 <cite>MyFirstApp</cite>이라고 하면 다음과 같이 코드를 기술합니다. 이때 패키지 이름은 <cite>sample</cite>로 하겠습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('sample.MyFirstApp').extend(tau.ui.Controller).define({
+  init: function () {
+    tau.log('This is MyFirstApp!');
+  }
+});</pre>
+		</div>
+</div></div></li><li><p>앱별 환경설정 파일인 <cite>config.json</cite>을 생성하고 다음과 같은 로딩할 클래스 이름을 기술합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>config.json</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">config({
+  classname: 'sample.MyFirstApp'
+});</pre>
+		</div>
+</div></div><p>자바스크립트 파일과 환경설정파일을 생성한 후의 폴더 구조는 다음과 같습니다.</p><div class="preformatted panel" style="border-style: none;border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>[Mobello Framework]
+  +-[apps]
+  |  +-[demo]
+  |  +-[flickr]
+  |  +-[myapp]
+  |  |  +-main.js  &lt;- &#39;MyFirstApp&#39; class goes in this file!
+  |  |  +-config.json
+  |  +- ... (the other apps)
+  +-[lib]
+  +-[shared]
+  +-config.json
+</pre>
+</div></div></li><li><p>작성된 코드를 구동시키기 위해서는 브라우저(Chrome 또는 Safari)를 열고 다음의 URL과 같이 <cite>launcher.html</cite>뒷 부분에 파라미터로 실행할 앱 이름을 기술합니다.</p><div class="preformatted panel" style="border-style: none;border-width: 1px;"><div class="preformattedContent panelContent">
+<pre> file:///C:/Program Files/Mobello Framework/lib/launcher.html?app=myapp
+</pre>
+</div></div><div class='panelMacro'><table class='noteMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/warning.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>Mobello Framework이 <strong><cite>C:\Program Files\Mobello Framework</cite></strong>에 설치되었을 경우에 해당되며 만약 다른 곳에 설치되었다면 설치된 경로를 입력하면 됩니다.</p></td></tr></table></div></li><li><p>위와 같은 방법으로 실행하면 환경설정파일에 명시된 클래스의 iniit()메소드가 실행되며 브라우저에서 제공되는 로그콘솔로 다음과 같은 내용이 출력됩니다. 브라우저에는 빈 화면만 출력됩니다.</p><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>로그콘솔을 열기 위해서는 브라우저의 메뉴를 통해서도 가능하지만 Chrome브라우저는 *[Ctrl + Shift + J]*키를, Safari는 *[Ctrl + Alt + C]*을 누르면 쉽게 열 수 있습니다.</p></td></tr></table></div><div class="preformatted panel" style="border-style: dashed;border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>[tau.rt.Runtime] Launching URL: file:///C:/Program%20Files/Mobello%20Framework/lib/launcher.html?app=myapp
+[Job-1] [522] Executing (idle 0ms, 915)
+Installing: myapp
+[Job-2] [657] Executing (idle 0ms, 938)
+[tau.rt.Application] Importing: &quot;file:///C:/Program%20Files/Mobello%20Framework/apps/myapp/main.js&quot;
+[tau.rt.Runtime] Starting: myapp (m1312336829470)
+This is MyFirstApp!
+</pre>
+</div></div></li></ol><h1 id="id-클래스작성하기-DefiningClasses">Defining Classes</h1><p>Mobello Framework을 통한 프로그래밍은 Object Oriented 기반으로 진행되며 객체를 생성하기 위해 먼저 클래스를 정의합니다. 클래스는 Java 또는 C#에서 사용하는 클래스 정의 방법과 유사하며 다음과 같이 <strong><cite>$class</cite></strong>과 <strong><cite>define</cite></strong>라는 예약 키워드를 사용하여 정의합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('package.ClassName').define({
+  ...
+});</pre>
+		</div>
+</div></div><ul><li><p>클래스 이름<br /> 클래스 이름은 <strong>반드시 문자열</strong>로 기술하며 네임스페이스명과 클래스 이름을 점(.)으로 구분해서 기술합니다. 일반적으로 네임스페이스 이름은 모두 소문자로, 클래스 이름은 CamelCase형태로 기술합니다.</p><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>자바스크립트에서 다른 코드와의 충돌을 사전에 방지하기 위해 클래스를 정의할 때 네임스페이스 이름을 기술할 것을 권장합니다.</p></td></tr></table></div><p>다음과 같이 다양한 형태로 클래스 이름을 정의할 수 있습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('foo.bar.MyClass');
+
+$class('foo.bar.baz.MyAnotherClass');</pre>
+		</div>
+</div></div></li><li><p>클래스 정의<br /> 클래스에 정의될 메소드들는 <strong><cite>define</cite></strong>이라는 키워드를 사용하여 정의하며 다음과 같이 <cite>define</cite> 다음의 <strong>괄호()</strong> 안에서 JSON 객체(<strong>{ }</strong>) 형태로 기술합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('foo.bar.MyClass').define({
+  // method definition goes here
+});</pre>
+		</div>
+</div></div></li></ul><ul><li><p>생성자<br /> 생성자는 클래스의 객체가 생성될 때 가장 먼저 실행되는 메소드이며 <strong>생성자의 이름은 클래스의 이름과 동일</strong>하게 작성합니다.</p><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>자바스크립트는 기술된 코드를 Case-Sensitive하게 처리하므로 클래스 이름과 정확히 동일한 이름으로 생성자를 기술해야 합니다. 만약 그렇지 않으면 생성자가 아닌 일반 메소드로 인식을 하게되며 객체 생성시 호출되지 않습니다.</p></td></tr></table></div><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('foo.bar.MyClass').define({
+  MyClass: function () { // constructor
+    // object initialization logic goes here
+  }
+});</pre>
+		</div>
+</div></div></li></ul><ul><li><p>메소드<br /> 메소드는 클래스의 행위을 정의하는 것으로써 클래스의 성격에 따라 다양하게 메소드를 정의할 수 있습니다. 일반적으로 클래스 이름은 <cite>동사 + 목적어</cite>의 형태를 가지며 메소드와 메소드사이는 컴마(,)로 구분합니다. 맨 마지막에 정의되는 메소드 다음에는 컴마를 생략합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('foo.bar.MyClass').define({
+  MyClass: function () { // constructor
+    // object initialization logic goes here
+  },
+
+  doThis: function () {
+    this.doThat('망치', '드라이버');
+  },
+
+  doThat: function (arg1, arg2) {
+    // implementation goes here
+  }
+});</pre>
+		</div>
+</div></div><div class='panelMacro'><table class='noteMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/warning.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>클래스 내부의 특정 메소드에서 다른 메소드를 호출하기 위해서는 Java와 같이 메소드를 직접 호출하는 것이 아니라 위의 예제 처럼 반드시 <strong><cite>this</cite></strong> 키워드를 사용해야 합니다. <cite>this</cite> 키워드 없이 메소드를 호출하면 전역으로 정의된 메소드를 호출하게 되므로 오류가 발생하거나 원하는 동작이 수행되지 않을 수 있습니다.</p></td></tr></table></div></li></ul><p>다음은 클래스 정의를 위한 예제코드를 보여줍니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('sample.MyFirstApp').extend(tau.ui.Controller).define({
+  init: function () {
+    tau.log('This is MyFirstApp!');
+  }
+});
+
+/** class definition for 'foo.bar.MyClass' */
+$class('foo.bar.MyClass').define({
+  MyClass: function () {
+    // object initialization logic goes here
+  },
+
+  doThis: function () {
+    this.doThat('망치', '드라이버');
+  },
+
+  doThat: function (arg1, arg2) {
+    // implementation goes here
+  }
+});</pre>
+		</div>
+</div></div><h1 id="id-클래스작성하기-Instantiation">Instantiation</h1><p>클래스가 정의되면 이 클래스를 활용하기 위해서는 클래스의 객체를 생성해야 합니다. 클래스 생성 방법은 java언어에서 객체를 생성하는 방법과 유사합니다. 객체를 생성하기 위해서는 다음과 같이 <strong><cite>new</cite></strong> 키워드를 이용하여 네임스페이스 이름과 클래스 이름을 같이 기술합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">var my = new foo.bar.MyClass();
+my.doThis(); // invokes instance method
+
+var another = new foo.bar.baz.MyAnotherClass();</pre>
+		</div>
+</div></div><p>생성된 객체를 통해 메소드를 호출하기 위해서는 위의 코드처럼 객체 레퍼런스를 이용해서 메소드를 호출합니다. 객체 생성시 생성자에 파라미터를 전달하고자 할 경우 다음과 같이 일반 메소드 정의하는 것과 동일한 방법으로 클래스의 생성자를 먼저 정의합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('foo.bar.MyClass').define({
+  MyClass: function (arg1) { // constructor with argument
+    // object initialization logic goes here
+  },
+  ...
+});</pre>
+		</div>
+</div></div><p>다음과 같이 객체 생성시 파라미터를 기술하면 생성자에서는 해당 파라미터를 전달 받을 수 있습니다.</p><div class="code panel" style="border-style: none;border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">var my = new foo.bar.MyClass('tau');</pre>
+		</div>
+</div></div><p>다음은 객체 생성을 위한 예제코드를 보여줍니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('sample.MyFirstApp').extend(tau.ui.Controller).define({
+  init: function () {
+    var my = new foo.bar.MyClass();
+    my.doThis(); // invokes instance method
+
+    // 'my' variable now refers to the newly created MyClass object
+    my = new foo.bar.MyClass('tau');
+  }
+});
+
+/** class definition for 'foo.bar.MyClass' */
+$class('foo.bar.MyClass').define({
+  MyClass: function () {
+    if (arg1) {
+      tau.log('the value of arg1 is '  + arg1);
+    }
+  },
+
+  doThis: function () {
+    this.doThat('망치', '드라이버');
+  },
+
+  doThat: function (arg1, arg2) {
+    tau.log('Repair computer with '.concat(arg1, ' and ', arg2));
+  }
+});</pre>
+		</div>
+</div></div><p>위의 코드를 실행하면 다음과 같은 결과가 콘솔로 출력됩니다.</p><div class="preformatted panel" style="border-style: dashed;border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>Repair computer with 망치 and 드라이버
+the value of arg1 is tau
+</pre>
+</div></div><h1 id="id-클래스작성하기-Inheritance">Inheritance</h1><p>Object-Oriented 개념에서 가장 광범위하게 활용하는 기법이 상속입니다. 상속을 이용하면 코드의 재사용성을 높여주고 쉽게 확장 가능한 모듈을 작성할 수 있도록 합니다. Mobello Framework에서의 상속은 java와 같은 객체지향 언어에서 제공하는 상속개념이 동일하게 적용됩니다. Mobello Framework에서 상속을 구현하기 위해서는 다음과 같이 <strong><cite>extend</cite></strong> 예약 키워드를 사용합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('foo.bar.baz.MyAnotherClass').extend(foo.bar.MyClass).define({
+  ...
+});</pre>
+		</div>
+</div></div><div class='panelMacro'><table class='noteMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/warning.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>클래스정의하기 위해 사용된 클래스 이름은 문자열로 기술하였지만 상속을 위해 <strong><cite>extend</cite></strong> 에 기술되는 클래스 이름은 <strong>문자열이 아닌 정의된 클래스를 기술</strong>해야 합니다. 따라서, 클래스를 상속하기 위해서는 상속되는 클래스가 지금 상속하는 클래스 보다 먼저 정의되어 있어야 합니다. 위의 코드의 경우 <cite>foo.bar.MyClass</cite> 클래스는 항상 지금 정의하는 <cite>foo.bar.baz.MyAnotherClass</cite> 클래스보다 먼저 정의되어 있어야 합니다.</p></td></tr></table></div><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>Mobello Framework에서 생성하는 모든 클래스는 기본적으로 <strong><cite>tau.TObject</cite></strong>를 상속받습니다. 따라서 모든 클래스의 최상위 클래스는 <cite>tau.TObject</cite> 가 됩니다.</p></td></tr></table></div><p>상속받은 클래스(<cite>foo.bar.baz.MyAnotherClass</cite>)에서는 상위 클래스(<cite>foo.bar.MyClass</cite>)에 정의된 메소드들에 대해 모두 접근이 가능하며 <cite>this</cite>키워드를 사용하여 접근합니다. 다음의 코드는 상속 받은 클래스에서 상위클래스에 정의된 메소드를 호출하는 방법을 보여 줍니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('foo.bar.baz.MyAnotherClass').extend(foo.bar.MyClass).define({
+  MyAnotherClass: function (arg1) {
+
+  },
+
+  doAll: function () {
+    this.doThis();
+    this.doThat('Knife', 'Tape');
+  }
+});</pre>
+		</div>
+</div></div><p>다음은 상속을 위한 예제코드와 실행했을 때 콘솔로 출력되는 결과를 보여줍니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('sample.MyFirstApp').extend(tau.ui.Controller).define({
+  init: function () {
+    var another = new foo.bar.baz.MyAnotherClass();
+    another.doAll();
+  }
+});
+
+/** class definition for 'foo.bar.MyClass' */
+$class('foo.bar.MyClass').define({
+  MyClass: function (arg1) {
+    if (arg1) {
+      tau.log('the value of arg1 is '  + arg1);
+    }
+  },
+
+  doThis: function () {
+    this.doThat('망치', '드라이버');
+  },
+
+  doThat: function (arg1, arg2) {
+    tau.log('Repair computer with '.concat(arg1, ' and ', arg2));
+  }
+});
+
+/** class definition for 'foo.bar.baz.MyAnotherClass' */
+$class('foo.bar.baz.MyAnotherClass').extend(foo.bar.MyClass).define({
+  MyAnotherClass: function (arg1) {
+
+  },
+
+  doAll: function () {
+    this.doThis();
+    this.doThat('Knife', 'Tape');
+  }
+});</pre>
+		</div>
+</div></div><p>콘솔 출력내용</p><div class="preformatted panel" style="border-style: dashed;border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>Repair computer with 망치 and 드라이버
+Repair computer with Knife and Tape
+</pre>
+</div></div><h1 id="id-클래스작성하기-Override">Override</h1><p>상속과 마찬가지로 Object-Oriented 기법 중에서 자주 사용하는 것이 Override입니다. 이 기법은 상속 받은 클래스에서 상위 클래스에 있는 메소드의 기능을 확장하거나 재정의할 필요가 있을 때 사용합니다. 상속받은 클래스에서 상위 클래스에 정의된 메소드를 확장하거나 재정의하면 객체 생성시 다형성(polymorphism)에 의해 상속받은 클래스에서 Override한 메소드가 호출됩니다. 다음의 코드는 클래스 상속시 Override하는 방법을 보여 줍니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('foo.bar.MyClass').define({
+  MyClass: function (arg1) {
+    if (arg1) {
+      tau.log('the value of arg1 is '  + arg1);
+    }
+  },
+
+  doThis: function () {
+    this.doThat('망치', '드라이버');
+  },
+
+  doThat: function (arg1, arg2) {
+    tau.log('Repair computer with '.concat(arg1, ' and ', arg2));
+  }
+});
+
+$class('foo.bar.baz.MyAnotherClass').extend(foo.bar.MyClass).define({
+  MyAnotherClass: function (arg1) {
+
+  },
+
+  /** overrides doThis() method defined in super class */
+  doThis: function () {
+    this.doThat('나사', '드라이버');
+  }
+});</pre>
+		</div>
+</div></div><p>위의 코드와 같이 작성된 클래스에서 <cite>foo.bar.baz.MyAnotherClass</cite>의 객체를 생성한 다음 아래의 코드와 같이 <cite>doThis()메소드를 호출하면 상위클래스(foo.bar.MyClass</cite>)에서 정의한 <cite>doThis()메소드가 실행되는 것이 아니라 foo.bar.MyClass</cite>에 정의된 doThis()메소드가 실행됩니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">var another = new foo.bar.baz.MyAnotherClass();
+another.doThis();</pre>
+		</div>
+</div></div><p>위의 코드를 실행하면 다음과 같은 결과가 콘솔로 출력됩니다.</p><div class="preformatted panel" style="border-style: dashed;border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>Repair computer with 나사 and 드라이버
+</pre>
+</div></div><p>상속받은 클래스에서 상위 클래스에 정의된 메소드를 Override하여 기능을 확장하고 다시 상위 클래스 메소드를 호출할 필요가 있을 경우 다음과 같이 <strong><cite>$super</cite></strong> 키워드를 사용하여 상위 클래스의 Override된 메소드를 호출할 수 있습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('foo.bar.baz.MyAnotherClass').extend(foo.bar.MyClass).define({
+  MyAnotherClass: function (arg1) {
+
+  },
+
+  /** overrides doThis() method defined in super class */
+  doThis: function () {
+    this.doThat('나사', '드라이버');
+    foo.bar.baz.MyAnotherClass.$super.doThis.apply(this);
+  }
+});</pre>
+		</div>
+</div></div><p>위의 코드에서 처럼 현재 클래스의 이름에서 <cite>.$super</cite> 는 상위 클래스를 나타냅니다. 따라서 이 클래스(<cite>foo.bar.MyClass</cite>)에 정의된 doThis()메소드를 호출하기 위해서는</p><div class="code panel" style="border-style: none;border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">foo.bar.baz.MyAnotherClass.$super.doThis.call(this);</pre>
+		</div>
+</div></div><p>와 같이 작성합니다. 이때 <cite>call</cite> 메소드는 자바스크립트에서 메소드를 호출할 때 사용하는 메커니즘으로 첫번째 파라미터는 호출받는 메소드에서 <cite>this</cite> 키워드로 사용할 context를 나타냅니다. 호출할 메소드로 파라미터를 전달하고자 할 경우에는 <cite>call</cite> 메소드에의 두번째 파라미터 부터 전달할 파라미터를 기술하면 됩니다.</p><p>다음은 Override를 위한 예제코드를 나타냅니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('sample.MyFirstApp').extend(tau.ui.Controller).define({
+  init: function () {
+    var another = new foo.bar.baz.MyAnotherClass();
+    another.doThis();
+  }
+});
+
+/** class definition for 'foo.bar.MyClass' */
+$class('foo.bar.MyClass').define({
+  MyClass: function (arg1) {
+    if (arg1) {
+      tau.log('the value of arg1 is '  + arg1);
+    }
+  },
+
+  doThis: function () {
+    this.doThat('망치', '드라이버');
+  },
+
+  doThat: function (arg1, arg2) {
+    tau.log('Repair computer with '.concat(arg1, ' and ', arg2));
+  }
+});
+
+/** class definition for 'foo.bar.baz.MyAnotherClass' */
+$class('foo.bar.baz.MyAnotherClass').extend(foo.bar.MyClass).define({
+  MyAnotherClass: function (arg1) {
+
+  },
+
+  /** overrides doThis() method defined in super class */
+  doThis: function () {
+    this.doThat('나사', '드라이버');
+    tau.log('instead of');
+    foo.bar.baz.MyAnotherClass.$super.doThis.call(this);
+  }
+});</pre>
+		</div>
+</div></div><p>위의 예제코드를 실행하면 다음과 같은 결과를 얻을 수 있습니다.</p><div class="preformatted panel" style="border-style: dashed;border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>Repair computer with 나사 and 드라이버
+instead of
+Repair computer with 망치 and 드라이버
+</pre>
+</div></div><h1 id="id-클래스작성하기-Mixin">Mixin</h1><p>Mixin기능은 Mobello Framework에서 클래스 작성시 제공하는 기능들 중 차별화된 기능으로서 다양한 클래스에서 공통적으로 사용되는 기능들을 독립된 클래스로 분리하고, 클래스 생성시 코드 중복 없이 이들 공통된 기능들을 쉽게 가져올 수 있도록 합니다. 클래스 생성시 공통기능을 위해 정의한 클래스 이름을 Mixin으로 지정하면, 이 클래스에 정의된 모든 메소드들을 현재 클래스에 직접 정의한 것처럼 동작하도록 합니다. 따라서 Mixin을 활용할 경우 코드의 중복을 없애주고 재사용성을 높여주는 장점이 있습니다. Mixin으로 사용할 클래스 이름은 다음의 코드와 같이 <strong><cite>mixin</cite></strong>이라는 예약 키워드를 사용해 기술하며 클래스를 정의하기 위한 <cite>define</cite> 키워드 앞부분에 위치합니다.</p><div class='panelMacro'><table class='noteMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/warning.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><cite>mixin</cite> 키워드로 지정되는 클래스는 <strong>문자열이 아닌 정의된 클래스를 기술</strong>하며, 클래스 상속시 상속되는 클래스가 상속하는 클래스보다 먼저 정의되어 있어야 하는 것처럼 Mixin 클래스도 이를 사용할 클래스보다 먼저 정의되어야야 합니다.</p></td></tr></table></div><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><cite>mixin</cite>으로 지정할 클래스를 2개 이상 지정할 수 있으며 이 경우 컴마(,)로 분리해서 기술합니다.</p></td></tr></table></div><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('foo.bar.CommonClass').define({ // mixin class definition
+  ...
+});
+
+$class('foo.bar.MyClass').mixin(foo.bar.CommonClass).define({
+  ...
+});
+
+$class('foo.bar.MyClass').mixin(foo.bar.CommonClass, foo.bar.OurClass).define({
+  ...
+});
+
+$class('foo.bar.YourClass').extend(foo.bar.YourParentClass).mixin(foo.bar.CommonClass).define({
+  ...
+});</pre>
+		</div>
+</div></div><p>위의 코드에서 공통적으로 사용할 메소드인 <cite>doCommon()메소드를 foo.bar.CommonClass</cite>클래스로 분리해서 정의하고 이 공통 메소드를 <cite>foo.bar.MyClass</cite>에서 <cite>mixin</cite>으로 지정할 경우 <cite>foo.bar.MyClass</cite>에서 직접 <cite>doCommon()메소드를 구현하는 것과 동일한 효과를 제공합니다. 따라서 다음의 코드와 같이 foo.bar.MyClass</cite>객체에서 <cite>foo.bar.CommonClass</cite>클래스에 정의된 doCommon()메소드를 호출할 수 있습니다.</p><div class="code panel" style="border-style: none;border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">var my = new foo.bar.MyClass();
+my.doCommon();</pre>
+		</div>
+</div></div><p>다음의 예제 코드와 같이 공통으로 사용할 기능을 독립 클래스로 분리하고 여러 클래스에서 <cite>mixin</cite> 함으로써 코드 중복없이 공통기능을 구현할 수 있습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('sample.MyFirstApp').extend(tau.ui.Controller).define({
+  init: function () {
+    var my = new foo.bar.MyClass();
+    my.doCommon();
+
+    var another = new foo.bar.YourClass();
+    another.doCommon();
+  }
+});
+
+/** Mixin class definition */
+$class('foo.bar.CommonClass').define({
+  doCommon: function () {
+    tau.log('common feature is defined in the ' + this.$classname);
+  }
+});
+
+/** class definition for 'foo.bar.MyClass' */
+$class('foo.bar.MyClass').mixin(foo.bar.CommonClass).define({
+  MyClass: function () {
+    // implementation goes here
+  },
+
+  doThis: function () {
+    // implementation goes here
+  },
+
+  doThat: function (arg1, arg2) {
+    // implementation goes here
+  }
+});
+
+/** class definition for 'foo.bar.YourParentClass' */
+$class('foo.bar.YourParentClass').define({
+  YourParentClass: function () {
+    // implementation goes here
+  },
+
+  doTheOther: function () {
+    // implementation goes here
+  }
+});
+
+/** class definition for 'foo.bar.baz.YourClass' */
+$class('foo.bar.YourClass').extend(foo.bar.YourParentClass).mixin(foo.bar.CommonClass).define({
+  YourClass: function (arg1) {
+    // implementation goes here
+  },
+
+  doAnother: function () {
+    // implementation goes here
+  }
+});</pre>
+		</div>
+</div></div><p>위의 예제코드를 실행하면 Mixin클래스에 정의된 doCommon()가 수행된 결과를 볼 수 있습니다.</p><div class="preformatted panel" style="border-style: dashed;border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>common feature is defined in the foo.bar.MyClass
+common feature is defined in the foo.bar.YourClass
+</pre>
+</div></div><h1 id="id-클래스작성하기-StaticVariable">Static Variable</h1><p>Mobello Framework을 이용하여 작성하는 모든 소스 코드는 클래스로 형태로 작성됩니다. 이들 클래스에서 생성되는 변수의 Scope는 인스턴스 변수(instance variable)와 지역변수(local variable)로 나누어 집니다. 인스턴스 변수는 클래스의 Lifecycle 즉, 인스턴스가 생성되고 소멸되기 전까지 유효한 변수이며 지역 변수는 특정 메소드 내부에서만 유효하고 메소드를 빠져 나가면 소멸되는 변수를 말합니다. 하지만 프로그램의 성격에 따라 전역(global)으로 변수를 사용해야할 경우가 발생하는데 이를 위해 Mobello Framework에서는 다음과 같이 <strong><cite>$static</cite></strong> 예약 키워드를 통해 클래스의 정적변수(Static Variable)를 지원하고 있습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('foo.bar.MyClass').define({
+  $static: {
+    TOOL1: '망치',
+    TOOL2: '드라이버',
+    TOOL3: '나사'
+  },
+
+  MyClass: function () {
+    // implementation goes here
+  },
+  ...
+});</pre>
+		</div>
+</div></div><p>위의 코드에서 처럼 클래스 정의시 생성자 앞부분에 위치하며 JSON 문법으로 static valiable을 기술합니다. static valiable은 key와 value로 기술되며 일반적으로 static variable의 key는 전역임을 나타내기 위해 대문자로 기술하며 value는 값이 변하지 않는 상수를 사용합니다. 이렇게 정의된 클래스 static variable은 다음과 같이 접근합니다.</p><div class="code panel" style="border-style: none;border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">foo.bar.MyClass.TOOL1; // refers to '망치'
+foo.bar.MyClass.TOOL2; // refers to '드라이버'</pre>
+		</div>
+</div></div><p>다음은 static variable을 사용한 예제를 보여줍니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('sample.MyFirstApp').extend(tau.ui.Controller).define({
+  init: function () {
+    tau.log('The name of TOOL1 is ' + foo.bar.MyClass.TOOL1);
+    var my = new foo.bar.MyClass();
+    my.doThat(foo.bar.MyClass.TOOL2, foo.bar.MyClass.TOOL3);
+  }
+});
+
+/** class definition for 'foo.bar.MyClass' */
+$class('foo.bar.MyClass').define({
+  $static: {
+    TOOL1: '망치',
+    TOOL2: '드라이버',
+    TOOL3: '나사'
+  },
+
+  /** constructor */
+  MyClass: function () {
+    // implementation goes here
+  },
+
+  doThis: function () {
+    this.doThat('망치', '드라이버');
+  },
+
+  doThat: function (arg1, arg2) {
+    tau.log('Repair computer with '.concat(arg1, ' and ', arg2));
+  }
+});</pre>
+		</div>
+</div></div><p>위의 코드를 실행하면 다음과 같은 결과를 얻을 수 있습니다.</p><div class="preformatted panel" style="border-style: dashed;border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>The name of TOOL1 is 망치
+Repair computer with 드라이버 and 나사
+</pre>
+</div></div><h1 id="id-클래스작성하기-ImportingExternalLibraries">Importing External Libraries</h1><p>자바스크립트 언어는 하나의 소스 파일(.js) 안에서 다양한 클래스 및 업무로직을 정의하는 것이 가능합니다. 하지만 앱이 복잡해지고 소스코드의 양이 늘어나면 확장성 및 유지보수의 어려움에 직면하게 됩니다. 일반적인 웹 개발에서는 이런 문제점들을 해결하기 위해 기능별로 모듈화 하거나 공통적으로 사용하는 라이브러리들을 독립된 자바스크립트 파일로 관리하고 필요서 웹 페이지에 추가해서 활용합니다. Mobello Framework에서도 이와 같은 기능을 지원하고 있으며 앱 개발시 필요한 외부 라이브러리들을 <strong><cite>$require</cite></strong> 라는 예약 키워드를 사용하여 가져올 수 있습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$require('/modules.js');</pre>
+		</div>
+</div></div><p>위의 코드와 같이 작성할 경우 현재 앱 폴더에 정의된 <cite>mudules.js</cite> 파일을 현재 소스코드로 가져온다는 것을 의미합니다. 이때 <cite>$require</cite>로 기술할 외부 라이브러리는 항상 <strong>절대경로의 문자열로 기술</strong>해 주어야 하며 루트는 항상 현재 앱폴더가 됩니다. 아래의 앱 폴더 구조에서 루트는 [myapp] 이 됩니다.</p><div class="preformatted panel" style="border-style: none;border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>[Mobello Framework]
+  +-[apps]
+  |  +-[demo]
+  |  +-[flickr]
+  |  +-[myapp]
+  |  |  +- main.js
+  |  |  +- modules.js
+  |  |  +- config.json
+  |  +- ... (the other apps)
+  +-[lib]
+  +-[shared]
+  +-config.json
+</pre>
+</div></div><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>Mobello Framework설치시 생성되는 <cite>shared</cite> 폴더는 모든 앱들이 공용으로 접근이 가능한 폴더이며 이 폴더에 저장된 라이브러리에 접근하기 위해서는 절대경로(/) 대신 <strong><cite>$shared/</cite></strong>를 사용합니다. 예를 들어 위의 코드에서 module.js가 공용 폴더인 <cite>shared</cite> 폴더에 저장되어 있다면</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$require('$shared/modules.js');</pre>
+		</div>
+</div></div><p>와 같이 기술합니다.</p><p>또한 Mobello가 설치된 폴더가 아닌 웹상의 다른 서버로 부터 필요한 라이브러리를 가져오기 위해서는 다음과 같이 기술합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$require('http://foo.bar.com/modules.js');</pre>
+		</div>
+</div></div></td></tr></table></div><p>다음은 앞에서 사용한 예제 클래스들을 <cite>modules.js</cite>파일로 분리한 다음 <cite>$require</cite>로 가져오는 예제와 실행 결과를 보여줍니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$require('/modules.js');
+
+$class('sample.MyFirstApp').extend(tau.ui.Controller).define({
+  init: function () {
+    tau.log('The name of TOOL1 is ' + foo.bar.MyClass.TOOL1);
+    var my = new foo.bar.MyClass();
+    my.doThat(foo.bar.MyClass.TOOL2, foo.bar.MyClass.TOOL3);
+  }
+});</pre>
+		</div>
+</div></div><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>modules.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">/** class definition for 'foo.bar.MyClass' */
+$class('foo.bar.MyClass').define({
+  $static: {
+    TOOL1: '망치',
+    TOOL2: '드라이버',
+    TOOL3: '나사'
+  },
+
+  /** constructor */
+  MyClass: function () {
+    // implementation goes here
+  },
+
+  doThis: function () {
+    this.doThat('망치', '드라이버');
+  },
+
+  doThat: function (arg1, arg2) {
+    tau.log('Repair computer with '.concat(arg1, ' and ', arg2));
+  }
+});</pre>
+		</div>
+</div></div><p>실행 결과는 다음과 같습니다.</p><div class="preformatted panel" style="border-style: dashed;border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>The name of TOOL1 is 망치
+Repair computer with 드라이버 and 나사
+</pre>
+</div></div><h1 id="id-클래스작성하기-Miscellaneous">Miscellaneous</h1><p>Mobello Framework을 통해 생성하는 클래스에서 기본적으로 사용할 수 있는 기능들 이외에 추가적으로 편리한 기능들을 제공하고 있습니다. 이런 기능들을 이용함으로써 보다 효율적으로 코드를 작성할 수 있습니다.</p><ol><li><strong><cite>$classname</cite></strong>: 인스턴스에서 자신의 클래스 이름을 Full Package형태로 저장하고 있습니다. <cite>this</cite> 키워드 또는 Reference를 이용해서 접근이 가능하며 <cite>this.$classname</cite> 와 같이 사용합니다.</li><li><strong><cite>$filepath</cite></strong>: 클래스가 정의된 물리적 자바스크립트 파일의 canonical 경로을 저장하고 있습니다. 클래스 이름을 이용해서 접근이 가능하며 <cite>foo.bar.MyClass.$filepath</cite> 와 같이 사용합니다.</li><li><p><strong><cite>instanceof</cite></strong>: 특정 객체가 어떤 클래스의 인스턴스인지 확인합니다. 만약 해당 클래스에서 생성한 인스턴스이면 <cite>true</cite>를 그렇지 않으면 <cite>false</cite>를 반환합니다. 클래스가 상속관계에 있을 경우에도 사용이 가능합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">$class('sample.MyFirstApp').extend(tau.ui.Controller).define({
+  init: function () {
+    var you = new foo.bar.YourClass();
+    if (you instanceof foo.bar.YourClass) {
+      tau.log('Reference you is an instance of YourClass');
+    }
+    if (you instanceof foo.bar.YourParentClass) {
+      tau.log('Reference you is an instance of YourParentClass');
+    }
+    if (!(you instanceof foo.bar.MyClass)) {
+      tau.log('Reference you is not an instance of MyClass');
+    }
+  }
+});
+
+/** class definition for 'foo.bar.MyClass' */
+$class('foo.bar.MyClass').define({
+  MyClass: function () {
+    // implementation goes here
+  }
+});
+
+/** class definition for 'foo.bar.YourParentClass' */
+$class('foo.bar.YourParentClass').define({
+  YourParentClass: function () {
+    // implementation goes here
+  }
+});
+
+/** class definition for 'foo.bar.YourClass' */
+$class('foo.bar.YourClass').extend(foo.bar.YourParentClass).define({
+  YourClass: function (arg1) {
+    // implementation goes here
+  }
+});</pre>
+		</div>
+</div></div><p>위의 예제 코드를 실행하면 다음과 같은 결과를 얻을 수 있습니다.</p><div class="preformatted panel" style="border-style: dashed;border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>Reference you is an instance of YourClass
+Reference you is an instance of YourParentClass
+Reference you is not an instance of MyClass
+</pre>
+</div></div></li><li><p><strong><cite>isMixinOf</cite></strong>: 클래스의 인스턴스가 어떤 클래스를 <cite>mixin</cite> 했는지 확인합니다. 만약 <cite>isMixinOf</cite>으로 명시된 클래스를 <cite>mixin</cite>했다면 <cite>true</cite>를 그렇지 않으면 <cite>false</cite>를 반환합니다. <cite>this</cite>키워드 또는 Reference를 이용해서 접근이 가능하며 다음과 같이 사용합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">var my = new foo.bar.MyClass();
+if (my.isMixinOf(foo.bar.CommonClass)) {
+  tau.log('my is mixin of CommonClass');
+}</pre>
+		</div>
+</div></div><p>만약 <cite>foo.bar.MyClass</cite> 가 <cite>foo.bar.CommonClass</cite> 을 <cite>mixin</cite> 했다면 'my is mixin of CommonClass'의 내용이 콘솔로 출력됩니다.</p></li></ol><h1 id="id-클래스작성하기-ComponentClassHierarchy">Component Class Hierarchy</h1><p>Mobello Framework에서 제공되는 컴포넌트 클래스들의 Hierarchy는 다음과 같습니다.<br /> <img class="confluence-embedded-image" src="download/attachments/426037/507061630" data-image-src="http://10.214.49.53:8090/download/attachments/426037/%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8%EA%B5%AC%EC%A1%B0.png?version=1&amp;modificationDate=1303983886000"></p>

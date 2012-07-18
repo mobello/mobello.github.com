@@ -1,0 +1,118 @@
+---
+layout: confluence
+title: SceneController에 대해
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p>모바일 환경에서 화면을 개발할 때 일반적으로 UI Framework에서 제공하는 개별 UI 컴포넌트를 활용하여 화면을 디자인 합니다. 이는 비교적 간단한 화면을 재미삼아 개발할 경우 쉽게 접근할 수 있지만 앱의 규모가 커지고 복잡도가 증가 할수록 앱 개발의 생산성을 저하시키고 향후 유지보수에도 커다란 문제점을 야기시킵니다. Mobello는 앱의 구조가 복잡해지더라도 이를 쉽게 수용할 수 있도록  명확한 MVC(Model-View-Controller)구조를 제시하고 있습니다. 이번 포스팅에서는 Mobello에서 제시하는 MVC구조 중 Controller에 해당하는 SceneController에 대해 설명합니다.</p><p>목차:</p><p><div>
+<ul>
+    <li><a href='#SceneController에대해-TheroleofSceneController'>The role of SceneController</a></li>
+<ul>
+    <li><a href='#SceneController에대해-화면생성'>화면생성</a></li>
+    <li><a href='#SceneController에대해-UI로직처리'>UI 로직 처리</a></li>
+</ul>
+    <li><a href='#SceneController에대해-AnatomyofSceneController'>Anatomy of SceneController</a></li>
+<ul>
+    <li><a href='#SceneController에대해-SceneController의구조'>SceneController의 구조</a></li>
+    <li><a href='#SceneController에대해-SceneController를이용한화면생성'>SceneController를 이용한 화면 생성</a></li>
+<ul>
+    <li><a href='#SceneController에대해-loadScene을이용한Scene생성 '>loadScene()을 이용한 Scene 생성&nbsp;</a></li>
+    <li><a href='#SceneController에대해-CS파일을이용한Scene생성'>CS파일을 이용한 Scene 생성</a></li>
+</ul>
+    <li><a href='#SceneController에대해-UI로직처리'>UI 로직 처리</a></li>
+<ul>
+    <li><a href='#SceneController에대해-이벤트등록'>이벤트 등록</a></li>
+    <li><a href='#SceneController에대해-이벤트리스너구현'>이벤트 리스너 구현</a></li>
+    <li><a href='#SceneController에대해-예제코드다운로드 '>예제코드 다운로드:&nbsp;<a href="/download/attachments/6750292/scene.zip?version=1&amp;modificationDate=1337247815000">scene.zip</a></a></li>
+</ul>
+</ul>
+</ul></div></p><h1 id="SceneController에대해-TheroleofSceneController">The role of SceneController</h1><p>Mobello에서 SceneController는 크게 두가지의 역할을 수행합니다.</p><ul><li><h5 id="SceneController에대해-화면생성">화면생성</h5><div>SceneController가 수행하는 가장 중요한 역할은 사용자에게 보여질 화면을 생성하는 것입니다. 화면을 생성하기 위해 SceneController는 두 가지의 방법을 제공합니다. SceneController의 Lifecycle 메소드인 loadScene() 메소드를 통해 화면을 생성하는 방법과, 스튜디오에서 Scene파일을 별도로 생성하고 이를 컴파일한 CS(Compiled Scene)파일을 로딩하는 방법이 있습니다. 이에 대한 자세한 설명은 다음 장에서 기술합니다.</div></li></ul><ul><li><h5 id="SceneController에대해-UI로직처리">UI 로직 처리</h5><div>SceneController의 중요한 역할 중 다른 하나는 사용자의 입력을 처리하기 위해 UI 로직을 구현하는 것입니다. 일반적으로 UI 로직이라고 하면 사용자가 화면에서 버튼 컴포넌트를 터치했을 때 이에 대한 처리방법을 말합니다. Mobello는 독립적인 이벤트 시스템을 제공하고 있으며 이를 통해 발생되는 컴포넌트별 다양한 이벤트의 처리방법을 일관된 형태로 SceneController에 기술합니다. 이렇게 함으로써 화면과 UI 로직을 분리시켜 화면의 재사용성을 높여 줄 뿐만 아니라 업무로직의 모듈화를 향상시켜 줍니다.</div></li></ul><h1 id="SceneController에대해-AnatomyofSceneController">Anatomy of SceneController</h1><h3 id="SceneController에대해-SceneController의구조">SceneController의 구조</h3><p style="margin-left: 30.0px;">Mobello에서 화면을 개발할 때 일반적으로 화면별로 하나의 SceneController 클래스를 생성합니다. 즉, 하나의 Scene(화면)은 하나의 SceneController와 매핑됩니다. 이때 작성하는 SceneController클래스는 <em>tau.ui.SceneController</em> 클래스를 상속받으며  다음의 코드와 같은 형태를 가집니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>SceneController</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: true">$class('sample.CustomController').extend(tau.ui.SceneController).define({
+  /**
+   * Initial callback method from Mobello Runtime
+   */
+  init: function () {
+    // initialize initial variables
+  },
+ 
+  /**
+   * After initialization, this callback method is invoked.
+   * In this method you can create User Interface
+   */
+  loadScene: function () {
+    // create UI using various UI Components
+  },
+ 
+  /**
+   * This method is invoked by Runtime after loading Scene
+   * but before drawing on the screen.
+   */
+  sceneLoaded: function () {
+    // after scene is loading you can adjust existing UI in dynamic manner
+  },
+ 
+  /**
+   * This method is invoked by Runtime after Scene is drawn on the screen
+   */
+  sceneDrawn: function () {
+    // you can implement logic like handling post processing
+  },
+ 
+  /**
+   * This method is invoked when current controller is no longer existing
+   */
+  destroy: function () {
+    // you can clean up instance variables
+  }
+});</pre>
+		</div>
+</div></div><p style="margin-left: 30.0px;">위의 메소들 중 Scene을 생성하기 위해 반드시 구현해야 할 메소드는 loadScene() 메소드이며 그 이외의 메소드들은 필요에 따라 선택적으로 구현하면 됩니다.</p><h3 id="SceneController에대해-SceneController를이용한화면생성">SceneController를 이용한 화면 생성</h3><p>앞에서 설명한 것처럼 Mobello에서 Scene을 생성할 수 있는 방법은 크게 2가지 입니다. 하나는 loadScene()메소드를 통해 생성하는 방법이며, 다른 하나는 CS(Compiled Scene)파일 로딩을 이용한 방법입니다.</p><h5 id="SceneController에대해-loadScene을이용한Scene생성 " style="margin-left: 30.0px;">loadScene()을 이용한 Scene 생성 </h5><p style="margin-left: 60.0px;">SceneController의 Lifecycle에 의해 loadScene()메소드가 호출될 때 이 메소드 안에서 다양한 컴포넌트를 활용해서 화면(Scene)을 생성합니다. SceneController는 기본적을 현재의 Scene을 가져올 수 있도록 getScene() 메소드를 제공합니다. 다음의 코드처럼 생성한 컴포넌트의 인스턴스를 Scene 객체에 추가함으로써 화면을 구성할 수 있습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>loadScene() method</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">...
+loadScene: function () {
+  var scene = this.getScene(),
+      label = new tau.ui.Label({text: 'Right here'}),
+      button = new tau.ui.Button({label: 'Touch Me!'});
+  // button.setLabel('Touch Me!'); // you can set label in this way
+  scene.add(label);
+  scene.add(button);
+},
+...</pre>
+		</div>
+</div></div><h5 id="SceneController에대해-CS파일을이용한Scene생성" style="margin-left: 30.0px;">CS파일을 이용한 Scene 생성</h5><p style="margin-left: 60.0px;">CS파일을 이용하면 보다 쉽게 Scene을 로딩할 수 있으며, 한번 개발한 화면을 쉽게 재사용할 수 있도록 해줍니다. Mobello 스튜디오의 디자인 에디터를 활용해서 Scene을 디자인 하면 CS파일이 자동으로 생성되며 이때 생성되는 CS파일과 Controller클래스의 Naming Convention은 다음과 같습니다.</p><div class='panelMacro'><table class='infoMacro'><tr><td><ol><li>Scene이름이 <strong>custom</strong>일 경우</li><li>스튜디오에서 생성하는 Scene파일의 이름은 <em><strong>custom.scene</strong></em></li><li>Compile된 Scene파일(CS파일)은 <cite><strong>custom.scene.js</strong></cite></li><li>SceneController 클래스의 이름은 <cite><strong>[namespace].CustomController</strong></cite>가 된다.</li></ol></td></tr></table></div><p style="margin-left: 60.0px;">위의 Naming Convention으로 파일을 생성하면 SceneController는 자동으로 SceneController가 있는 폴더에서 해당 CS파일을 로딩하여 화면을 구성합니다. 따라서 위에서 처럼 SceneController의 loadScene() 메소드를 이용하여 직접 화면을 구성하지 않고도 쉽게 화면을 생성할 수 있습니다.</p><p style="margin-left: 60.0px;">만약 Naming Convention을 따르지 않거나 해당 CS파일이 현재 Controller클래스의 위치와 다른 폴더에 위치할 경우 로딩할 CS파일을 직접 지정하여 로딩할 수도 있습니다. 다음과 같이 SceneController 객체 생성시 파라미터로 로딩할 CS파일의 이름을 지정하면 해당 파일을 찾아 Scene을 로딩합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">var controller = new sample.CustomController({scene: '/foo/custom.scene.js'}); // loads CS file(custom.scene.js) from the 'foo' directory</pre>
+		</div>
+</div></div><p style="margin-left: 60.0px;">Scene파일의 경로는 절대경로로 기술하며 현재 앱 폴더가 최상위 경로가 됩니다.</p><h3 id="SceneController에대해-UI로직처리">UI 로직 처리</h3><p>생성된 화면이 사용자의 단말에 출력된 이후 사용자로 부터 입력을 받습니다. 특정 컴포넌트에 사용자의 입력이 발생할 경우 해당 컴포넌트는 그에 상응하는 이벤트를 발생시킵니다. 이때 발생되는 이벤트의 적절한 처리로직을 SceneController에서 구현합니다. 다음은 위의 예제 코드에서 사용자가 버튼을 터치할 경우 발생되는 터치 이벤트의 처리방법을 보여줍니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: true">...
+loadScene: function () {
+  var scene = this.getScene(),
+      label = new tau.ui.Label({text: 'Right here'}),
+      button = new tau.ui.Button({label: 'Touch Me!'});
+  // button.setLabel('Touch Me!'); // you can set label in this way
+  button.onEvent(tau.rt.Event.TAP, this.handleTouch, this); // register event listener
+  scene.add(label);
+  scene.add(button);
+},
+ 
+handleTouch: function (e, payload) {
+  var btn = e.getSource();
+  tau.alert(btn.getLabel() + ' is touched');
+},
+...</pre>
+		</div>
+</div></div><p>특정 컴포넌트에 대한 이벤트 처리는 다음과 같이 구현합니다.</p><h5 id="SceneController에대해-이벤트등록" style="margin-left: 30.0px;">이벤트 등록</h5><p style="margin-left: 60.0px;">이벤트를 리스닝하고자 하는 컴포넌트에 다음과 같이 이벤트 리스너를 등록합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">button.onEvent(tau.rt.Event.TAP, this.handleTouch, this);</pre>
+		</div>
+</div></div><p style="margin-left: 60.0px;">이때 사용되는 파라미터는 다음과 같습니다.</p><ol><li style="list-style-type: none;"><ol><li style="margin-left: 30.0px;"><em><strong>tau.rt.Event.TAP</strong></em>: 이벤트(탭) 이름을 나타내며, tau.rt.Event객체를 통해 사용할 수 있는 이벤트명을 확인할 수 있습니다.</li><li style="margin-left: 30.0px;"><em><strong>this.handleTouch</strong></em>: 이벤트 핸들러 이름을 나타내며 handleTouch() 는 현재 SceneController 클래스에 구현합니다.</li><li style="margin-left: 30.0px;"><em><strong>this</strong></em>: 이벤트 핸들러 내부에서 사용할 Context를 기술합니다. 위 코드의 경우 이벤트 핸들러 메소드 내부에서 this를 이용하여 현재 SceneController 객체에 접근할 수 있습니다.</li></ol></li></ol><h5 id="SceneController에대해-이벤트리스너구현" style="margin-left: 30.0px;">이벤트 리스너 구현</h5><p style="margin-left: 60.0px;">아래의 코드에서 처럼 이벤트 등록과정에서 명시한 이벤트 핸들러를 현재의 SceneController클래스에 정의합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">handleTouch: function (e, payload) {
+  var btn = e.getSource();
+  tau.alert(btn.getLabel() + ' is touched');
+}</pre>
+		</div>
+</div></div><p style="margin-left: 60.0px;">버튼 컴포넌트에서 터치 이벤트가 발생했을 때 위의 이벤트 핸들러 메소드가 실행됩니다. 이벤트 핸들러는 다음과 같이 두개의 파라미터를 받습니다.</p><ol><li style="list-style-type: none;"><ol><li style="margin-left: 30.0px;"><em><strong>e</strong></em>: 이벤 객체(<span>tau.rt.Event</span>)를 나타냅니다. 자세한 내용은 <span>tau.rt.Event 클래스 API문서를 참조하면 됩니다.</span></li><li style="margin-left: 30.0px;"><em><strong>payload</strong></em>:  이벤트와 관련된 데이터를 전달 받습니다. payload는 이벤트의 종류에 따라 다른 값이 설정됩니다.</li></ol></li></ol><p style="margin-left: 60.0px;">위의 예제를 실행 후 화면에서 버튼을 터치하면 경고창을 통해 'Touch Me! is touched'라는 메시지가 출력됩니다.</p><p><img class="confluence-embedded-image" src="attachments/6750292/6914059.png" data-image-src="attachments/6750292/6914059.png"></p><h5 id="SceneController에대해-예제코드다운로드 " style="margin-left: 30.0px;">예제코드 다운로드: <a href="attachments/6750292/6914061.zip">scene.zip</a></h5><ul><li style="list-style-type: none;"><ul><li>실행방법<ol><li>Mobello설치 폴더의 apps 폴더 밑에  'scene' 이라는 앱 폴더를 만든다.</li><li>예제코드를 다운로드 받아 'scene'폴더에 압축을 해제한다.</li><li>'scene'폴더에 있는 readme.txt를 참조한다.</li></ol></li></ul></li></ul><p> </p>

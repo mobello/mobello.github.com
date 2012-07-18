@@ -1,0 +1,424 @@
+---
+layout: confluence
+title: Controller 문서
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p>controller들에 대한 개념과 각자의 간단한 기능들에 대해서 살펴보도록 하겠습니다.</p><p>목차:</p><p><div>
+<ul>
+    <li><a href='#Controller문서-Controller클래스'>Controller 클래스</a></li>
+    <li><a href='#Controller문서-Scene클래스'>Scene 클래스</a></li>
+    <li><a href='#Controller문서-SceneController클래스'>SceneController 클래스</a></li>
+    <li><a href='#Controller문서-SequenceNavigator클래스'><span style="color: rgb(0,0,0);">SequenceNavigator 클래스</span></a></li>
+<ul>
+    <li><a href='#Controller문서-Sequence기본흐름예제'><span style="color: rgb(0,0,0);">Sequence 기본흐름 예제</span></a></li>
+    <li><a href='#Controller문서-PushControllerPopController예제'>PushController/PopController 예제</a></li>
+</ul>
+    <li><a href='#Controller문서-ParallelNavigator클래스'><span style="color: rgb(0,0,0);">ParallelNavigator 클래스</span></a></li>
+<ul>
+    <li><a href='#Controller문서-ParallelNavigator기본흐름예제'>ParallelNavigator 기본흐름 예제</a></li>
+</ul>
+</ul></div></p><p> </p><h2 id="Controller문서-Controller클래스">Controller 클래스</h2><p> </p><div class="image-wrap" style=""><img src="download/temp/plantuml4491895763536252081.png" style=""/></div><p> </p><p>상위 그림과 같이 <a href="http://mobello.github.com/api/symbols/tau.ui.Controller.html" class="external-link" rel="nofollow">Controller</a> 클래스들의 최상위 클래스 이며 초기화 콜백 함수 <a href="http://mobello.github.com/api/symbols/tau.ui.Controller.html#init" class="external-link" rel="nofollow">init</a>(), 삭제 콜백 함수 <a href="http://mobello.github.com/api/symbols/tau.ui.Controller.html#destroy" class="external-link" rel="nofollow">destory</a>()가 정의되어 있습니다.</p><h2 id="Controller문서-Scene클래스">Scene 클래스</h2><p><a href="http://mobello.github.com/api/symbols/tau.ui.Scene.html" class="external-link" rel="nofollow">Scene</a>은 단일 스크린(화면)나타내는 클래스입니다. 또한 <a href="http://mobello.github.com/api/symbols/tau.ui.Scene.html" class="external-link" rel="nofollow">Scene</a> 클래스는 내부에 컴포넌트를 배치하고 관리하는 클래스입니다. 그래서 <a href="http://mobello.github.com/api/symbols/tau.ui.Scene.html" class="external-link" rel="nofollow">Scene</a>에 관리되는 컴포넌트를 <a href="http://mobello.github.com/api/symbols/tau.ui.Container.html#add" class="external-link" rel="nofollow">add</a> 함수/<a href="http://mobello.github.com/api/symbols/tau.ui.Container.html#remove" class="external-link" rel="nofollow">remove</a>함수를 이용하여 추가/삭제하고 , <a href="http://mobello.github.com/api/symbols/tau.ui.Container.html#getComponents" class="external-link" rel="nofollow">getComponent</a>함수로 가져올 수 있습니다.  <a href="http://mobello.github.com/api/symbols/tau.ui.Scene.html" class="external-link" rel="nofollow">Scene</a>이 그려진 후 컴포넌트가 추가되거나 삭제 될 때 update 을 이용하여 새로 고침하여 화면을 새로 그려집니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>scene</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">var scene = this.getScene();//this 는 controller이다.
+var button = new tau.ui.Button({
+
+   id: 'buttonId',
+
+   label: 'Tap Me2!'
+
+ });
+button.onEvent(tau.rt.Event.TAP, this.handleTap, this);
+scene.add(button);
+scene.update()</pre>
+		</div>
+</div></div><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>scene</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">var scene = this.getScene();
+var button = scene.getComponent("buttonId")</pre>
+		</div>
+</div></div><h2 id="Controller문서-SceneController클래스">SceneController 클래스</h2><p><a href="http://mobello.github.com/api/symbols/tau.ui.Scene.html" class="external-link" rel="nofollow">Scene</a>(화면)을 생성하고 화면에서 발생하는 사용자 이벤트를 관리하는 Controller입니다. <a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html" class="external-link" rel="nofollow">SceneController</a>의 흐름 init -&gt;loadScene-&gt;initScene-&gt;sceneLoaded-&gt;sceneDrawn 순입니다. 각각 알아보도록 하겠습니다.</p><ul><li><a href="http://mobello.github.com/api/symbols/tau.ui.Controller.html#init" class="external-link" rel="nofollow">init</a>은 초기에 호출되는 초기화 함수입니다.</li><li><a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html#loadScene" class="external-link" rel="nofollow">loadScene</a>은 scene파일을 로딩하는 함수이나, 파일로딩이 아니라 직접 코딩할 경우  오버라이드되어 동작됩니다(즉 파일로딩하지않고  initScene함수를 호출하지 않는다). </li><li>initScene은 scene파일(xxx.scene.js) 안에 있는 함수입니다.(오버라이드 코딩하였을 경우 생략됨)</li><li><a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html#sceneLoaded" class="external-link" rel="nofollow">sceneLoaded</a> 콜백함수는 scene화면이 모두 load되어지면 호출됩니다. 아직 scene이 그려지기 전에 호출됩니다.</li><li><a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html#sceneDrawn" class="external-link" rel="nofollow">sceneDrawn</a> 콜백함수는 scene화면이 모두 그려진후 호출됩니다.</li></ul><p>다음예제는 scenecontroller의 함수의 흐름을 보여줍니다.</p><p><img class="confluence-embedded-image" src="attachments/6751594/6914253.png" data-image-src="attachments/6751594/6914253.png"></p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">$class('tau.sample.ctrl.SceneCtrl').extend(tau.ui.SceneController).define({
+
+  init: function () {
+    console.log("init call!!");
+  },
+
+  sceneLoaded: function () {
+    console.log("sceneloaded call!!");
+  },
+
+  sceneDrawn: function () {
+    console.log("sceneDrawn call!!");
+  }
+});</pre>
+		</div>
+</div></div><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>scenectrl.scene.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">function initScene() {
+  console.log("initScene call!!");
+  var scene = this.getScene();
+  var button = new tau.ui.Button({
+    id: 'button',
+    label: 'button'
+  }); 
+  scene.add(button);
+} </pre>
+		</div>
+</div></div><p>다음의 콘솔 출력 값은 아래와 같습니다.</p><div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>init call!! 
+initScene call!! 
+sceneloaded call!! 
+sceneDrawn call!! </pre>
+</div></div><p> </p><p>scene.js 파일을 만들지 않고 직접 <a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html#loadScene" class="external-link" rel="nofollow">loadScene</a>함수에 컴포넌트 생성해서 scene 클래스에 넣는 프로그램을 작성해도 됩니다. 다음은 직접 작성한 예제입니다.</p><p><img class="confluence-embedded-image" src="attachments/6751594/6914254.png" data-image-src="attachments/6751594/6914254.png"></p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">$class('tau.sample.ctrl.SceneCtrl').extend(tau.ui.SceneController).define({
+
+  init: function () {
+    console.log("init call!!");
+  },
+
+  loadScene: function () {
+    console.log("loadScene call!!");
+    var scene = this.getScene();
+    var button = new tau.ui.Button({
+      id: 'button',
+      label: 'Tap Me!'
+    }); 
+    scene.add(button);
+  },
+
+  sceneLoaded: function () {
+    console.log("sceneloaded call!!");
+  },
+
+  sceneDrawn: function () {
+    console.log("sceneDrawn call!!");
+  }
+});</pre>
+		</div>
+</div></div><p>콘솔 출력 값은 다음과 같습니다.</p><div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>init call!! 
+loadScene call!! 
+sceneloaded call!! 
+sceneDrawn call!! </pre>
+</div></div><p> </p><p>다음 예제는 <a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html#sceneLoaded" class="external-link" rel="nofollow">sceneLoaded</a> 콜백함수와 <a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html#sceneDrawn" class="external-link" rel="nofollow">sceneDrawn</a> 콜백함수에서 component를 찾아오는 예제입니다. 이 둘 함수 차이점은 <a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html#sceneLoaded" class="external-link" rel="nofollow">sceneLoaded</a> 콜백함수가 호출되었을 때에는 컴포넌트들이 scene클래스에 저장만 되어있지 아직 화면을 그려지지 않은 상태입니다. 그래서 화면을 그리기 전에 수정할 것이 있다면 <a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html#sceneLoaded" class="external-link" rel="nofollow">sceneLoaded</a> 콜백함수에서 수정하면 됩니다. 하지만 <a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html#sceneDrawn" class="external-link" rel="nofollow">sceneDrawn</a> 함수는 컴포넌트들이 이미 화면에 다 그려진 상태에서 호출되어진다. 그래서 컴포넌트의 위치가 다 잡혀진 상태입니다. 각자에 상황에 맞게 콜백함수에 프로그램을 해야 합니다.</p><p>다음은 콜백 함수에서 button을 추가적으로 생성하는 예제입니다. </p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">sceneLoaded: function () {
+  console.log("sceneloaded call!!");
+  var scene = this.getScene();
+  var button = new tau.ui.Button({
+    id: 'sceneLoadedButton',
+    label: 'Tell Me!'
+  }); 
+  scene.add(button);
+},
+
+sceneDrawn: function () {
+  console.log("sceneDrawn call!!");
+  var scene = this.getScene();
+  var button = new tau.ui.Button({
+    id: 'sceneLoadedButton',
+    label: 'Tell Tell Me!'
+  }); 
+  scene.add(button);
+}</pre>
+		</div>
+</div></div><p><img class="confluence-embedded-image" src="attachments/6751594/6914258.png" data-image-src="attachments/6751594/6914258.png"></p><p>다음의 결과는 <a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html#sceneDrawn" class="external-link" rel="nofollow">sceneDrawn</a> 콜백에서 생성된 Button은 화면에 나타나지 않습니다. 왜냐하면 이미 scene이 그려졌기 때문입니다. 나타나게 하고 싶으면 scene의 <a href="http://mobello.github.com/api/symbols/tau.ui.Scene.html#update" class="external-link" rel="nofollow">update</a>함수를 호출하면 됩니다. 하지만 이런 방법보다는 <a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html#sceneLoaded" class="external-link" rel="nofollow">sceneLoaded</a> 콜백함수로 button생성코드를 옮기는 것이 더 좋은 방법입니다.</p><p>아래는 수정된 함수입니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false"> sceneDrawn: function () {
+    console.log("sceneDrawn call!!");
+    var scene = this.getScene();
+    var button = new tau.ui.Button({
+      id: 'sceneLoadedButton',
+      label: 'Tell Tell Me!'
+    }); 
+    scene.add(button);
+    scene.update();
+  }</pre>
+		</div>
+</div></div><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone full">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=scene">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/scene/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=scene" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html" class="external-link" rel="nofollow">API docs</a> </p></td></tr></table></div></td></tr></tbody></table><h2 id="Controller문서-SequenceNavigator클래스"><span style="color: rgb(0,0,0);">SequenceNavigator 클래스</span></h2><p><a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html" class="external-link" rel="nofollow">SequenceNavigator</a> 클래스는 사용자가 화면을 이동함(navigation)에 있어 이동한 화면들 간의 History관리가 필요한 경우 사용자에게 출력할 화면(Scene)의 순서를 제어함과 동시에 이전화면으로도 되돌아 갈 수 있는 기능을 수행합니다. 순방향으로 화면을 이동할 경우 이동할 화면이 사전에 먼저 정의되어 있는 것이 아니라 이동 시점에 어플리케이션의 업무로직에 의해 결정됩니다.</p><p>내부적으로 아래와 같은 형태로 운영됩니다.</p><p><span style="color: rgb(0,0,0);"><img class="confluence-embedded-image" src="attachments/6751594/6914234.png" data-image-src="attachments/6751594/6914234.png"><br /></span></p><p><span style="color: rgb(0,0,0);"><br /></span></p><h5 id="Controller문서-Sequence기본흐름예제"><span style="color: rgb(0,0,0);">Sequence 기본흐름 예제</span></h5><p><span style="color: rgb(0,0,0);">다음 예제는 <a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html" class="external-link" rel="nofollow">SequenceNavigator</a>에 SceneCtrl를 rootController으로 설정하였을 때 호출되는 함수의 흐름을 보는 예제입니다. rootController로 설정한 Controller은 <a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html" class="external-link" rel="nofollow">SequenceNavigator</a>의 기본이 되는 Controller가 됩니다.</span><br /><span style="color: rgb(0,0,0);"> <img class="confluence-embedded-image" src="attachments/6751594/6914259.png" data-image-src="attachments/6751594/6914259.png"></span></p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">$class('tau.sample.ctrl.SeqNavi').extend(tau.ui.SequenceNavigator).define({
+
+  SeqNavi: function () {
+    this.setTitle("seq~");
+  },
+  
+  init: function () {
+    console.log("SeqNavi: initCall!!");
+    this.setRootController(new tau.sample.ctrl.SceneCtrl());
+  }
+});
+
+$class('tau.sample.ctrl.SceneCtrl').extend(tau.ui.SceneController).define({
+
+   SceneCtrl: function () {
+    this.setTitle("Scene1~");
+  },
+ 
+  init: function () {
+    console.log("SceneCtrl: init call!!");
+  },
+
+  loadScene: function () {
+    console.log("SceneCtrl: loadScene call!!");
+    var scene = this.getScene();
+    var button = new tau.ui.Button({
+      id: 'button',
+      label: 'Tap Me!'
+    });
+    scene.add(button);
+  },
+
+  sceneLoaded: function () {
+    console.log("SceneCtrl: sceneloaded call!!");
+  },
+
+  sceneDrawn: function () {
+    console.log("SceneCtrl: sceneDrawn call!!");
+  }
+});</pre>
+		</div>
+</div></div><p><span style="color: rgb(0,0,0);">다음의 콘솔 출력 결과는 아래와 같습니다.</span></p><p> </p><div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>SeqNavi: initCall!!
+SceneCtrl: init call!! 
+SceneCtrl: loadScene call!! 
+SceneCtrl: sceneloaded call!! 
+SceneCtrl: sceneDrawn call!! </pre>
+</div></div><p>초기에 <a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html" class="external-link" rel="nofollow">SequenceNavigator</a>가 생성된 후에 rootController로 설정된 controller가 생성됩니다.</p><h5 id="Controller문서-PushControllerPopController예제">PushController/PopController 예제</h5><p><span style="color: rgb(0,0,0);">상위의 예제에서 추가적으로 rootController인 SceneCtrl에서 button을 tap하면 <a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html" class="external-link" rel="nofollow">SequenceNavigator</a>의 <a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html#pushController" class="external-link" rel="nofollow">pushController</a> 함수를 이용해서 화면을 SceneCtrl2로 이동해 보겠습니다. 위의 소스에 추가해 보겠습니다.</span></p><p><span style="color: rgb(0,0,0);"><img class="confluence-embedded-image" src="attachments/6751594/6914256.png" data-image-src="attachments/6751594/6914256.png"><br /></span></p><h6 id="Controller문서-1단계로loadScene함수아래에button에이벤트핸들러를등록하고이벤트핸들러함수를추가합니다"><span style="color: rgb(0,0,0);">1단계로 loadScene 함수 아래에 button에 이벤트 핸들러를 등록하고 이벤트 핸들러 함수를 추가 합니다.</span></h6><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">button.onEvent(tau.rt.Event.TAP, this.handleTap, this);  </pre>
+		</div>
+</div></div><p><span style="color: rgb(0,0,0);"><br /></span></p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">handleTap: function () {
+  var scene = this.getScene();
+  var button = scene.getComponent('button');
+  var seqNavi = this.getParent(); //this는 현재 SceneCtrl를 가르키다, sceneCtrl의 parent는 SequenceNavigator이다.
+  seqNavi.pushController(new tau.sample.ctrl.SceneCtrl2()); //SequenceNavigator의 화면이동이 SceneCtrl2로 이동한다.
+}</pre>
+		</div>
+</div></div><p><span style="color: rgb(0,0,0);"><span style="color: rgb(0,0,0);">위의 button의 이벤트 핸들러는 새로운 화면인 SceneCtrl2 생성하여 파라미터로 전달하여  <a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html" class="external-link" rel="nofollow">SequeceNavigator</a>의 <a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html#pushController" class="external-link" rel="nofollow">pushController</a>함수를 호출하는 내용입니다.</span><br /></span></p><h6 id="Controller문서-2단계로아래의이동된화면을나타내는SceneCtrl2클래스를소스에추가합니다"><span style="color: rgb(0,0,0);">2단계로 아래의 이동된 화면을 나타내는 SceneCtrl2 클래스를 소스에 추가 합니다.</span></h6><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">$class('tau.sample.ctrl.SceneCtrl2').extend(tau.ui.SceneController).define({
+  
+  SceneCtrl2: function () {
+    this.setTitle("Scene2~");
+  },
+ 
+  init: function () {
+    console.log("SceneCtrl2: init call!!");
+  },
+
+  loadScene: function () {
+    console.log("SceneCtrl2: loadScene call!!");
+    var scene = this.getScene();
+    var button = new tau.ui.Button({
+      id: 'button',
+      label: 'Tap Me2!'
+    });
+    button.onEvent(tau.rt.Event.TAP, this.handleTap, this);
+    scene.add(button);
+  },
+
+  sceneLoaded: function () {
+    console.log("SceneCtrl2: sceneloaded call!!");
+  },
+
+  sceneDrawn: function () {
+    console.log("SceneCtrl2: sceneDrawn call!!");
+  },
+ 
+  destroy: function () {
+    console.log("SceneCtrl2: destory call!!");
+  },
+
+  handleTap: function () {
+    var scene = this.getScene();
+    var button = scene.getComponent('button');
+    var seqNavi = this.getParent();
+    seqNavi.popController();
+  }
+});</pre>
+		</div>
+</div></div><p><span style="color: rgb(0,0,0);">소스를 수정한 것을 실행하여 button을 Tap하였을 때 SceneCtrl2로 화면이 이동하면서 콘솔 출력된 값은 아래와 같습니다.</span></p><div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>SceneCtrl2: init call!! 
+SceneCtrl2: loadScene call!! 
+SceneCtrl2: sceneloaded call!! 
+SceneCtrl2: sceneDrawn call!! </pre>
+</div></div><p>화면이 이동 하였다가 다시 돌아가기 위해서는 상위에 있는 NavigatorBar를 이용해도 되지만 SceneCtrl2에는 프로그램적으로 Button을 누르면 <a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html#popController" class="external-link" rel="nofollow">popController</a>함수로 인해 이전 SceneCtrl 화면으로 이동합니다.</p><p>아래에 있는 SceneCtrl2의 handleTap 이벤트 핸들러에 의해서  프로그램적으로 다시 이전 화면으로 이동합니다. 이때는 <a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html#popController" class="external-link" rel="nofollow">popController</a> 함수를 이용합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">handleTap: function () {
+  var scene = this.getScene();
+  var button = scene.getComponent('button');
+  var seqNavi = this.getParent(); //sceneCtrl2도 parent가 sequenceNavi이다.
+  seqNavi.popController(); //이전 화면으로 이동한다.
+}</pre>
+		</div>
+</div></div><p><span style="color: rgb(0,0,0);"><br /></span></p><p><span style="color: rgb(0,0,0);">button 를 Tap하면 이전 화면으로 가면서 아래 destroy콜백 함수가 호출됩니다. 즉 이전화면으로 가면서 현재 화면은 삭제됩니다.</span></p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">destroy: function () {
+  console.log("SceneCtrl2: destory call!!");
+},</pre>
+		</div>
+</div></div><p><span style="color: rgb(0,0,0);">app을 실행하고 button을 tap하여 화면을 이동시키고 다시 button을 tap하여 이전 화면으로 이동하면 아래와 같이 콘솔 출력이 나타납니다.</span><span style="color: rgb(0,0,0);"> </span></p><div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>SeqNavi: initCall!!
+SceneCtrl: init call!! 
+SceneCtrl: loadScene call!! 
+SceneCtrl: sceneloaded call!! 
+SceneCtrl: sceneDrawn call!! 
+SceneCtrl2: init call!! 
+SceneCtrl2: loadScene call!! 
+SceneCtrl2: sceneloaded call!! 
+SceneCtrl2: sceneDrawn call!! 
+SceneCtrl2: destory call!!</pre>
+</div></div><p><span style="color: rgb(0,0,0);">이상 <a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html" class="external-link" rel="nofollow">SequenceNavigator</a>의 기본 흐름과 <a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html#pushController" class="external-link" rel="nofollow">pushController</a>와 <a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html#popController" class="external-link" rel="nofollow">popController</a>에 대해서 살펴보았습니다.</span></p><p> </p><p><span style="color: rgb(0,0,0);"> </span></p><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone full">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=seq">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/seq/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=seq" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html" class="external-link" rel="nofollow">API docs</a> </p></td></tr></table></div></td></tr></tbody></table><p><span style="color: rgb(0,0,0);"><br /></span></p><h2 id="Controller문서-ParallelNavigator클래스"><span style="color: rgb(0,0,0);">ParallelNavigator 클래스</span></h2><p><a href="http://mobello.github.com/api/symbols/tau.ui.ParallelNavigator.html" class="external-link" rel="nofollow">ParallelNavigator</a>클래스는 사용자가 화면을 이동함(navigation)에 있어 미리 정의된 화면(Scene)을 선택적으로 이동할 수 있도록 지원합니다. <a href="http://mobello.github.com/api/symbols/tau.ui.SequenceNavigator.html" class="external-link" rel="nofollow">SequenceNavigator</a>에서는 다음으로 이동할 화면이 이동 시점에 로직에 의해 결정되지만 <a href="http://mobello.github.com/api/symbols/tau.ui.ParallelNavigator.html" class="external-link" rel="nofollow">ParallelNavigator</a>는 미리 정의된 화면을 선택적으로 골라 보는 UX(<a href="http://mobello.github.com/api/symbols/tau.ui.TabBar.html" class="external-link" rel="nofollow">TabBar</a>)를 제공합니다.</p><p><span style="color: rgb(0,0,0);">내부적으로 아래와 같은 형태로 운영됩니다.</span></p><p><span style="color: rgb(0,0,0);"><img class="confluence-embedded-image" src="attachments/6751594/6914235.png" data-image-src="attachments/6751594/6914235.png"><br /></span></p><h5 id="Controller문서-ParallelNavigator기본흐름예제">ParallelNavigator 기본흐름 예제</h5><p>다음 예제는 두개의 <a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html" class="external-link" rel="nofollow">SceneController</a>를 <a href="http://mobello.github.com/api/symbols/tau.ui.ParallelNavigator.html" class="external-link" rel="nofollow">ParallelNavigator</a>가 가지고 있고 각 <a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html" class="external-link" rel="nofollow">SceneController</a>의 button을 누르면 다른 <a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html" class="external-link" rel="nofollow">SceneController</a>로 화면이 이동되는 예제입니다. <a href="http://mobello.github.com/api/symbols/tau.ui.ParallelNavigator.html#setControllers" class="external-link" rel="nofollow">setControllers</a> 함수로 두개의 <a href="http://mobello.github.com/api/symbols/tau.ui.SceneController.html" class="external-link" rel="nofollow">SceneController</a>를 설정합니다.</p><p><img class="confluence-embedded-image" src="attachments/6751594/6914257.png" data-image-src="attachments/6751594/6914257.png"></p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">$class('tau.sample.ctrl.ParallelNavi').extend(tau.ui.ParallelNavigator).define({
+
+  ParallelNavi: function () {
+    this.setTitle("parallel~");
+  },	
+ 
+  init: function () {
+    console.log("ParallelNavi: initCall!!");
+    //두개의 SceneController를 생성하여 ParallelNavigator에 설정한다.
+    this.setControllers([new tau.sample.ctrl.SceneCtrl(),new tau.sample.ctrl.SceneCtrl2()]);
+  },
+});
+ 
+$class('tau.sample.ctrl.SceneCtrl').extend(tau.ui.SceneController).define({
+
+  SceneCtrl: function () {
+    this.setTitle("Scene1~");
+  },
+
+  init: function () {
+    console.log("SceneCtrl: init call!!");
+  },
+
+  loadScene: function () {
+    console.log("SceneCtrl: loadScene call!!");
+    var scene = this.getScene();
+    var button = new tau.ui.Button({
+      id: 'button',
+      label: 'Tap Me!'
+    });
+    //이벤트 핸들러 등록
+    button.onEvent(tau.rt.Event.TAP, this.handleTap, this);
+    scene.add(button);
+  },
+
+  sceneLoaded: function () {
+    console.log("SceneCtrl: sceneloaded call!!");
+  },
+
+  sceneDrawn: function () {
+    console.log("SceneCtrl: sceneDrawn call!!");
+  },
+
+  handleTap: function () {
+    //SceneCtrl의 상위 controller인 ParallelNavigator을 가져온다.
+    var parallelNavi = this.getParent();
+    //setIndex함수를 이용하여 화면을 이동시킨다.
+    parallelNavi.setIndex(1);
+  }
+});
+
+$class('tau.sample.ctrl.SceneCtrl2').extend(tau.ui.SceneController).define({
+
+  SceneCtrl2: function () {
+    this.setTitle("Scene2~");
+  },
+ 
+  init: function () {
+    console.log("SceneCtrl2: init call!!");    
+  },
+
+  loadScene: function () {
+    console.log("SceneCtrl2: loadScene call!!");
+    var scene = this.getScene();
+    var button = new tau.ui.Button({
+      id: 'button',
+      label: 'Tap Me2!'
+    });
+    button.onEvent(tau.rt.Event.TAP, this.handleTap, this);
+    scene.add(button);
+  },
+
+  sceneLoaded: function () {
+    console.log("SceneCtrl2: sceneloaded call!!");
+  },
+
+  sceneDrawn: function () {
+    console.log("SceneCtrl2: sceneDrawn call!!");
+  },
+
+  handleTap: function () {
+    //SceneCtrl의 상위 controller인 ParallelNavigator을 가져온다.
+    var parallelNavi = this.getParent();
+    //setIndex함수를 이용하여 화면을 이동시킨다.
+    parallelNavi.setIndex(0);
+  }
+});</pre>
+		</div>
+</div></div><p>다음을 실행 시키면 아래와 같은 콘솔 출력 결과가 나타납니다. 초기에 <a href="http://mobello.github.com/api/symbols/tau.ui.ParallelNavigator.html" class="external-link" rel="nofollow">ParallelNavigator</a>가 생성된 후에 rootController로 설정된 controller가 생성 되는 것을 알게 됩니다.</p><div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>ParallelNavi: initCall!! 
+SceneCtrl: init call!! 
+SceneCtrl: loadScene call!! 
+SceneCtrl: sceneloaded call!! 
+SceneCtrl: sceneDrawn call!! </pre>
+</div></div><p>첫화면에서 button을 Tap하면 아래와 같은 콘솔 출력 결과가 나타납니다.</p><div class="preformatted panel" style="border-width: 1px;"><div class="preformattedContent panelContent">
+<pre>SceneCtrl2: init call!! 
+SceneCtrl2: loadScene call!! 
+SceneCtrl2: sceneloaded call!! 
+SceneCtrl2: sceneDrawn call!! </pre>
+</div></div><p>화면이 이동한 후 두번째 화면에서 button을 Tap하면 아무런 콘솔 출력이 나타나지 않습니다. 즉 화면이 생성되면 다시 그려지는 것이 아니라 화면을 안보이게 하는 것을 알게 됩니다. </p><h6 id="Controller문서-SetIndex함수">SetIndex 함수</h6><p>위의 예제에서 Button의 이벤트 핸들러안에서 <a href="http://mobello.github.com/api/symbols/tau.ui.ParallelNavigator.html#setIndex" class="external-link" rel="nofollow">setIndex</a>함수를 사용하여 화면이동을 하였습니다.  아래는 그 이벤트 핸들러입니다. <a href="http://mobello.github.com/api/symbols/tau.ui.ParallelNavigator.html#setIndex" class="external-link" rel="nofollow">setIndex</a>는 0부터 시작한다는 것에 유의해야합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>main.js</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">handleTap: function () {
+  //SceneCtrl의 상위 controller인 ParallelNavigator을 가져온다.
+  var parallelNavi = this.getParent();
+  //setIndex함수를 이용하여 화면을 이동시킨다.
+  parallelNavi.setIndex(0);
+}</pre>
+		</div>
+</div></div><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone full">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=parallel">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/parallel/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=parallel" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.ParallelNavigator.html" class="external-link" rel="nofollow">API docs</a> </p></td></tr></table></div></td></tr></tbody></table>

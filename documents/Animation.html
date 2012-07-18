@@ -1,0 +1,78 @@
+---
+layout: confluence
+title: Animation
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p>Mobello Animation은 css기반 animation을 지원합니다. 그리고 Animation의 타입을 3가지 타입으로 나눌수 있습니다. 첫번째는 <a href="http://mobello.github.com/api/symbols/tau.fx.Transition.html" class="external-link" rel="nofollow">tau.fx.Transition</a> ,  두번째는 <a href="http://mobello.github.com/api/symbols/tau.fx.Animation.html" class="external-link" rel="nofollow">tau.fx.Animation</a> ,  세번째는 <a href="http://mobello.github.com/api/symbols/tau.fx.html#.fadeIn" class="external-link" rel="nofollow">built-in</a> 입니다. 각각을 살펴보도록 하겠습니다.</p><p>목차:</p><p><div>
+<ul>
+    <li><a href='#Animation-Transition클래스'>Transition 클래스</a></li>
+    <li><a href='#Animation-Animation 클래스'>Animation &nbsp;클래스</a></li>
+    <li><a href='#Animation-Built-InAnimation'>Built-In Animation</a></li>
+</ul></div></p><h2 id="Animation-Transition클래스">Transition 클래스</h2><p>현재 style에서 다른 style로 순차적 전환하여 애니메이션 효과를 나타나게 하는 클래스입니다. transition을 생성하고 스타일을 적용한 후, <a href="http://mobello.github.com/api/symbols/tau.fx.Transition.html#animate" class="external-link" rel="nofollow">animate</a>함수를 통해 target DOM에 애니메이션을 적용합니다.</p><p>아래의 그림처럼 애니메이션을 하기 위한 소스는 아래에 있습니다.</p><p><img class="confluence-embedded-image" src="attachments/6751724/6914239.png" data-image-src="attachments/6751724/6914239.png"></p><p> </p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>Transition</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">var tran = new tau.fx.Transition({duration: "1000ms"});
+    tran.setStyle("width", "150px");
+    tran.setStyle("height","200px",{timingFunction : "cubic-bezier(0, 1, 0, 1)", duration: "1500ms"});
+    tran.setStyle("color","red",{timingFunction : "ease-out", duration: "1500ms"});
+    tran.setStyle("margin","20px",{timingFunction : "ease-out", duration: "1500ms"});
+    tran.setStyle("padding","20px",{timingFunction : "ease-in", duration: "1500ms"});
+    tran.animate(Button1.getDOM());//Button1에 transition을 적용한다.</pre>
+		</div>
+</div></div><ul><li>timingFunction 은 변화해가는 속도를 나타내며 아래와 같은 종류가 있습니다.</li></ul><div class="table-wrap"><table class="confluenceTable"><tbody style="margin-left: 30.0px;"><tr style="margin-left: 30.0px;"><td style="margin-left: 30.0px;" class="confluenceTd">defaultease <p style="margin-left: 30.0px;"><img class="confluence-embedded-image confluence-thumbnail confluence-external-resource" width="300" src="attachments/thumbnails/6750610/6914206" data-image-src="http://10.214.49.53:8090/download/thumbnails/6750610/defaultease.jpg"></p></td><td style="margin-left: 30.0px;" class="confluenceTd"><div style="margin-left: 30.0px;">ease-in </div><div style="margin-left: 30.0px;"><img class="confluence-embedded-image confluence-thumbnail confluence-external-resource" width="300" src="attachments/thumbnails/6750610/6914208" data-image-src="http://10.214.49.53:8090/download/thumbnails/6750610/ease-in.jpg"></div></td><td style="margin-left: 30.0px;" class="confluenceTd"><div style="margin-left: 30.0px;">ease-out</div><div style="margin-left: 30.0px;"><img class="confluence-embedded-image confluence-thumbnail confluence-external-resource" width="300" src="attachments/thumbnails/6750610/6914209" data-image-src="http://10.214.49.53:8090/download/thumbnails/6750610/ease-out.jpg"></div></td><td style="margin-left: 30.0px;" class="confluenceTd"><div style="margin-left: 30.0px;">ease-in-out</div><div style="margin-left: 30.0px;"><img class="confluence-embedded-image confluence-thumbnail confluence-external-resource" width="300" src="attachments/thumbnails/6750610/6914207" data-image-src="http://10.214.49.53:8090/download/thumbnails/6750610/ease-in-out.jpg"></div></td><td colspan="1" style="margin-left: 30.0px;" class="confluenceTd"><p style="margin-left: 30.0px;"><a class="external-link" href="http://eunchul.com/Algorithms/BezierCurves/BezierCurves.htm" rel="nofollow">cubic-bezier<strong><strong><span style="color: rgb(102,102,102);"> </span></strong></strong></a><strong><strong><span style="color: rgb(102,102,102);"> </span></strong></strong></p><p style="margin-left: 30.0px;"><span style="color: rgb(102,102,102);"><span style="color: rgb(0,0,0);">서로 다른 위치에 있는(discrete) N개의 </span></span><span style="color: rgb(102,102,102);"><span style="color: rgb(0,0,0);">조절점에 의해 얻어지는 곡선을 구하기</span></span><span style="color: rgb(102,102,102);"><span style="color: rgb(0,0,0);">위한 연속함수입니다.</span></span></p></td></tr></tbody></table></div><ul><li>duration 은 시간 경과 대한 옵션값이다. 이 시간동안에 애니메이션을 시작해서 끝을 냅니다.</li></ul><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone full">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=ani">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/ani/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=ani" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.fx.Transition.html" class="external-link" rel="nofollow">API docs</a> </p></td></tr></table></div></td></tr></tbody></table><h2 id="Animation-Animation 클래스">Animation  클래스</h2><p>구간별로 style을 지정하여 애니메이션 효과를 나타나게 하는 클래스입니다. <a href="http://mobello.github.com/api/symbols/tau.fx.Transition.html" class="external-link" rel="nofollow">Transition</a> 클래스와 다르게 반복 횟수,  애니메이션 후 원상태 복귀여부, delay 옵션등 여러 추가적인 옵션이 더 있습니다. <a href="http://mobello.github.com/api/symbols/tau.fx.Animation.html" class="external-link" rel="nofollow">Animation</a>클래스를 생성하고 from, to속성을 설정한 후 옵션을 설정한 다음, <a href="http://mobello.github.com/api/symbols/tau.fx.Animation.html#animate" class="external-link" rel="nofollow">animate</a>함수를 통해 target DOM에 애니메이션을 적용합니다.</p><p>아래의 그림처럼 애니메이션을 하기 위한 소스는 아래에 있습니다.</p><p><img class="confluence-embedded-image" src="attachments/6751724/6914240.png" data-image-src="attachments/6751724/6914240.png"></p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>Animation </b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">var ani = new tau.fx.Animation({
+    from : {'background': 'red'},
+    to : {'background': 'yellow'}
+    }, {
+      timingFunction : 'ease-out',
+      duration : 2500, //시간 경과 설정
+      override : true, //애니메이션한 후 속성 유지
+      iterationCount : 2, //반복횟수
+      delay : 1000 //지연시간후 애니메이션 동작
+      });
+ani.animate(Button1.getDOM());</pre>
+		</div>
+</div></div><ul><li>timingFunction 은 transition 의 timingFunction 과 동일한 값을 설정할 수 있음.</li><li>duration은 시간 경과값</li><li>override은 애니메이션한 후 속성 유지 (true, false)</li><li>iterationCount은 반복 횟수</li><li>delay은 지연시간 설정</li></ul><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone full">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=ani1">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/ani2/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=ani2" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.fx.Animation.html" class="external-link" rel="nofollow">API docs</a> </p></td></tr></table></div></td></tr></tbody></table><h2 id="Animation-Built-InAnimation">Built-In Animation</h2><p>자주 사용되는 애니메이션을 미리 구현한 함수들입니다. 현재 <a href="http://mobello.github.com/api/symbols/tau.fx.html#.fadeIn" class="external-link" rel="nofollow">tau.fx.fadeIn</a> 와 <a href="http://mobello.github.com/api/symbols/tau.fx.html#.fadeOut" class="external-link" rel="nofollow">tau.fx.fadeOut</a> 이 있다. 추가적인 애니메이션은 추후에 추가될 것 입니다.</p><h5 id="Animation-taufxfadeIn taufxfadeOut">tau.fx.fadeIn/ tau.fx.fadeOut</h5><p>아래의 그림처럼 애니메이션을 하기 위한 소스는 아래에 있습니다.</p><p><img class="confluence-embedded-image" src="attachments/6751724/6914241.png" data-image-src="attachments/6751724/6914241.png"></p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>built-in 애니메이션</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">tau.fx.fadeIn(Button1.getDOM(),{duration : 500}); //Button1은 초기에 display none속성으로 있음
+tau.fx.fadeOut(Button2.getDOM(),{duration : '1s'});</pre>
+		</div>
+</div></div><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone full">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=ani2">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/ani2/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=ani2" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.fx.html#.fadeIn" class="external-link" rel="nofollow">API docs</a> </p></td></tr></table></div></td></tr></tbody></table>

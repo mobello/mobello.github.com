@@ -1,0 +1,456 @@
+---
+layout: confluence
+title: Event
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p>이 문서는 Mobello의 이벤트의 흐름과 이벤트 등록 /삭제을 하는 법을 설명합니다. </p><p>Mobello 이벤트 구조는 웹의 DOM 2 Level Event 구조 기반으로 만들어 졌기 때문에 아래 설명 자료를 참고 하시면 이해하는데 도움이 됩니다.</p><p><strong>DOM 2 Level 참고 자료 : </strong><a href="http://www.clearboth.org/49_handling-events-with-javascript/" class="external-link" rel="nofollow">한글</a> , <a href="http://www.clearboth.org/49_handling-events-with-javascript/" class="external-link" rel="nofollow">영문</a> </p><p>목차:</p><p><div>
+<ul>
+    <li><a href='#Event-Mobello이벤트'>Mobello 이벤트</a></li>
+<ul>
+    <li><a href='#Event-Mobello에서이벤트의흐름'>Mobello에서 이벤트의 흐름</a></li>
+    <li><a href='#Event-이벤트클래스'>이벤트 클래스</a></li>
+    <li><a href='#Event-이벤트의종류'>이벤트의 종류</a></li>
+    <li><a href='#Event-이벤트등록삭제방법'>이벤트 등록/삭제 방법</a></li>
+    <li><a href='#Event-사용자정의이벤트등록과이벤트발생하기'>사용자 정의 이벤트 등록과 이벤트 발생하기</a></li>
+</ul>
+    <li><a href='#Event-이벤트버블링예제'>이벤트 버블링 예제</a></li>
+    <li><a href='#Event-이벤트캡쳐링예제'>이벤트 캡쳐링 예제</a></li>
+    <li><a href='#Event-이벤트등록삭제예제'>이벤트 등록/ 삭제 예제</a></li>
+</ul></div></p><p> </p><h2 id="Event-Mobello이벤트">Mobello 이벤트</h2><p>Mobello의 이벤트 구조는 웹의 이벤트 구조(DOM 2 Level) 기반하여 만들어 졌습니다. 이 이벤트 시스템의 핵심적인 기능은 <a href="http://mobello.github.com/api/symbols/tau.rt.EventDelegator.html" class="external-link" rel="nofollow">EventDelegator</a> 클래스에 있습니다. <a href="http://mobello.github.com/api/symbols/tau.rt.EventDelegator.html" class="external-link" rel="nofollow">EventDelegator</a>클래스는 이벤트 핸들러 등록 / 삭제/ 발생/ 전파에 관해 담당하는 클래스 입니다.  그래서 <a href="http://mobello.github.com/api/symbols/tau.rt.EventDelegator.html" class="external-link" rel="nofollow">EventDelegator</a>클래스를 상속받은 모든 컴포넌트들은 모두 이벤트 핸들러를 등록 하고 삭제하고 이벤트를 발생시킬 수 있는 기능을 가지게 됩니다. Mobello에서는 컴포넌트들은 모두 트리구조를 이루게 됩니다. 그리고 이벤트가 움직이는 방법이 웹의 구조와 같이 캡쳐단계 버블단계로 구성됩니다.  그럼 Mobello에서의  이벤트의 흐름, Event 클래스, 이벤트 종류, 이벤트 핸들러 등록 /삭제 , 알아보도록 하겠습니다.</p><h3 id="Event-Mobello에서이벤트의흐름">Mobello에서 이벤트의 흐름</h3><p><img class="confluence-embedded-image" src="attachments/6751393/6914232.png" data-image-src="attachments/6751393/6914232.png"></p><p>Mobello 내의 컴포넌트에서 이벤트가 일어나게 되면 , 그 컴포넌트는 이벤트에 대해 어떤 이벤트 핸들러가 할당되어 있는지 찾아보게 됩니다. 만약 할당된 이벤트 핸들러가 있다면 참조값과 일어난 이벤트에 대한 추가적인 정보들을 파라미터로 전달되어서 호출 됩니다. 그러면 이벤트 핸들러가 동작하게 됩니다. 이벤트 호출에는 캡춰링capturing과 버블링bubbling 두가지 타입이 있습니다. 위그림의 (1)번과 같이 이벤트 캡춰링은 컴포넌트 트리의 가장 바깥 요소에서부터 시작하여, 이벤트가 일어난 요소에 도착할 때까지 안쪽으로 찾아 들어갑니다. 예를 들어, Mobello에서 무언가를 Tap(손으로 터치)하면, 처음에는 Runtime에서 Tap이벤트 핸들러를 찾고 다음에는 Scene에서 Tap 이벤트 핸들러를 찾고, 다음에는 Scene하위의 컴포넌트에서 찾고, 다음에는, 다음에는, 하는 식으로, 이벤트가 일어난 컴포넌트에 도착할 때까지 반복하는 방식입니다. 이벤트 버블링은 정확히 반대의 방법으로 동작한합니다. 위그림의 (3)번과 같이 이벤트가 일어난 컴포넌트에서부터 체크 (이 컴포넌트에 뭔가 이벤트 핸들러가 할당되어 있는지) 를 시작해서, 그 부모로, 그 부모로, 하는 식으로, Runtime까지 거슬러 올라갑니다. 이것은 웹페이지의 이벤트의 움직이는 방법과 유사합니다.</p><h3 id="Event-이벤트클래스">이벤트 클래스</h3><p>Event 클래스는 다음과 같은 상세한 데이터를 가지고 있습니다. 이 이벤트 객체는 이벤트가 호출 될 때 파라미터로 전달됩니다. </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>항목</p></th><th class="confluenceTh"><p>설명</p></th></tr><tr><td class="confluenceTd"><p>name </p></td><td class="confluenceTd"><p>이벤트 이름 </p></td></tr><tr><td class="confluenceTd"><p>source </p></td><td class="confluenceTd"><p>이벤트가 발생된 EventDelegator </p></td></tr><tr><td class="confluenceTd"><p>stopPropagation </p></td><td class="confluenceTd"><p>bubble up 할 것인지에 대한 boolean 값</p></td></tr><tr><td class="confluenceTd"><p>preventDefault </p></td><td class="confluenceTd"><p>디폴트 함수 호출 할 것인지에 대한 boolean 값</p></td></tr><tr><td class="confluenceTd"><p>timestamp </p></td><td class="confluenceTd"><p>이벤트가 일어난 시간을 가진 Date 객체</p></td></tr><tr><td class="confluenceTd"><p>eventPhase </p></td><td class="confluenceTd"><p>이벤트 단계 capture, target, bubbling </p></td></tr><tr><td class="confluenceTd"><p>touches </p></td><td class="confluenceTd"><p>여러 손가락의 터치들에 대한 정보 array </p></td></tr></tbody></table></div><h3 id="Event-이벤트의종류">이벤트의 종류</h3><p>이벤트의 종류는 각 컴포넌트 , 컨트롤러마다 이벤트가 종류가 다릅니다. 각각의 API문서의 아래쪽을 살펴보면 아래와 같이 Event Detail 목차에 이벤트의 종류가 나타나 있습니다. </p><ul><li>Table 관련 이벤트</li></ul><p><img class="confluence-embedded-image" src="attachments/6751393/7536679.png" data-image-src="attachments/6751393/7536679.png"></p><h3 id="Event-이벤트등록삭제방법">이벤트 등록/삭제 방법</h3><p>등록/삭제</p><p>버튼 컴포넌트를 생성하여 이벤트핸들러를 등록/삭제 살펴보도록 하겠습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>이벤트 등록/삭제</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: false">var button = new tau.ui.Button({label: 'ClickMe', styles: {top: '100px'}});
+// register buttonTapped method as a tap event handler
+button.onEvent(tau.rt.Event.TAP, this.buttonTapped, this, false);
+//remove buttonTapped method 
+button.unsubscribeEvent(tau.rt.Event.TAP, this.buttonTapped, this);</pre>
+		</div>
+</div></div><p>등록할 때 쓰여지는 함수는 <a href="http://mobello.github.com/api/symbols/tau.rt.EventDelegator.html#onEvent" class="external-link" rel="nofollow">onEvent</a>입니다. 첫 파라미터는 이벤트의 종류이고, 두번째 파라미터는 이벤트 핸들러 함수 이고, 세번째 파라미터는 context입니다. context란 이벤트 핸들러가 호출되어 실행될 때의 this라는 변수를 넘겨주는 값입니다.  네번째 파라미터는 capture를 할 것인가 아닌가를 설정하는 boolean 값입니다. true이면 capture단계에서 실행하라는 의미이고 생략하거나 false이면 capture 단계에서 실행하지 않는다는  의미입니다.</p><p> </p><h3 id="Event-사용자정의이벤트등록과이벤트발생하기">사용자 정의 이벤트 등록과 이벤트 발생하기</h3><p>이미 정의된 이벤트가 아닌 개발자가 정의한 이벤트를 만들어서 이벤트를 발생시킬수도 있습니다. 이런 것을 사용하는 상황으로는 개발자가 특정한 상황에 맞는 이벤트를 생성하여 의미전달을 확실하게 하기 위해서 사용됩니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>사용자 정의 이벤트 등록/발생/삭제</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: javascript; gutter: false">var textArea= new tau.ui.TextArea({styles: {top: '100px',width: '300px', height: '300px'}});
+// register buttonTapped method as a tap event handler
+textArea.onEvent('checking', this.textAreaChecking, this);
+// fireEvent
+textArea.fireEvent('checking', {englishOnly : true}); 
+//remove buttonTapped method 
+//textArea.unsubscribeEvent('checking', this.textAreaChecking, this);</pre>
+		</div>
+</div></div><p> </p><h2 id="Event-이벤트버블링예제">이벤트 버블링 예제</h2><p>현재는 6개의 버튼만 있지만 상당히 많은 수의 버튼이 있다고 가정합니다. 그러면 버튼마다 비슷한 일을 하는 이벤트 핸들러를 등록하는 것은 관리하기도 어렵고 성능상의 문제가 발생합니다. 그럴때 이벤트 버블링을 이용하여 하나의 이벤트 핸들러를 통해서 이벤트를 처리할 수 있습니다. </p><p>다음 예제는 버튼을 Tap할 때 마다 targetPanel이 버튼마다의 설정된 색깔로 변경하는 예제입니다. </p><p><img class="confluence-embedded-image" src="attachments/6751393/6914243.png" data-image-src="attachments/6751393/6914243.png"></p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>이벤트 버블링</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">$class('sample.BubbleController').extend(tau.ui.SceneController).define({
+  
+  loadScene: function () {
+    var scene = this.getScene();
+    var targetPanel = new tau.ui.Panel({
+      id: 'targetPanel',
+      styles: {
+        width: '100%',
+        height : '200px',
+        backgroundColor: 'black'          
+      }
+    });
+    var colorPanel = new tau.ui.ScrollPanel({
+      id : 'colorPanel',
+      styles: {        
+        width: '100%',
+        height: '280px',
+        backgroundColor: 'gray',
+        border: '1px solid gray'
+      }
+    });
+    //ColorPanel에 하위 컴포넌트들인 버튼을 Tap할 때 이벤트 버블링에서 올라오는 이벤트을 처리하는 이벤트 핸들러를 등록한다.
+    colorPanel.onEvent(tau.rt.Event.TAP, this.changePanelBackgroundColor, this);
+    var btnArray = [
+                    {id: 'blue', label: 'Blue Color'},
+                    {id: 'red', label: 'Red Color'},
+                    {id: 'white', label: 'Blue Color'},
+                    {id: 'orange', label: 'Orange Color'},
+                    {id: 'green', label: 'Green Color'},
+                    {id: 'lime', label: 'Lime Color'},
+                   ];
+    for ( var int = 0; int &lt; btnArray.length; int++) {
+      colorPanel.add(
+          new tau.ui.Button({
+            id : btnArray[int].id,
+            label : btnArray[int].label,
+            styles: {height: '50px',width: '100%'}
+          })
+      );
+    }
+    
+    scene.add(targetPanel);
+    scene.add(colorPanel);
+  },
+ 
+  //버블링되어서 올라오는 이벤트를 처리하는 이벤트 핸들러
+  changePanelBackgroundColor: function (event, payload) { 
+    var id = event._source.getId(); //어떤 버튼인지 구별하기위해서 Id값을 가져온다.
+    var color = 'black';
+    switch (id) { //id값에 따라 color값을 할당한다.
+    case 'red':
+      color = 'red';
+      break;
+    case 'blue':
+      color = 'blue';
+      break;
+    case 'white':
+      color = 'white';
+      break;
+    case 'orange':
+      color = 'orange';
+      break;
+    case 'green':
+      color = 'green';
+      break;
+    case 'lime':
+      color = 'lime';
+      break;
+    default: 
+      return;
+    }   
+    
+    var scene = this.getScene();
+    var targetPanel = scene.getComponent('targetPanel'); //타겟 패널을 가져온다.    
+    targetPanel.setStyle('backgroundColor', color); //타겟 패널의 색깔을 변경한다.
+  },
+  
+});</pre>
+		</div>
+</div></div><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><b>이벤트 버블링의 주의사항</b><br /><p>컴포넌트에 이벤트가 발생되면 이벤트에 해당되는 이벤트 핸들러가 컴포넌트에 있을 경우 이벤트 버블링은 기본적으로 막혀있습니다. 이유는 성능과 프로그램의 작성의 효율성을 위해서입니다. 하지만 특별히 이벤트 버블링을 해야할 경우가 생기면 event.<a href="http://mobello.github.com/api/symbols/tau.rt.Event.html#.alwaysBubble" class="external-link" rel="nofollow">alwaysBubble</a>함수를 이벤트 핸들러 작성하면 이벤트 버블링이 동작합니다.</p></td></tr></table></div><p>다음 예제는 위에 예제에서 리셋버튼을 삽입한 예제입니다. 리셋버튼는 자신만의 이벤트 핸들러를 가지고 있기 때문에 이벤트 버블링을 통해서changePanelBackgroundColor이벤트 핸들러 함수는 호출되지 않습니다.</p><p><img class="confluence-embedded-image" src="attachments/6751393/6914244.png" data-image-src="attachments/6751393/6914244.png"></p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>resetButton eventHandler</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">$class('sample.BubbleController').extend(tau.ui.SceneController).define({
+  
+  loadScene: function () {
+    var scene = this.getScene();
+    var targetPanel = new tau.ui.Panel({
+      id: 'targetPanel',
+      styles: {
+        width: '100%',
+        height : '200px',
+        backgroundColor: 'black'          
+      }
+    });
+    var colorPanel = new tau.ui.ScrollPanel({
+      id : 'colorPanel',
+      styles: {        
+        width: '100%',
+        height: '280px',
+        backgroundColor: 'gray',
+        border: '1px solid gray'
+      }
+    });
+    
+    colorPanel.onEvent(tau.rt.Event.TAP, this.changePanelBackgroundColor, this);
+    var btnArray = [
+                    {id: 'blue', label: 'Blue Color'},
+                    {id: 'red', label: 'Red Color'},
+                    {id: 'white', label: 'Blue Color'},
+                    {id: 'orange', label: 'Orange Color'},
+                    {id: 'green', label: 'Green Color'},
+                    {id: 'lime', label: 'Lime Color'},
+                   ];
+    for ( var int = 0; int &lt; btnArray.length; int++) {
+      colorPanel.add(
+          new tau.ui.Button({
+            id : btnArray[int].id,
+            label : btnArray[int].label,
+            styles: {height: '50px',width: '100%'}
+          })
+      );
+    }
+    var resetButton = new tau.ui.Button({
+      id : 'reset',
+      label: 'Reset', 
+      styles: {height: '50px',width: '100%', backgroundColor: 'red'}
+    });
+    //리셋버튼의 이벤트 핸들러를 등록한다.
+    resetButton.onEvent(tau.rt.Event.TAP, this.resetTargetPanel, this, false);
+    colorPanel.add(resetButton);
+    scene.add(targetPanel);
+    scene.add(colorPanel);
+  },
+ 
+  changePanelBackgroundColor: function (event, payload) {
+    //리셋 버튼이 Tap 될 경우 changePanelBackgroundColor함수는 호출되지 않는다.
+    var id = event._source.getId();
+    var color = null;
+    switch (id) {
+    case 'red':
+      color = 'red';
+      break;
+    case 'blue':
+      color = 'blue';
+      break;
+    case 'white':
+      color = 'white';
+      break;
+    case 'orange':
+      color = 'orange';
+      break;
+    case 'green':
+      color = 'green';
+      break;
+    case 'lime':
+      color = 'lime';
+      break;
+    default: 
+      return;
+    }   
+    
+    var scene = this.getScene();
+    var targetPanel = scene.getComponent('targetPanel');
+    
+    targetPanel.setStyle('backgroundColor', color);
+  },
+  //리센버튼 이벤트핸들러 함수
+  resetTargetPanel: function (event, payload) {
+    //event.alwaysBubble();
+    that = this; //confirm 컴포넌트의 callbackFn 함수에서 쓰기 위해서 
+    tau.confirm("Do you want to reset?", {
+      title: 'Reset', 
+      callbackFn: function(returnVal){
+	//confirm 컴포넌트에서 ok를 tap할 경우 returnVal가 true이다.
+        if (returnVal) {
+          var scene = that.getScene();
+	  //targetPanel을 가져온다.
+          var targetPanel = scene.getComponent('targetPanel');          
+          targetPanel.setStyle('backgroundColor', 'black');          
+        }
+      }
+    });
+  }
+  
+});</pre>
+		</div>
+</div></div><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone full">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=evtbubble">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/evtbubble/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=evtbubble" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.rt.EventDelegator.html" class="external-link" rel="nofollow">API docs</a> </p></td></tr></table></div></td></tr></tbody></table><h2 id="Event-이벤트캡쳐링예제">이벤트 캡쳐링 예제</h2><p>다음 예제는 버튼 생성 버튼을 Tap 하면 버튼이 생성되고, 생성된 remove버튼을 tap하면 버튼을 삭제하는 동작을 하는 예제입니다. remove버튼을 tap하면 버튼을 삭제하는 이벤트 핸들러 함수는 buttonPanel에 등록되어있습니다. removeButton이벤트 핸들러는 캡쳐링 단계서 동작합니다.</p><p><img class="confluence-embedded-image" src="attachments/6751393/6914246.png" data-image-src="attachments/6751393/6914246.png"></p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>이벤트 캡쳐링</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">$class('sample.CapturingController').extend(tau.ui.SceneController).define({
+  
+  loadScene: function () {
+    var scene = this.getScene();
+    //버튼을 생성하는 추가 버튼
+    var createButton = new tau.ui.Button({
+      id : 'create',
+      label: 'Add Button', 
+      styles: {height: '50px',width: '100%', backgroundColor: 'lime'}
+    });
+    //Tap되었을때 삭제되는 버튼을 추가하는 이벤트 핸들러를 등록한다.
+    createButton.onEvent(tau.rt.Event.TAP, this.createButton, this);
+    //삭제되는 버튼들의 패널
+    var buttonPanel = new tau.ui.ScrollPanel({
+      id : 'buttonPanel',
+      styles: {        
+        width: '100%',
+        height: '400px',
+        backgroundColor: 'gray'
+      }
+    });
+    //삭제 버튼이 Tap되었을때 버튼을 삭제하는  이벤트 핸들러를 등록한다.
+    //네번째 파라미터를 ture를 설정하여 캡쳐링때 동작한다.
+    buttonPanel.onEvent(tau.rt.Event.TAP, this.removeButton, this, true);
+    
+    var button1 = new tau.ui.Button({
+      label: 'remove', 
+      styles: {height: '50px',width: '160px'}
+    });
+    
+    var button2 = new tau.ui.Button({
+      label: 'remove', 
+      styles: {height: '50px',width: '160px'}
+    });
+    
+    buttonPanel.add(button1);
+    buttonPanel.add(button2);
+    scene.add(createButton);
+    scene.add(buttonPanel);
+  },
+ 
+  //Tap 되었을 때 삭제하는 이벤트 핸들러 
+  removeButton: function (event, payload) {
+    //실제적으로 Tap 된 컴포넌트를 가져온다.
+    var target = event._source;
+    //Tap된 컴포넌트가 버튼인지 체크한다.
+    if (target instanceof tau.ui.Button){
+      //버튼 컴포넌트를 삭제한다.
+      target.destroy();
+    }
+    
+  },
+  //추가 버튼이 Tap 되었을 때 버튼을 추가하는 이벤트 핸들러
+  createButton: function (event, payload) {
+    //버튼을 생성한다.
+    var button = new tau.ui.Button({
+      label: 'remove', 
+      styles: {height: '50px',width: '160px'}
+    })
+    //Scene을 가져온다.
+    var scene = this.getScene();
+    //삭제 버튼을 가지고있는 패널을 가져온다.
+    var panel = scene.getComponent('buttonPanel');
+    //패널에 버튼을 추가한다.
+    panel.add(button);
+    //새롭게 추가된 컴포넌트를 화면에 나타내기 위해서 scene을 업데이트 한다.
+    scene.update();
+  }
+  
+});</pre>
+		</div>
+</div></div><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone full">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=evtcapture">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/evtcapture/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=evtcapture" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.rt.EventDelegator.html" class="external-link" rel="nofollow">API docs</a> </p></td></tr></table></div></td></tr></tbody></table><h2 id="Event-이벤트등록삭제예제">이벤트 등록/ 삭제 예제</h2><p>다음예제는 위의 예제에서 스위치를 추가한 예제입니다. 스위치가 remove쪽에서 change쪽으로 이동하면 스위치의 이벤트 핸들러가 호출됩니다. handleValueChange 이벤트 핸들러는 스위치의 위치에 따라 buttonPanel의 원래의 removeButton 이벤트핸들러를 삭제하고 changeSize 이벤트 핸들러를 등록합니다. 또한 스위치를 change쪽에서 remove쪽으로 이동하면 원래의 changeSize 이벤트핸들러를 삭제하고 removeButton 이벤트 핸들러를 등록합니다.</p><p><img class="confluence-embedded-image" src="attachments/6751393/6914247.png" data-image-src="attachments/6751393/6914247.png"></p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>이벤트 등록 /삭제</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: javascript; gutter: false">$class('sample.EventHanglerController').extend(tau.ui.SceneController).define({
+  
+  loadScene: function () {
+    var scene = this.getScene();
+    //버튼을 생성하는 추가 버튼
+    var createButton = new tau.ui.Button({
+      id: 'create',
+      label: 'Add Button', 
+      styles: {height: '50px',width: '50%', backgroundColor: 'lime'}
+    });
+    //Tap되었을때 삭제되는 버튼을 추가하는 이벤트 핸들러를 등록한다.
+    createButton.onEvent(tau.rt.Event.TAP, this.createButton, this);
+    
+    //스위치 컴포넌트를 생성한다.
+    var handlerSwitch = new tau.ui.Switch({
+      id: 'switch',
+      value: '1',
+      styles: {width: '40%', margin: '10px'},
+      onText: 'remove',
+      offText: 'change',
+      enabledBarTouch: true,
+      enabledThreshold: true
+    })
+    
+    //스위치 컴포넌트에 이벤트 핸들러를 등록한다.
+    handlerSwitch.onEvent(tau.rt.Event.VALUECHANGE, this.handleValueChange,this);
+    
+    
+    //삭제되는 버튼들의 패널
+    var buttonPanel = new tau.ui.ScrollPanel({
+      id : 'buttonPanel',
+      styles: {        
+        width: '100%',
+        height: '400px',
+        backgroundColor: 'gray'
+      }
+    });
+    //삭제 버튼이 Tap되었을때 버튼을 삭제하는  이벤트 핸들러를 등록한다.
+    //네번째 파라미터를 ture를 설정하여 캡쳐링때 동작한다.
+    buttonPanel.onEvent(tau.rt.Event.TAP, this.removeButton, this, true);
+    
+    var button1 = new tau.ui.Button({
+      label: 'Button', 
+      styles: {height: '50px',width: '160px'}
+    });
+    
+    var button2 = new tau.ui.Button({
+      label: 'Button', 
+      styles: {height: '50px',width: '160px'}
+    });
+    
+    buttonPanel.add(button1);
+    buttonPanel.add(button2);
+    scene.add(createButton);
+    scene.add(handlerSwitch);
+    scene.add(buttonPanel);
+  },
+ 
+  //Tap 되었을 때 삭제하는 이벤트 핸들러 
+  removeButton: function (event, payload) {
+    //실제적으로 Tap 된 컴포넌트를 가져온다.
+    var target = event._source;
+    //Tap된 컴포넌트가 버튼인지 체크한다.
+    if (target instanceof tau.ui.Button){
+      //버튼 컴포넌트를 삭제한다.
+      target.destroy();
+    }
+    
+  },
+  //추가 버튼이 Tap 되었을 때 버튼을 추가하는 이벤트 핸들러
+  createButton: function (event, payload) {
+    //버튼을 생성한다.
+    var button = new tau.ui.Button({
+      label: 'Button', 
+      styles: {height: '50px',width: '160px'}
+    })
+    //Scene을 가져온다.
+    var scene = this.getScene();
+    //삭제 버튼을 가지고있는 패널을 가져온다.
+    var panel = scene.getComponent('buttonPanel');
+    //패널에 버튼을 추가한다.
+    panel.add(button);
+    //추가된 버튼을 화면에 나타내기 위해서 scene을 업데이트 한다.
+    scene.update();
+  },
+  
+  handleValueChange: function (event, payload) {
+    //Scene을 가져온다.
+    var scene = this.getScene();
+    //스위치 컴포넌트를 가져온다.
+    var handleSwitch = scene.getComponent('switch');
+    //삭제 버튼을 가지고있는 패널을 가져온다.
+    var panel = scene.getComponent('buttonPanel');
+    
+    /* 스위치 컴포넌트가 remove(1)로 되어있다면 이전에 이벤트 핸들러를 삭제하고
+     * 삭제 핸들러를 등록한다.
+     * 스위치 컴포넌트가 change(0)로 되어잇다면 이전에 이벤트 핸들러를 삭제하고
+     * 크기 변경 핸들러를 등록한다.
+     */ 
+    if (handleSwitch.getValue() === 1) {
+      panel.unsubscribeEvent(tau.rt.Event.TAP, this.changeSize, this);
+      panel.onEvent(tau.rt.Event.TAP, this.removeButton,this, true);
+    } else {
+      panel.unsubscribeEvent(tau.rt.Event.TAP, this.removeButton,this);
+      panel.onEvent(tau.rt.Event.TAP, this.changeSize, this, true);
+    }
+  },
+  
+  changeSize: function (event, payload) {
+    //실제적으로 Tap 된 컴포넌트를 가져온다.
+    var target = event._source;
+    //Tap된 컴포넌트가 버튼인지 체크한다.
+    if (target instanceof tau.ui.Button){
+      //버튼 컴포넌트의 크기를 변경한다.
+      target.setStyle('width', '80px');
+    }
+  }
+});</pre>
+		</div>
+</div></div><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone full">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=evtmgt">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/evtmgt/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=evtmgt" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.rt.EventDelegator.html" class="external-link" rel="nofollow">API docs</a> </p></td></tr></table></div></td></tr></tbody></table><p> </p><p> </p><p> </p>
