@@ -8,30 +8,51 @@ keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Frame
 h1. Getting Started
 
 * "Studio Installation Guide":/studio-install-guide-ko
-* "Introduction to Design Perspective":/studio-perspective-ko
+* "Introduction to Design Perspective":/documents/Studio-Introduction_to_Design_Perspective.html
 * "Mobello Studio 처음 시작하기":/studio-getstarted-ko <i class="icon-best"></i>
 
 <hr>
 
 h1. Tutorials
 
-* "Navigation based App 제작 및 Publish 하기":/studio-build-navigation-ko <i class="icon-best"></i> 
-* "Mobello Studio 로 디버깅 하기":/studio-debug-ko <i class="icon-best"></i>
-* "Designing UI - Layout":/documents/studio_Designing_UI_-_Layout.html
-** "Designing UI - Flow Layout":/documents/studio_Designing_UI_-_Flow_Layout.html
-** "Designing UI - Flexbox Layout":/documents/studio_Designing_UI_-_Flexbox_Layout.html
-** "Designing UI - Absolute Layout":/documents/studio_Designing_UI_-_Absolute_Layout.html
-* "Designing UI - Styling":/documents/studio_Desiging_UI_-_Styling.html
-
+* "Build Navigation based App and Publish":/documents/Studio-Build_Navigation_based_App_and_Publish.html
+* "Debug with Mobello Studio":/documents/Studio-Debug_with_Mobello_Studio.html
+* "Designing UI - Layout":/documents/Studio-Designing_UI_-_Layout.html
+** "Designing UI - Flow Layout":/documents/Studio-Designing_UI_-_Flow_Layout.html
+** "Designing UI - Flexbox Layout":/documents/Studio-Designing_UI_-_Flexbox_Layout.html
+** "Designing UI - Absolute Layout":/documents/Studio-Designing_UI_-_Absolute_Layout.html
+* "Desiging UI - Styling":/documents/Studio-Desiging_UI_-_Styling.html
+* "Writing Source Code":/documents/Studio-Writing_Source_Code.html
 
 <hr>
 
 h1. UI Reference
 
-* "Mobello Studio Preference Page 소개":/studio-preferences-ko
-* 
+* "Designing User Interfaces":/documents/Studio-Designing_User_Interfaces.html
+** "Visual Designer":/documents/Studio-Visual_Designer.html
+** "Palette View":/documents/Studio-Palette_View.html
+** "Attributes View":/documents/Studio-Attributes_View.html
+** "Outline View":/documents/Studio-Outline_View.html
+** "QuickStyler View":/documents/Studio-QuickStyler_View.html
+* "Project and Files":/documents/Studio-Project_and_Files.html
+** "Mobello Application Project Wizard":/documents/Studio-Mobello_Application_Project_Wizard.html
+** "Mobello Dashboard Project Wizard":/documents/Studio-Mobello_Dashboard_Project_Wizard.html
+** "Mobello Application Wizard":/documents/Studio-Mobello_Application_Wizard.html
+** "Mobello Scene File Wizard":/documents/Studio-Mobello_Scene_File_Wizard.html
+** "JavaScript Source File Wizard":/documents/Studio-JavaScript_Source_File_Wizard.html
+* "Running and Publishing":/documents/Studio-Running_and_Publishing.html
+* "Mobello Emulator":/documents/Studio-Mobello_Emulator.html
+* "Debug Perspective":/documents/Studio-Debug_Perspective.html
+** "Breakpoints View":/documents/Studio-Breakpoints_View.html
+** "Console View":/documents/Studio-Console_View.html
+** "Debug View":/documents/Studio-Debug_View.html
+** "Variables View":/documents/Studio-Variables_View.html
+* "Mobello Studio Preference Page":/documents/Studio-Mobello_Studio_Preference_Page.html
+
 <hr>
 
 h1. Articles
 
-* "RSS 기반 app 만들기":/studio-build-rss-ko
+* "Build RSS based application":/documents/Studio-Build_RSS_based_application.html
+* "Inside the Scene File":/documents/Studio-Inside_the_Scene_File.html
+* "Inside the Mobello Studio Project":/documents/Studio-Inside_the_Mobello_Studio_Project.html
