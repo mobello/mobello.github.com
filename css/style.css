@@ -125,6 +125,10 @@ li .fb_iframe_widget span {
 	text-shadow: 0px 0px 8px #fff;
 }
 
+.nav > li.dropdown.open.active > a:hover {
+	background-color: transparent;
+}
+
 /* HOME */
 .home-hero {
 	background-color: #E6E3E3;
