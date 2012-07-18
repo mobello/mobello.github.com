@@ -1,6 +1,6 @@
 --- 
 layout: default 
-title: Mobello Studio
+title: Documentation > Mobello Studio
 description: This tutorial will help you to install Mobello Studio. 
 keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial, 튜토리얼, 강의
 ---
