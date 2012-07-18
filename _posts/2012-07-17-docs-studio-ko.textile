@@ -15,12 +15,12 @@ h1. Getting Started
 
 h1. Tutorials
 
-* "Build Navigation based App and Publish":/documents/Studio-Build_Navigation_based_App_and_Publish.html
-* "Debug with Mobello Studio":/documents/Studio-Debug_with_Mobello_Studio.html
+* "Build Navigation based App and Publish":/documents/Studio-Build_Navigation_based_App_and_Publish.html <i class="icon-best"></i>
+* "Debug with Mobello Studio":/documents/Studio-Debug_with_Mobello_Studio.html <i class="icon-best"></i>
 * "Designing UI - Layout":/documents/Studio-Designing_UI_-_Layout.html
 ** "Designing UI - Flow Layout":/documents/Studio-Designing_UI_-_Flow_Layout.html
-** "Designing UI - Flexbox Layout":/documents/Studio-Designing_UI_-_Flexbox_Layout.html
-** "Designing UI - Absolute Layout":/documents/Studio-Designing_UI_-_Absolute_Layout.html
+** "Designing UI - Flexbox Layout":/documents/Studio-Designing_UI_-_Flexbox_Layout.html <i class="icon-best"></i>
+** "Designing UI - Absolute Layout":/documents/Studio-Designing_UI_-_Absolute_Layout.html <i class="icon-best"></i>
 * "Desiging UI - Styling":/documents/Studio-Desiging_UI_-_Styling.html
 * "Writing Source Code":/documents/Studio-Writing_Source_Code.html
 
