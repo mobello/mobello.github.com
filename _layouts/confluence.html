@@ -44,8 +44,22 @@
 							</script>
 						</li>
 						
-						<li {% if page.title == 'Documentation' %} class="active" {% endif %} >
-							<a href="/docs">Documentation</a>
+						<li class="dropdown {% if page.title contains 'Documentation' %}active{% endif %}" >
+							<a href="#" class=dropdown-toggle" data-toggle="dropdown">Documentation
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="/docs" id="docs">Mobello.js</a>
+								</li>
+								<li>
+									<a href="/docs-studio" id="docs-studio">Mobello Studio</a>
+										<script type="text/javascript">
+										if(isKorean())
+											$('#docs-studio')[0].href += '-ko';
+										</script>
+								</li>
+							</ul>
 						</li>
 						<li {% if page.title == 'Contacts' %} class="active" {% endif %} >
 							<a href="/contacts">Contacts</a>
@@ -92,7 +106,7 @@
 	{% if page.title != 'Home' %}
 	<div class="default-banner">
 		<div class="container">
-			<h1 style="font-size: 46px;margin-bottom: 20px;margin-top: 48px;">
+			<h1 style="font-size: 33px;margin-bottom: 20px;margin-top: 48px;">
 				{{ page.title }}
 			</h1>
 			<p style="font-size: 18px; line-height: 15px;">
