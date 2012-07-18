@@ -9,7 +9,7 @@ h1. Getting Started
 
 * "Studio Installation Guide":/studio-install-guide-ko
 * "Introduction to Design Perspective":/documents/Studio-Introduction_to_Design_Perspective.html
-* "Mobello Studio 처음 시작하기":/studio-getstarted-ko <i class="icon-best"></i>
+* "Mobello Studio 처음 시작하기":/documents/Studio-Mobello_Studio_Getting_Started.html <i class="icon-best"></i>
 
 <hr>
 
