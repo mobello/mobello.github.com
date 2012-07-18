@@ -15,8 +15,8 @@ h1. Getting Started
 
 h1. Tutorials
 
-* "Build Navigation based App and Publish":/documents/Studio-Build_Navigation_based_App_and_Publish.html <i class="icon-best"></i>
-* "Debug with Mobello Studio":/documents/Studio-Debug_with_Mobello_Studio.html <i class="icon-best"></i>
+* "Navigation based App 제작 및 Publish 하기":/documents/Studio-Build_Navigation_based_App_and_Publish.html <i class="icon-best"></i>
+* "Mobello Studio 로 디버깅 하기":/documents/Studio-Debug_with_Mobello_Studio.html <i class="icon-best"></i>
 * "Designing UI - Layout":/documents/Studio-Designing_UI_-_Layout.html
 ** "Designing UI - Flow Layout":/documents/Studio-Designing_UI_-_Flow_Layout.html
 ** "Designing UI - Flexbox Layout":/documents/Studio-Designing_UI_-_Flexbox_Layout.html <i class="icon-best"></i>
@@ -53,6 +53,6 @@ h1. UI Reference
 
 h1. Articles
 
-* "Build RSS based application":/documents/Studio-Build_RSS_based_application.html
+* "RSS 기반 app 만들기":/documents/Studio-Build_RSS_based_application.html
 * "Inside the Scene File":/documents/Studio-Inside_the_Scene_File.html
 * "Inside the Mobello Studio Project":/documents/Studio-Inside_the_Mobello_Studio_Project.html
