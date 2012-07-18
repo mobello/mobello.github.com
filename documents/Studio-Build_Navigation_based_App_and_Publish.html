@@ -69,12 +69,14 @@ default.js 의 첫번째 빈 라인에 're' 을 입력하고 <strong>Ctrl+Space<
 <span class="image-wrap" style=""><img src="attachments/6750451/6914135.png" style="border: 0px solid black"/></span><br/>
  <br/>
 navigate function 의 내용에는 다음 코드를 복사해서 넣습니다. 이제 navigate 를 호출되면 foo.scene 으로 현재 화면이 전환 됩니다.<br/>
- <br/>
-&lt;pre class="prettyPrint"&gt;<br/>
- var fooCtrl = new navi.FooController();	// foo.scene 에 대한 Controller 인 navi.FooController 의 개체 생성합니다.<br/>
- this.getParent().pushController(fooCtrl);	// parent controller 에 FooController 개체를 push 합니다.<br/>
-&lt;/pre&gt;<br/>
- <br/>
+ </p>
+<div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: eclipse; brush: javascript; gutter: true">var fooCtrl = new navi.FooController();	// foo.scene 에 대한 Controller 인 navi.FooController 의 개체 생성합니다.
+ this.getParent().pushController(fooCtrl);	// parent controller 에 FooController 개체를 push 합니다.</pre>
+		</div>
+</div></div>
+<p> <br/>
 툴바의 <strong>Run</strong> 버튼을 눌러 에뮬레이터에서 실행해 봅니다. default.scene 의 버튼을 누르면 다음과 같이 foo.scene 으로 전환됩니다.<br/>
  <br/>
 <span class="image-wrap" style=""><img src="attachments/6750451/6914157.png" width="500" style="border: 0px solid black"/></span><br/>
