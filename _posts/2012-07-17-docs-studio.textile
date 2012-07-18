@@ -7,16 +7,16 @@ keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Frame
 
 h1. Getting Started
 
-* "Studio Installation Guide":/studio-install-guide-ko
-* "Introduction to Design Perspective":/documents/Studio-Introduction_to_Design_Perspective.html
-* "Mobello Studio 처음 시작하기":/studio-getstarted-ko <i class="icon-best"></i>
+* "Studio Installation Guide":/studio-install-guide
+* "Introduction to Design Perspective":/studio-perspective
+* "Mobello Studio Getting Started":/studio-getstarted <i class="icon-best"></i>
 
 <hr>
 
 h1. Tutorials
 
-* "Build Navigation based App and Publish":/documents/Studio-Build_Navigation_based_App_and_Publish.html <i class="icon-best"></i>
-* "Debug with Mobello Studio":/documents/Studio-Debug_with_Mobello_Studio.html <i class="icon-best"></i>
+* "Build navigation based app and publish":/studio-build-navigation 
+* "Debug app with Mobello Studio":/studio-debug
 * "Designing UI - Layout":/documents/Studio-Designing_UI_-_Layout.html
 ** "Designing UI - Flow Layout":/documents/Studio-Designing_UI_-_Flow_Layout.html
 ** "Designing UI - Flexbox Layout":/documents/Studio-Designing_UI_-_Flexbox_Layout.html <i class="icon-best"></i>
@@ -47,12 +47,12 @@ h1. UI Reference
 ** "Console View":/documents/Studio-Console_View.html
 ** "Debug View":/documents/Studio-Debug_View.html
 ** "Variables View":/documents/Studio-Variables_View.html
-* "Mobello Studio Preference Page":/documents/Studio-Mobello_Studio_Preference_Page.html
+* "Mobello Studio Preferences":/studio-preferences
 
 <hr>
 
 h1. Articles
 
-* "Build RSS based application":/documents/Studio-Build_RSS_based_application.html
+* "Build RSS app":/studio-build-rss
 * "Inside the Scene File":/documents/Studio-Inside_the_Scene_File.html
 * "Inside the Mobello Studio Project":/documents/Studio-Inside_the_Mobello_Studio_Project.html

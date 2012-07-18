@@ -25,8 +25,8 @@ h3. Mobello Studio give you ultimate productivity
 h2. Mobello Studio basics
 
 * "Installation Guide":/studio-install-guide
-* "Design Perspective":/studio-perspective
-* "Preferences":/studio-preferences 
+* "Introduction to Design Perspective":/studio-perspective
+* "Mobello Studio Preferences":/studio-preferences 
 
 <hr>
 
