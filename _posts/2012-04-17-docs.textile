@@ -23,13 +23,13 @@ h1. Tutorials
 * "Contacts using Table and TableCell - part2 [korean]":http://mobello.tumblr.com/post/21706135932/table-tablecell-part2
 <hr>
 
-h1. Compoenents Guide
+h1. Components Guide
 * "Practical guide to Components [korean]":/documents/component-guide.html
-* "How to use Buttons [korean]": 
-* "How to use Carousel [korean]":
-* "How to use Table - part1 [korean]":
-* "How to use Table - part2 [koran]":
-* "How to use Table - part3 [korean]":
+* "How to use Buttons [korean]":/documents/button-guide.html
+* "How to use Carousel [korean]":/documents/carousel-guide.html
+* "How to use Table - part1 [korean]":/documents/table-guide-part1.html
+* "How to use Table - part2 [korean]":/documents/table-guide-part2.html
+* "How to use Table - part3 [korean]":/documents/table-guide-part3.html
 <hr>
 
 h1. Theme Guide
@@ -42,13 +42,13 @@ h1. Theme Guide
 <hr>
 
 h1. Framework Guide
-* "The role of Runtime [korean]":
-* "The concepts of Module and Application [korean]":
-* "Events on Mobello [korean]":
-* "Animation [korean]":
-* "Introduction to Controller [korean]":
-* "What about SceneController [korean]":
-* "How to write class [korean]":
+* "The role of Runtime [korean]":/documents/Runtime.html
+* "The concepts of Module and Application [korean]":/documents/Module-Application.html
+* "Events on Mobello [korean]":/documents/Event.html
+* "Animation on Mobello [korean]":/Animation.html
+* "Introduction to Controller [korean]":/documents/about-Controller.html
+* "What about SceneController [korean]":/documents/In-depth-SceneController.html
+* "How to write class [korean]":/documents/about-class.html
 * "Single and Multitasking Mode [korean]":http://mobello.tumblr.com/post/22641902896/single-and-multi-tasking-mode
 <hr>
 
