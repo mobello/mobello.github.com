@@ -33,12 +33,13 @@ h1. Components Guide
 <hr>
 
 h1. Theme Guide
-* "How to install Sass & Compass [korean]":
-* "How to compile theme [korean]":
-* "Mobello theme variables [korean]":
-* "Theme mixins [korean]":
-* "How to customize theme [korean]":
-* "How to make new theme [korean]":
+* "How to install Sass & Compass [korean]":/documents/How-to-install-Sass-Compass.html
+* "How to compile theme [korean]":/documents/How-to-compile-theme.html
+* "Mobello theme global variables [korean]":/documents/theme-global-variables.html
+* "Mobello theme component variables [korean]":/documents/theme-component-variables.html
+* "Theme mixins [korean]":/documents/theme-mixins.html
+* "How to customize theme [korean]":/documents/How-to-customize-theme.html
+* "How to make new theme [korean]":/documents/How-to-make-new-theme.html
 <hr>
 
 h1. Framework Guide
