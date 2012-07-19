@@ -1,0 +1,94 @@
+---
+layout: confluence
+title: 기존 테마 간단하게 커스터마이징하기
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p> </p><p>Mobello에서는 앱의 전체적인 Look &amp; Feel을 적용하기 위한 테마를 제공합니다.  미리 제공되는 테마는 default, simple, ios가 있습니다.</p><p>사용자가 미리 제공되는 테마에 대해 수정하기 위해서 CSS를 직접 건드릴 필요 없습니다. </p><p>Mobello에서는 <a href="http://sass-lang.com/" class="external-link" rel="nofollow">Sass </a>&amp; <a href="http://compass-style.org/" class="external-link" rel="nofollow">Compass</a>를 통해서 쉽게 CSS에 대한 지식 없이도 전체적인 배경색, 버튼의 크기, gradient, shadow, radius 등 Mobello가 정의한 변수에 </p><p>값을 설정하거나, 자주 사용하는 스타일 룰을 정의한 mixin를 이용해서 간단하게 변경할 수 있습니다.</p><p> </p><p> 목차:</p><p><div>
+<ul>
+    <li><a href='#id-기존테마간단하게커스터마이징하기-Sass'><a href="http://sass-lang.com/" class="external-link" rel="nofollow">Sass</a></a></li>
+    <li><a href='#id-기존테마간단하게커스터마이징하기-Compass'><a href="http://compass-style.org/" class="external-link" rel="nofollow">Compass</a></a></li>
+    <li><a href='#id-기존테마간단하게커스터마이징하기-tauscss'>tau.scss</a></li>
+    <li><a href='#id-기존테마간단하게커스터마이징하기-tauscsscompile'>tau.scss compile</a></li>
+    <li><a href='#id-기존테마간단하게커스터마이징하기-globalvariables값설정하기'>global variables 값 설정하기</a></li>
+<ul>
+    <li><a href='#id-기존테마간단하게커스터마이징하기-컨테이너배경색변경'>컨테이너 배경색 변경</a></li>
+    <li><a href='#id-기존테마간단하게커스터마이징하기-gradientborder-radius값변경'>gradient, border-radius 값 변경</a></li>
+</ul>
+    <li><a href='#id-기존테마간단하게커스터마이징하기-componentvariables'>component variables</a></li>
+<ul>
+    <li><a href='#id-기존테마간단하게커스터마이징하기-버튼컴포넌트변수값수정하기'>버튼 컴포넌트 변수값 수정하기</a></li>
+    <li><a href='#id-기존테마간단하게커스터마이징하기-테이블컴포넌트변수값수정하기'>테이블 컴포넌트 변수값 수정하기</a></li>
+</ul>
+</ul></div></p><p> </p><h1 id="id-기존테마간단하게커스터마이징하기-Sass"><a href="http://sass-lang.com/" class="external-link" rel="nofollow">Sass</a></h1><p>Mobello는 CSS를 관리하지 않고 scss 파일을 관리하고 있습니다. 그 이유는 Sass에서 지원하고 있는 다음 기능을 활용해서 테마를 쉽게 관리하고, 테마를 적용하기 위해서 입니다.</p><ul><li><strong>variables : 변수를 선언해서 스타일 속성값에 설정할 수 있습니다. </strong>변수를 사용할 경우에 변수를 사용하는 스타일에 대한 값을 일괄적으로 적용할 수 있습니다.</li><li>nesting : 중복되는 셀렉터를 쓰지 않고 하위에 셀렉터를 추가하면 자동으로 셀렉터를 붙여줍니다. 스타일 룰을 구조화하기 용이합니다.</li><li>mixin : mixin로 정의한 내용이 스타일 룰에 추가할 수 있습니다. 자주 사용하는 스타일 룰을 정의해서 마치 함수를 사용하는 것과 같이 사용할 수 있습니다.</li><li>selector inheritance : 스타일 룰을 상속할 수 있습니다. 상속을 사용할 경우에 CSS파일 크기를 줄일 수 있는 장점이 있습니다.</li></ul><div><p> </p><p>다음은 variables에 대한 예제입니다.</p><p>$blue, $maring이라는 변수를 정의한 후에 CSS 스타일 룰에서 해당 변수를 사용하였습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>SCSS</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">$blue: #3bbfce;
+$margin: 16px;
+
+.content-navigation {
+  border-color: $blue;
+}
+
+.border {
+  padding: $margin / 2;
+  border-color: $blue;
+}</pre>
+		</div>
+</div></div><p> </p><p>다음은 SCSS파일을 컴파일해서 최종 CSS파일이 생성된 것입니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>CSS</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">/* CSS */
+
+.content-navigation {
+  border-color: #3bbfce;
+}
+
+.border {
+  padding: 8px;
+  border-color: #3bbfce;
+}</pre>
+		</div>
+</div></div><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="http://sass-lang.com/" class="external-link" rel="nofollow">http://sass-lang.com/</a> 에 방문해서 자세한 내용을 보시기 바랍니다.</p><p>또한 <a href="http://www.manning.com" class="external-link" rel="nofollow">manning</a>에서 MEAP버전의 <a href="http://www.manning.com/netherland/" class="external-link" rel="nofollow">Sass and Compass in Action</a> 서적을 참고하시기 바랍니다.</p></td></tr></table></div><p> </p></div><p> </p><h1 id="id-기존테마간단하게커스터마이징하기-Compass"><a href="http://compass-style.org/" class="external-link" rel="nofollow">Compass</a></h1><p>Compass는 Sass로 작성된 것으로 자주 사용되는 스타일 패턴을 mixin로 제공하고 있습니다.</p><p>특히 스타일 룰에 대해 cross browsing에 대한 이슈, 최신 CSS3에 대한 지원에 대해 일일이 CSS로 작성하지 않아도 Compass에서 제공하는 mixin를 이용하면 쉽게 적용할 수 있습니다. </p><p> </p><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="http://compass-style.org/" class="external-link" rel="nofollow">http://compass-style.org/</a> 에 방문해서 자세한 내용을 보시기 바랍니다.</p><p><span>또한 </span><a href="http://www.manning.com/" class="external-link" rel="nofollow">manning</a><span> </span><span>에서 MEAP버전의 </span><a href="http://www.manning.com/netherland/" class="external-link" rel="nofollow">Sass and Compass in Action</a><span> 서적을 참고하시기 바랍니다.</span></p></td></tr></table></div><h1 id="id-기존테마간단하게커스터마이징하기-tauscss">tau.scss</h1><p><img class="confluence-embedded-image" confluence-query-params="effects=drop-shadow" src="attachments/7307994/7536669.png?effects=drop-shadow" data-image-src="attachments/7307994/7536669.png?effects=drop-shadow"></p><p>Mobello 테마는 lib &gt; resources &gt; scss &gt; themes 하위에 위치하고 있습니다.</p><p>tau.scss파일에서는  변수값을 설정하거나 직접 CSS 스타일 룰을 정의할 수 있습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>tau.scss</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">$enable-gradient: false;
+$enable-border-radius: false;
+$enable-box-shadow: false;
+...
+
+@import '../../lib/all';
+...
+.custom {
+ height: 100px;
+ width: 100px;
+}</pre>
+		</div>
+</div></div><pre> </pre><pre>@import '../../lib/all'를 기준으로 위에서는 변수에 값을 설정하고, </pre><pre>@import '../../lib/all'를 기준으로 밑으로 CSS 스타일 룰을 직접 추가할 수 있습니다.</pre><p> </p><h1 id="id-기존테마간단하게커스터마이징하기-tauscsscompile">tau.scss compile</h1><p>tau.scss를 변경하고 나면 컴파일 과정을 통해 tau.css 파일을 생성해 보도록 하겠습니다. 여기서는 테마를 컴파일 하기 위해 필요한 라이브러리들이 설치되어있다고 가정하고 설명하겠습니다.</p><p> </p><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>테마를 컴파일 하기 위해서는 tau.scss 파일을 컴파일 하기 위해서는 먼저 ruby, sass, compass가 설치되어야 합니다. 다음 문서를 참고하시기 바랍니다.</p><ul><li><a href="How-to-install-Sass-Compass.html">sass & compass &#49444;&#52824;&#44032;&#51060;&#46300;</a></li><li><a href="How-to-compile-theme.html">theme &#52980;&#54028;&#51068;&#54616;&#44592;</a></li></ul></td></tr></table></div><p> </p><p>컴파일이 완료되면 lib &gt; resources &gt; themes &gt; 수정한 테마 폴더에 tau.css 파일이 생성됩니다.</p><p><img class="confluence-embedded-image" confluence-query-params="effects=drop-shadow" src="attachments/7307994/7536670.png?effects=drop-shadow" data-image-src="attachments/7307994/7536670.png?effects=drop-shadow"></p><h1 id="id-기존테마간단하게커스터마이징하기-globalvariables값설정하기">global variables 값 설정하기</h1><p>Mobello에서는 전역변수를 설정해서 공통적으로 적용할 수 있는 스타일을 정의하였습니다. </p><p> </p><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>전역변수에 대한 자세한 사항은 <a href="theme-global-variables.html">theme &#51204;&#50669;&#48320;&#49688; &#47928;&#49436;</a>를 참고하시기 바랍니다.</p></td></tr></table></div><p> </p><p>이 문서에서는 컨테이너의 배경색 설정, gradient, border-radius 값을 변경해서 간단하게 테마를 수정해서 적용해 보도록 하겠습니다.</p><p> </p><p> </p><h3 id="id-기존테마간단하게커스터마이징하기-컨테이너배경색변경">컨테이너 배경색 변경</h3><p>다음과 같이 기본 컨테이너의 배경색과 텍스트 색상을 설정할 수 있습니다.</p><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="60%"><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>tau.scss</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">$default-container-bgcolor: red;
+$default-container-color: white;</pre>
+		</div>
+</div></div></td><td valign="top"><p><img class="confluence-embedded-image" src="attachments/7307994/7536698.png" data-image-src="attachments/7307994/7536698.png"></p></td></tr></tbody></table><p> </p><h3 id="id-기존테마간단하게커스터마이징하기-gradientborder-radius값변경">gradient, border-radius 값 변경</h3><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="60%"><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>tau.scss</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">$enable-gradient: false;</pre>
+		</div>
+</div></div></td><td valign="top"><p><img class="confluence-embedded-image" src="attachments/7307994/7536702.png" data-image-src="attachments/7307994/7536702.png"></p></td></tr></tbody></table><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="60%"><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>tau.scss</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">$enable-border-radius: false;</pre>
+		</div>
+</div></div></td><td valign="top"><img class="confluence-embedded-image" src="attachments/7307994/7536703.png" data-image-src="attachments/7307994/7536703.png"></td></tr></tbody></table><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="60%"><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>tau.scss</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">$enable-border-radius: true;
+$default-border-radius: 1.2em;</pre>
+		</div>
+</div></div></td><td valign="top"><p><img class="confluence-embedded-image" src="attachments/7307994/7536704.png" data-image-src="attachments/7307994/7536704.png"></p></td></tr></tbody></table><p> </p><p> </p><p> </p><p> </p><h1 id="id-기존테마간단하게커스터마이징하기-componentvariables">component variables</h1><p>Mobello에서는 컴포넌트 변수를 설정해서 컴포넌트에 대해 적용할 수 있는 스타일을 정의하였습니다. </p><p> </p><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>컴포넌트 변수에 대한 자세한 사항은 <a href="theme-component-variables.html">theme &#52980;&#54252;&#45324;&#53944; &#48320;&#49688;</a>를 참고하시기 바랍니다.</p></td></tr></table></div><p> </p><h3 id="id-기존테마간단하게커스터마이징하기-버튼컴포넌트변수값수정하기">버튼 컴포넌트 변수값 수정하기</h3><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="60%"><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>tau.scss</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">$button-height: 64px;
+$button-border: 6px solid blue;</pre>
+		</div>
+</div></div></td><td valign="top"><p><img class="confluence-embedded-image" src="attachments/7307994/7536705.png" data-image-src="attachments/7307994/7536705.png"></p></td></tr></tbody></table><p> </p><h3 id="id-기존테마간단하게커스터마이징하기-테이블컴포넌트변수값수정하기">테이블 컴포넌트 변수값 수정하기</h3><p>다음은 섹션 헤더에 해당하는 색을 변경하고, 테이블의 배경색을 변경하는 예제입니다.</p><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="60%"><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>tau.scss</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">$enable-box-shadow: false;  // 섹션 헤더에 적용되어 있는 box-shadow를 사용하지 않는다.
+$tablesection-bgcolor: red; // 섹션 헤더 색을 변경한다.
+$table-bgcolor: white;  // 테이블 배경색을 변경한다.</pre>
+		</div>
+</div></div></td><td valign="top"><p><img class="confluence-embedded-image" src="attachments/7307994/7536707.png" data-image-src="attachments/7307994/7536707.png"> <img class="confluence-embedded-image" src="attachments/7307994/7536708.png" data-image-src="attachments/7307994/7536708.png"></p></td></tr></tbody></table><p> </p><p> </p>

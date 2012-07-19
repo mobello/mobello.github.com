@@ -1,0 +1,40 @@
+---
+layout: confluence
+title: theme 컴파일하기
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p>이 문서는 기본 테마를 컴파일하고, 추가한 테마를 컴파일하는 방법에 대해서 소개합니다.</p><p> </p><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>theme을 컴파일하기 위해서는 <a href="How-to-install-Sass-Compass.html">Sass & Compass &#49444;&#52824; &#44032;&#51060;&#46300;</a> 를 참고하셔서 theme 컴파일 환경을 구성해야 합니다.</p></td></tr></table></div><p> </p><p>목차:</p><p><div>
+<ul>
+    <li><a href='#theme컴파일하기-환경변수설정하기'>환경 변수 설정하기</a></li>
+<ul>
+    <li><a href='#theme컴파일하기-테마경로설정하기'>테마 경로 설정하기</a></li>
+    <li><a href='#theme컴파일하기-cssouputstyle설정하기'>css ouput style 설정하기</a></li>
+</ul>
+    <li><a href='#theme컴파일하기-themecompile하기'>theme compile 하기</a></li>
+    <li><a href='#theme컴파일하기-추가한themecompile하기'>추가한 theme compile 하기</a></li>
+<ul>
+    <li><a href='#theme컴파일하기-customtheme추가'>custom theme 추가<br /><br /></a></li>
+    <li><a href='#theme컴파일하기-하나의customthemecompile'>하나의 custom theme compile</a></li>
+    <li><a href='#theme컴파일하기-여러개의customthemecompile'>여러개의 custom theme compile</a></li>
+</ul>
+</ul></div></p><p> </p><h1 id="theme컴파일하기-환경변수설정하기">환경 변수 설정하기</h1><h3 id="theme컴파일하기-테마경로설정하기">테마 경로 설정하기</h3><p><span>build.xml에 <strong>projectdir property</strong> 속성에 대한 value값을 설정해 주어야 합니다.</span>이 값은 Mobello Application Project의 절대경로로 지정해 주시면 됩니다.</p><ol><li>build.xml 파일을 마우스로 오른쪽 클릭해서 &quot;External Tools Configurations&quot;를 선택합니다.</li><li>Properties 탭으로 이동해서</li><li>&quot;Use global properties as specified in the Ant runtime preferences&quot;를 체크 해제합니다.</li><li>&quot;Add Property&quot; 버튼을 클릭해서</li><li><strong>Name</strong>: <em>projectdir</em>, <strong>Value</strong>: Mobello Application Project 경로를 입력하고 &quot;OK&quot; 버튼을 클릭합니다.</li><li><strong>compass.compile.custom</strong> target을 실행합니다.</li></ol><p><img class="confluence-embedded-image" src="attachments/7308194/7536693.png" data-image-src="attachments/7308194/7536693.png"></p><p><span> </span></p><h3 id="theme컴파일하기-cssouputstyle설정하기">css ouput style 설정하기</h3><p>css output style은 다음 스타일을 제공합니다. 기본값은 compressed입니다. </p><ul><li>nested : CSS가 계층구조에 맞게 indent가 적용되어 보여줍니다.</li><li>expanded</li><li>compact</li><li>compressed : css파일이 압축되어 보여줍니다.</li></ul><p><span><img class="confluence-embedded-image" src="attachments/7308194/7536694.png" data-image-src="attachments/7308194/7536694.png"></span></p><h1 id="theme컴파일하기-themecompile하기">theme compile 하기</h1><p>테마를 컴파일하기 위해서는 <strong>compass.compile.테마명</strong> ant를 수행하시면 됩니다.</p><p>default, ios, simple, custom 테마 모두 컴파일하려면<strong> compile.all</strong>을 수행하시면 됩니다.</p><p> </p><p>컴파일이 완료되면 Mobello Application Project에 lib &gt; resource &gt; themes &gt; 테마명 폴더에서 tau.css 파일이 새로 생성된 것을 확인할 수 있습니다.</p><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="20%"><p><img class="confluence-embedded-image" src="attachments/7308194/7536695.png" data-image-src="attachments/7308194/7536695.png"></p></td><td valign="top"><p><img class="confluence-embedded-image" confluence-query-params="effects=drop-shadow" src="attachments/7308176/7536676.png?effects=drop-shadow" data-image-src="attachments/7308176/7536676.png?effects=drop-shadow"></p></td></tr></tbody></table><p> </p><h1 id="theme컴파일하기-추가한themecompile하기">추가한 theme compile 하기</h1><h3 id="theme컴파일하기-customtheme추가">custom theme 추가<br /><br /></h3><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>기존 테마폴더를 복사해서 폴더명 변경, 해당 값만 변경하시면 빠르게 작성할 수 있습니다.</p></td></tr></table></div><p> 사용자가 추가적으로 theme을 생성하기 위해서는</p><ol><li>Mobello Application Project에 lib &gt; resource &gt; scss &gt; themes 하위에  <strong>생성할 테마명</strong>  으로 폴더를 생성합니다.<br /><br /><img class="confluence-embedded-image" src="attachments/7308194/7536696.png" data-image-src="attachments/7308194/7536696.png"><br /><br /></li><li><p>tau.scss 파일을 작성합니다. </p><p><code class="java color1">@import</code><span> </span><code class="java string">'../../lib/all'</code><code class="java plain">; 꼭 작성해야 합니다. </code></p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Confluence; brush: java; gutter: false">...
+@import '../../lib/all';
+...</pre>
+		</div>
+</div></div></li></ol><h3 id="theme컴파일하기-하나의customthemecompile">하나의 custom theme compile</h3><p>추가된 theme이 하나인 경우에는 custom property값을 설정하면 간단하게 컴파일 할 수 있습니다.</p><p><img class="confluence-embedded-image confluence-external-resource" src="attachments/426331/721547.png" data-image-src="http://10.214.49.53:8090/download/attachments/426331/scss02.png?version=1&amp;modificationDate=1315215656000"></p><ol><li>build.xml 파일을 마우스로 오른쪽 클릭해서 &quot;External Tools Configurations&quot;를 선택합니다.</li><li>Properties 탭으로 이동해서</li><li>&quot;Use global properties as specified in the Ant runtime preferences&quot;를 체크 해제합니다.</li><li>&quot;Add Property&quot; 버튼을 클릭해서</li><li><strong>Name</strong>: <em>custom</em>, <strong>Value</strong>: <em>테마명  </em>을 입력하고 &quot;OK&quot; 버튼을 클릭합니다.</li><li><strong>compass.compile.custom</strong> target을 실행합니다.<br /><br /><img class="confluence-embedded-image" src="attachments/7308194/7536697.png" data-image-src="attachments/7308194/7536697.png"> <br /> </li><li>Mobello Application Project에 lib &gt; resource &gt; themes &gt; 테마명  폴더가 생성되고, 하위에 tau.css 파일이 생성되는 것을 확인하실 수 있습니다.<br /><br /><img class="confluence-embedded-image confluence-external-resource" src="attachments/426331/721632.png" data-image-src="http://10.214.49.53:8090/download/attachments/426331/theme.png?version=1&amp;modificationDate=1319606083000"><br /><br /> </li></ol><h3 id="theme컴파일하기-여러개의customthemecompile">여러개의 custom theme compile</h3><p>추가한 테마가 여러개인 경우에는 build.xml에 target name이 <strong>compile.default </strong>을 복사해서 target name, path정보만 수정하시면 됩니다.</p><p> </p><p><strong>default</strong>만 해당 테마명으로 변경하시면 됩니다.</p><ul><li>target name : compass.compile.테마명</li><li><pre>param value를 해당 테마명으로 변경합니다.</pre></li></ul><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>build.xml</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: html/xml; gutter: true">&lt;target name="compile.테마명" description="compile"&gt;
+    &lt;antcall target="compile.theme"&gt;
+      &lt;param name="theme" value="테마명"/&gt;
+    &lt;/antcall&gt;
+  &lt;/target&gt;</pre>
+		</div>
+</div></div><p> </p><p>또한 <strong>compile.all</strong>에 적용하려면 depends에 target name을 추가하시면 됩니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>build.xml</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: html/xml; gutter: true">&lt;target name="compile.all" depends="compile.base, compile.default, compile.simple, compile.ios, compile.custom, compile.테마명"&gt;</pre>
+		</div>
+</div></div><p> </p><p> </p><p> </p><p> </p>

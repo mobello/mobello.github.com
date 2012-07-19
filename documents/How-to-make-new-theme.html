@@ -1,0 +1,112 @@
+---
+layout: confluence
+title: 커스텀 테마 추가하기
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p>이 문서에서는 Mobello에서 제공하는 테마에 대해 기본적으로 이해하고, sass, compass에 대한 간단한 기초 지식이 있다고 가정하고 설명하도록 하겠습니다.  </p><p>여기에서는 sass에서 제공하는 mixin에 대해 살펴보고, compass에서 제공하는 기능을 통해 새로운 테마를 직접 추가해 보도록 하겠습니다.</p><p> </p><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="How-to-customize-theme.html">&#44592;&#51316; &#53580;&#47560; &#44036;&#45800;&#54616;&#44172; &#52964;&#49828;&#53552;&#47560;&#51060;&#51669;</a>하기 문서를 통해서 미리 mobello에서 제공하는 테마에 대한 기초적인 설명과 sass, compass에 대한 소개를 참고하시기 바랍니다.</p><p>테마를 컴파일 하기 위해서는 tau.scss 파일을 컴파일 하기 위해서는 먼저 ruby, sass, compass가 설치되어야 합니다. 다음 문서를 참고하시기 바랍니다.</p><ul><li><a href="How-to-install-Sass-Compass.html">Sass & Compass &#49444;&#52824;&#44032;&#51060;&#46300;</a></li><li><a href="How-to-compile-theme.html">theme &#52980;&#54028;&#51068;&#54616;&#44592;</a></li></ul></td></tr></table></div><p> </p><p> </p><p>목차:</p><p><div>
+<ul>
+    <li><a href='#id-커스텀테마추가하기-SASS이해'>SASS 이해</a></li>
+    <li><a href='#id-커스텀테마추가하기-Compass이해'>Compass 이해</a></li>
+    <li><a href='#id-커스텀테마추가하기-MobelloCSS구조'>Mobello CSS 구조</a></li>
+    <li><a href='#id-커스텀테마추가하기-Mobello에서제공하는mixin'>Mobello에서 제공하는 mixin</a></li>
+<ul>
+    <li><a href='#id-커스텀테마추가하기-Button에서제공하는mixin'>Button에서 제공하는 mixin</a></li>
+    <li><a href='#id-커스텀테마추가하기-컴포넌트에서제공하는mixin을사용하지않고스타일룰추가하기'>컴포넌트에서 제공하는 mixin을 사용하지 않고 스타일 룰 추가하기</a></li>
+</ul>
+</ul></div></p><h1 id="id-커스텀테마추가하기-SASS이해">SASS 이해</h1><p>Mobello는 CSS를 관리하지 않고 scss 파일을 관리하고 있습니다. 그 이유는 Sass에서 지원하고 있는 다음 기능을 활용해서 테마를 쉽게 관리하고, 테마를 적용하기 위해서 입니다.</p><ul><li>variables : 변수를 선언해서 스타일 속성값에 설정할 수 있습니다.<strong> </strong>변수를 사용할 경우에 변수를 사용하는 스타일에 대한 값을 일괄적으로 적용할 수 있습니다.</li><li>nesting : 중복되는 셀렉터를 쓰지 않고 하위에 셀렉터를 추가하면 자동으로 셀렉터를 붙여줍니다. 스타일 룰을 구조화하기 용이합니다.</li><li><strong>mixin : mixin로 정의한 내용이 스타일 룰에 추가할 수 있습니다.</strong> 자주 사용하는 스타일 룰을 정의해서 마치 함수를 사용하는 것과 같이 사용할 수 있습니다.</li><li>selector inheritance : 스타일 룰을 상속할 수 있습니다. 상속을 사용할 경우에 CSS파일 크기를 줄일 수 있는 장점이 있습니다.</li></ul><div>Sass의 기능 중에 mixin은 중복되는 코드에 대해 재활용할 수 있는 방법을 제시합니다. </div><div><p> </p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>scss</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">@mixin left($dist) {
+  float: left;
+  margin-left: $dist;
+}
+
+#data {
+  @include left(10px);
+}</pre>
+		</div>
+</div></div><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>css</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">#data {
+  float: left;
+  margin-left: 10px;
+}</pre>
+		</div>
+</div></div><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="http://sass-lang.com/" class="external-link" rel="nofollow">http://sass-lang.com/</a> 에 방문해서 자세한 내용을 보시기 바랍니다.</p><p><span>또한 </span><a href="http://www.manning.com/" class="external-link" rel="nofollow">manning</a><span> </span><span>에서 MEAP버전의 </span><a href="http://www.manning.com/netherland/" class="external-link" rel="nofollow">Sass and Compass in Action</a><span> 서적을 참고하시기 바랍니다.</span></p></td></tr></table></div><p> </p></div><h1 id="id-커스텀테마추가하기-Compass이해">Compass 이해</h1><p>다음은 border-radius를 적용하려는 예제입니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>.scss</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: false">.simple   { @include border-radius(4px, 4px); }</pre>
+		</div>
+</div></div><p> </p><p>최종 결과 css파일을 보시면 자동으로 vendor namespace(-wekbit, -moz, -khtml)를 붙여주고 해당 vendor에서 사용하는 스타일 값을 자동으로 설정해 줍니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">.simple {
+ -webkit-border-radius: 4px 4px;
+ -moz-border-radius: 4px / 4px;
+ -khtml-border-radius: 4px / 4px;
+ border-radius: 4px / 4px; 
+}</pre>
+		</div>
+</div></div><p> </p><p>다음은 예전 방식으로 기술된 gradient와 새롭게 기술된 방식 둘다를 지원하는 예제입니다.</p><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td> 이 예제는 <cite title="Sass and Compass IN ACTION. Published by Manning; MEAP"> "Sass and Compass IN ACTION" page 111~112</cite>를 참고하였습니다.</td></tr></table></div><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>older webkit - css</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">#pattern {
+  background: -webkit-gradient(
+    linear, 360deg, 360deg,
+    color-stop(0%, #bfbfbf),
+    ...
+    color-stop(100%, #000000));</pre>
+		</div>
+</div></div><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>New syntax - css</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">#pattern {
+  background: -webkit-linear-gradient(
+    360deg,
+    #bfbfbf 0%, 
+    ...
+    #000000 100%);
+  }
+}</pre>
+		</div>
+</div></div><p> </p><p>다음과 같이 background mixin에 linear-gradient mixin를 사용하면 vendor, syntax가 변경되더라도 상관없이 지원합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>Gradients with the background module - scss</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">#pattern {
+  @include background(
+  linear-gradient(
+  360deg,
+  #bfbfbf 0%,
+  ...
+  #bf00bf 100%));
+}</pre>
+		</div>
+</div></div><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="http://compass-style.org/" class="external-link" rel="nofollow">http://compass-style.org/</a> 에 방문해서 자세한 내용을 보시기 바랍니다.</p><p><span>또한 </span><a href="http://www.manning.com/" class="external-link" rel="nofollow">manning</a><span> </span><span>에서 MEAP버전의 </span><a href="http://www.manning.com/netherland/" class="external-link" rel="nofollow">Sass and Compass in Action</a><span> 서적을 참고하시기 바랍니다.</span></p></td></tr></table></div><h1 id="id-커스텀테마추가하기-MobelloCSS구조">Mobello CSS 구조</h1><p>Mobello에서 제공하는 mixin와 compass에서 제공하는 mixin를 활용하기 위해서는 우선 Mobello 테마에 대한 간략한 이해가 필요합니다.</p><p>Mobello에서는 컴포넌트에 대한 스타일룰을 정의하고 있습니다. (참고로 컴포넌트 최상위 DOM element에 적용되는 스타일입니다.)</p><ul><li>prefix : tau-</li><li>소문자 컴포넌트명</li></ul><p> </p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">.tau-button {
+  ...
+}
+ 
+.tau-slider {
+  ...
+}</pre>
+		</div>
+</div></div><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>컴포넌트의 최상위 DOM element가 아닌 하위 element에 대해 적용되도록 스타일을 적용하기 위해서는</p><p>해당 컴포넌트의 DOM 구조에 자세히 알아야 하고, Sass로 정의되어 있는 scss파일을 직접 수정하야 하는 작업이기 때문에 이 문서에서는 다루지 않습니다.</p><p>커스텀 컴포넌트 개발하기 문서에서 DOM element를 구성하고 해당 컴포넌트에 대한 scss파일을 작성하는 예제를 통해서 살펴보시기 바랍니다.</p></td></tr></table></div><p> </p><h1 id="id-커스텀테마추가하기-Mobello에서제공하는mixin">Mobello에서 제공하는 mixin</h1><p>Mobello에서 제공하는 <a href="theme-mixins.html">mixin</a>는 많이 있으나 여기에서는 최상위 DOM element에 쉽게 적용될 수 있는 것에 대해 알아보도록 하겠습니다.</p><p> </p><h3 id="id-커스텀테마추가하기-Button에서제공하는mixin">Button에서 제공하는 mixin</h3><p>Button 컴포넌트의 default 테마에서는 dark, red, khaki, green type의 테마를 제공하고 있습니다. 추가적으로 사용자가 테마를 쉽게 추가하기 위해서 다음과 같은 <a href="theme-mixins.html">mixin</a>을 제공합니다.</p><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><span style="color: rgb(0,0,0);">Button에 대한 테마를 적용하는 예는 <a href="http://10.214.49.53:8090/pages/viewpage.action?pageId=7307405">Button &#52980;&#54252;&#45324;&#53944; &#49324;&#50857;&#54616;&#44592;</a> 문서를 참고하시기 바랍니다.</span></p></td></tr></table></div><p> </p><ul><li><p>tau-button-type : 버튼 타입 테마를 추가합니다.</p><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>/**<br /> * @param {string}$type<br /> * @param {color} $start-bgcolor<br /> * @param {color} $stop1-bgcolor<br /> * @param {color} $stop2-bgcolor<br /> * @param {color} $end-bgcolor<br /> */</p><p>@mixin tau-button-type ($type, $start-bgcolor, $stop1-bgcolor, $stop2-bgcolor, $end-bgcolor)</p></td></tr></table></div></li><li><p>tau-button-state : tau-button-type으로 추가한 테마의 상태(selected | highlighted | disabled) 일 때의 배경색을 설정합니다.</p><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>/**<br /> * @param {string} $type<br /> * @param {string} $state<br /> * @param {color} $start-bgcolor<br /> * @param {color} $stop1-bgcolor<br /> * @param {color} $stop2-bgcolor<br /> * @param {color} $end-bgcolor<br /> */<br />@mixin tau-button-state ($type, $state, $start-bgcolor, $stop1-bgcolor, $stop2-bgcolor, $end-bgcolor)</p></td></tr></table></div></li></ul><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>tau.scss</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">@include tau-button-type (custom, #00FF08, #00AB04, #009203, #00A604);
+@include tau-button-state (custom, highlighted, #00FE06, #01FE03, #00E003, #00FF03);
+@include tau-button-state (custom, selected, #01A300, #005200, #013800, #004D00);
+@include tau-button-state (custom, disabled, #40BE41, #409540, #408940, #409343);</pre>
+		</div>
+</div></div><p> </p><p><img class="confluence-embedded-image" src="attachments/7308317/7536709.png" data-image-src="attachments/7308317/7536709.png"></p><p><img class="confluence-embedded-image" src="attachments/7308317/7536710.png" data-image-src="attachments/7308317/7536710.png"></p><p><img class="confluence-embedded-image" src="attachments/7308317/7536711.png" data-image-src="attachments/7308317/7536711.png"></p><p><img class="confluence-embedded-image" src="attachments/7308317/7536713.png" data-image-src="attachments/7308317/7536713.png"></p><p> </p><h3 id="id-커스텀테마추가하기-컴포넌트에서제공하는mixin을사용하지않고스타일룰추가하기">컴포넌트에서 제공하는 mixin을 사용하지 않고 스타일 룰 추가하기</h3><p>여기에서는 Button에서 제공하는 type 테마를 추가하기 위한 mixin말고 직접 스타일 룰을 추가하는 방법에 대해 소개하고자 합니다.</p><p>CSS의 스타일 룰을 추가하는 방법과 동일하다고 생각하면 됩니다. 단, Mobello에서 제공하는 mixin을 사용하고 sass 문법으로 작성하시면 됩니다.</p><p> </p><p>다음은 Compass에서 제공하는 <a href="http://compass-style.org/reference/compass/css3/text-shadow/" class="external-link" rel="nofollow">Text-Shadow</a>, <a href="http://compass-style.org/reference/compass/css3/box_shadow/" class="external-link" rel="nofollow">Box-Shadow</a> 입니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeHeader panelHeader" style="border-bottom-width: 1px;"><b>tau.scss</b></div><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">.tau-button {
+  @include text-shadow;  // compass
+  @include box-shadow;   // compass
+  ...
+}</pre>
+		</div>
+</div></div><p><img class="confluence-embedded-image" src="attachments/7308317/7536716.png" data-image-src="attachments/7308317/7536716.png"></p><p>다음은 Mobello에서 제공하는 border를 둥글게 하는 tau-round mixin입니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre class="theme: Eclipse; brush: css; gutter: true">.tau-button {
+ ...
+ @include tau-round; // mobello
+}</pre>
+		</div>
+</div></div><p><img class="confluence-embedded-image" src="attachments/7308317/7536717.png" data-image-src="attachments/7308317/7536717.png"></p><p> </p><p> </p><p> </p><p> </p>
