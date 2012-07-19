@@ -28,7 +28,7 @@ config.json 파일을 열고 다음 url 항목을 그대로 복사 합니다. �
  </p>
 <div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
 <div id="root">
-		<pre class="theme: eclipse; brush: javascript; gutter: true">url: 'http://blog.olleh.com/rss/',</pre>
+		<pre style="font-size:12px;" class="theme: eclipse; brush: javascript; gutter: true">url: 'http://blog.olleh.com/rss/',</pre>
 		</div>
 </div></div>
 <p> <br/>
@@ -46,7 +46,7 @@ Scene File 위자드에서 article 이라는 이름의 scene 을 추가합니다
  </p>
 <div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
 <div id="root">
-		<pre class="theme: eclipse; brush: javascript; gutter: true">$class('rss.ArticleController').extend(tau.ui.SceneController).define({
+		<pre style="font-size:12px;" class="theme: eclipse; brush: javascript; gutter: true">$class('rss.ArticleController').extend(tau.ui.SceneController).define({
 	ArticleController: function (opts){
 		this.article = opts;
 		this.setTitle(this.article.title);
@@ -69,7 +69,7 @@ default.js 를 열고 파일의 첫 라인에 다음과 같이 article.js 를 re
  </p>
 <div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
 <div id="root">
-		<pre class="theme: eclipse; brush: javascript; gutter: true">$require('/article.js');</pre>
+		<pre style="font-size:12px;" class="theme: eclipse; brush: javascript; gutter: true">$require('/article.js');</pre>
 		</div>
 </div></div>
 <p> <br/>
@@ -77,7 +77,7 @@ default.js 의 <strong>cellSelected</strong> function 에서 article scene 에 �
  </p>
 <div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
 <div id="root">
-		<pre class="theme: eclipse; brush: javascript; gutter: true">cellSelected : function(current, before) {
+		<pre style="font-size:12px;" class="theme: eclipse; brush: javascript; gutter: true">cellSelected : function(current, before) {
  var table = this.getTable();
  var index = table.indexOf(current);
  var article = this.feed[index[0]];
@@ -93,7 +93,7 @@ default.js 의 <strong>cellSelected</strong> function 에서 article scene 에 �
 default.js 의 최종 코드는 다음과 같습니다.</p>
 <div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
 <div id="root">
-		<pre class="theme: eclipse; brush: javascript; gutter: true">$require('/article.js');
+		<pre style="font-size:12px;" class="theme: eclipse; brush: javascript; gutter: true">$require('/article.js');
 $class('rss.DefaultController').extend(tau.ui.TableSceneController).define(
         {
             DefaultController : function() {
@@ -105,18 +105,18 @@ $class('rss.DefaultController').extend(tau.ui.TableSceneController).define(
                 var table = this.getTable();
                 var max = start + size;
                 function load(resp) {
-                    this.feed = resp.responseJSON.query.results.item;
-                    size = (max &lt; this.feed.length) ? size
-                            : this.feed.length - start;
-                    table.addNumOfCells(size);
- 
+                  this.feed = resp.responseJSON.query.results.item;
+                  size = (max &lt; this.feed.length) ? size : this.feed.length - start;
+                  table.addNumOfCells(size);
                 }
+                var reqUrl = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22'
+                    + encodeURIComponent(this.appConfig.url) + '%22&amp;format=json';
                 tau.req({
-                    type : 'JSONP',
-                    jsonpCallback : 'callback',
-                    url : this.appConfig.url,
-                    timeout : 20000,
-                    callbackFn : tau.ctxAware(load, this)
+                  type : 'JSONP',
+                  jsonpCallback : 'callback',
+                  url : reqUrl,
+                  timeout : 20000,
+                  callbackFn : tau.ctxAware(load, this)
                 }).send();
             },
             cellSelected : function(current, before) {
