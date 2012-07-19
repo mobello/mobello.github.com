@@ -35,7 +35,7 @@ h1. Components Guide
 h1. Theme Guide
 * "How to install Sass & Compass [korean]":
 * "How to compile theme [korean]":
-* "Mobell theme variables [korean]":
+* "Mobello theme variables [korean]":
 * "Theme mixins [korean]":
 * "How to customize theme [korean]":
 * "How to make new theme [korean]":
