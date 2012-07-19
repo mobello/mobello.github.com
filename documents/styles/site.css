@@ -2994,8 +2994,12 @@ table.confluenceTable th.confluenceTh.nohighlight > p {
     border-bottom-style: solid;
 }
 
-.codeHeader, .panelHeader, .panelContent {
+/*.codeHeader,*/.panelHeader, .panelContent {
     background: #f0f0f0;
+}
+
+.codeHeader {
+    text-align: left;
 }
 
 .preformattedHeader, .codeContent, .preformattedContent {
