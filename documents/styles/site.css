@@ -3000,6 +3000,7 @@ table.confluenceTable th.confluenceTh.nohighlight > p {
 
 .codeHeader {
     text-align: left;
+    background: none !important;
 }
 
 .preformattedHeader, .codeContent, .preformattedContent {
