@@ -1,0 +1,92 @@
+---
+layout: confluence
+title: 커스텀 컴포넌트 개발가이드 part2
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p>part1에서는 별 컴포넌트에 대해 구현해 보았습니다. part2에서는 별 컴포넌트를 조금 더 확장해 보도록 하겠습니다.</p><p>여기에서는 별 컴포넌트의 UI를 정의하는 renderer에 대해 간단하게 알아보고, 스타일 클래스 정의, 별 컴포넌트의 DOM 구조를 정의해 보도록 하겠습니다.</p><p> </p><p>목차:</p><p><div>
+<ul>
+    <li><a href='#id-커스텀컴포넌트개발가이드part2-시작하기전'>시작하기 전</a></li>
+    <li><a href='#id-커스텀컴포넌트개발가이드part2-renderer'>renderer</a></li>
+    <li><a href='#id-커스텀컴포넌트개발가이드part2-스타일클래스정의'>스타일 클래스 정의</a></li>
+    <li><a href='#id-커스텀컴포넌트개발가이드part2-DOM구조정의'>DOM 구조 정의</a></li>
+    <li><a href='#id-커스텀컴포넌트개발가이드part2-DOMelement에컴포넌트에서전달한값을반영'>DOM element에 컴포넌트에서 전달한 값을 반영</a></li>
+    <li><a href='#id-커스텀컴포넌트개발가이드part2-part2를마무리하며'>part2를 마무리하며</a></li>
+</ul></div></p><p> </p><h1 id="id-커스텀컴포넌트개발가이드part2-시작하기전">시작하기 전</h1><p>이 문서는 기본적으로 컴포넌트에 대해 이해를 하고 있어야 합니다. 또한 테마에 대한 이해가 필요합니다.  </p><p>추가적으로 DOM 구조를 정의하는 부분에서 실제로 Document Object Model에 대한 기본적인 이해가 필요합니다.</p><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="http://mobello.github.com/documents/component-guide.html" class="external-link" rel="nofollow">Component 필수 가이드</a></p><p><a href="http://mobello.github.com/documents/How-to-customize-theme.html">&#44592;&#51316; &#53580;&#47560; &#44036;&#45800;&#54616;&#44172; &#52964;&#49828;&#53552;&#47560;&#51060;&#51669;&#54616;&#44592;</a></p><p><a href="http://mobello.github.com/documents/How-to-make-new-theme.html">&#52964;&#49828;&#53568; &#53580;&#47560; &#52628;&#44032;&#54616;&#44592;</a></p><p>Document Object Model Core</p><ul><li><a href="https://developer.mozilla.org/en/childNodes" class="external-link" rel="nofollow">https://developer.mozilla.org/en/childNodes</a></li><li><a class="external-link" href="http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407/core.html#ID-1451460987" rel="nofollow">W3C DOM 3 Core: childNodes</a></li></ul></td></tr></table></div><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=custom2">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/custom2/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=custom2" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Component.html" class="external-link" rel="nofollow">API docs</a></p></td></tr></table></div></td></tr></tbody></table><h1 id="id-커스텀컴포넌트개발가이드part2-renderer">renderer</h1><p>컴포넌트의 renderer는 다음과 같은 역할을 수행합니다.</p><ul><li>컴포넌트 기본 스타일 정의</li><li>DOM 구조를 정의</li><li>DOM element에 컴포넌트에서 전달한 값을 반영</li></ul><div><p>여기에서는 컴포넌트의 renderer는 컴포넌트의 DOM element를 생성하고 컴포넌트의 전달한 값을 반영해 주는 역할을 수행한다고 이해하시면 됩니다.</p><p> </p><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p>현재 사용자는 컴포넌트에서 제공하는 API만 호출 가능하고 render에 있는 API를 직접 호출하지 않습니다. 그래서 현재 renderer에 있는 API에 대한 reference를 제공하고 있지 않습니다.</p><p>커스텀 컴포넌트나 직접 컴포넌트를 구현할 때는 해당 API에 대한 이해가 요구되므로 renderer에 대한 자세한 문서는 추후 작성해서 제공 하도록 하겠습니다.</p><p><a href="https://github.com/mobello/mobello/blob/master/lib/tau.ui.renderer.js" class="external-link" rel="nofollow">tau.ui.renderer.js</a>  소스를 참고하시기 바랍니다.</p></td></tr></table></div><p> </p><h1 id="id-커스텀컴포넌트개발가이드part2-스타일클래스정의">스타일 클래스 정의</h1></div><p>part1에서는 생성자에서 스타일 설정 함수로 지정했습니다. 여기에서는 별 컴포넌트의 기본 스타일 클래스를 정의하도록 하겠습니다.</p><p>따로 정의하지 않은 경우 상위 클래스인 tau.ui.Button의 기본 스타일 클래스를 사용합니다.</p><p> </p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">custom.Star.prototype.renderer = tau.mixin({
+  ...
+}, custom.Star.$super.renderer);</pre>
+		</div>
+</div></div><p> </p><p>'custom-star' 이름의 기본 스타일 클래스를 정의합니다. 이 이름은 테마에 CSS의 스타일 룰로 추가가 되어야 합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">$base: 'custom-star',</pre>
+		</div>
+</div></div><p> </p><p>다음은 세부적인 스타일 클래스가 필요한 것은 <strong>$styleClass</strong>에서 정의합니다. </p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">$styleClass: {
+  right: 'right',
+  left:  'left'
+}</pre>
+		</div>
+</div></div><p> </p><p> </p><h1 id="id-커스텀컴포넌트개발가이드part2-DOM구조정의">DOM 구조 정의</h1><p>기본적으로 DOM 구조를 정의하지 않는 경우 상위 컴포넌트의 renderer에서 정의한 DOM 구조를 사용합니다.</p><p>여기서는 직접 DOM 구조를 정의하도록 합니다.</p><p> </p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">_template: [
+  '&lt;div class=${base}&gt;',
+    '&lt;div class="${left}"&gt;&lt;/div&gt;',
+    '&lt;div class="${right}"&gt;&lt;/div&gt;'
+  '&lt;/div&gt;'
+],</pre>
+		</div>
+</div></div><p>${base}, ${right}, ${left}는 위에서 정의한 스타일 클래스입니다.   </p><p> </p><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><ul><li>${base}의 경우에는 <strong>$base</strong>에서 정의한 기본 스타일 클래스값이 대체되어 들어갑니다.</li><li>${클래스명}으로 설정하면 <strong>$styleClass</strong> 에서 정의한 스타일 클래스 값으로 대체되어 들어갑니다.</li></ul></td></tr></table></div><p> </p><p>DOM 구조를 정의한 후에는 컴포넌트가 생성될 때 DOM을 생성하고, DOM의 특정 element에 접근하기 위해 용이하도록 키값에 DOM element를 맵핑하는 작업을 수행합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">_initializeDOM: function ($dom, $base, root) {
+  $dom[tau.ui.ROOT_KEY] = root;
+  $dom[custom.RIGHT_KEY] = root.childNodes[0];
+  $dom[custom.LEFT_KEY] = root.childNodes[1];
+},</pre>
+		</div>
+</div></div><p>키값으로 ROOT_KEY는 컴포넌트의 최상위 DOM element를 가리키고 있습니다.</p><h1 id="id-커스텀컴포넌트개발가이드part2-DOMelement에컴포넌트에서전달한값을반영">DOM element에 컴포넌트에서 전달한 값을 반영</h1><p>여기에서는 별 컴포넌트를 터치했을 때 right 영역을 터치한 것인지, left 영역을 터치한 것인지 구분해서 DOM element에 반영해 보도록 하겠습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">handleTap: function (e, payload) {
+  var hit = e.changedTouches[0];
+  var result = this.renderer.getElemPropertyName(this.$renderData, hit.target);
+  var value = custom.RIGHT_KEY ? .5 : 1;
+  
+  
+  this.setSelected(true);
+  this.setValue(value);
+  this.fireEvent('selected', value);
+}</pre>
+		</div>
+</div></div><p>tau.ui.BaseRenderer.<strong>getElemPropertyName</strong> 메소드는 파라미터로 넘어오는 element가 컴포넌트의 DOM 구조에서 어떤 키값에 해당하는지를 반환합니다.</p><p>즉, 현재 터치했을 때 터치한 DOM element의 키값을 알기 위해서 제공되는 메소드입니다.</p><p> </p><p>다음은 renderer에 updateValue 함수를 작성해서 터치했을 때 값을 변경해 보도록 하겠습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">updateValue: function ($renderData, value) {
+
+    var $dom = $renderData.$dom;
+    var root = $dom[tau.ui.ROOT_KEY];
+
+    if (value == .5) {
+      tau.util.dom.replaceClass(root, this.$styleClass.selected, this.$styleClass.halfSelected);
+    } else if (value == 1) {
+      tau.util.dom.replaceClass(root, this.$styleClass.halfSelected, this.$styleClass.selected);
+    } else {
+      tau.util.dom.removeClass(root, this.$styleClass.selected);
+      tau.util.dom.removeClass(root, this.$styleClass.halfSelected);
+    }
+  }</pre>
+		</div>
+</div></div><p> </p><p> </p><h1 id="id-커스텀컴포넌트개발가이드part2-part2를마무리하며">part2를 마무리하며</h1><p>part2에서는 컴포넌트의 랜더러를 직접 수정해서 스타일 클래스를 설정하고, DOM 구조를 정의해 보았습니다.</p><p>랜더러를 직접 작성하기 위해서는 기본적으로 랜더러가 제공하는 기능에 대해 숙지해야 하고, 테마에 대한 이해가 필요합니다. 랜더러에 대한 부족한 내용에 대해서는 계속적으로 문서를 작성할 예정입니다.</p>
