@@ -30,6 +30,9 @@ h1. Components Guide
 * "How to use Table - part1 [korean]":/documents/table-guide-part1.html
 * "How to use Table - part2 [korean]":/documents/table-guide-part2.html
 * "How to use Table - part3 [korean]":/documents/table-guide-part3.html
+* "How to make custom Component - part1 [korean]":/documents/How-to-make-custom-comp-part1.html
+* "How to make custom Component - part2 [korean]":/documents/How-to-make-custom-comp-part2.html
+* "How to make custom Component - part3 [korean]":/documents/How-to-make-custom-comp-part3.html
 <hr>
 
 h1. Theme Guide

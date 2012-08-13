@@ -1,0 +1,95 @@
+---
+layout: confluence
+title: 커스텀 컴포넌트 개발가이드 part3
+descriptoin:
+keyword: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework 
+---
+
+<p>part1, par2를 통해 별 컴포넌트에 대해 구현해 보았습니다. part3 문서에서는 별 컴포넌트를 하위로 가지는 ratingbar 컴포넌트를 구현해 보도록 하겠습니다.</p><p> </p><p>목차:</p><p><div>
+<ul>
+    <li><a href='#id-커스텀컴포넌트개발가이드part3-시작하기전'>시작하기 전</a></li>
+    <li><a href='#id-커스텀컴포넌트개발가이드part3-tauuiContainermixin'>tau.ui.Container mixin</a></li>
+    <li><a href='#id-커스텀컴포넌트개발가이드part3-생성자옵션'>생성자 옵션</a></li>
+    <li><a href='#id-커스텀컴포넌트개발가이드part3-메소드추가'>메소드 추가</a></li>
+    <li><a href='#id-커스텀컴포넌트개발가이드part3-하위컴포넌트랜더링하기전처리작업'>하위 컴포넌트 랜더링 하기 전처리 작업</a></li>
+    <li><a href='#id-커스텀컴포넌트개발가이드part3-하위컴포넌트랜더링'>하위 컴포넌트 랜더링</a></li>
+    <li><a href='#id-커스텀컴포넌트개발가이드part3-이벤트처리'>이벤트 처리</a></li>
+    <li><a href='#id-커스텀컴포넌트개발가이드part3-part3를마무리하며'>part3를 마무리하며</a></li>
+</ul></div></p><p> </p><h1 id="id-커스텀컴포넌트개발가이드part3-시작하기전">시작하기 전</h1><div class='panelMacro'><table class='tipMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/check.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td><p><a href="http://mobello.github.com/documents/component-guide.html" class="external-link" rel="nofollow">Component 필수 가이드</a></p><p><a href="http://mobello.github.com/documents/about-class.html">&#53364;&#47000;&#49828; &#51089;&#49457;&#54616;&#44592;</a></p><p><a href="http://mobello.github.com/documents/How-to-make-custom-comp-part1.html">&#52964;&#49828;&#53568; &#52980;&#54252;&#45324;&#53944; &#44060;&#48156;&#44032;&#51060;&#46300; part1</a></p><a href="http://mobello.github.com/documents/How-to-make-custom-comp-part2.html">&#52964;&#49828;&#53568; &#52980;&#54252;&#45324;&#53944; &#44060;&#48156;&#44032;&#51060;&#46300; part2</a></td></tr></table></div><p> </p><p>RatingBar 컴포넌트의 경우 굳이 별 컴포넌트를 하위로 가지는 컨테이너 컴포넌트로 작성할 필요는 없습니다. 단지 여기에서는 컨테이너 컴포넌트를 설명하기 위해 RatingBar 컴포넌트를 컨테이너 컴포넌트로 규정하였습니다.</p><p> </p><table class="sectionMacro" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td valign="top" width="320px"><p>
+
+<div class="iphone ">
+  <iframe style="width: 100%; height: 100%; border: 0;" src="http://mobello.github.com/mobello-learn/launcher.html?app=starrating">    </iframe>
+</div></p></td><td valign="top"><div class='panelMacro'><table class='infoMacro'><colgroup><col width='24'><col></colgroup><tr><td valign='top'><img src="images/icons/emoticons/information.png" width="16" height="16" align="absmiddle" alt="" border="0"></td><td>
+
+<a href="https://github.com/mobello/mobello-learn/blob/master/apps/starrating/main.js" class="external-link" rel="nofollow">
+소스
+</a><p>
+
+<a href="http://mobello.github.com/mobello-learn/launcher.html?app=starrating" class="external-link" rel="nofollow">
+데모
+</a>: 현재 webkit 기반의 브라우저(chrome, safari)에서만 확인가능합니다.</p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Component.html" class="external-link" rel="nofollow">API docs</a></p></td></tr></table></div></td></tr></tbody></table><h1 id="id-커스텀컴포넌트개발가이드part3-tauuiContainermixin">tau.ui.Container mixin</h1><p>하위 컴포넌트를 관리하기 위해서는 컨테이너 기능이 필요합니다. 하위 컴포넌트를 추가하고, 삭제하는 기능이 있는 <a href="http://mobello.github.com/api/symbols/tau.ui.Container.html" class="external-link" rel="nofollow">tau.ui.Container</a>를 mixin해서 컨테이너 컴포넌트를 구현하도록 하겠습니다.</p><p>상위 클래스는 <a href="http://mobello.github.com/api/symbols/tau.ui.Component.html" class="external-link" rel="nofollow">tau.ui.Component</a>를 상속받도록 하겠습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">$class('custom.RatingBar').extend(tau.ui.Component).mixin(tau.ui.Container).define({
+  ...
+});</pre>
+		</div>
+</div></div><p> </p><h1 id="id-커스텀컴포넌트개발가이드part3-생성자옵션">생성자 옵션</h1><p>별 컴포넌트의 개수를 설정하는 부분은 메소드로 정의하지 않고, 생성자의 옵션으로 정의하도록 하겠습니다.</p><p> </p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">RatingBar: function () {
+  this._value = 0;
+  this._numStars = 5;
+  
+  this.$optionize = tau.mixin(this.$optionize, {
+    handler: {
+      numStars: function (prop, val) {
+        this._numStars = val;
+      }
+    }
+  }, 'remix');
+}</pre>
+		</div>
+</div></div><p>this.$optionize는 생성자 호출후에 메모리에 사라집니다. 즉, 생성자에 전달된 옵션들에 대한 처리가 마무리되면 더이상 사용할 필요가 없기 때문입니다.</p><p> </p><h1 id="id-커스텀컴포넌트개발가이드part3-메소드추가">메소드 추가</h1><p>별 컴포넌트가 선택되어있는 개수로 값을 가져오고, 설정하는 메소드를 정의하겠습니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">getValue: function () {
+  this._value;
+},
+ 
+setValue: function (value) {
+  this._value = value;
+  ...
+}</pre>
+		</div>
+</div></div><p> </p><h1 id="id-커스텀컴포넌트개발가이드part3-하위컴포넌트랜더링하기전처리작업">하위 컴포넌트 랜더링 하기 전처리 작업</h1><p>RatingBar 컴포넌트가 랜더링하기 전에 처리할 작업이 있습니다. 별 컴포넌트의 개수만큼 하위 컴포넌트를 생성해서 추가하는 작업입니다.</p><p> </p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Drawable.html#beforeRender" class="external-link" rel="nofollow">tau.ui.Drawable#beforeRender</a> 에서는 전처리 작업이 필요한 경우 오버라이드 하면 됩니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">beforeRender: function (refresh) {
+  for(var i=0; i &lt; this._numStars; i++) {
+    this.add(new custom.Star());
+  }
+}</pre>
+		</div>
+</div></div><p> </p><h1 id="id-커스텀컴포넌트개발가이드part3-하위컴포넌트랜더링">하위 컴포넌트 랜더링</h1><p><a href="http://mobello.github.com/api/symbols/tau.ui.Drawable#render" class="external-link" rel="nofollow">tau.ui.Drawable#render</a> 에서는 랜더링을 수행하는 메소드입니다. 필요한 경우 오버라이드 합니다.</p><p>우리는 하위 컴포넌트에 대한 랜더링이 필요하므로 <a href="http://mobello.github.com/api/symbols/tau.ui.ContainerDrawable#drawComponents" class="external-link" rel="nofollow">tau.ui.ContainerDrawable#drawComponents</a>를 호출합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">render: function (refresh) {
+  this.drawComponents(refresh);
+}</pre>
+		</div>
+</div></div><p> </p><h1 id="id-커스텀컴포넌트개발가이드part3-이벤트처리">이벤트 처리</h1><p>별 컴포넌트가 터치되었을 때 'selected'라는 이벤트를 발생한다고 part1에서 소개하였습니다.</p><p>RatingBar 컴포넌트에서는 'selected' 이벤트를 받아서 현재 값을 설정하고, 선택된 별 컴포넌트 이전의 컴포넌트들이 선택이 되도록 처리하겠습니다.</p><p> </p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">RatingBar: function () {
+  ...
+  this.onEvent('selected', this.handleSelected, this);
+},</pre>
+		</div>
+</div></div><p> </p><p><a href="http://mobello.github.com/api/symbols/tau.ui.Container.html#indexOf" class="external-link" rel="nofollow">tau.ui.Container#indexOf</a> 메소드를 통해 선택된 별 컴포넌트의 인덱스를 얻어와서 이전 인덱스에 해당하는 별 컴포넌트들을 선택이 되도록 합니다.</p><div class="code panel" style="border-width: 1px;"><div class="codeContent panelContent">
+<div id="root">
+		<pre style="font-size:12px;" class="theme: Confluence; brush: java; gutter: false">handleSelected: function (e, payload) {
+  var src = e.getSource();
+  var index = this.indexOf(src)[0];
+  var comps = this.getComponents();
+ 
+  for(var i=0; i &lt; index; i++) {
+    comps[i].setValue(1);
+  }
+}</pre>
+		</div>
+</div></div><p> </p><h1 id="id-커스텀컴포넌트개발가이드part3-part3를마무리하며">part3를 마무리하며</h1><p>part3에서는 컨테이너 컴포넌트인 RatingBar를 구현해 보았습니다. part3에서는 따로 테마를 추가하거나, 랜더러에서 DOM 구조를 변경하는 작업은 하지 않았습니다.</p><p>여기에서는 컨테이너 컴포넌트에 대한 메소드를 사용하고, 하위 컴포넌트에서 발생한 이벤트를 받아서 처리하는 부분에 대해 알아보았습니다.</p>
