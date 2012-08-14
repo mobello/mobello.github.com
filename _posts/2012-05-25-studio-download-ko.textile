@@ -5,7 +5,7 @@ description: Request a download link for Mobello Studio.
 keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Framework, tutorial, Tutorial, 튜토리얼, 강의
 ---
 
-h3. Mobello Studio 1.0 preview 다운로드
+h3. Mobello Studio 1.1 다운로드
 
 * Mobello Studio 의 다운로드 링크는 이메일로 전송됩니다.
 * 다운로드 링크를 수신할 이메일을 입력해 주십시요.

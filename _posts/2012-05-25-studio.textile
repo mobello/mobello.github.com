@@ -25,8 +25,9 @@ h3. Mobello Studio give you ultimate productivity
 h2. Mobello Studio basics
 
 * "Installation Guide":/studio-install-guide
-* "Introduction to Design Perspective":/studio-perspective
-* "Mobello Studio Preferences":/studio-preferences 
+* <a href="/documents/Studio-Mobello_Studio_1.1_Installation_Guide__28install_to_existing_eclipse_29.html">Studio Installation Guide (install to exisiting eclipse)</a>
+* "Mobello Studio 1.1 - What's New":/documents/Studio-Mobello_Studio_1.1_-_What_27s_New.html
+* "Build Hybrid App with Mobello + Appspresso":/documents/Studio-Build_Hybrid_App_with_Mobello__2B_Appspresso.html
 
 <hr>
 
