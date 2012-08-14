@@ -8,7 +8,7 @@ keywords: Mobello, mobello, 모벨로, HTML5, javascript, CSS3, mobile, UI Frame
 h1. Getting Started
 
 * "Studio Installation Guide":/studio-install-guide-ko
-* "Studio Installation Guide (install to exisiting eclipse)":/documents/Studio-Mobello_Studio_1.1_Installation_Guide__28install_to_existing_eclipse_29.html
+<a href="/documents/Studio-Mobello_Studio_1.1_Installation_Guide__28install_to_existing_eclipse_29.html">Studio Installation Guide (install to exisiting eclipse)</a>
 * "Introduction to Design Perspective":/documents/Studio-Introduction_to_Design_Perspective.html
 * "Mobello Studio 처음 시작하기":/documents/Studio-Mobello_Studio_Getting_Started.html <i class="icon-best"></i>
 
