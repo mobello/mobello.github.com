@@ -18,7 +18,11 @@ h3. Mobello Studio 기능
 * Powerful layout editing
 * Eclipse plug-in architecture
 
-<a href="/studio-download-ko" class="btn btn-black btn-large" style="padding-left: 70px;padding-right:70px;margin-top: 15px;">Download Mobello Studio</a>
+h3. Mobello Studio 1.1 릴리즈!
+
+* "Mobello Studio 1.1 - 좋아진 점":/documents/Studio-Mobello_Studio_1.1_-_What_27s_New.html
+
+<a href="/studio-download-ko" class="btn btn-black btn-large" style="padding-left: 70px;padding-right:70px;margin-top: 15px;">Download Mobello Studio 1.1</a>
 
 <hr style="clear:both">
 
