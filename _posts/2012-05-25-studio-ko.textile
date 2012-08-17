@@ -30,7 +30,7 @@ h2. Mobello Studio 기본 자료
 
 * "설치 가이드":/studio-install-guide-ko
 * <a href="/documents/Studio-Mobello_Studio_1.1_Installation_Guide__28install_to_existing_eclipse_29.html">Studio Installation Guide (install to exisiting eclipse)</a>
-* "Build Hybrid App with Mobello + Appspresso":/documents/Studio-Build_Hybrid_App_with_Mobello__2B_Appspresso.html
+* "Build Hybrid App with Mobello + Appspresso":/documents/Studio-Build_Hybrid_App_with_Mobello__2B_Appspresso(ko).html
 
 * *"More Studio Documents...":/docs-studio-ko*
 

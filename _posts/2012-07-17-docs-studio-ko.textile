@@ -59,7 +59,7 @@ h1. Articles
 * "Inside the Scene File":/documents/Studio-Inside_the_Scene_File.html
 * "Inside the Mobello Studio Project":/documents/Studio-Inside_the_Mobello_Studio_Project.html
 * "Mobello Studio 1.1 - What's New":/documents/Studio-Mobello_Studio_1.1_-_What_27s_New.html
-* "Build Hybrid App with Mobello + Appspresso":/documents/Studio-Build_Hybrid_App_with_Mobello__2B_Appspresso.html
+* "Build Hybrid App with Mobello + Appspresso":/documents/Studio-Build_Hybrid_App_with_Mobello__2B_Appspresso(ko).html
 ** "Install Appspresso 1.1.2 to existing Mobello Studio 1.1":/documents/Studio-Install_Appspresso_1.1.2_to_existing_Mobello_Studio_1.1.html
 ** "Install Android SDK & Create AVD":/documents/Studio-Install_Android_SDK__26_Create_AVD.html
 * "Javascript Editor supports Mobello class system in 1.1":/documents/Studio-Javascript_Editor_supports_Mobello_class_system_in_1.1.html
