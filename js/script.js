@@ -1,5 +1,5 @@
 function request_download() {
-	var url = "http://www.econovation.co.kr/Mobello/web/_res/_server/mobello_download.asp";
+	var url = "http://www.econovation.co.kr/@page/development/@exec/mobello_send.asp";
 	var pattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	var email = $('#email')[0].value;
 	
